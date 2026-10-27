@@ -1,0 +1,65 @@
+{
+  "base": "http://127.0.0.1:4404",
+  "rows": [
+    {
+      "engine": "chromium",
+      "case": "home reload from scrolled position",
+      "pass": true,
+      "opening": {
+        "top": 0,
+        "state": "preparing",
+        "type": "reload"
+      }
+    },
+    {
+      "engine": "chromium",
+      "case": "hash reload restarts intro and keeps query",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "case": "business reload at top; incoming deep link worked",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "case": "Back restores position without intro replay",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "case": "reduced motion reload at top without intro",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "case": "home reload from scrolled position",
+      "pass": true,
+      "opening": {
+        "top": 0,
+        "state": "preparing",
+        "type": "reload"
+      }
+    },
+    {
+      "engine": "webkit",
+      "case": "hash reload restarts intro and keeps query",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "case": "business reload at top; incoming deep link worked",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "case": "Back restores position without intro replay",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "case": "reduced motion reload at top without intro",
+      "pass": true
+    }
+  ]
+}

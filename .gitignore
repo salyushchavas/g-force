@@ -1,0 +1,35 @@
+# Dependencies and generated build output
+node_modules/
+dist/
+.astro/
+.vite/
+.cache/
+coverage/
+*.tsbuildinfo
+
+# Local environment and deployment credentials
+.env
+.env.*
+!.env.example
+!.env.*.example
+.vercel/
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Browser recordings and generated test output; keep screenshots and JSON reviews
+new-site/review/**/*.webm
+new-site/review/**/*.mp4
+new-site/review/**/*.mov
+playwright-report/
+test-results/
+
+# Logs and operating-system/editor temporary files
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~

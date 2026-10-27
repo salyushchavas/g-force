@@ -1,0 +1,754 @@
+---
+// Learner page: dawn temperature (DESIGN.md: learners = dawn) on Air's sky.
+// Order follows the learner's questions: can I do this (hero, with a "Start here" panel of the five goals)
+// → which course (finder) → how would I learn (formats) → what does it lead to (exams) → the practical questions
+// (the shared FAQ section) → talk to a person. The header's call to action is "Find your course" on this page.
+// Schedules and tuition are confirmed on enquiry (PRODUCT.md open questions), so no dates or prices appear here.
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/ui/PageHero.astro';
+import SplitHeading from '../components/ui/SplitHeading.astro';
+import Picture from '../components/ui/Picture.astro';
+import Video from '../components/ui/Video.astro';
+import Icon from '../components/ui/Icon.astro';
+import Faq from '../components/sections/Faq.astro';
+import CourseFinder from '../components/islands/CourseFinder';
+import { media } from '../lib/media';
+import { company, courses, certTracks, faqs, learningFormats, paths, testimonials, type Course } from '../data/site';
+
+type Format = Course['formats'][number];
+type Goal = Course['goal'];
+
+const enquireHref = '/contact/?interest=training#contact-form';
+const talkHref = company.bookingUrl || enquireHref;
+const talkLabel = company.bookingUrl ? 'Book a call' : 'Ask about training';
+// Keeps "6 p.m. MT" together when the hours wrap.
+const glue = (s: string) => s.replace(/ (?=a\.m\.|p\.m\.|MT\b|ET\b)/g, '\u00a0');
+const hours = { days: company.hours.days, local: glue(company.hours.local), eastern: glue(company.hours.eastern) };
+
+// Formats: each one lists how many courses run that way, computed from the catalogue.
+const formatKey = (name: string): Format | undefined =>
+  /virtual/i.test(name) ? 'virtual' : /in-person/i.test(name) ? 'in-person' : /self-paced/i.test(name) ? 'self-paced' : undefined;
+const formatRows = learningFormats.map((f) => {
+  const key = formatKey(f.name);
+  const count = key ? courses.filter((c) => c.formats.includes(key)).length : 0;
+  return { ...f, key, count };
+});
+
+// Exams, grouped by the track that prepares for them (or by name when no course lists the exam yet).
+const goalTitle: Record<Goal, string> = { cloud: 'Cloud', cybersecurity: 'Cybersecurity', ai: 'AI and machine learning', data: 'Data', devops: 'DevOps' };
+const courseFor = (exam: string) => courses.find((c) => c.certs.includes(exam));
+const goalFor = (exam: string): Goal => courseFor(exam)?.goal ?? (/cloud|aws|azure/i.test(exam) ? 'cloud' : 'cybersecurity');
+const examGroups = (Object.keys(goalTitle) as Goal[])
+  .map((goal) => ({
+    goal,
+    title: goalTitle[goal],
+    exams: certTracks.filter((exam) => goalFor(exam) === goal).map((exam) => ({ exam, course: courseFor(exam) })),
+  }))
+  .filter((g) => g.exams.length > 0);
+
+// "Start here": one link per goal into the course finder, pre-filtered (CourseFinder reads ?goal= on load).
+const startGoals = (Object.keys(goalTitle) as Goal[])
+  .map((goal) => ({ goal, title: goalTitle[goal], count: courses.filter((c) => c.goal === goal).length }))
+  .filter((g) => g.count > 0);
+
+// The learner's voice: the testimonial written for this path (marked Sample until a real, permissioned one arrives).
+const learner = testimonials.sample ? undefined : testimonials.items.find((t) => /career|track|learner/i.test(`${t.who} ${t.org}`));
+
+// Training questions: the two from the shared FAQ, plus answers drawn directly from the catalogue.
+const sharedFaqs = faqs.filter((f) => /course|train|learner/i.test(f.q));
+const examCourses = courses.filter((c) => c.certs.length > 0);
+const join = (items: string[]) => (items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} and ${items.at(-1)}`);
+const startFaq = sharedFaqs.find((f) => /start with/i.test(f.q));
+const staffFaq = sharedFaqs.find((f) => /staff/i.test(f.q));
+const trainingFaqs = [
+  startFaq,
+  {
+    // Restates learningFormats in site.ts.
+    q: 'Can I study while working full time?',
+    a: 'Yes. Virtual classes are live sessions you join from anywhere in Canada, and self-paced courses are built to fit around a full-time job. Each course in the finder lists the formats it runs in.',
+  },
+  {
+    q: 'Which certification exams do the courses prepare me for?',
+    a: `${examCourses.map((c) => `${c.name} prepares you for ${join(c.certs)}.`).join(' ')} The full list is in the exams section on this page.`,
+  },
+  {
+    q: 'When does the next course start, and what does it cost?',
+    a: 'Start dates and tuition are confirmed when you enquire. Ask about a course and a person will reply within one business day.',
+  },
+  staffFaq,
+  ...sharedFaqs.filter((f) => f !== startFaq && f !== staffFaq),
+].filter((f): f is { q: string; a: string } => Boolean(f?.q && f.a));
+
+// Structured data: the catalogue as schema.org Course items, provided by the organization defined in Base.astro.
+const courseMode: Record<Format, string[]> = { virtual: ['Online', 'Synchronous'], 'in-person': ['Onsite'], 'self-paced': ['Online', 'Asynchronous'] };
+const coursesLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'G-Force IT training courses',
+  itemListElement: courses.map((c, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'Course',
+      name: c.name,
+      description: c.summary,
+      inLanguage: 'en-CA',
+      educationalLevel: c.level.charAt(0).toUpperCase() + c.level.slice(1),
+      teaches: c.covers,
+      provider: { '@id': `${company.url}/#org` },
+      hasCourseInstance: c.formats.map((f) => ({ '@type': 'CourseInstance', courseMode: courseMode[f] })),
+    },
+  })),
+};
+---
+<Base
+  title="IT Training in Toronto and Online"
+  description="Hands-on IT training in cloud, cybersecurity, AI, data and DevOps. Learn live online, in person or at your own pace, with certification exam prep."
+  sky
+  headerCta={{ label: 'Find your course', href: '/training/#course-finder' }}
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(coursesLd)} />
+
+  <PageHero
+    tone="dawn"
+    lines={['Build the skills', 'for your next', '*career in IT.*']}
+    intro="Instructor-led training in cloud, cybersecurity, AI and machine learning, data and DevOps. Join live classes online, hands-on workshops in person, or self-paced lessons that fit around a full-time job."
+  >
+    <div class="hero-actions" data-reveal="load" style="--reveal-delay: 560ms">
+      <a class="btn btn-primary" href="#course-finder">
+        Find your course
+        <span class="btn-arrow"><Icon name="arrow" size={18} /></span>
+      </a>
+      <a class="btn btn-secondary" href={talkHref}>{talkLabel}</a>
+    </div>
+    <ul class="hero-points t-meta" role="list" aria-label="What the training includes" data-reveal="load" style="--reveal-delay: 700ms">
+      {paths.learners.points.map((p) => <li>{p}</li>)}
+    </ul>
+    {/* Wide screens only: a white panel in the hero's right column with the learner photo and the five goals.
+        The photo only renders once it exists (no placeholder slab on dawn), and it is lazy, so phones never fetch it.
+        Positioned in the hero until PageHero offers an aside slot. */}
+    <nav class="hero-panel" aria-labelledby="start-here-title">
+      {media('img-learner') && (
+        <div class="hero-panel-media">
+          <Picture
+            slot="img-learner"
+            alt="A learner studying on a laptop at home"
+            sizes="(min-width: 1440px) 576px, (min-width: 1200px) 40vw, 1px"
+            class="hero-pic"
+            imgClass="hero-img"
+            reveal
+          />
+        </div>
+      )}
+      <div class="hero-panel-body">
+        <h2 id="start-here-title" class="t-h4 hero-panel-title">Start here</h2>
+        <ul class="start-list" role="list">
+          {startGoals.map((g) => (
+            <li>
+              <a href={`/training/?goal=${g.goal}#course-finder`}>
+                <span class="start-name">{g.title}</span>
+                <span class="start-count t-meta">{g.count} {g.count === 1 ? 'course' : 'courses'}</span>
+                <Icon name="arrow" size={18} class="start-arrow" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+  </PageHero>
+
+  {/* 1. The course finder */}
+  <section id="course-finder" class="finder section-y sheet" aria-labelledby="course-finder-title">
+    <div class="container-g">
+      <div class="finder-head">
+        <SplitHeading id="course-finder-title" as="h2" class="t-h2" lines={['Find the course', 'that fits.']} />
+        <p class="t-lead finder-lead" data-reveal style="--reveal-delay: 150ms">
+          Choose what you want to work in, where you are starting from and how you want to learn. The list updates as you
+          choose.
+        </p>
+      </div>
+      <div class="finder-tool" data-reveal style="--reveal-delay: 200ms">
+        <CourseFinder client:visible={{ rootMargin: '400px' }} />
+      </div>
+    </div>
+  </section>
+
+  {/* 2. Learning formats */}
+  <section id="formats" class="band-dawn formats section-y" aria-labelledby="formats-title">
+    <div class="container-g">
+      <div class="formats-grid">
+        <div class="formats-body">
+          <SplitHeading id="formats-title" as="h2" class="t-h2" lines={['Fit the training', 'around your week.']} />
+          <p class="formats-lead" data-reveal style="--reveal-delay: 150ms">
+            Each course runs in one or more of these formats. Pick the one your schedule allows.
+          </p>
+          <ul class="fmt-list" role="list" data-stagger>
+            {formatRows.map((f) => (
+              <li class="fmt-item">
+                <h3 class="t-h3 fmt-name">{f.name}</h3>
+                <p class="fmt-body">{f.body}</p>
+                {f.key && (
+                  <>
+                    <p class="fmt-count">
+                      <span class="fmt-num t-num">{f.count}</span>
+                      <span class="fmt-unit">{f.count === 1 ? 'course' : 'courses'}</span>
+                    </p>
+                    <a class="link-arrow fmt-link" href="#course-finder" data-finder-format={f.key}>
+                      Show {f.key} courses
+                      <span class="btn-arrow"><Icon name="arrow" size={18} /></span>
+                    </a>
+                  </>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="formats-collage">
+          <div class="collage-frame collage-a">
+            <Picture
+              slot="img-classroom"
+              alt="Adult learners working on laptops around a shared table in a classroom"
+              sizes="(min-width: 960px) 26vw, 56vw"
+              class="collage-pic"
+              imgClass="collage-img"
+              reveal
+            />
+          </div>
+          <div class="collage-frame collage-b" data-reveal="media">
+            <Video slot="svc-training" mode="inview" class="collage-video" />
+          </div>
+        </div>
+      </div>
+
+      {learner && (
+        <figure class="quote" data-reveal>
+          <blockquote class="quote-text">
+            <p><span class="quote-mark" aria-hidden="true">“</span>{learner.quote}<span aria-hidden="true">”</span></p>
+          </blockquote>
+          <figcaption class="quote-by">
+            <span class="quote-avatar" aria-hidden="true">{learner.initials}</span>
+            <span class="quote-who">
+              <span class="quote-name">{learner.who}</span>
+              <span class="quote-org">{learner.org}</span>
+            </span>
+          </figcaption>
+        </figure>
+      )}
+    </div>
+  </section>
+
+  {/* 3. Certification exams */}
+  <section id="certifications" class="certs section-y sheet" aria-labelledby="certifications-title">
+    <div class="container-g">
+      <div class="certs-head">
+        <SplitHeading id="certifications-title" as="h2" class="t-h2" lines={['The exams our', 'courses prepare', 'you for.']} />
+        <p class="t-lead certs-lead" data-reveal style="--reveal-delay: 150ms">
+          Several courses prepare you for an industry certification exam. Here is which course leads to which exam.
+        </p>
+      </div>
+
+      <div class="exam-groups">
+        {examGroups.map((g) => (
+          <div class="exam-group">
+            <h3 class="exam-group-title">{g.title}</h3>
+            <ul class="exam-list" role="list" data-stagger>
+              {g.exams.map(({ exam, course }) => (
+                <li class="exam-row">
+                  <span class="exam-name">{exam}</span>
+                  {course ? (
+                    <span class="exam-via">
+                      Prepared in
+                      <a href="#course-finder" data-finder-goal={course.goal} data-finder-level={course.level}>{course.name}</a>
+                    </span>
+                  ) : (
+                    <span class="exam-via">
+                      <a href={enquireHref}>Ask about exam prep<span class="sr-only"> for {exam}</span></a>
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <p class="exam-note t-meta">
+        Exam names belong to the organizations that run them. Listing an exam shows what a course prepares you for. It does not
+        mean a partnership with that organization.
+      </p>
+    </div>
+  </section>
+
+  {/* 4. Training questions: the shared FAQ section (with its FAQPage data). */}
+  <Faq id="faq" items={trainingFaqs} lines={['Before you', 'enrol']} />
+
+  {/* 5. Talk to a person */}
+  <section id="enquire" class="band-dawn enquire" data-scroll-progress="enter" data-rest-p="1" aria-labelledby="enquire-title">
+    <div class="enquire-sun" aria-hidden="true"></div>
+    <div class="container-g section-y enquire-inner">
+      <SplitHeading id="enquire-title" as="h2" class="t-h2 enquire-title" lines={['Not sure where', 'to start?']} />
+      <div class="enquire-body">
+        <p class="t-lead" data-reveal style="--reveal-delay: 200ms">
+          Tell us your background and the work you want to do, and we will help you choose a track and a format.
+        </p>
+        <div class="enquire-actions" data-reveal style="--reveal-delay: 300ms">
+          <a class="btn btn-primary" href={talkHref}>
+            {talkLabel}
+            <span class="btn-arrow"><Icon name="arrow" size={18} /></span>
+          </a>
+          <a class="btn btn-secondary" href={company.phoneHref}>
+            <Icon name="phone" size={18} />
+            Call {company.phoneDisplay}
+          </a>
+        </div>
+        <p class="enquire-note" data-reveal style="--reveal-delay: 400ms">
+          Schedules and tuition are confirmed when you enquire. Office hours: {hours.days}, {hours.local} ({hours.eastern}).
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <noscript><style is:inline>#course-finder .cf-filters { display: none; }</style></noscript>
+</Base>
+
+<style>
+  /* PageHero passes its title classes to SplitHeading, whose heading carries a different scope, so the hero's
+     max-width is restated here. */
+  :global(.page-hero-dawn .page-hero-title) {
+    max-width: 16ch;
+  }
+
+  /* Hero additions */
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+  .hero-points {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem 1.25rem;
+    margin: 1.4rem 0 0;
+    padding: 0;
+    list-style: none;
+    color: var(--text-muted);
+  }
+  .hero-points li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .hero-points li::before {
+    content: '';
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 999px;
+    background: var(--accent);
+  }
+  /* "Start here" panel: wide screens only. A white panel (16px radius, about 40vw) in the hero's right column,
+     the learner photo at full panel width over the five goal links. It spans the hero's content box, so it is
+     exactly as tall as the copy beside it; the copy narrows to leave the column free. */
+  .hero-panel {
+    display: none;
+  }
+  @media (min-width: 1200px) {
+    :global(.page-hero.page-hero-dawn) {
+      --panel-w: min(40vw, 36rem);
+      --panel-gap: clamp(2.5rem, 4vw, 4rem);
+    }
+    :global(.page-hero.page-hero-dawn .page-hero-title) {
+      max-width: min(16ch, calc(100% - var(--panel-w) - var(--panel-gap)));
+    }
+    :global(.page-hero.page-hero-dawn .page-hero-intro) {
+      max-width: min(52ch, calc(100% - var(--panel-w) - var(--panel-gap)));
+    }
+    .hero-actions,
+    .hero-points {
+      max-width: calc(100% - var(--panel-w) - var(--panel-gap));
+    }
+    .hero-panel {
+      position: absolute;
+      top: calc(var(--header-h) + clamp(3.5rem, 2rem + 6vw, 7rem));
+      bottom: clamp(3.5rem, 2rem + 5vw, 6rem);
+      right: max(var(--gutter), calc((100% - 1240px) / 2));
+      display: flex;
+      flex-direction: column;
+      width: var(--panel-w);
+      overflow: hidden;
+      border-radius: 16px;
+      background: var(--surface);
+      color: var(--text);
+    }
+    .hero-panel-media {
+      position: relative;
+      flex: 1 1 auto;
+      min-height: 12rem;
+    }
+    .hero-panel-media :global(.hero-pic),
+    .hero-panel-media :global(.hero-img) {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-panel-body {
+      flex: none;
+      padding: 1.25rem 1.5rem 0.75rem;
+    }
+    .hero-panel-title {
+      margin-bottom: 0.5rem;
+    }
+    .start-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .start-list a {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      align-items: center;
+      gap: 1rem;
+      min-height: 2.75rem;
+      border-top: 1px solid var(--line);
+      color: var(--text);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .start-count {
+      color: var(--text-muted);
+    }
+    .start-list a :global(.start-arrow) {
+      color: var(--text-muted);
+      transition:
+        transform 220ms var(--ease-out-expo),
+        color 160ms var(--ease-out-quart);
+    }
+    .start-list a:hover .start-name {
+      text-decoration: underline;
+      text-decoration-color: var(--accent-ink);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.25em;
+    }
+    .start-list a:hover :global(.start-arrow) {
+      transform: translateX(3px);
+      color: var(--text);
+    }
+  }
+
+  /* 1. Finder */
+  .finder-head {
+    display: grid;
+    gap: 1.25rem;
+    margin-bottom: clamp(2.5rem, 1.5rem + 3vw, 4rem);
+  }
+  .finder-lead {
+    max-width: 46ch;
+    color: var(--text-muted);
+  }
+  .finder-tool {
+    min-width: 0;
+  }
+
+  /* 2. Formats */
+  .formats-grid {
+    display: grid;
+    gap: clamp(2.5rem, 1.5rem + 4vw, 5rem);
+  }
+  .formats-body {
+    min-width: 0;
+  }
+  .formats-lead {
+    margin-top: 1.25rem;
+    max-width: 44ch;
+    color: var(--text-muted);
+  }
+  .fmt-list {
+    margin: clamp(2rem, 1.5rem + 1.5vw, 2.75rem) 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--line-strong);
+  }
+  .fmt-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 1.5rem;
+    row-gap: 0.4rem;
+    padding-block: 1.5rem;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .fmt-name,
+  .fmt-body,
+  .fmt-link {
+    grid-column: 1;
+  }
+  .fmt-body {
+    max-width: 44ch;
+    color: var(--text-muted);
+  }
+  .fmt-count {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    display: grid;
+    justify-items: end;
+    align-content: start;
+    line-height: 1;
+  }
+  .fmt-num {
+    font-size: clamp(2.25rem, 1.8rem + 1.6vw, 3.25rem);
+    font-weight: 560;
+    letter-spacing: -0.035em;
+  }
+  .fmt-unit {
+    margin-top: 0.35rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+  .fmt-link {
+    justify-self: start;
+    min-height: 2.75rem;
+    margin-top: 0.15rem;
+  }
+
+  .formats-collage {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: clamp(0.6rem, 0.4rem + 0.8vw, 1rem);
+    align-items: start;
+  }
+  .collage-frame {
+    position: relative;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+  }
+  .collage-a {
+    aspect-ratio: 4 / 5;
+  }
+  .collage-b {
+    aspect-ratio: 3 / 4;
+    margin-top: 32%;
+  }
+  .collage-frame :global(.collage-pic),
+  .collage-frame :global(.collage-img),
+  .collage-frame :global(.collage-video) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .quote {
+    display: grid;
+    gap: 1.75rem;
+    margin: clamp(3.5rem, 2rem + 5vw, 6rem) 0 0;
+    padding-top: clamp(2rem, 1.5rem + 2vw, 3rem);
+    border-top: 1px solid var(--line-strong);
+  }
+  .quote-text {
+    margin: 0;
+  }
+  /* Set in the text face: the script accent is for one headline word, never for sentences. */
+  .quote-text p {
+    position: relative;
+    max-width: 34ch;
+    font-size: clamp(1.375rem, 1.1rem + 1.3vw, 2.25rem);
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    text-wrap: pretty;
+  }
+  .quote-mark {
+    position: absolute;
+    right: 100%;
+    padding-right: 0.08em;
+  }
+  .quote-by {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+  }
+  .quote-avatar {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 999px;
+    background: var(--text);
+    color: var(--surface);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+  }
+  .quote-who {
+    display: grid;
+    line-height: 1.35;
+  }
+  .quote-name {
+    font-weight: 620;
+  }
+  .quote-org {
+    font-size: 0.9375rem;
+    color: var(--text-muted);
+  }
+
+  /* 3. Exams */
+  .certs-head {
+    display: grid;
+    gap: 1.25rem;
+    margin-bottom: clamp(2.5rem, 1.5rem + 3vw, 4rem);
+  }
+  .certs-lead {
+    max-width: 44ch;
+    color: var(--text-muted);
+  }
+  .exam-groups {
+    display: grid;
+    gap: clamp(2.5rem, 1.5rem + 3vw, 4rem);
+  }
+  .exam-group-title {
+    margin-bottom: 0.9rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+  .exam-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--line-strong);
+  }
+  .exam-row {
+    display: grid;
+    padding-block: 1.15rem 0.35rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .exam-name {
+    font-size: clamp(1.1875rem, 1rem + 0.8vw, 1.5rem);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+  }
+  .exam-via {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 0.4rem;
+    font-size: 0.9375rem;
+    color: var(--text-muted);
+  }
+  .exam-via a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.3em;
+    transition: text-decoration-color 160ms var(--ease-out-quart);
+  }
+  .exam-via a:hover {
+    text-decoration-color: var(--accent);
+  }
+  .exam-note {
+    max-width: 68ch;
+    margin-top: clamp(2rem, 1.5rem + 1.5vw, 2.75rem);
+    color: var(--text-muted);
+  }
+
+  /* 5. Enquire: the band paints the sunrise sky; a low sun lifts as the band scrolls in (rests without motion). */
+  .enquire {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+  }
+  .enquire-sun {
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    left: 50%;
+    bottom: -62%;
+    width: min(80rem, 150vw);
+    aspect-ratio: 1;
+    margin-left: calc(min(80rem, 150vw) / -2);
+    border-radius: 50%;
+    background: radial-gradient(
+      closest-side,
+      color-mix(in oklch, var(--color-dawn-400) 85%, transparent) 0%,
+      color-mix(in oklch, var(--color-dawn-400) 35%, transparent) 55%,
+      transparent 100%
+    );
+    transform: translate3d(0, calc((1 - var(--p, 1)) * 18%), 0);
+    opacity: calc(0.5 + var(--p, 1) * 0.5);
+    will-change: transform;
+  }
+  /* In the dark theme the low sun turned into a muddy ringed disc on the deep sky, so it sets. */
+  :global([data-theme='dark']) .enquire-sun {
+    display: none;
+  }
+  .enquire-inner {
+    display: grid;
+    gap: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  }
+  .enquire :global(.enquire-title) {
+    max-width: 12ch;
+  }
+  .enquire-body {
+    display: grid;
+    gap: 1.75rem;
+    max-width: 40rem;
+  }
+  .enquire-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .enquire-note {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+
+  @media (min-width: 900px) {
+    .finder-head,
+    .certs-head {
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      align-items: end;
+      column-gap: 4rem;
+    }
+    .finder-lead,
+    .certs-lead {
+      padding-bottom: 0.35rem;
+    }
+    .exam-groups {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 4rem;
+    }
+  }
+  @media (min-width: 960px) {
+    .formats-grid {
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      align-items: start;
+    }
+    .formats-collage {
+      order: -1;
+      position: sticky;
+      top: calc(var(--header-h) + 2rem);
+    }
+    .quote {
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      column-gap: 4rem;
+    }
+    .enquire-inner {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: end;
+      column-gap: 4rem;
+    }
+  }
+</style>

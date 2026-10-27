@@ -1,0 +1,574 @@
+---
+// /business: the business path on Air's sky. The cloud-sky hero, then four services, each on its own surface with
+// its own film (white sheets, and cloud and backup in a frosted panel on the dawn sky), the films alternating sides.
+// Then the shared process, the downtime calculator, client stories and contact.
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/ui/PageHero.astro';
+import SplitHeading from '../components/ui/SplitHeading.astro';
+import Icon from '../components/ui/Icon.astro';
+import Video from '../components/ui/Video.astro';
+import Process from '../components/sections/Process.astro';
+import LogoMarquee from '../components/sections/LogoMarquee.astro';
+import Stories from '../components/sections/Stories.astro';
+import ContactSection from '../components/sections/ContactSection.astro';
+import DowntimeCalculator from '../components/islands/DowntimeCalculator';
+import { company, services, faqs, quiz, checklist } from '../data/site';
+
+const service = (id: string) => {
+  const found = services.find((s) => s.id === id);
+  if (!found) throw new Error(`services[] has no entry "${id}"`);
+  return found;
+};
+const managed = service('managed-it');
+const security = service('cybersecurity');
+const cloud = service('cloud-backup');
+const consulting = service('consulting');
+
+const responseTargets = faqs.find((f) => f.q.startsWith('How quickly'))?.a;
+const staffTraining = faqs.find((f) => f.q.startsWith('Can you train'))?.a.replace(/^Yes\.\s*/, '');
+
+// White & crimson skin: the in-page links are the original Services page's pill row on white, under the banner.
+const pillIndex = import.meta.env.PUBLIC_SKIN === 'white-red';
+const jump = [
+  { href: '#managed-it', label: managed.name },
+  { href: '#cybersecurity', label: security.name },
+  { href: '#cloud-backup', label: cloud.name },
+  { href: '#consulting', label: consulting.name },
+  { href: '#how-we-work', label: 'How we work' },
+  { href: '#downtime-calculator', label: 'Cost of downtime' },
+];
+
+const origin = (Astro.site ?? new URL(company.url)).origin;
+const servicesLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'IT services for businesses',
+  itemListElement: [managed, security, cloud, consulting].map((s, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'Service',
+      name: s.name,
+      description: s.summary,
+      url: `${origin}/business/#${s.id}`,
+      areaServed: { '@type': 'Country', name: 'Canada' },
+      provider: { '@id': `${company.url}/#org` },
+    },
+  })),
+};
+---
+<Base
+  title="IT services for Toronto businesses"
+  description="Managed IT, cybersecurity, cloud and tested backups, and IT consulting for small businesses in Toronto. One accountable team, a named contact and a written plan."
+  nightHero
+  sky
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(servicesLd)} />
+
+  <PageHero
+    tone="night"
+    lines={['Dependable IT.', 'A stronger *business.*']}
+    intro="Managed IT, cybersecurity, cloud services and tested backups from one accountable team. A named contact, a clear plan and accessible support help keep your business moving."
+  >
+    <div class="biz-actions" data-reveal="load" style="--reveal-delay: 560ms">
+      <a class="btn btn-primary" href="#contact-form" data-interest="assessment">
+        Book a free IT assessment
+        <span class="btn-arrow"><Icon name="arrow" size={18} /></span>
+      </a>
+      <a class="btn btn-secondary" href={company.phoneHref}>
+        <Icon name="phone" size={18} />
+        Call {company.phoneDisplay}
+      </a>
+    </div>
+    {!pillIndex && (
+      <nav class="biz-jump" aria-labelledby="biz-jump-label" data-reveal="load" style="--reveal-delay: 680ms">
+        <p id="biz-jump-label" class="biz-jump-label t-meta">On this page:</p>
+        <ul role="list">
+          {jump.map((j) => (
+            <li><a href={j.href}>{j.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+    )}
+  </PageHero>
+  {pillIndex && (
+    <nav class="page-index" aria-labelledby="page-index-label">
+      <div class="container-g">
+        <p id="page-index-label" class="page-index-label t-meta">On this page</p>
+        <ul role="list">
+          {jump.map((j) => (
+            <li><a href={j.href}>{j.label}</a></li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+  )}
+
+  {/* Managed IT: the words first, so "Learn more" lands on the heading, then the wide film settling in under them. */}
+  <section id="managed-it" class="svc sheet" aria-labelledby="managed-it-title">
+    <div class="container-g svc-inner">
+      <div class="svc-a">
+        <div class="svc-lede">
+          <span class="svc-icon" aria-hidden="true"><Icon name={managed.icon} size={26} /></span>
+          <SplitHeading id="managed-it-title" as="h2" lines={[managed.name]} class="t-h2" />
+          <p class="t-lead svc-summary" data-reveal style="--reveal-delay: 150ms">{managed.summary}</p>
+        </div>
+        <div class="svc-detail">
+          <ul class="svc-list" role="list" data-stagger>
+            {managed.details.map((d) => (
+              <li><Icon name="check" size={20} /><span>{d}</span></li>
+            ))}
+          </ul>
+          {responseTargets && (
+            <p class="svc-note">
+              <Icon name="clock" size={20} />
+              <span>{responseTargets}</span>
+            </p>
+          )}
+          <a class="link-arrow svc-cta" href="#contact-form" data-interest="managed-it">
+            Ask about managed IT
+            <span class="btn-arrow"><Icon name="arrow" size={18} /></span>
+          </a>
+        </div>
+      </div>
+
+      <div
+        class="film film-wide"
+        data-film="managed IT"
+        data-reveal="media"
+        data-scroll-progress="enter"
+        data-rest-p="1"
+      >
+        <Video slot={managed.video} mode="inview" label="managed IT video" class="film-video" />
+      </div>
+    </div>
+  </section>
+
+  {/* Cybersecurity: words first, a tall film on the right, and the two free self-checks under it. */}
+  <section id="cybersecurity" class="svc sheet" aria-labelledby="cybersecurity-title">
+    <div class="container-g svc-inner svc-b">
+      <div class="svc-text">
+        <span class="svc-icon" aria-hidden="true"><Icon name={security.icon} size={26} /></span>
+        <SplitHeading id="cybersecurity-title" as="h2" lines={[security.name]} class="t-h2" />
+        <p class="t-lead svc-summary" data-reveal style="--reveal-delay: 150ms">{security.summary}</p>
+        <ul class="svc-list" role="list" data-stagger>
+          {security.details.map((d) => (
+            <li><Icon name="check" size={20} /><span>{d}</span></li>
+          ))}
+        </ul>
+        <a class="link-arrow svc-cta" href="#contact-form" data-interest="cybersecurity">
+          Ask about a security assessment
+          <span class="btn-arrow"><Icon name="arrow" size={18} /></span>
+        </a>
+      </div>
+
+      <div class="svc-b-side">
+        <div class="film film-portrait" data-film="cybersecurity" data-reveal="media">
+          <Video slot={security.video} mode="inview" label="cybersecurity video" class="film-video" />
+        </div>
+        <div class="self-check">
+          <h3 class="t-h4">Check your basics first</h3>
+          <ul role="list">
+            <li>
+              <a href="/it-health-check/">
+                <span class="self-check-name">IT health check</span>
+                <span class="self-check-note">{quiz.questions.length} questions, a score and the fixes that matter most</span>
+                <Icon name="arrow" size={20} class="self-check-arrow" />
+              </a>
+            </li>
+            <li>
+              <a href="/resources/security-checklist/">
+                <span class="self-check-name">Security checklist</span>
+                <span class="self-check-note">{checklist.length} controls from the Canadian Centre for Cyber Security baseline</span>
+                <Icon name="arrow" size={20} class="self-check-arrow" />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Cloud and backup: on the dawn sky, the film on the left this time, the words in a frosted panel. */}
+  <section id="cloud-backup" class="svc band-dawn" aria-labelledby="cloud-backup-title">
+    <div class="container-g svc-inner svc-c">
+      <div class="film film-landscape" data-film="cloud and backup" data-reveal="media">
+        <Video slot={cloud.video} mode="inview" label="cloud and backup video" class="film-video" />
+      </div>
+      <div class="svc-text svc-panel glass">
+        <span class="svc-icon" aria-hidden="true"><Icon name={cloud.icon} size={26} /></span>
+        <SplitHeading id="cloud-backup-title" as="h2" lines={[cloud.name]} class="t-h2" />
+        <p class="t-lead svc-summary" data-reveal style="--reveal-delay: 150ms">{cloud.summary}</p>
+        <p class="svc-pull" data-reveal style="--reveal-delay: 250ms">Reliable recovery starts with <span class="accent">tested backups.</span></p>
+        <ul class="svc-list" role="list" data-stagger>
+          {cloud.details.map((d) => (
+            <li><Icon name="check" size={20} /><span>{d}</span></li>
+          ))}
+        </ul>
+        <a class="link-arrow svc-cta" href="#contact-form" data-interest="cloud-backup">
+          Ask about cloud and backup
+          <span class="btn-arrow"><Icon name="arrow" size={18} /></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* Consulting: a smaller film on the right, the kinds of project as a ruled row, then staff training. */}
+  <section id="consulting" class="svc sheet" aria-labelledby="consulting-title">
+    <div class="container-g svc-inner">
+      <div class="svc-d">
+        <div class="svc-text">
+          <span class="svc-icon" aria-hidden="true"><Icon name={consulting.icon} size={26} /></span>
+          <SplitHeading id="consulting-title" as="h2" lines={[consulting.name]} class="t-h2" />
+          <p class="t-lead svc-summary" data-reveal style="--reveal-delay: 150ms">{consulting.summary}</p>
+          <a class="link-arrow svc-cta" href="#contact-form" data-interest="consulting">
+            Ask about a consulting project
+            <span class="btn-arrow"><Icon name="arrow" size={18} /></span>
+          </a>
+        </div>
+        <div class="film film-compact" data-film="IT consulting" data-reveal="media">
+          <Video slot={consulting.video} mode="inview" label="IT consulting video" class="film-video" />
+        </div>
+      </div>
+      <h3 class="sr-only">Typical projects</h3>
+      <ul class="engagements" role="list" data-stagger>
+        {consulting.details.map((d) => <li>{d}</li>)}
+      </ul>
+
+      {staffTraining && (
+        <div class="staff">
+          <p>
+            <span class="staff-lead">Training your own staff?</span>{' '}
+            {staffTraining}
+          </p>
+          <a class="link-arrow" href="/training/">
+            See the training tracks
+            <span class="btn-arrow"><Icon name="arrow" size={18} /></span>
+          </a>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <LogoMarquee />
+  <Process />
+
+  {/* The calculator's own title is the band's heading, so the band never repeats the question it asks. */}
+  <section id="downtime-calculator-section" class="calc section-y-dense sheet" aria-labelledby="downtime-title">
+    <div class="container-g calc-inner" id="downtime-calculator" data-reveal>
+      <DowntimeCalculator client:visible headingLevel={2} headingId="downtime-title" />
+    </div>
+  </section>
+
+  <Stories show="cases" />
+
+  <ContactSection />
+</Base>
+
+<style>
+  /* ---------- Hero extras ---------- */
+  .biz-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+  /* Quiet text links, so the two buttons above stay the only calls to action in the hero. */
+  .biz-jump {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 0.65rem;
+    margin-top: clamp(1.75rem, 1.25rem + 2vw, 2.75rem);
+  }
+  .biz-jump-label {
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+  .biz-jump ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .biz-jump a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding-inline: 0.35rem;
+    border: 0;
+    background: none;
+    color: var(--text);
+    font-size: 0.9375rem;
+    font-weight: 550;
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.3em;
+    transition: text-decoration-color 160ms var(--ease-out-quart);
+  }
+  .biz-jump a:hover {
+    text-decoration-color: var(--text);
+  }
+
+  /* ---------- Services: four surfaces on the sky, four layouts ---------- */
+  /* Each service is its own surface (white sheets, a frosted panel on the dawn sky for cloud and backup), so every
+     colour below comes from that surface's tokens; nothing here assumes white type on navy. */
+  .svc {
+    padding-block: var(--section-y-dense);
+  }
+  .svc-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1.25rem;
+    border-radius: 50%;
+    border: 1px solid var(--line-strong);
+    color: var(--accent-ink);
+  }
+  .svc-summary {
+    margin-top: 1rem;
+    max-width: 44ch;
+    color: var(--text-muted);
+  }
+  .svc-list {
+    display: grid;
+    gap: 0.9rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .svc-list li {
+    display: grid;
+    grid-template-columns: 1.25rem minmax(0, 1fr);
+    gap: 0.8rem;
+    align-items: start;
+    max-width: 52ch;
+  }
+  .svc-list :global(svg) {
+    margin-top: 0.2rem;
+    color: var(--accent-ink);
+  }
+  .svc-cta {
+    margin-top: 1.75rem;
+    min-height: 2.75rem;
+  }
+
+  /* Films: sized by aspect ratio so layout holds before media loads. */
+  .film {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-card);
+    background: var(--surface-2);
+  }
+  .film :global(.film-video) {
+    position: absolute;
+    inset: 0;
+  }
+  /* Under the Managed IT copy; capped so a short laptop screen still shows the heading and the film together. */
+  .film-wide {
+    aspect-ratio: 4 / 3;
+    max-height: 70svh;
+    margin-top: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+  }
+  .film-wide :global(.film-video) {
+    transform: scale(calc(1.08 - var(--p, 1) * 0.08));
+    transform-origin: 50% 40%;
+  }
+  .film-portrait {
+    aspect-ratio: 4 / 3;
+  }
+  .film-landscape {
+    aspect-ratio: 3 / 2;
+  }
+  .film-compact {
+    aspect-ratio: 16 / 10;
+  }
+  /* A: a two-column text block, then the wide film under it. */
+  .svc-a {
+    display: grid;
+    gap: 2.5rem;
+  }
+  .svc-note {
+    display: grid;
+    grid-template-columns: 1.25rem minmax(0, 1fr);
+    gap: 0.8rem;
+    max-width: 52ch;
+    margin-top: 1.75rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line);
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+  }
+  .svc-note :global(svg) {
+    margin-top: 0.1rem;
+    color: var(--text);
+  }
+
+  /* B: text, then a tall film with the self-checks under it. */
+  .svc-b {
+    display: grid;
+    gap: 3rem;
+  }
+  .svc-b .svc-list {
+    margin-top: 2rem;
+  }
+  .svc-b-side {
+    display: grid;
+    gap: 1.75rem;
+    align-content: start;
+  }
+  .self-check h3 {
+    margin-bottom: 0.5rem;
+  }
+  .self-check ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--line);
+  }
+  .self-check a {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.2rem 1rem;
+    align-items: center;
+    padding-block: 1rem;
+    border-bottom: 1px solid var(--line);
+    color: var(--text);
+    text-decoration: none;
+  }
+  .self-check-name {
+    font-weight: 650;
+  }
+  .self-check-note {
+    grid-column: 1;
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.45;
+  }
+  .self-check a :global(.self-check-arrow) {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    color: var(--text-muted);
+    transition:
+      transform 220ms var(--ease-out-expo),
+      color 160ms var(--ease-out-quart);
+  }
+  .self-check a:hover .self-check-name {
+    text-decoration: underline;
+    text-decoration-color: var(--accent-ink);
+    text-underline-offset: 0.25em;
+  }
+  .self-check a:hover :global(.self-check-arrow) {
+    transform: translateX(3px);
+    color: var(--accent-ink);
+  }
+
+  /* C: film left, the words right in a frosted panel on the dawn sky, one line pulled out. */
+  .svc-c {
+    display: grid;
+    gap: 2.5rem;
+  }
+  .svc-panel {
+    padding: clamp(1.25rem, 1rem + 2vw, 2rem);
+  }
+  /* The one line that sums up the service; its last word takes the accent face, like a headline. */
+  .svc-pull {
+    max-width: 18ch;
+    margin-block: 1.75rem 2rem;
+    color: var(--text);
+    font-size: clamp(1.5rem, 1.15rem + 1.4vw, 2.125rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  /* D: compact heading row, smaller film, projects as a ruled row. */
+  .svc-d {
+    display: grid;
+    gap: 2.5rem;
+  }
+  .engagements {
+    display: grid;
+    margin: clamp(2.5rem, 2rem + 2vw, 3.5rem) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .engagements li {
+    padding: 1.1rem 1.5rem 1.25rem 0;
+    border-top: 1px solid var(--line-strong);
+    font-size: 1.0625rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  /* Staff training closes the consulting sheet, on the haze tone so it reads as an aside, not a fifth service. */
+  .staff {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 2.5rem;
+    margin-top: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+    padding: 1.5rem 1.75rem;
+    border-radius: var(--radius-card);
+    background: var(--surface-2);
+  }
+  .staff p {
+    max-width: 62ch;
+    color: var(--text-muted);
+  }
+  .staff-lead {
+    display: block;
+    margin-bottom: 0.2rem;
+    color: var(--text);
+    font-weight: 700;
+  }
+  .staff .link-arrow {
+    min-height: 2.75rem;
+  }
+
+  @media (min-width: 640px) {
+    .engagements {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 2rem;
+    }
+  }
+  @media (min-width: 768px) {
+    .film-wide {
+      aspect-ratio: 21 / 9;
+    }
+  }
+  @media (min-width: 1024px) {
+    .film-portrait {
+      aspect-ratio: 4 / 5;
+    }
+    .svc-a {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+      gap: clamp(3rem, 6vw, 6rem);
+      align-items: start;
+    }
+    .svc-b {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      gap: clamp(3rem, 6vw, 6rem);
+      align-items: start;
+    }
+    .svc-c {
+      grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+      gap: clamp(3rem, 6vw, 6rem);
+      align-items: center;
+    }
+    .svc-d {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+      gap: clamp(3rem, 6vw, 6rem);
+      align-items: end;
+    }
+    .engagements {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+</style>

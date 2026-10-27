@@ -1,0 +1,377 @@
+[
+  {
+    "slot": "svc-managed-it",
+    "kind": "video",
+    "title": "Hand seating a patch lead into a labelled patch panel (D13-D18)",
+    "sources": {
+      "mp4": "/media/video/svc-managed-it-960.mp4",
+      "webm": "/media/video/svc-managed-it-960.webm",
+      "mp4Mobile": "/media/video/svc-managed-it-960.mp4",
+      "poster": {
+        "avif": "/media/img/svc-managed-it-poster.avif",
+        "webp": "/media/img/svc-managed-it-poster.webp",
+        "jpg": "/media/img/svc-managed-it-poster.jpg"
+      }
+    },
+    "width": 960,
+    "height": 540,
+    "duration": 10.72,
+    "objectPosition": "80% 50%",
+    "credit": {
+      "author": "ListosParaRodar (Listos Para Rodar | Productora)",
+      "source": "Pixabay",
+      "page_url": "https://pixabay.com/videos/cable-network-connection-internet-197208/",
+      "license": "Pixabay Content License",
+      "license_url": "https://pixabay.com/service/license-summary/"
+    },
+    "score": 8
+  },
+  {
+    "slot": "svc-cybersecurity",
+    "kind": "video",
+    "title": "Hand tapping a prompt on a phone beside a laptop (phone UI blurred)",
+    "sources": {
+      "mp4": "/media/video/svc-cybersecurity-960.mp4",
+      "webm": "/media/video/svc-cybersecurity-960.webm",
+      "mp4Mobile": "/media/video/svc-cybersecurity-960.mp4",
+      "poster": {
+        "avif": "/media/img/svc-cybersecurity-poster.avif",
+        "webp": "/media/img/svc-cybersecurity-poster.webp",
+        "jpg": "/media/img/svc-cybersecurity-poster.jpg"
+      }
+    },
+    "width": 960,
+    "height": 540,
+    "duration": 12.12,
+    "objectPosition": "60% 50%",
+    "credit": {
+      "author": "Karolina Grabowska / Kaboompics",
+      "source": "Pexels",
+      "page_url": "https://www.pexels.com/video/a-person-declining-a-phone-call-5741498/",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/"
+    },
+    "score": 7.5
+  },
+  {
+    "slot": "svc-cloud-backup",
+    "kind": "video",
+    "title": "Time-lapse of ink-navy clouds over a crimson horizon at dusk",
+    "sources": {
+      "mp4": "/media/video/svc-cloud-backup-960.mp4",
+      "webm": "/media/video/svc-cloud-backup-960.webm",
+      "mp4Mobile": "/media/video/svc-cloud-backup-960.mp4",
+      "poster": {
+        "avif": "/media/img/svc-cloud-backup-poster.avif",
+        "webp": "/media/img/svc-cloud-backup-poster.webp",
+        "jpg": "/media/img/svc-cloud-backup-poster.jpg"
+      }
+    },
+    "width": 960,
+    "height": 540,
+    "duration": 9.0,
+    "objectPosition": "50% 50%",
+    "credit": {
+      "author": "Pouya Lucky",
+      "source": "Pexels",
+      "page_url": "https://www.pexels.com/video/time-lapse-of-clouds-at-dusk-12778285/",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/"
+    },
+    "score": 8.5
+  },
+  {
+    "slot": "svc-training",
+    "kind": "video",
+    "title": "Instructor working through a problem with two learners in a library",
+    "sources": {
+      "mp4": "/media/video/svc-training-960.mp4",
+      "webm": "/media/video/svc-training-960.webm",
+      "mp4Mobile": "/media/video/svc-training-960.mp4",
+      "poster": {
+        "avif": "/media/img/svc-training-poster.avif",
+        "webp": "/media/img/svc-training-poster.webp",
+        "jpg": "/media/img/svc-training-poster.jpg"
+      }
+    },
+    "width": 960,
+    "height": 540,
+    "duration": 9.28,
+    "objectPosition": "73% 50%",
+    "credit": {
+      "author": "Kampus Production",
+      "source": "Pexels",
+      "page_url": "https://www.pexels.com/video/teacher-explaining-to-students-in-a-library-5940049/",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/"
+    },
+    "score": 7.5
+  },
+  {
+    "slot": "svc-consulting",
+    "kind": "video",
+    "title": "Small team discussing a growth chart at a flip chart",
+    "sources": {
+      "mp4": "/media/video/svc-consulting-960.mp4",
+      "webm": "/media/video/svc-consulting-960.webm",
+      "mp4Mobile": "/media/video/svc-consulting-960.mp4",
+      "poster": {
+        "avif": "/media/img/svc-consulting-poster.avif",
+        "webp": "/media/img/svc-consulting-poster.webp",
+        "jpg": "/media/img/svc-consulting-poster.jpg"
+      }
+    },
+    "width": 960,
+    "height": 540,
+    "duration": 8.92,
+    "objectPosition": "55% 50%",
+    "credit": {
+      "author": "cottonbro studio",
+      "source": "Pexels",
+      "page_url": "https://www.pexels.com/video/people-in-a-meeting-discussing-a-graph-6803594/",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/"
+    },
+    "score": 7.5
+  },
+  {
+    "slot": "img-office-team",
+    "kind": "image",
+    "title": "Small team working at a long oak table in a bright daylit office",
+    "sources": {
+      "srcset": {
+        "avif": [
+          "/media/img/img-office-team-640.avif",
+          "/media/img/img-office-team-1280.avif",
+          "/media/img/img-office-team-1920.avif"
+        ],
+        "webp": [
+          "/media/img/img-office-team-640.webp",
+          "/media/img/img-office-team-1280.webp",
+          "/media/img/img-office-team-1920.webp"
+        ],
+        "jpg": [
+          "/media/img/img-office-team-640.jpg",
+          "/media/img/img-office-team-1280.jpg",
+          "/media/img/img-office-team-1920.jpg"
+        ]
+      },
+      "mobile": {
+        "avif": "/media/img/img-office-team-mobile-800.avif",
+        "webp": "/media/img/img-office-team-mobile-800.webp",
+        "jpg": "/media/img/img-office-team-mobile-800.jpg"
+      }
+    },
+    "width": 1920,
+    "height": 1080,
+    "objectPosition": "22% 50%",
+    "credit": {
+      "author": "CoWomen (@cowomen)",
+      "source": "Unsplash",
+      "page_url": "https://unsplash.com/photos/a-group-of-people-sitting-around-a-wooden-table-ZKHksse8tUU",
+      "license": "Unsplash License",
+      "license_url": "https://unsplash.com/license"
+    },
+    "score": 7.5
+  },
+  {
+    "slot": "img-helpdesk",
+    "kind": "image",
+    "title": "Support lead leaning in beside a headset colleague at her laptop",
+    "sources": {
+      "srcset": {
+        "avif": [
+          "/media/img/img-helpdesk-640.avif",
+          "/media/img/img-helpdesk-1280.avif",
+          "/media/img/img-helpdesk-1920.avif"
+        ],
+        "webp": [
+          "/media/img/img-helpdesk-640.webp",
+          "/media/img/img-helpdesk-1280.webp",
+          "/media/img/img-helpdesk-1920.webp"
+        ],
+        "jpg": [
+          "/media/img/img-helpdesk-640.jpg",
+          "/media/img/img-helpdesk-1280.jpg",
+          "/media/img/img-helpdesk-1920.jpg"
+        ]
+      },
+      "mobile": {
+        "avif": "/media/img/img-helpdesk-mobile-800.avif",
+        "webp": "/media/img/img-helpdesk-mobile-800.webp",
+        "jpg": "/media/img/img-helpdesk-mobile-800.jpg"
+      }
+    },
+    "width": 1920,
+    "height": 1080,
+    "objectPosition": "73% 50%",
+    "credit": {
+      "author": "Jep Gambardella (@jep-gambardella)",
+      "source": "Pexels",
+      "page_url": "https://www.pexels.com/photo/man-and-woman-looking-at-a-laptop-7689854/",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/"
+    },
+    "score": 8
+  },
+  {
+    "slot": "img-learner",
+    "kind": "image",
+    "title": "Adult learner studying on a laptop at home at blue hour, warm string lights",
+    "sources": {
+      "srcset": {
+        "avif": [
+          "/media/img/img-learner-640.avif",
+          "/media/img/img-learner-1280.avif",
+          "/media/img/img-learner-1600.avif"
+        ],
+        "webp": [
+          "/media/img/img-learner-640.webp",
+          "/media/img/img-learner-1280.webp",
+          "/media/img/img-learner-1600.webp"
+        ],
+        "jpg": [
+          "/media/img/img-learner-640.jpg",
+          "/media/img/img-learner-1280.jpg",
+          "/media/img/img-learner-1600.jpg"
+        ]
+      },
+      "mobile": {
+        "avif": "/media/img/img-learner-mobile-800.avif",
+        "webp": "/media/img/img-learner-mobile-800.webp",
+        "jpg": "/media/img/img-learner-mobile-800.jpg"
+      }
+    },
+    "width": 1600,
+    "height": 900,
+    "objectPosition": "47% 50%",
+    "credit": {
+      "author": "Mohammad Shahhosseini (@mohammadshahhosseini)",
+      "source": "Unsplash",
+      "page_url": "https://unsplash.com/photos/woman-in-gray-long-sleeve-shirt-using-macbook-MUsyGmmdxuo",
+      "license": "Unsplash License",
+      "license_url": "https://unsplash.com/license"
+    },
+    "score": 8.5
+  },
+  {
+    "slot": "img-classroom",
+    "kind": "image",
+    "title": "Mid-career learner typing in a row of adult students at a long table",
+    "sources": {
+      "srcset": {
+        "avif": [
+          "/media/img/img-classroom-640.avif",
+          "/media/img/img-classroom-1280.avif",
+          "/media/img/img-classroom-1920.avif"
+        ],
+        "webp": [
+          "/media/img/img-classroom-640.webp",
+          "/media/img/img-classroom-1280.webp",
+          "/media/img/img-classroom-1920.webp"
+        ],
+        "jpg": [
+          "/media/img/img-classroom-640.jpg",
+          "/media/img/img-classroom-1280.jpg",
+          "/media/img/img-classroom-1920.jpg"
+        ]
+      },
+      "mobile": {
+        "avif": "/media/img/img-classroom-mobile-800.avif",
+        "webp": "/media/img/img-classroom-mobile-800.webp",
+        "jpg": "/media/img/img-classroom-mobile-800.jpg"
+      }
+    },
+    "width": 1920,
+    "height": 1080,
+    "objectPosition": "35% 50%",
+    "credit": {
+      "author": "Pete Ryan (@cosell)",
+      "source": "Unsplash",
+      "page_url": "https://unsplash.com/photos/a-group-of-people-sitting-at-a-table-with-laptops-2uj65YGECks",
+      "license": "Unsplash License",
+      "license_url": "https://unsplash.com/license"
+    },
+    "score": 8
+  },
+  {
+    "slot": "img-toronto-day",
+    "kind": "image",
+    "title": "Toronto skyline from the Islands in soft low sun, mirror-calm water",
+    "sources": {
+      "srcset": {
+        "avif": [
+          "/media/img/img-toronto-day-640.avif",
+          "/media/img/img-toronto-day-1280.avif",
+          "/media/img/img-toronto-day-1920.avif"
+        ],
+        "webp": [
+          "/media/img/img-toronto-day-640.webp",
+          "/media/img/img-toronto-day-1280.webp",
+          "/media/img/img-toronto-day-1920.webp"
+        ],
+        "jpg": [
+          "/media/img/img-toronto-day-640.jpg",
+          "/media/img/img-toronto-day-1280.jpg",
+          "/media/img/img-toronto-day-1920.jpg"
+        ]
+      },
+      "mobile": {
+        "avif": "/media/img/img-toronto-day-mobile-800.avif",
+        "webp": "/media/img/img-toronto-day-mobile-800.webp",
+        "jpg": "/media/img/img-toronto-day-mobile-800.jpg"
+      }
+    },
+    "width": 1920,
+    "height": 1080,
+    "objectPosition": "50% 50%",
+    "credit": {
+      "author": "Jan Weber (@itsjanweber)",
+      "source": "Unsplash",
+      "page_url": "https://unsplash.com/photos/body-of-water-near-city-buildings-during-daytime-DSxIjXSxjTI",
+      "license": "Unsplash License",
+      "license_url": "https://unsplash.com/license"
+    },
+    "score": 8.5
+  },
+  {
+    "slot": "img-toronto-night",
+    "kind": "image",
+    "title": "Toronto skyline at deep blue hour over silky water, CN Tower lit red",
+    "sources": {
+      "srcset": {
+        "avif": [
+          "/media/img/img-toronto-night-640.avif",
+          "/media/img/img-toronto-night-1280.avif",
+          "/media/img/img-toronto-night-1920.avif"
+        ],
+        "webp": [
+          "/media/img/img-toronto-night-640.webp",
+          "/media/img/img-toronto-night-1280.webp",
+          "/media/img/img-toronto-night-1920.webp"
+        ],
+        "jpg": [
+          "/media/img/img-toronto-night-640.jpg",
+          "/media/img/img-toronto-night-1280.jpg",
+          "/media/img/img-toronto-night-1920.jpg"
+        ]
+      },
+      "mobile": {
+        "avif": "/media/img/img-toronto-night-mobile-800.avif",
+        "webp": "/media/img/img-toronto-night-mobile-800.webp",
+        "jpg": "/media/img/img-toronto-night-mobile-800.jpg"
+      }
+    },
+    "width": 1920,
+    "height": 1080,
+    "objectPosition": "50% 50%",
+    "credit": {
+      "author": "Frank Huang (@frankhme)",
+      "source": "Unsplash",
+      "page_url": "https://unsplash.com/photos/torontos-skyline-shines-at-night-over-the-water-KJWcpt41ayw",
+      "license": "Unsplash License",
+      "license_url": "https://unsplash.com/license"
+    },
+    "score": 9
+  }
+]

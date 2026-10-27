@@ -1,0 +1,38 @@
+---
+// Home: Air's sky from the first screen down, each audience reached early.
+// Dawn hero (the 3D glass name) → the two paths → dawn band (overnight log) → services → the learner band (training)
+// → proof → tools → short stories → resources → FAQ → contact → footer.
+// The learner section follows the services, so career switchers no longer scroll past the whole business funnel.
+// The footer's newsletter is off here: Resources already asks once.
+import Base from '../layouts/Base.astro';
+import Hero from '../components/sections/Hero.astro';
+import AudiencePaths from '../components/sections/AudiencePaths.astro';
+import DawnBand from '../components/sections/DawnBand.astro';
+import Services from '../components/sections/Services.astro';
+import Proof from '../components/sections/Proof.astro';
+import Tools from '../components/sections/Tools.astro';
+import Stories from '../components/sections/Stories.astro';
+import TrainingTeaser from '../components/sections/TrainingTeaser.astro';
+import Resources from '../components/sections/Resources.astro';
+import Faq from '../components/sections/Faq.astro';
+import ContactSection from '../components/sections/ContactSection.astro';
+---
+<Base
+  title="G-Force IT Services | Managed IT and IT Training in Toronto"
+  description="Proactive managed IT, cybersecurity, cloud and backup for Toronto small businesses, plus hands-on IT training in cloud, cybersecurity, AI, data and DevOps."
+  sky
+  glassHero
+  footerNewsletter={false}
+>
+  <Hero />
+  <AudiencePaths />
+  <DawnBand />
+  <Services />
+  <TrainingTeaser />
+  <Proof />
+  <Tools />
+  <Stories compact show="voices" />
+  <Resources />
+  <Faq />
+  <ContactSection />
+</Base>

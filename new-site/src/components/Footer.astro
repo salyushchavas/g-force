@@ -1,0 +1,257 @@
+---
+import Logo from './ui/Logo.astro';
+import Icon from './ui/Icon.astro';
+import { company, services } from '../data/site';
+
+interface Props {
+  /** Pages that already carry a newsletter form (blog, home resources) pass false via <Base footerNewsletter={false}>. */
+  newsletter?: boolean;
+}
+const { newsletter = true } = Astro.props;
+const year = new Date().getFullYear();
+const consentText = 'Yes, email me G-Force’s monthly IT security notes. I can unsubscribe at any time.';
+---
+<footer class="band-night site-footer" aria-labelledby="footer-heading">
+  {/* Air's close: the hero's cloud sky under the PageHero veil. On sky pages it fades in from the page sky. */}
+  <div class="footer-sky sky-photo" aria-hidden="true"></div>
+  <h2 id="footer-heading" class="sr-only">Site footer</h2>
+  <div class="container-g footer-top">
+    <div class="footer-brand">
+      <Logo size="lg" tagline href={null} />
+      <p class="footer-blurb">
+        Managed IT, cybersecurity and cloud for small businesses, and hands-on IT training for people building a tech career.
+        Head office in downtown Toronto.
+      </p>
+      {newsletter && (
+        <form class="newsletter" data-lead-form="newsletter" novalidate>
+          <label for="nl-email" class="field-label">Monthly IT security notes</label>
+          <input id="nl-email" name="email" type="email" class="field" autocomplete="email" placeholder="you@company.ca" required />
+          <label class="consent">
+            <input type="checkbox" name="consent" value="yes" required />
+            <span>{consentText}</span>
+          </label>
+          <p class="t-meta footer-sender">
+            Sent by {company.legalName}, {company.address.street}, {company.address.city}, {company.address.region} {company.address.postal}.
+            Read our <a href="/privacy/">privacy policy</a>.
+          </p>
+          <input type="hidden" name="consent_text" value={consentText} />
+          <button class="btn btn-primary newsletter-submit" type="submit">Subscribe</button>
+          <input type="text" name="company_website" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true" />
+          <p class="form-status t-meta" role="status" aria-live="polite"></p>
+        </form>
+      )}
+    </div>
+
+    <nav class="footer-cols" aria-label="Footer">
+      <div>
+        <h3 class="t-label footer-h">For businesses</h3>
+        <ul>
+          {services.filter((s) => s.id !== 'training').map((s) => <li><a href={s.href}>{s.name}</a></li>)}
+          <li><a href="/it-health-check/">IT health check</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="t-label footer-h">Training</h3>
+        <ul>
+          <li><a href="/training/#course-finder">Course finder</a></li>
+          <li><a href="/training/#formats">Learning formats</a></li>
+          <li><a href="/training/#faq">Training questions</a></li>
+          <li><a href="/resources/security-checklist/">Security checklist</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="t-label footer-h">Company</h3>
+        <ul>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/accessibility/">Accessibility</a></li>
+          <li><a href="/privacy/">Privacy policy</a></li>
+          <li><a href="/terms/">Terms of use</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h3 class="t-label footer-h">Reach us</h3>
+        <ul>
+          <li><a href={company.phoneHref}><Icon name="phone" size={18} /> {company.phoneDisplay}</a></li>
+          <li><a href={`mailto:${company.email}`}><Icon name="mail" size={18} /> {company.email}</a></li>
+          <li class="footer-line"><Icon name="pin" size={18} /><span>{company.address.street}<br />{company.address.city}, {company.address.region} {company.address.postal}</span></li>
+          <li class="footer-line">
+            <Icon name="clock" size={18} />
+            <span><span class="nowrap">{company.hours.days}</span> <span class="nowrap">{company.hours.local}</span> <span class="nowrap">({company.hours.eastern})</span></span>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="container-g footer-bottom">
+    <p>© <span data-year>{year}</span> {company.legalName} All rights reserved.</p>
+    <p class="footer-stamp"><span class="t-label">Toronto, Eastern Time</span> <span data-toronto-time class="t-num"></span></p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    position: relative;
+    isolation: isolate;
+    padding-block: clamp(4rem, 2.5rem + 5vw, 6.5rem) 2rem;
+  }
+  .footer-sky {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+  /* On sky pages the photo fades in from the page sky, and no text sits in the fade. */
+  :global(body.has-air-sky) .site-footer {
+    background: transparent;
+    padding-top: clamp(9rem, 7rem + 4vw, 11rem);
+  }
+  :global(body.has-air-sky) .footer-sky {
+    -webkit-mask-image: linear-gradient(180deg, transparent 0, black 8rem);
+    mask-image: linear-gradient(180deg, transparent 0, black 8rem);
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 3rem;
+  }
+  .footer-blurb {
+    margin-top: 1.5rem;
+    max-width: 44ch;
+    color: var(--text-muted);
+  }
+  .newsletter {
+    margin-top: 2rem;
+    max-width: 30rem;
+  }
+  /* The field sits on glass, like Air's panels on sky. */
+  .newsletter .field {
+    background: color-mix(in oklch, white 12%, transparent);
+    border-color: color-mix(in oklch, white 45%, transparent);
+  }
+  /* Keep the shared hover and focus borders, which the glass border above would otherwise override. */
+  .newsletter .field:hover {
+    border-color: var(--text-muted);
+  }
+  .newsletter .field:focus-visible {
+    border-color: var(--focus);
+  }
+  .consent {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    margin-top: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+  }
+  .consent input {
+    margin-top: 0.05rem;
+  }
+  .footer-sender {
+    margin-top: 0.75rem;
+    color: var(--text-muted);
+  }
+  .footer-sender a {
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-underline-offset: 0.2em;
+  }
+  .footer-sender a:hover {
+    text-decoration-color: currentColor;
+  }
+  .newsletter-submit {
+    margin-top: 1.25rem;
+  }
+  .hp {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+  .form-status:empty {
+    display: none;
+  }
+  .form-status {
+    margin-top: 0.75rem;
+  }
+  .footer-cols {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.25rem 2rem;
+  }
+  .footer-h {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+  .footer-cols ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.65rem;
+  }
+  .footer-cols a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.9375rem;
+  }
+  .footer-cols a:hover {
+    color: var(--accent-ink);
+  }
+  .footer-contact a {
+    white-space: nowrap;
+  }
+  @media (max-width: 479px) {
+    .footer-contact {
+      grid-column: 1 / -1;
+    }
+  }
+  .footer-line {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+    font-size: 0.9375rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .footer-line :global(svg) {
+    margin-top: 0.15rem;
+    flex-shrink: 0;
+  }
+  .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.75rem 2rem;
+    margin-top: clamp(3rem, 2rem + 4vw, 5rem);
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    color: var(--text-muted);
+    font-size: 0.875rem;
+  }
+  .footer-stamp {
+    display: inline-flex;
+    gap: 0.75rem;
+    align-items: baseline;
+  }
+  @media (min-width: 640px) {
+    .footer-contact {
+      grid-column: span 1;
+    }
+  }
+  @media (min-width: 1024px) {
+    .footer-top {
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.6fr);
+      gap: 4rem;
+    }
+    .footer-cols {
+      grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 1.45fr);
+    }
+  }
+</style>

@@ -1,0 +1,38 @@
+[
+  {
+    "file": "svc-cloud-backup-air-loop-960.mp4",
+    "frames": 185,
+    "durationSeconds": 7.4,
+    "adjacentMeanLumaDifference": 5.606473094471283,
+    "p95AdjacentDifference": 9.969328703703704,
+    "loopSeamDifference": 5.693287037037037,
+    "seamWithinP95": true
+  },
+  {
+    "file": "svc-consulting-air-loop-960.mp4",
+    "frames": 185,
+    "durationSeconds": 7.4,
+    "adjacentMeanLumaDifference": 1.209795818236715,
+    "p95AdjacentDifference": 2.1450617283950617,
+    "loopSeamDifference": 0.9658564814814815,
+    "seamWithinP95": true
+  },
+  {
+    "file": "svc-cybersecurity-air-loop-960.mp4",
+    "frames": 185,
+    "durationSeconds": 7.4,
+    "adjacentMeanLumaDifference": 0.5437718062265163,
+    "p95AdjacentDifference": 0.8896604938271605,
+    "loopSeamDifference": 0.7993827160493827,
+    "seamWithinP95": true
+  },
+  {
+    "file": "svc-managed-it-air-loop-960.mp4",
+    "frames": 185,
+    "durationSeconds": 7.4,
+    "adjacentMeanLumaDifference": 1.6262003908346752,
+    "p95AdjacentDifference": 3.4151234567901234,
+    "loopSeamDifference": 2.135223765432099,
+    "seamWithinP95": true
+  }
+]

@@ -1,0 +1,365 @@
+---
+import Logo from './ui/Logo.astro';
+import Icon from './ui/Icon.astro';
+import { nav, company } from '../data/site';
+
+interface Props {
+  nightHero?: boolean;
+  /** The persistent header call to action. Pages for one audience pass their own (for example /training). */
+  cta?: { label: string; href: string };
+  /** False for light-only skins (the white & crimson build). */
+  themeToggle?: boolean;
+}
+const { nightHero = false, themeToggle = true, cta = { label: 'Book an assessment', href: '/contact/?interest=assessment#contact-form' } } = Astro.props;
+// Compare without trailing slashes: nav hrefs end in "/" (trailingSlash: always), so a raw comparison never matched.
+const trim = (p: string) => p.replace(/\/+$/, '') || '/';
+const path = trim(Astro.url.pathname);
+const isActive = (href: string) => {
+  const h = trim(href);
+  if (h === '/') return path === '/';
+  // "Resources" (the blog) also owns the downloads under /resources/.
+  if (h === '/blog' && path.startsWith('/resources')) return true;
+  return path === h || path.startsWith(`${h}/`);
+};
+---
+<header class:list={['site-header', { 'is-over-night': nightHero }]} data-site-header>
+  <div class="container-g header-row">
+    <Logo size="md" />
+
+    <nav class="header-nav" aria-label="Main">
+      <ul>
+        {nav.map((item) => (
+          <li>
+            <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <a class="header-phone" href={company.phoneHref}>
+        <Icon name="phone" size={18} />
+        <span>{company.phoneDisplay}</span>
+      </a>
+      <a class="icon-btn header-call" href={company.phoneHref} aria-label={`Call ${company.phoneDisplay}`}>
+        <Icon name="phone" size={20} />
+      </a>
+      {themeToggle && (
+        <button type="button" class="icon-btn header-theme" data-theme-toggle aria-label="Switch to dark theme">
+          <span class="theme-icon theme-icon-moon"><Icon name="moon" size={20} /></span>
+          <span class="theme-icon theme-icon-sun"><Icon name="sun" size={20} /></span>
+        </button>
+      )}
+      <a class="btn btn-primary header-cta" href={cta.href}>{cta.label}</a>
+      <button type="button" class="icon-btn menu-btn" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span class="menu-icon-open"><Icon name="menu" size={22} /></span>
+        <span class="menu-icon-close"><Icon name="close" size={22} /></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+{/* A sibling of <header>, not a child: the header's backdrop-filter would otherwise become this fixed panel's
+    containing block and clip it to the 72px bar. motion.ts finds it by id. */}
+<div id="mobile-menu" class="mobile-menu band-night" hidden>
+  <nav aria-label="Mobile" class="container-g">
+    <ul class="mobile-links">
+      {nav.map((item) => (
+        <li>
+          <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+            {item.label}
+            <Icon name="arrow" size={22} />
+          </a>
+        </li>
+      ))}
+    </ul>
+    <div class="mobile-foot">
+      <a class="btn btn-primary" href="/contact/?interest=assessment#contact-form">Book a free IT assessment</a>
+      <a class="btn btn-secondary" href={company.phoneHref}><Icon name="phone" size={18} /> Call {company.phoneDisplay}</a>
+      <p class="t-meta mobile-hours">
+        <span class="nowrap">{company.hours.days},</span> <span class="nowrap">{company.hours.local}</span> <span class="nowrap">({company.hours.eastern})</span>
+      </p>
+      {themeToggle && (
+        <button type="button" class="btn btn-secondary mobile-theme" data-theme-toggle aria-label="Switch to dark theme">
+          <span class="theme-icon theme-icon-moon"><Icon name="moon" size={18} /></span>
+          <span class="theme-icon theme-icon-sun"><Icon name="sun" size={18} /></span>
+          Theme
+        </button>
+      )}
+    </div>
+  </nav>
+</div>
+
+<style>
+  .site-header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: var(--z-sticky);
+    color: var(--text);
+    /* Air: a frosted, translucent bar over light sections. */
+    background: color-mix(in oklch, var(--bg) 72%, transparent);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    backdrop-filter: blur(16px) saturate(150%);
+    transition:
+      background-color 250ms var(--ease-out-quart),
+      box-shadow 250ms var(--ease-out-quart),
+      color 250ms var(--ease-out-quart);
+  }
+  .site-header.is-scrolled {
+    box-shadow: 0 1px 0 var(--line);
+  }
+  /* Over the night hero: transparent, light text, night tokens, and Air's white pill on sky. */
+  .site-header.is-over-night {
+    --text: var(--color-mist-100);
+    --text-muted: var(--color-mist-300);
+    --line: color-mix(in oklch, white 14%, transparent);
+    --line-strong: color-mix(in oklch, white 32%, transparent);
+    --logo-word: #fff;
+    --focus: var(--color-crimson-300);
+    --accent: #fff;
+    --accent-hover: var(--color-sky-50);
+    --accent-press: var(--color-sky-100);
+    --btn-text: var(--color-air-ink);
+    background: linear-gradient(180deg, color-mix(in oklch, var(--color-ink-950) 35%, transparent), transparent);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    box-shadow: none;
+  }
+  /* Scrolling inside the hero: frosted sky, so the white hero copy never prints through the nav. */
+  .site-header.is-over-night.is-scrolled:not(.is-solid-night) {
+    background: color-mix(in oklch, var(--color-sky-deep) 62%, transparent);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    backdrop-filter: blur(14px) saturate(140%);
+    box-shadow: 0 1px 0 color-mix(in oklch, white 14%, transparent);
+  }
+  /* Over a sky section further down the page: frosted sky with a hairline, swapped exactly at the section edge. */
+  .site-header.is-over-night.is-solid-night {
+    background: color-mix(in oklch, var(--color-sky-deep) 60%, transparent);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    backdrop-filter: blur(14px) saturate(140%);
+    box-shadow: 0 1px 0 color-mix(in oklch, white 14%, transparent);
+  }
+  /* Over a dawn hero, Air's header floats on the sky (ink nav reads at 8:1 or better); it frosts again once the page scrolls. */
+  .site-header.is-over-dawn:not(.is-scrolled) {
+    background: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    box-shadow: none;
+  }
+  :global(body.has-glass-hero) .site-header.is-over-dawn {
+    --text: var(--color-air-ink);
+    --text-muted: var(--color-mist-600);
+    --accent: var(--color-crimson-500);
+    --accent-hover: var(--color-crimson-600);
+    --btn-text: #ffffff;
+    --logo-word: var(--color-air-ink);
+    --focus: var(--color-signal);
+  }
+  :global(body.has-glass-hero) .site-header.is-over-dawn.is-scrolled {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+  }
+  .header-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    height: var(--header-h);
+  }
+  @media (max-width: 479px) {
+    .header-row {
+      gap: 1rem;
+    }
+  }
+  .header-nav {
+    display: none;
+    margin-inline-start: 0.5rem;
+  }
+  .header-nav ul {
+    display: flex;
+    gap: 1.1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .header-nav a {
+    position: relative;
+    padding-block: 0.4rem;
+    color: var(--text);
+    font-size: 0.875rem;
+    font-weight: 550;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .header-nav a::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 -0.1rem 0;
+    height: 1.5px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 260ms var(--ease-out-expo);
+  }
+  .header-nav a:hover::after,
+  .header-nav a[aria-current='page']::after {
+    transform: scaleX(1);
+  }
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-inline-start: auto;
+  }
+  .header-phone {
+    display: none;
+    align-items: center;
+    gap: 0.45rem;
+    margin-inline-end: 0.5rem;
+    color: var(--text);
+    font-size: 0.875rem;
+    font-weight: 550;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .header-phone:hover {
+    color: var(--accent-ink);
+  }
+  .icon-btn {
+    display: inline-grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 999px;
+    color: var(--text);
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    transition: background-color 160ms var(--ease-out-quart);
+  }
+  .icon-btn:hover {
+    background: color-mix(in oklch, var(--text) 9%, transparent);
+  }
+  /* Click-to-call (PDF #32) on phones and laptops; from 1360px the number itself shows. */
+  .header-call {
+    display: inline-grid;
+  }
+  /* Phones: the theme switch moves into the menu, so the bar is logo, call and menu. */
+  .header-theme {
+    display: none;
+  }
+  .theme-icon {
+    display: grid;
+  }
+  :global([data-theme='dark']) .theme-icon-moon,
+  :global([data-theme='light']) .theme-icon-sun {
+    display: none;
+  }
+  .header-cta {
+    display: none;
+    min-height: 2.6rem;
+    padding: 0.6rem 1.1rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
+  }
+  .menu-icon-close {
+    display: none;
+  }
+  .menu-btn[aria-expanded='true'] .menu-icon-open {
+    display: none;
+  }
+  .menu-btn[aria-expanded='true'] .menu-icon-close {
+    display: grid;
+  }
+  .menu-icon-open {
+    display: grid;
+  }
+
+  .mobile-menu {
+    position: fixed;
+    inset: var(--header-h) 0 0 0;
+    z-index: var(--z-sticky);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-block: 1.5rem 3rem;
+    /* The sky gradient, starting at the open header's sky-deep so bar and panel read as one surface. */
+    background-image: linear-gradient(180deg, var(--color-sky-deep) 0%, var(--color-sky-mid) 70%, var(--color-dusk-500) 100%);
+  }
+  /* Menu open: one solid sky bar above the sky panel, whatever the scroll state (so these win over the states above). */
+  :global(.menu-open) .site-header {
+    --text: var(--color-mist-100);
+    --line: color-mix(in oklch, white 14%, transparent);
+    --logo-word: #fff;
+    --focus: var(--color-crimson-300);
+    --accent: #fff;
+    --accent-hover: var(--color-sky-50);
+    --accent-press: var(--color-sky-100);
+    --btn-text: var(--color-air-ink);
+    background: var(--color-sky-deep) !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+  .mobile-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+  .mobile-links a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 1.1rem;
+    border-bottom: 1px solid var(--line);
+    color: var(--text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    text-decoration: none;
+  }
+  .mobile-links a[aria-current='page'] {
+    color: var(--accent-ink);
+  }
+  .mobile-foot {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+  .mobile-hours {
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+  }
+  .mobile-theme {
+    justify-self: start;
+    margin-top: 0.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .header-cta {
+      display: inline-flex;
+    }
+    .header-theme {
+      display: inline-grid;
+    }
+    .mobile-theme {
+      display: none;
+    }
+  }
+  @media (min-width: 1200px) {
+    .header-nav {
+      display: block;
+    }
+    .menu-btn {
+      display: none;
+    }
+  }
+  @media (min-width: 1360px) {
+    .header-phone {
+      display: inline-flex;
+    }
+    .header-call {
+      display: none;
+    }
+  }
+</style>

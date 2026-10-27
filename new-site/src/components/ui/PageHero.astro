@@ -1,0 +1,214 @@
+---
+// Inner-page hero. tone="night" for business/contact pages, "dawn" for learner pages, "light" for editorial pages.
+// Pass `media` (a media slot) to put a film or photo behind a night hero.
+// `compact` trims the vertical padding. A named "aside" slot adds a right-hand panel (Air's panel on sky) from 1024px;
+// below that it stacks after the copy. On <Base sky> pages the hero opens onto the one shared sky.
+import SplitHeading from './SplitHeading.astro';
+import Video from './Video.astro';
+import Picture from './Picture.astro';
+import { nav } from '../../data/site';
+
+interface Props {
+  lines: string[];
+  intro?: string;
+  tone?: 'night' | 'dawn' | 'light';
+  media?: string;
+  mediaKind?: 'video' | 'image';
+  /** `current` names this page as the last breadcrumb item; without it the trail ends on the link. */
+  crumb?: { label: string; href: string; current?: string };
+  compact?: boolean;
+}
+const { lines, intro, tone = 'night', media: slot, mediaKind = 'video', crumb: crumbProp, compact = false } = Astro.props;
+// White & crimson skin: inner heroes are the original gforceit.ca title banner, the crimson gradient with white
+// type, for night and dawn tones alike. The tone class is kept so page-specific layout rules still apply.
+const red = import.meta.env.PUBLIC_SKIN === 'white-red' && tone !== 'light' && !slot;
+const band = red || tone === 'night' ? 'band-night' : tone === 'dawn' ? 'band-dawn' : 'band-light';
+// Like the original's "Homepage / Services" banner, a red hero names its section in a breadcrumb.
+const section = red ? nav.find((item) => Astro.url.pathname.startsWith(item.href)) : undefined;
+const crumb = crumbProp ?? (section && { label: 'Home', href: '/', current: section.label });
+const hasAside = Astro.slots.has('aside');
+---
+<section
+  class:list={['page-hero', band, `page-hero-${tone}`, { 'has-media': !!slot, 'page-hero-compact': compact, 'page-hero-red': red }]}
+  data-night-hero={tone === 'night' || red ? '' : undefined}
+  data-dawn-hero={tone === 'dawn' && !red ? '' : undefined}
+  aria-labelledby="page-title"
+>
+  {tone === 'night' && !slot && !red && (
+    <div class="page-hero-sky" aria-hidden="true">
+      <img src="/3d/sky-1280.jpg" srcset="/3d/sky-1280.jpg 1280w, /3d/sky-2560.jpg 2560w" sizes="100vw" alt="" width="1280" height="720" fetchpriority="high" decoding="async" />
+    </div>
+  )}
+  {slot && (
+    <div class="page-hero-media" aria-hidden="true">
+      {mediaKind === 'video' ? <Video slot={slot} mode="hero" priority class="page-hero-video" /> : <Picture slot={slot} alt="" loading="eager" fetchpriority="high" sizes="100vw" class="page-hero-pic" imgClass="page-hero-img" />}
+      <div class="page-hero-scrim"></div>
+    </div>
+  )}
+  <div class:list={['container-g', 'page-hero-inner', { 'has-aside': hasAside }]}>
+    {crumb && (
+      <nav aria-label="Breadcrumb" class="page-crumb t-meta" data-reveal="load">
+        <ol role="list">
+          <li><a href={crumb.href}>{crumb.label}</a></li>
+          {crumb.current && <li aria-current="page">{crumb.current}</li>}
+        </ol>
+      </nav>
+    )}
+    {hasAside ? (
+      <Fragment>
+        <div class="page-hero-main">
+          <SplitHeading id="page-title" as="h1" lines={lines} class="t-display page-hero-title" delay={120} load />
+          {intro && <p class="t-lead page-hero-intro" data-reveal="load" style="--reveal-delay: 420ms">{intro}</p>}
+          <slot />
+        </div>
+        <div class="page-hero-aside"><slot name="aside" /></div>
+      </Fragment>
+    ) : (
+      <Fragment>
+        <SplitHeading id="page-title" as="h1" lines={lines} class="t-display page-hero-title" delay={120} load />
+        {intro && <p class="t-lead page-hero-intro" data-reveal="load" style="--reveal-delay: 420ms">{intro}</p>}
+        <slot />
+      </Fragment>
+    )}
+  </div>
+</section>
+
+<style>
+  .page-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    padding-top: calc(var(--header-h) + clamp(3.5rem, 2rem + 6vw, 7rem));
+    padding-bottom: clamp(3.5rem, 2rem + 5vw, 6rem);
+  }
+  .page-hero-compact {
+    padding-top: calc(var(--header-h) + clamp(2rem, 1rem + 3vw, 3.5rem));
+    padding-bottom: clamp(1.75rem, 1rem + 2vw, 2.5rem);
+  }
+  /* Air: inner pages keep the sky. Night = the hero's cloud photo under a deep-sky veil; dawn = the sunrise gradient. */
+  .page-hero-night {
+    background: var(--color-sky-deep);
+  }
+  .page-hero-sky {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+  .page-hero-sky img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+  }
+  .page-hero-sky::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, color-mix(in oklab, var(--color-ink-900) 78%, transparent) 0%, color-mix(in oklab, var(--color-sky-deep) 62%, transparent) 55%, color-mix(in oklab, var(--color-sky-mid) 70%, transparent) 100%);
+  }
+  .page-hero-dawn {
+    background: var(--dawn-gradient);
+  }
+  :global([data-theme='dark']) .page-hero-dawn {
+    background: var(--dusk-gradient);
+  }
+  :global([data-theme='dark']) .page-hero-light {
+    background: var(--color-ink-900);
+  }
+  /* Sky pages (<Base sky>): the hero opens onto the one fixed sky, and a night hero dissolves into it instead of ending on an edge. */
+  :global(body.has-air-sky) .page-hero-dawn {
+    background: transparent;
+  }
+  :global(body.has-air-sky) .page-hero-night {
+    background: transparent;
+  }
+  /* Room below the copy for the 6rem fade. :where() keeps this overridable by a page's own hero padding. */
+  :global(:where(body.has-air-sky)) .page-hero-night {
+    padding-bottom: calc(clamp(3.5rem, 2rem + 5vw, 6rem) + 3rem);
+  }
+  :global(:where(body.has-air-sky)) .page-hero-night.page-hero-compact {
+    padding-bottom: calc(clamp(1.75rem, 1rem + 2vw, 2.5rem) + 3rem);
+  }
+  :global(body.has-air-sky) :is(.page-hero-sky, .page-hero-media) {
+    -webkit-mask-image: linear-gradient(180deg, black calc(100% - 6rem), transparent);
+    mask-image: linear-gradient(180deg, black calc(100% - 6rem), transparent);
+  }
+  .has-media {
+    min-height: min(46rem, 88svh);
+    display: grid;
+    align-items: end;
+  }
+  .page-hero-media {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+  .page-hero-media :global(.page-hero-video),
+  .page-hero-media :global(.page-hero-pic),
+  .page-hero-media :global(.page-hero-img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .page-hero-scrim {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, color-mix(in oklch, var(--color-ink-950) 80%, transparent) 0%, transparent 75%),
+      linear-gradient(0deg, color-mix(in oklch, var(--color-ink-950) 70%, transparent) 0%, transparent 55%);
+  }
+  .page-crumb {
+    margin-bottom: 1.25rem;
+    color: var(--text-muted);
+  }
+  .page-crumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .page-crumb li + li::before {
+    content: '/';
+    margin-inline: 0.6rem;
+    color: var(--text-muted);
+  }
+  .page-crumb a {
+    color: var(--text-muted);
+    text-underline-offset: 0.25em;
+  }
+  .page-crumb [aria-current='page'] {
+    color: var(--text);
+  }
+  .page-hero-title {
+    max-width: 16ch;
+  }
+  .page-hero-intro {
+    margin-top: clamp(1.75rem, 1.2rem + 1vw, 2.25rem);
+    max-width: 52ch;
+    color: var(--text-muted);
+  }
+  .page-hero-night .page-hero-intro {
+    color: var(--color-mist-200);
+  }
+  .page-hero-aside {
+    margin-top: 2.5rem;
+  }
+  @media (min-width: 1024px) {
+    .page-hero-inner.has-aside {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 24rem);
+      column-gap: 4rem;
+      align-items: end;
+    }
+    .page-hero-inner.has-aside > .page-crumb {
+      grid-column: 1 / -1;
+    }
+    .page-hero-aside {
+      margin-top: 0;
+    }
+  }
+</style>

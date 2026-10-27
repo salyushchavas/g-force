@@ -1,0 +1,178 @@
+---
+// "How we work" (PDF timeline: Assess → Plan → Implement → Monitor → Support). A real sequence, so this is
+// the one place numbered markers are earned (DESIGN.md).
+//
+// Motion: a crimson line draws down the rail as you read, and each marker fills as the line passes through it.
+// Every step carries its own scroll progress (motion.ts mode "enter": --p is 0 when the step's top meets the
+// bottom of the viewport and 1 when it reaches the top). A reading line sits 60% down the viewport, so
+// (--p - 0.4) * 100dvh is how far that line has travelled into the step. The fill and the marker are derived
+// from it in CSS alone: the tip tracks the reading line exactly, whatever each step's height.
+// Without motion (reduced motion, no JS) --p rests at 1: the line is fully drawn and every step is lit.
+import SplitHeading from '../ui/SplitHeading.astro';
+import Icon from '../ui/Icon.astro';
+import { process, hero } from '../../data/site';
+
+const marker = (i: number) => String(i + 1).padStart(2, '0');
+const last = process.length - 1;
+---
+<section id="how-we-work" class="process section-y" aria-labelledby="process-title">
+  <div class="container-g process-grid">
+    <div class="process-intro">
+      <div class="process-sticky">
+        <SplitHeading id="process-title" as="h2" lines={['How we *work*']} class="t-h2 process-title" />
+        <p class="t-lead process-lead" data-reveal style="--reveal-delay: 120ms">
+          The right level of support to match your business needs, from the first assessment to everyday technical support.
+        </p>
+        <a class="link-arrow process-cta" href={hero.primary.href} data-reveal style="--reveal-delay: 260ms">
+          {hero.primary.label}
+          <span class="btn-arrow"><Icon name="arrow" size={18} /></span>
+        </a>
+      </div>
+    </div>
+
+    <ol class="steps" role="list">
+      {process.map((s, i) => (
+        <li class:list={['step', { 'is-last': i === last }]} data-scroll-progress="enter" data-rest-p="1">
+          <span class="step-line" aria-hidden="true"><span class="step-line-fill"></span></span>
+          <span class="step-marker" aria-hidden="true">
+            <span class="step-num">{marker(i)}</span>
+            <span class="step-num step-num-lit">{marker(i)}</span>
+          </span>
+          <div class="step-body" data-reveal>
+            <h3 class="t-h3 step-title">{s.step}</h3>
+            <p class="step-text">{s.body}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .process {
+    --marker: 2.75rem;
+    --mc: calc(var(--marker) / 2);
+    /* 1 minus the reading line's position: 0.4 puts it 60% down the viewport. */
+    --reading: 0.4;
+    background: var(--bg);
+  }
+
+  .process-grid {
+    display: grid;
+    gap: clamp(2.75rem, 2rem + 3vw, 4rem);
+  }
+  /* SplitHeading renders the h2 with its own scope id, so reach it through :global under this section. */
+  .process :global(.process-title) {
+    max-width: 12ch;
+  }
+  .process-lead {
+    max-width: 38ch;
+    margin-top: 1.25rem;
+    color: var(--text-muted);
+  }
+  .process-cta {
+    min-height: 2.75rem;
+    margin-top: 1.25rem;
+  }
+
+  /* ---------- Steps ---------- */
+  .steps {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .step {
+    --pp: var(--p, 1);
+    /* How far the reading line has travelled into this step (negative until it arrives). */
+    --reach: calc((var(--pp) - var(--reading)) * 100dvh);
+    /* 1 once the step's top has passed the top of the viewport, or when motion rests at 1. */
+    --done: clamp(0, (var(--pp) - 0.999) * 1000, 1);
+    position: relative;
+    display: grid;
+    grid-template-columns: var(--marker) minmax(0, 1fr);
+    column-gap: clamp(1rem, 0.6rem + 1.6vw, 2rem);
+    padding-bottom: clamp(2.25rem, 1.5rem + 2.6vw, 3.75rem);
+  }
+  :global(.motion-ok) .step {
+    --pp: var(--p, 0);
+  }
+  .step.is-last {
+    padding-bottom: 1.75rem;
+  }
+
+  /* Rail segment: from this marker's centre to the next marker's centre. */
+  .step-line {
+    position: absolute;
+    top: var(--mc);
+    bottom: calc(-1 * var(--mc));
+    left: calc(var(--mc) - 1px);
+    width: 2px;
+    overflow: hidden;
+    background: var(--line);
+  }
+  .step-line-fill {
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform: translate3d(0, clamp(-100%, calc(-100% + var(--reach) - var(--mc) + var(--done) * 100%), 0%), 0);
+    will-change: transform;
+  }
+  /* After the last step the line runs on and fades: monitoring and support carry on. */
+  .is-last .step-line {
+    bottom: 0;
+    -webkit-mask-image: linear-gradient(180deg, black 20%, transparent);
+    mask-image: linear-gradient(180deg, black 20%, transparent);
+  }
+
+  .step-marker {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    width: var(--marker);
+    height: var(--marker);
+    border-radius: 999px;
+    background: var(--bg);
+    box-shadow: inset 0 0 0 1px var(--line-strong);
+  }
+  .step-num {
+    grid-area: 1 / 1;
+    display: grid;
+    place-items: center;
+    border-radius: inherit;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    font-weight: 650;
+    letter-spacing: 0.02em;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum' 1;
+  }
+  /* The lit layer is revealed top to bottom as the reading line passes through the marker. */
+  .step-num-lit {
+    background: var(--accent);
+    color: #fff;
+    clip-path: inset(0 0 clamp(0%, calc(100% - var(--reach) - var(--done) * 100%), 100%) 0);
+  }
+
+  .step-body {
+    min-width: 0;
+  }
+  .step-title {
+    margin: calc((var(--marker) - 1.15em) / 2) 0 0;
+  }
+  .step-text {
+    max-width: 46ch;
+    margin-top: 0.6rem;
+    color: var(--text-muted);
+  }
+
+  @media (min-width: 1024px) {
+    .process-grid {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: 4rem;
+    }
+    .process-sticky {
+      position: sticky;
+      top: calc(var(--header-h) + 3rem);
+    }
+  }
+</style>

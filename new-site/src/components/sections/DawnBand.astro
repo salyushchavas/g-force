@@ -1,0 +1,361 @@
+---
+// Air's second screen: the sky turns to dawn, a centred headline, and a white panel with a real IT-work film
+// inside the page beside two service workflows. These describe the service,
+// not a live activity feed or an unverified client result.
+import Video from '../ui/Video.astro';
+import SplitHeading from '../ui/SplitHeading.astro';
+import Icon from '../ui/Icon.astro';
+
+const log = [
+  { text: 'Monitor system health and security alerts' },
+  { text: 'Apply scheduled software updates' },
+  { text: 'Verify backups and review recovery readiness' },
+  { text: 'Prepare a clear system health report' },
+];
+const ticket = [
+  { text: 'Receive and prioritise your request' },
+  { text: 'Review your systems and recent changes' },
+  { text: 'Troubleshoot and agree on the next action' },
+  { text: 'Confirm the outcome and document the work', final: true },
+];
+// White & crimson skin: the Services preview two screens later opens on the managed-IT clip, so this panel shows
+// the backup clip (the care routine above verifies backups).
+const panelClip = import.meta.env.PUBLIC_SKIN === 'white-red' ? 'svc-cloud-backup' : 'svc-managed-it';
+---
+<section class="dawn band-dawn" id="morning" aria-labelledby="dawn-title" data-dawn-stage data-video-group data-scroll-progress="through" data-rest-p="1">
+  <div class="dawn-atmosphere" aria-hidden="true">
+    <Video slot="sky-daylight" mode="inview" class="dawn-clouds" controls={false} data-video-ambient />
+  </div>
+  <div class="container-g dawn-head">
+    <SplitHeading id="dawn-title" as="h2" lines={['Proactive care.', 'A more dependable *workday.*']} class="t-display dawn-title" />
+    <p class="t-lead dawn-sub" data-reveal style="--reveal-delay: 200ms">
+      Monitoring, scheduled updates and backup checks help keep your systems ready for work.
+      When your team needs support, a named contact helps you take the next step.
+    </p>
+    <div class="shift-controls">
+      <p class="shift-clock">
+        <Icon name="clock" size={18} />
+        <span>Proactive IT care, day and night</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="container-g">
+    <div class="panel" data-tabs data-scroll-progress="enter" data-rest-p="1">
+      <div class="panel-media" data-hover-scope>
+        <Video slot={panelClip} mode="inview" class="panel-video" label="IT systems maintenance video" />
+        <p class="panel-caption t-meta">Your systems, looked after by people who know them.</p>
+      </div>
+
+      <div class="panel-side">
+        <div class="tabs" role="tablist" aria-label="What G-Force handles">
+          <button type="button" role="tab" id="tab-night" aria-controls="pane-night" aria-selected="true" tabindex="0">Overnight</button>
+          <button type="button" role="tab" id="tab-ticket" aria-controls="pane-ticket" aria-selected="false" tabindex="-1">Support</button>
+          <span class="tabs-pill" aria-hidden="true"></span>
+        </div>
+
+        <div class="panes">
+          <div class="pane is-active" id="pane-night" role="tabpanel" aria-labelledby="tab-night">
+            <p class="pane-title">Your overnight care routine</p>
+            <ol class="log" data-stagger>
+              {log.map((l, i) => (
+                <li data-shift-step={i}>
+                  <span class="log-check" aria-hidden="true"><Icon name="check" size={14} /></span>
+                  <span>{l.text}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <div class="pane ticket" id="pane-ticket" role="tabpanel" aria-labelledby="tab-ticket" hidden inert>
+            <p class="pane-title">A clear route to support</p>
+            <p class="ticket-meta">A named contact, with response targets in your agreement.</p>
+            <ol class="ticket-steps">
+              {ticket.map((s) => (
+                <li class:list={{ 'is-final': s.final }}>
+                  <span class="tk-mark"><Icon name={s.final ? 'check' : 'clock'} size={13} /></span>
+                  <span>{s.text}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Select panels synchronously. Delayed hide callbacks could hide a panel that
+  // had just been selected again during rapid tapping or arrow-key navigation.
+  document.querySelectorAll<HTMLElement>('[data-dawn-stage] [data-tabs]').forEach((root) => {
+    const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    const pill = root.querySelector<HTMLElement>('.tabs-pill');
+    const place = (t: HTMLElement) => {
+      if (!pill) return;
+      pill.style.width = `${t.offsetWidth}px`;
+      pill.style.transform = `translateX(${t.offsetLeft}px)`;
+    };
+    const select = (tab: HTMLButtonElement, focus = false) => {
+      tabs.forEach((t) => {
+        const on = t === tab;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        const pane = root.querySelector<HTMLElement>(`#${t.getAttribute('aria-controls')}`)!;
+        pane.inert = !on;
+        pane.hidden = !on;
+        pane.classList.toggle('is-active', on);
+      });
+      place(tab);
+      if (focus) tab.focus();
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => select(t));
+      t.addEventListener('keydown', (e) => {
+        const k = e.key;
+        let n = -1;
+        if (k === 'ArrowRight') n = (i + 1) % tabs.length;
+        else if (k === 'ArrowLeft') n = (i - 1 + tabs.length) % tabs.length;
+        else if (k === 'Home') n = 0;
+        else if (k === 'End') n = tabs.length - 1;
+        if (n >= 0) {
+          e.preventDefault();
+          select(tabs[n], true);
+        }
+      });
+    });
+    const active = tabs.find((t) => t.getAttribute('aria-selected') === 'true') ?? tabs[0];
+    select(active);
+    document.fonts.ready.then(() => place(tabs.find((t) => t.getAttribute('aria-selected') === 'true') ?? tabs[0]));
+    addEventListener('resize', () => place(tabs.find((t) => t.getAttribute('aria-selected') === 'true') ?? tabs[0]), { passive: true });
+  });
+</script>
+
+<style>
+  .dawn {
+    position: relative;
+    isolation: isolate;
+    padding-block: clamp(5rem, 3rem + 7vw, 8.5rem) clamp(4.5rem, 3rem + 6vw, 8rem);
+    overflow: clip;
+  }
+  .dawn-atmosphere {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.18;
+    pointer-events: none;
+    mask-image: linear-gradient(180deg, transparent, black 22%, transparent 90%);
+  }
+  .dawn-atmosphere :global(.dawn-clouds) {
+    height: 100%;
+  }
+  .dawn-head {
+    text-align: center;
+    display: grid;
+    justify-items: center;
+  }
+  .dawn-title {
+    max-width: 14ch;
+  }
+  .dawn-head :global(.dawn-title .accent) {
+    font-family: var(--font-accent);
+    font-weight: inherit;
+    font-size: 1em;
+    line-height: inherit;
+  }
+  .dawn-sub {
+    margin-top: clamp(1.75rem, 1rem + 1.6vw, 2.75rem);
+    max-width: 52ch;
+    color: var(--text-muted);
+  }
+  .shift-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem 1rem;
+    margin-top: 1.5rem;
+  }
+  .shift-clock {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.875rem;
+    color: var(--text);
+  }
+
+  /* Air's product-panel entrance, driven by the panel's own position: the window opens and rises while it is on
+     screen (fully open once its top passes 60% of the viewport). Only transform and clip-path change; under
+     reduced motion --p rests at 1, so it sits open. The panel is always a white surface, so it keeps light-scheme
+     focus and line tokens in dark theme too (a white focus ring on white would vanish). */
+  .panel {
+    color-scheme: light;
+    --focus: var(--color-crimson-700);
+    --line-strong: color-mix(in oklch, var(--color-air-ink) 28%, transparent);
+    margin-top: clamp(2.5rem, 2rem + 3vw, 4rem);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    background: #fff;
+    border: 1px solid var(--glass-line);
+    border-radius: 16px;
+    overflow: hidden;
+    color: var(--color-air-ink);
+    transform: translate3d(0, calc((1 - min(1, var(--p, 1) * 2.5)) * 48px), 0);
+    clip-path: inset(calc((1 - min(1, var(--p, 1) * 2.5)) * 8%) round 16px);
+  }
+  .panel-media {
+    position: relative;
+    min-width: 0;
+    width: 100%;
+    min-height: 16rem;
+    aspect-ratio: 16 / 11;
+    background: var(--sky-gradient);
+  }
+  .panel-media :global(.panel-video) {
+    position: absolute;
+    inset: 0;
+  }
+  .panel-caption {
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+    right: 4.5rem;
+    color: #fff;
+    pointer-events: none;
+    text-shadow: 0 1px 12px rgb(0 0 0 / 0.35);
+  }
+  .panel-side {
+    min-width: 0;
+    padding: clamp(1.25rem, 1rem + 1.5vw, 2rem);
+    display: grid;
+    align-content: start;
+    gap: 1.25rem;
+  }
+  .tabs {
+    position: relative;
+    display: inline-flex;
+    justify-self: start;
+    padding: 0.25rem;
+    border-radius: 999px;
+    background: var(--color-air-haze);
+  }
+  .tabs button {
+    position: relative;
+    z-index: 1;
+    min-height: 2.5rem;
+    padding: 0.45rem 1rem;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--color-mist-600);
+    font: inherit;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 180ms var(--ease-out-expo);
+  }
+  .tabs button[aria-selected='true'] {
+    color: var(--color-air-ink);
+  }
+  .tabs-pill {
+    position: absolute;
+    top: 0.25rem;
+    left: 0;
+    height: calc(100% - 0.5rem);
+    border-radius: 999px;
+    background: #fff;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.08);
+    transition:
+      transform 180ms var(--ease-out-expo),
+      width 180ms var(--ease-out-expo);
+  }
+  .panes {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .pane {
+    grid-area: 1 / 1;
+  }
+  .pane[hidden] {
+    display: none;
+  }
+  .pane-title {
+    font-size: 1.125rem;
+    font-weight: 650;
+    letter-spacing: -0.01em;
+  }
+  .log {
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0.85rem;
+  }
+  .log li {
+    display: grid;
+    grid-template-columns: 1.25rem minmax(0, 1fr);
+    align-items: baseline;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    line-height: 1.45;
+  }
+  .log-check {
+    display: inline-grid;
+    place-items: center;
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 999px;
+    background: var(--color-crimson-100);
+    color: var(--color-crimson-700);
+    align-self: center;
+    transition: background-color 300ms var(--ease-out-expo), color 300ms var(--ease-out-expo);
+  }
+  .log li[data-complete='false'] .log-check {
+    background: var(--color-air-haze);
+    color: var(--color-mist-600);
+  }
+  .ticket-meta {
+    margin-top: 0.2rem;
+    font-size: 0.875rem;
+    color: var(--color-mist-600);
+  }
+  .ticket-steps {
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0.7rem;
+  }
+  .ticket-steps li {
+    display: grid;
+    grid-template-columns: 1.1rem minmax(0, 1fr);
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.9375rem;
+    line-height: 1.4;
+  }
+  .tk-mark {
+    display: inline-grid;
+    place-items: center;
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+  .ticket-steps li.is-final {
+    font-weight: 650;
+  }
+  .ticket-steps li.is-final .tk-mark {
+    border-radius: 999px;
+    background: var(--color-crimson-100);
+    color: var(--color-crimson-700);
+  }
+  @media (min-width: 900px) {
+    .panel {
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    }
+    .panel-media {
+      aspect-ratio: auto;
+      min-height: 26rem;
+    }
+  }
+</style>

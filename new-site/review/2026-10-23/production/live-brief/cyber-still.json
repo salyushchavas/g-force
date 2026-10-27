@@ -1,0 +1,86 @@
+[
+  {
+    "engine": "chromium",
+    "viewportWidth": 390,
+    "src": "https://gforce-kappa.vercel.app/media/img/security-key-laptop-640.avif",
+    "naturalWidth": 390,
+    "naturalHeight": 219,
+    "rect": {
+      "x": 20,
+      "y": 367.96875,
+      "width": 350,
+      "height": 196.875,
+      "top": 367.96875,
+      "right": 370,
+      "bottom": 564.84375,
+      "left": 20
+    },
+    "fit": "cover",
+    "position": "60% 65%",
+    "videoCount": 0,
+    "controlCount": 0
+  },
+  {
+    "engine": "chromium",
+    "viewportWidth": 1440,
+    "src": "https://gforce-kappa.vercel.app/media/img/security-key-laptop-800.avif",
+    "naturalWidth": 720,
+    "naturalHeight": 405,
+    "rect": {
+      "x": 749.515625,
+      "y": 412.515625,
+      "width": 590.484375,
+      "height": 369.046875,
+      "top": 412.515625,
+      "right": 1340,
+      "bottom": 781.5625,
+      "left": 749.515625
+    },
+    "fit": "cover",
+    "position": "60% 65%",
+    "videoCount": 0,
+    "controlCount": 0
+  },
+  {
+    "engine": "webkit",
+    "viewportWidth": 390,
+    "src": "https://gforce-kappa.vercel.app/media/img/security-key-laptop-640.avif",
+    "naturalWidth": 390,
+    "naturalHeight": 219,
+    "rect": {
+      "x": 20,
+      "y": 646.9375,
+      "width": 350,
+      "height": 196.875,
+      "top": 646.9375,
+      "right": 370,
+      "bottom": 843.8125,
+      "left": 20
+    },
+    "fit": "cover",
+    "position": "60% 65%",
+    "videoCount": 0,
+    "controlCount": 0
+  },
+  {
+    "engine": "webkit",
+    "viewportWidth": 1440,
+    "src": "https://gforce-kappa.vercel.app/media/img/security-key-laptop-800.avif",
+    "naturalWidth": 720,
+    "naturalHeight": 405,
+    "rect": {
+      "x": 749.515625,
+      "y": 412.5,
+      "width": 590.484375,
+      "height": 369.046875,
+      "top": 412.5,
+      "right": 1340,
+      "bottom": 781.546875,
+      "left": 749.515625
+    },
+    "fit": "cover",
+    "position": "60% 65%",
+    "videoCount": 0,
+    "controlCount": 0
+  }
+]

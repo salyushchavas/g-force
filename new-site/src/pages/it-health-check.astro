@@ -1,0 +1,371 @@
+---
+// IT health check: the PDF's five-question checker as its own page. The cloud-sky hero, the check card floating
+// over the hero's fading bottom, what each question covers (mapped to the Canadian Centre for Cyber Security
+// baseline controls for small and medium organizations), then the security checklist as the next step.
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/ui/PageHero.astro';
+import SplitHeading from '../components/ui/SplitHeading.astro';
+import Icon from '../components/ui/Icon.astro';
+import HealthCheck from '../components/islands/HealthCheck';
+import { quiz, checklist, company } from '../data/site';
+
+const BASELINE_URL = 'https://www.cyber.gc.ca/en/guidance/baseline-cyber-security-controls-small-and-medium-organizations';
+
+// Control numbers and names as published in "Baseline cyber security controls for small and medium organizations".
+const coverage: Record<string, { name: string; code: string; control: string; why: string }> = {
+  backup: {
+    name: 'Backups',
+    code: 'BC.7',
+    control: 'Backup and encrypt data',
+    why: 'A backup only helps if it restores. Automatic, versioned copies, one of them kept offsite and a restore tested on a schedule, let you recover from a failed drive, a deleted folder or ransomware.',
+  },
+  mfa: {
+    name: 'Multi-factor authentication',
+    code: 'BC.5',
+    control: 'Use strong user authentication',
+    why: 'With a second step at sign-in, such as an app prompt or a security key, a stolen password on its own is no longer enough to get into email or remote access.',
+  },
+  patching: {
+    name: 'Updates and patching',
+    code: 'BC.2',
+    control: 'Automatically patch operating systems and applications',
+    why: 'Updates fix security flaws once they are known. Turning them on is half the job; the other half is confirming they installed on every machine.',
+  },
+  devices: {
+    name: 'Device encryption',
+    code: 'BC.8',
+    control: 'Secure mobility',
+    why: 'Laptops and phones go missing. Full-disk encryption keeps the data on them unreadable, and remote wipe lets you erase a device that does not come back.',
+  },
+  support: {
+    name: 'Support',
+    code: 'BC.1',
+    control: 'Develop an incident response plan',
+    why: 'When something breaks, the first delay is working out who will fix it. Agree on who to call, and how fast they respond, before you need them.',
+  },
+};
+
+const rows = quiz.questions.map((q) => ({ id: q.id, ask: q.q, ...coverage[q.id] }));
+
+// How the score works, read from the quiz data so the explanation can never drift from the scoring.
+const max = quiz.questions.reduce((sum, q) => sum + Math.max(...q.options.map((o) => o.score)), 0);
+const points = [...new Set(quiz.questions.flatMap((q) => q.options.map((o) => o.score)))].sort((a, b) => a - b);
+const pointsText = points.length > 1 ? `${points.slice(0, -1).join(', ')} or ${points[points.length - 1]}` : String(points[0]);
+const bands = [...quiz.bands]
+  .sort((a, b) => b.min - a.min)
+  .map((b, i, all) => ({ label: b.label, from: b.min, to: i === 0 ? max : all[i - 1].min - 1 }));
+
+const areas = Object.entries(
+  checklist.reduce<Record<string, number>>((acc, c) => ((acc[c.area] = (acc[c.area] ?? 0) + 1), acc), {}),
+);
+---
+<Base
+  title="IT health check"
+  description="Five questions on backups, multi-factor authentication, updates, device encryption and support. Get a score out of 100 and the fixes to do first."
+  nightHero
+  sky
+>
+  <PageHero
+    tone="night"
+    lines={['Check your IT', 'in *five* questions.']}
+    intro="Backups, sign-ins, updates, lost laptops and support. You get a score out of 100 and the fixes worth doing first, in about two minutes."
+  />
+
+  <section id="health-check" class="check" aria-labelledby="hc-title">
+    <div class="container-g check-grid">
+      <div class="check-panel" data-reveal="load" style="--reveal-delay: 560ms">
+        <HealthCheck client:idle tone="surface" headingLevel={2} headingId="hc-title" intro="" />
+        <noscript>
+          <p class="check-noscript t-meta">
+            The health check needs JavaScript. You can still <a href="/contact/?interest=assessment#contact-form">book a free IT assessment</a> or call {company.phoneDisplay}.
+          </p>
+        </noscript>
+      </div>
+
+      <aside class="check-aside" aria-label="About the health check">
+        <div>
+          <h3 class="t-h4">How the score works</h3>
+          <p>Each answer earns {pointsText} points, for a score out of {max}.</p>
+          <dl class="check-bands">
+            {bands.map((b) => (
+              <div>
+                <dt>{b.label}</dt>
+                <dd class="t-num">{b.from} to {b.to}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <div>
+          <h3 class="t-h4">Your answers stay with you</h3>
+          <p>The check runs in your browser. Nothing is saved or sent unless you ask us to email your report.</p>
+        </div>
+        <div>
+          <h3 class="t-h4">Rather talk it through?</h3>
+          <p>
+            <a class="check-phone" href={company.phoneHref}>
+              <Icon name="phone" size={18} />
+              {company.phoneDisplay}
+            </a>
+          </p>
+          <p class="t-meta check-hours">
+            {company.hours.days}, <span class="nowrap">{company.hours.local}</span>
+            (<span class="nowrap">{company.hours.eastern}</span>)
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="what-it-checks" class="coverage section-y sheet" aria-labelledby="coverage-title">
+    <div class="container-g">
+      <div class="coverage-head">
+        <SplitHeading id="coverage-title" as="h2" class="t-h2" lines={['What each', 'question checks.']} />
+        <p class="coverage-intro" data-reveal style="--reveal-delay: 150ms">
+          Each question maps to a control in the Canadian Centre for Cyber Security’s <a href={BASELINE_URL}>baseline cyber security controls for small and medium organizations</a>.
+          The full baseline goes further, from security software to secure websites. These five are quick to check and quick
+          to act on.
+        </p>
+      </div>
+
+      <ul class="coverage-list" data-stagger>
+        {rows.map((r) => (
+          <li class="coverage-row">
+            <div>
+              <h3 class="t-h4">{r.name}</h3>
+              <p class="coverage-ref t-meta">Cyber Centre control {r.code}: {r.control}</p>
+            </div>
+            <div>
+              <p class="coverage-ask"><span class="coverage-ask-label">We ask:</span> {r.ask}</p>
+              <p class="coverage-why">{r.why}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="checklist" class="next section-y-dense sheet" aria-labelledby="checklist-title">
+    <div class="container-g next-grid">
+      <div>
+        <SplitHeading id="checklist-title" as="h2" class="t-h2" lines={['Then work through', 'the full checklist.']} />
+        <p class="next-body" data-reveal style="--reveal-delay: 150ms">
+          The security checklist for small businesses has {checklist.length} checks on one page, written for whoever looks
+          after IT in your office. Tick what is already in place, then print it or save it as a PDF.
+        </p>
+        <div class="next-actions" data-reveal style="--reveal-delay: 250ms">
+          <a class="btn btn-primary" href="/resources/security-checklist/">
+            Get the security checklist
+            <span class="btn-arrow"><Icon name="arrow" size={18} /></span>
+          </a>
+          <a class="btn btn-secondary" href="/contact/?interest=assessment#contact-form">Book a free IT assessment</a>
+        </div>
+      </div>
+
+      <div class="next-contents" data-reveal style="--reveal-delay: 200ms">
+        <h3 class="t-h4">What the checklist covers</h3>
+        <ul class="next-areas">
+          {areas.map(([area, n]) => (
+            <li>
+              <span>{area}</span>
+              <span class="t-num next-count">{n} {n === 1 ? 'check' : 'checks'}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* The check card floats over the hero's fading bottom: the hero grows by the overlap and the card is pulled up
+     into it, so no dark shelf sits beside the card. */
+  .check {
+    --overlap: clamp(4rem, 2rem + 6vw, 7rem);
+    position: relative;
+    margin-top: calc(-1 * var(--overlap));
+    padding-bottom: clamp(0.5rem, 2vw, 1.5rem);
+    background: none;
+  }
+  :global(main .page-hero:has(+ .check)) {
+    --overlap: clamp(4rem, 2rem + 6vw, 7rem);
+    padding-bottom: calc(clamp(3.5rem, 2rem + 5vw, 6rem) + var(--overlap));
+  }
+  .check-grid {
+    display: grid;
+    gap: 2.5rem;
+  }
+  .check-panel {
+    min-width: 0;
+  }
+  .check-noscript {
+    margin-top: 1rem;
+    color: var(--text-muted);
+  }
+  .check-noscript a {
+    color: var(--text);
+    text-decoration: underline;
+  }
+  .check-aside {
+    display: grid;
+    gap: 2rem;
+    align-content: start;
+  }
+  .check-aside p {
+    margin-top: 0.5rem;
+    max-width: 40ch;
+    color: var(--text-muted);
+  }
+  .check-aside .check-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    color: var(--text);
+    font-size: 1.125rem;
+    font-weight: 650;
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-underline-offset: 0.3em;
+    transition: text-decoration-color 160ms var(--ease-out-quart);
+  }
+  .check-aside .check-phone:hover {
+    text-decoration-color: var(--accent);
+  }
+  .check-aside .check-hours {
+    margin-top: 0;
+  }
+  .nowrap {
+    white-space: nowrap;
+  }
+  .check-bands {
+    margin: 1rem 0 0;
+    max-width: 24rem;
+    border-top: 1px solid var(--line-strong);
+  }
+  .check-bands div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 0.6rem;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.9375rem;
+  }
+  .check-bands dt {
+    font-weight: 650;
+  }
+  .check-bands dd {
+    margin: 0;
+    color: var(--text-muted);
+  }
+
+  .coverage-head {
+    display: grid;
+    gap: 1.5rem;
+  }
+  .coverage-intro {
+    max-width: 60ch;
+    color: var(--text-muted);
+    font-size: 1.0625rem;
+  }
+  /* Underlined, not colour alone, so the link stands out from the sentence around it (WCAG 1.4.1). */
+  .coverage-intro a {
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+  }
+  .coverage-intro a:hover {
+    text-decoration-color: var(--accent);
+  }
+  .coverage-list {
+    margin: clamp(2.5rem, 1.5rem + 3vw, 4rem) 0 0;
+    padding: 0;
+    list-style: none;
+    border-bottom: 1px solid var(--line);
+  }
+  .coverage-row {
+    display: grid;
+    gap: 0.75rem 4rem;
+    padding-block: clamp(1.5rem, 1rem + 1.5vw, 2.25rem);
+    border-top: 1px solid var(--line);
+  }
+  .coverage-ref {
+    margin-top: 0.4rem;
+    max-width: 30ch;
+    color: var(--text-muted);
+  }
+  .coverage-ask {
+    font-weight: 600;
+    max-width: 60ch;
+  }
+  .coverage-ask-label {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .coverage-why {
+    margin-top: 0.5rem;
+    max-width: 62ch;
+    color: var(--text-muted);
+  }
+
+  .next-grid {
+    display: grid;
+    gap: 2.5rem;
+  }
+  .next-body {
+    margin-top: 1.25rem;
+    max-width: 50ch;
+    color: var(--text-muted);
+  }
+  .next-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+  }
+  .next-areas {
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--line-strong);
+  }
+  .next-areas li {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 0.75rem;
+    border-bottom: 1px solid var(--line);
+    font-weight: 600;
+  }
+  .next-count {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  @media (min-width: 900px) {
+    .coverage-row {
+      grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    }
+  }
+  @media (min-width: 1024px) {
+    .check-grid {
+      grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+      column-gap: clamp(3rem, 1rem + 4vw, 5rem);
+      align-items: start;
+    }
+    .check-aside {
+      margin-top: calc(var(--overlap) + 2.5rem);
+    }
+    .coverage-head {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      align-items: end;
+      column-gap: 4rem;
+    }
+    .next-grid {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      align-items: center;
+      column-gap: 4rem;
+    }
+  }
+</style>

@@ -1,0 +1,1350 @@
+{
+  "config": {
+    "name": "savedata",
+    "width": 390,
+    "saveData": true
+  },
+  "frames": [
+    {
+      "now": 17.6,
+      "state": "preparing",
+      "y": 911.515625,
+      "titleY": 1106.515625,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 34.3,
+      "state": "preparing",
+      "y": 911.515625,
+      "titleY": 1106.515625,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 51,
+      "state": "preparing",
+      "y": 911.515625,
+      "titleY": 1106.515625,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 67.6,
+      "state": "preparing",
+      "y": 911.515625,
+      "titleY": 1106.515625,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 84.3,
+      "state": "preparing",
+      "y": 911.515625,
+      "titleY": 1106.515625,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 101,
+      "state": "preparing",
+      "y": 911.515625,
+      "titleY": 1106.515625,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 117.6,
+      "state": "preparing",
+      "y": 911.515625,
+      "titleY": 1106.515625,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 134.3,
+      "state": "preparing",
+      "y": 911.515625,
+      "titleY": 1106.515625,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 150.9,
+      "state": "preparing",
+      "y": 911.515625,
+      "titleY": 1106.515625,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 167.7,
+      "state": "preparing",
+      "y": 911.515625,
+      "titleY": 1106.515625,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 184.3,
+      "state": "preparing",
+      "y": 911.515625,
+      "titleY": 1106.515625,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 201,
+      "state": "preparing",
+      "y": 911.515625,
+      "titleY": 1106.515625,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 217.6,
+      "state": "preparing",
+      "y": 911.515625,
+      "titleY": 1106.515625,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 234.3,
+      "state": "running",
+      "y": 911.515625,
+      "titleY": 1106.515625,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 251,
+      "state": "running",
+      "y": 911.515625,
+      "titleY": 1106.515625,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 267.6,
+      "state": "running",
+      "y": 911.5123901367188,
+      "titleY": 1106.512451171875,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 284.3,
+      "state": "running",
+      "y": 911.4930419921875,
+      "titleY": 1106.4930419921875,
+      "progress": 0.00003,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 300.9,
+      "state": "running",
+      "y": 911.4425659179688,
+      "titleY": 1106.442626953125,
+      "progress": 0.00009,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 317.6,
+      "state": "running",
+      "y": 911.3469848632812,
+      "titleY": 1106.346923828125,
+      "progress": 0.0002,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 334.2,
+      "state": "running",
+      "y": 911.1903076171875,
+      "titleY": 1106.1903076171875,
+      "progress": 0.00039,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 350.9,
+      "state": "running",
+      "y": 910.9597778320312,
+      "titleY": 1105.959716796875,
+      "progress": 0.00066,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 367.6,
+      "state": "running",
+      "y": 910.6377563476562,
+      "titleY": 1105.6376953125,
+      "progress": 0.00104,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 384.3,
+      "state": "running",
+      "y": 910.2106323242188,
+      "titleY": 1105.210693359375,
+      "progress": 0.00155,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 401,
+      "state": "running",
+      "y": 909.6635131835938,
+      "titleY": 1104.66357421875,
+      "progress": 0.00219,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 417.6,
+      "state": "running",
+      "y": 908.9815673828125,
+      "titleY": 1103.9815673828125,
+      "progress": 0.003,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 434.3,
+      "state": "running",
+      "y": 908.1553344726562,
+      "titleY": 1103.1552734375,
+      "progress": 0.00398,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 451,
+      "state": "running",
+      "y": 907.16015625,
+      "titleY": 1102.16015625,
+      "progress": 0.00516,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 467.6,
+      "state": "running",
+      "y": 905.9856567382812,
+      "titleY": 1100.985595703125,
+      "progress": 0.00655,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 484.3,
+      "state": "running",
+      "y": 904.625732421875,
+      "titleY": 1099.625732421875,
+      "progress": 0.00816,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 500.9,
+      "state": "running",
+      "y": 903.04931640625,
+      "titleY": 1098.04931640625,
+      "progress": 0.01003,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 517.6,
+      "state": "running",
+      "y": 901.2605590820312,
+      "titleY": 1096.260498046875,
+      "progress": 0.01215,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 534.3,
+      "state": "running",
+      "y": 899.2230834960938,
+      "titleY": 1094.22314453125,
+      "progress": 0.01456,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 551,
+      "state": "running",
+      "y": 896.9322509765625,
+      "titleY": 1091.9322509765625,
+      "progress": 0.01728,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 567.6,
+      "state": "running",
+      "y": 894.3731689453125,
+      "titleY": 1089.3731689453125,
+      "progress": 0.02031,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 584.3,
+      "state": "running",
+      "y": 891.548828125,
+      "titleY": 1086.548828125,
+      "progress": 0.02366,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 600.9,
+      "state": "running",
+      "y": 888.410400390625,
+      "titleY": 1083.410400390625,
+      "progress": 0.02738,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 617.6,
+      "state": "running",
+      "y": 884.9808959960938,
+      "titleY": 1079.98095703125,
+      "progress": 0.03144,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 634.3,
+      "state": "running",
+      "y": 881.2041625976562,
+      "titleY": 1076.2041015625,
+      "progress": 0.03591,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 650.9,
+      "state": "running",
+      "y": 877.0850219726562,
+      "titleY": 1072.0849609375,
+      "progress": 0.04079,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 667.6,
+      "state": "running",
+      "y": 872.6365966796875,
+      "titleY": 1067.6365966796875,
+      "progress": 0.04607,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 684.3,
+      "state": "running",
+      "y": 867.7904663085938,
+      "titleY": 1062.79052734375,
+      "progress": 0.05181,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 700.9,
+      "state": "running",
+      "y": 862.5574951171875,
+      "titleY": 1057.5574951171875,
+      "progress": 0.05801,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 717.6,
+      "state": "running",
+      "y": 856.957763671875,
+      "titleY": 1051.957763671875,
+      "progress": 0.06464,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 734.2,
+      "state": "running",
+      "y": 850.9090576171875,
+      "titleY": 1045.9090576171875,
+      "progress": 0.07181,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 750.9,
+      "state": "running",
+      "y": 844.4691162109375,
+      "titleY": 1039.4691162109375,
+      "progress": 0.07944,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 767.6,
+      "state": "running",
+      "y": 837.545654296875,
+      "titleY": 1032.545654296875,
+      "progress": 0.08764,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 784.2,
+      "state": "running",
+      "y": 830.1611938476562,
+      "titleY": 1025.1611328125,
+      "progress": 0.09639,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 801,
+      "state": "running",
+      "y": 822.3494873046875,
+      "titleY": 1017.3494873046875,
+      "progress": 0.10565,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 817.6,
+      "state": "running",
+      "y": 813.9501342773438,
+      "titleY": 1008.9501342773438,
+      "progress": 0.1156,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 834.3,
+      "state": "running",
+      "y": 805.1483154296875,
+      "titleY": 1000.1483154296875,
+      "progress": 0.12603,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 850.9,
+      "state": "running",
+      "y": 795.7747192382812,
+      "titleY": 990.7747192382812,
+      "progress": 0.13713,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 867.6,
+      "state": "running",
+      "y": 785.927001953125,
+      "titleY": 980.927001953125,
+      "progress": 0.1488,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 884.3,
+      "state": "running",
+      "y": 775.4716796875,
+      "titleY": 970.4716796875,
+      "progress": 0.16119,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 900.9,
+      "state": "running",
+      "y": 764.4515380859375,
+      "titleY": 959.4515380859375,
+      "progress": 0.17425,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 917.6,
+      "state": "running",
+      "y": 752.923095703125,
+      "titleY": 947.923095703125,
+      "progress": 0.18791,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 934.2,
+      "state": "running",
+      "y": 740.7325439453125,
+      "titleY": 935.7325439453125,
+      "progress": 0.20235,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 950.9,
+      "state": "running",
+      "y": 728.0112915039062,
+      "titleY": 923.0112915039062,
+      "progress": 0.21742,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 967.6,
+      "state": "running",
+      "y": 714.5912475585938,
+      "titleY": 909.5912475585938,
+      "progress": 0.23332,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 984.3,
+      "state": "running",
+      "y": 700.5323486328125,
+      "titleY": 895.5323486328125,
+      "progress": 0.24998,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1000.9,
+      "state": "running",
+      "y": 685.8197631835938,
+      "titleY": 880.8197631835938,
+      "progress": 0.26741,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1017.6,
+      "state": "running",
+      "y": 670.53271484375,
+      "titleY": 865.53271484375,
+      "progress": 0.28552,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1034.2,
+      "state": "running",
+      "y": 654.4722900390625,
+      "titleY": 849.4722900390625,
+      "progress": 0.30455,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1050.9,
+      "state": "running",
+      "y": 637.816162109375,
+      "titleY": 832.816162109375,
+      "progress": 0.32429,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1067.6,
+      "state": "running",
+      "y": 620.348876953125,
+      "titleY": 815.348876953125,
+      "progress": 0.34498,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1084.3,
+      "state": "running",
+      "y": 602.15380859375,
+      "titleY": 797.15380859375,
+      "progress": 0.36654,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1101,
+      "state": "running",
+      "y": 583.216064453125,
+      "titleY": 778.216064453125,
+      "progress": 0.38898,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1117.6,
+      "state": "running",
+      "y": 563.5208740234375,
+      "titleY": 758.5208740234375,
+      "progress": 0.41232,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1134.2,
+      "state": "running",
+      "y": 543.1781616210938,
+      "titleY": 738.1781616210938,
+      "progress": 0.43642,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1150.9,
+      "state": "running",
+      "y": 522.0577392578125,
+      "titleY": 717.0577392578125,
+      "progress": 0.46144,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1167.6,
+      "state": "running",
+      "y": 500.01055908203125,
+      "titleY": 695.0105590820312,
+      "progress": 0.48757,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1184.3,
+      "state": "running",
+      "y": 477.14666748046875,
+      "titleY": 672.1466674804688,
+      "progress": 0.51466,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1200.9,
+      "state": "running",
+      "y": 453.45892333984375,
+      "titleY": 648.4589233398438,
+      "progress": 0.54272,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1217.6,
+      "state": "running",
+      "y": 430.0623474121094,
+      "titleY": 625.0623779296875,
+      "progress": 0.57044,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1234.3,
+      "state": "running",
+      "y": 407.3511657714844,
+      "titleY": 602.3511962890625,
+      "progress": 0.59735,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1250.9,
+      "state": "running",
+      "y": 385.4539794921875,
+      "titleY": 580.4539794921875,
+      "progress": 0.6233,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1267.6,
+      "state": "running",
+      "y": 364.47991943359375,
+      "titleY": 559.4799194335938,
+      "progress": 0.64815,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1284.3,
+      "state": "running",
+      "y": 344.16143798828125,
+      "titleY": 539.1614379882812,
+      "progress": 0.67222,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1300.9,
+      "state": "running",
+      "y": 324.612548828125,
+      "titleY": 519.612548828125,
+      "progress": 0.69538,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1317.6,
+      "state": "running",
+      "y": 305.9285888671875,
+      "titleY": 500.9285888671875,
+      "progress": 0.71752,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1334.3,
+      "state": "running",
+      "y": 287.86968994140625,
+      "titleY": 482.86968994140625,
+      "progress": 0.73892,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1350.9,
+      "state": "running",
+      "y": 270.535888671875,
+      "titleY": 465.535888671875,
+      "progress": 0.75945,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1367.6,
+      "state": "running",
+      "y": 254.00970458984375,
+      "titleY": 449.00970458984375,
+      "progress": 0.77904,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1384.2,
+      "state": "running",
+      "y": 238.0772705078125,
+      "titleY": 433.0772705078125,
+      "progress": 0.79791,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1400.9,
+      "state": "running",
+      "y": 222.91473388671875,
+      "titleY": 417.91473388671875,
+      "progress": 0.81588,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1417.6,
+      "state": "running",
+      "y": 208.3245849609375,
+      "titleY": 403.3245849609375,
+      "progress": 0.83316,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1434.3,
+      "state": "running",
+      "y": 194.3853759765625,
+      "titleY": 389.3853759765625,
+      "progress": 0.84968,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1450.9,
+      "state": "running",
+      "y": 181.082275390625,
+      "titleY": 376.082275390625,
+      "progress": 0.86544,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1467.6,
+      "state": "running",
+      "y": 168.47454833984375,
+      "titleY": 363.47454833984375,
+      "progress": 0.88038,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1484.3,
+      "state": "running",
+      "y": 156.39544677734375,
+      "titleY": 351.39544677734375,
+      "progress": 0.89469,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1500.9,
+      "state": "running",
+      "y": 144.907958984375,
+      "titleY": 339.907958984375,
+      "progress": 0.9083,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1517.6,
+      "state": "running",
+      "y": 134.0609130859375,
+      "titleY": 329.0609130859375,
+      "progress": 0.92115,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1534.2,
+      "state": "running",
+      "y": 123.708740234375,
+      "titleY": 318.708740234375,
+      "progress": 0.93342,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1550.9,
+      "state": "running",
+      "y": 113.96087646484375,
+      "titleY": 308.96087646484375,
+      "progress": 0.94497,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1567.6,
+      "state": "running",
+      "y": 104.68499755859375,
+      "titleY": 299.68499755859375,
+      "progress": 0.95596,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1584.3,
+      "state": "running",
+      "y": 95.9266357421875,
+      "titleY": 290.9266357421875,
+      "progress": 0.96634,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1600.9,
+      "state": "running",
+      "y": 87.67095947265625,
+      "titleY": 282.67095947265625,
+      "progress": 0.97612,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1617.6,
+      "state": "running",
+      "y": 79.9481201171875,
+      "titleY": 274.9481201171875,
+      "progress": 0.98527,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1634.3,
+      "state": "running",
+      "y": 72.650390625,
+      "titleY": 267.650390625,
+      "progress": 0.99392,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1650.9,
+      "state": "running",
+      "y": 65.81085205078125,
+      "titleY": 260.81085205078125,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1667.6,
+      "state": "running",
+      "y": 59.45159912109375,
+      "titleY": 254.45159912109375,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1684.3,
+      "state": "running",
+      "y": 53.4813232421875,
+      "titleY": 248.4813232421875,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1700.9,
+      "state": "running",
+      "y": 47.9248046875,
+      "titleY": 242.9248046875,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1717.6,
+      "state": "running",
+      "y": 42.79681396484375,
+      "titleY": 237.79681396484375,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1734.2,
+      "state": "running",
+      "y": 38.02081298828125,
+      "titleY": 233.02081298828125,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1750.9,
+      "state": "running",
+      "y": 33.639404296875,
+      "titleY": 228.639404296875,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1767.6,
+      "state": "running",
+      "y": 29.5849609375,
+      "titleY": 224.5849609375,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1784.2,
+      "state": "running",
+      "y": 25.8701171875,
+      "titleY": 220.8701171875,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1800.9,
+      "state": "running",
+      "y": 22.49945068359375,
+      "titleY": 217.49945068359375,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1817.6,
+      "state": "running",
+      "y": 19.41748046875,
+      "titleY": 214.41748046875,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1834.2,
+      "state": "running",
+      "y": 16.630615234375,
+      "titleY": 211.630615234375,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1850.9,
+      "state": "running",
+      "y": 14.13824462890625,
+      "titleY": 209.13824462890625,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1867.5,
+      "state": "running",
+      "y": 11.89556884765625,
+      "titleY": 206.89556884765625,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1884.2,
+      "state": "running",
+      "y": 9.914794921875,
+      "titleY": 204.914794921875,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1900.9,
+      "state": "running",
+      "y": 8.1572265625,
+      "titleY": 203.1572265625,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1917.5,
+      "state": "running",
+      "y": 6.62066650390625,
+      "titleY": 201.62066650390625,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1934.2,
+      "state": "running",
+      "y": 5.2977294921875,
+      "titleY": 200.2977294921875,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1950.9,
+      "state": "running",
+      "y": 4.1575927734375,
+      "titleY": 199.1575927734375,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1967.6,
+      "state": "running",
+      "y": 3.194091796875,
+      "titleY": 198.194091796875,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 1984.2,
+      "state": "running",
+      "y": 2.3922119140625,
+      "titleY": 197.3922119140625,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 2000.9,
+      "state": "running",
+      "y": 1.74078369140625,
+      "titleY": 196.74078369140625,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 2017.5,
+      "state": "running",
+      "y": 1.217041015625,
+      "titleY": 196.217041015625,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 2034.2,
+      "state": "running",
+      "y": 0.81268310546875,
+      "titleY": 195.81268310546875,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 2050.9,
+      "state": "running",
+      "y": 0.50799560546875,
+      "titleY": 195.50799560546875,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 2067.5,
+      "state": "running",
+      "y": 0.29095458984375,
+      "titleY": 195.29095458984375,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 2084.2,
+      "state": "running",
+      "y": 0.1473388671875,
+      "titleY": 195.1473388671875,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 2100.9,
+      "state": "running",
+      "y": 0.0606689453125,
+      "titleY": 195.0606689453125,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 2117.6,
+      "state": "running",
+      "y": 0.01708984375,
+      "titleY": 195.01708984375,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 2134.2,
+      "state": "running",
+      "y": 0.0018310546875,
+      "titleY": 195.0018310546875,
+      "progress": 1,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 2150.9,
+      "state": "complete",
+      "y": 0,
+      "titleY": 195,
+      "progress": 1,
+      "scrollY": 0,
+      "art": false,
+      "draws": 0
+    },
+    {
+      "now": 2167.6,
+      "state": "complete",
+      "y": 0,
+      "titleY": 195,
+      "progress": 1,
+      "scrollY": 0,
+      "art": false,
+      "draws": 0
+    },
+    {
+      "now": 2184.2,
+      "state": "complete",
+      "y": 0,
+      "titleY": 195,
+      "progress": 1,
+      "scrollY": 0,
+      "art": false,
+      "draws": 0
+    },
+    {
+      "now": 2200.8,
+      "state": "complete",
+      "y": 0,
+      "titleY": 195,
+      "progress": 1,
+      "scrollY": 0,
+      "art": false,
+      "draws": 0
+    },
+    {
+      "now": 2217.5,
+      "state": "complete",
+      "y": 0,
+      "titleY": 195,
+      "progress": 1,
+      "scrollY": 0,
+      "art": false,
+      "draws": 0
+    },
+    {
+      "now": 2234.3,
+      "state": "complete",
+      "y": 0,
+      "titleY": 195,
+      "progress": 1,
+      "scrollY": 0,
+      "art": false,
+      "draws": 0
+    }
+  ],
+  "longTasks": []
+}

@@ -1,0 +1,939 @@
+[
+  {
+    "config": {
+      "name": "mobile",
+      "mobile": true
+    },
+    "errors": [],
+    "initial": {
+      "playing": 1,
+      "attached": 1,
+      "films": [
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": true,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-brief-640.mp4",
+          "paused": false,
+          "time": 0.1159,
+          "duration": 4,
+          "ready": 4,
+          "completed": false,
+          "shown": true,
+          "ambient": false,
+          "width": 640,
+          "frames": 7,
+          "dropped": 1
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        }
+      ],
+      "requests": [
+        {
+          "name": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-brief-640.mp4",
+          "bytes": 92751,
+          "duration": 277.1000000014901
+        }
+      ]
+    },
+    "advancement": 0.6603000000000001,
+    "pausedAt": 0.7901,
+    "resumedAt": 0.8053,
+    "completed": {
+      "time": 4,
+      "duration": 4,
+      "paused": true,
+      "shown": true
+    },
+    "samples": [
+      {
+        "at": "row-3",
+        "playing": 1,
+        "attached": 2,
+        "films": [
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": true,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-brief-640.mp4",
+            "paused": true,
+            "time": 4,
+            "duration": 4,
+            "ready": 4,
+            "completed": true,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 96,
+            "dropped": 1
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-brief-640.mp4",
+            "paused": false,
+            "time": 0.1103,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 7,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          }
+        ],
+        "requests": [
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-brief-640.mp4",
+            "bytes": 92751,
+            "duration": 277.1000000014901
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-brief-640.mp4",
+            "bytes": 78908,
+            "duration": 267.5
+          }
+        ]
+      },
+      {
+        "at": "row-4",
+        "playing": 1,
+        "attached": 3,
+        "films": [
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": true,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-brief-640.mp4",
+            "paused": true,
+            "time": 4,
+            "duration": 4,
+            "ready": 4,
+            "completed": true,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 96,
+            "dropped": 1
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-brief-640.mp4",
+            "paused": true,
+            "time": 0.2474,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 10,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-training-brief-640.mp4",
+            "paused": false,
+            "time": 0.1117,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 7,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          }
+        ],
+        "requests": [
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-brief-640.mp4",
+            "bytes": 92751,
+            "duration": 277.1000000014901
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-brief-640.mp4",
+            "bytes": 78908,
+            "duration": 267.5
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-training-brief-640.mp4",
+            "bytes": 106254,
+            "duration": 299.19999999925494
+          }
+        ]
+      },
+      {
+        "at": "row-5",
+        "playing": 1,
+        "attached": 4,
+        "films": [
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": true,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-brief-640.mp4",
+            "paused": true,
+            "time": 4,
+            "duration": 4,
+            "ready": 4,
+            "completed": true,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 96,
+            "dropped": 1
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-brief-640.mp4",
+            "paused": true,
+            "time": 0.2474,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 10,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-training-brief-640.mp4",
+            "paused": true,
+            "time": 0.2505,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 10,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-consulting-brief-640.mp4",
+            "paused": false,
+            "time": 0.1253,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 7,
+            "dropped": 1
+          }
+        ],
+        "requests": [
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-brief-640.mp4",
+            "bytes": 92751,
+            "duration": 277.1000000014901
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-brief-640.mp4",
+            "bytes": 78908,
+            "duration": 267.5
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-training-brief-640.mp4",
+            "bytes": 106254,
+            "duration": 299.19999999925494
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-consulting-brief-640.mp4",
+            "bytes": 126753,
+            "duration": 277.5
+          }
+        ]
+      },
+      {
+        "at": "dawn",
+        "playing": 1,
+        "attached": 5,
+        "films": [
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": true,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-brief-640.mp4",
+            "paused": false,
+            "time": 0.1169,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 7,
+            "dropped": 1
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-brief-640.mp4",
+            "paused": true,
+            "time": 4,
+            "duration": 4,
+            "ready": 4,
+            "completed": true,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 96,
+            "dropped": 1
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-brief-640.mp4",
+            "paused": true,
+            "time": 0.2474,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 10,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-training-brief-640.mp4",
+            "paused": true,
+            "time": 0.2505,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 10,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-consulting-brief-640.mp4",
+            "paused": true,
+            "time": 0.1501,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 8,
+            "dropped": 1
+          }
+        ],
+        "requests": [
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-brief-640.mp4",
+            "bytes": 92751,
+            "duration": 277.1000000014901
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-brief-640.mp4",
+            "bytes": 78908,
+            "duration": 267.5
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-training-brief-640.mp4",
+            "bytes": 106254,
+            "duration": 299.19999999925494
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-consulting-brief-640.mp4",
+            "bytes": 126753,
+            "duration": 277.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "config": {
+      "name": "desktop",
+      "mobile": false
+    },
+    "errors": [],
+    "initial": {
+      "playing": 1,
+      "attached": 1,
+      "films": [
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": true,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-brief-960.mp4",
+          "paused": false,
+          "time": 0.1087,
+          "duration": 4,
+          "ready": 4,
+          "completed": false,
+          "shown": true,
+          "ambient": false,
+          "width": 960,
+          "frames": 7,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        }
+      ],
+      "requests": [
+        {
+          "name": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-brief-960.mp4",
+          "bytes": 179581,
+          "duration": 322.4000000022352
+        }
+      ]
+    },
+    "advancement": 0.6564,
+    "pausedAt": 0.7904,
+    "resumedAt": 0.8021,
+    "completed": {
+      "time": 4,
+      "duration": 4,
+      "paused": true,
+      "shown": true
+    },
+    "samples": [
+      {
+        "at": "row-3",
+        "playing": 1,
+        "attached": 2,
+        "films": [
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": true,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-brief-960.mp4",
+            "paused": true,
+            "time": 4,
+            "duration": 4,
+            "ready": 4,
+            "completed": true,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 96,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-brief-960.mp4",
+            "paused": false,
+            "time": 0.1105,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 7,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          }
+        ],
+        "requests": [
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-brief-960.mp4",
+            "bytes": 179581,
+            "duration": 322.4000000022352
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-brief-960.mp4",
+            "bytes": 145502,
+            "duration": 41.70000000298023
+          }
+        ]
+      },
+      {
+        "at": "row-4",
+        "playing": 1,
+        "attached": 3,
+        "films": [
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": true,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-brief-960.mp4",
+            "paused": true,
+            "time": 4,
+            "duration": 4,
+            "ready": 4,
+            "completed": true,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 96,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-brief-960.mp4",
+            "paused": true,
+            "time": 0.1593,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 8,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-training-brief-960.mp4",
+            "paused": false,
+            "time": 0.1118,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 7,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          }
+        ],
+        "requests": [
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-brief-960.mp4",
+            "bytes": 179581,
+            "duration": 322.4000000022352
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-brief-960.mp4",
+            "bytes": 145502,
+            "duration": 41.70000000298023
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-training-brief-960.mp4",
+            "bytes": 216986,
+            "duration": 60.29999999701977
+          }
+        ]
+      },
+      {
+        "at": "row-5",
+        "playing": 1,
+        "attached": 4,
+        "films": [
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": true,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-brief-960.mp4",
+            "paused": true,
+            "time": 4,
+            "duration": 4,
+            "ready": 4,
+            "completed": true,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 96,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-brief-960.mp4",
+            "paused": true,
+            "time": 0.1593,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 8,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-training-brief-960.mp4",
+            "paused": true,
+            "time": 0.1597,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 8,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-consulting-brief-960.mp4",
+            "paused": false,
+            "time": 0.1059,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 7,
+            "dropped": 0
+          }
+        ],
+        "requests": [
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-brief-960.mp4",
+            "bytes": 179581,
+            "duration": 322.4000000022352
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-brief-960.mp4",
+            "bytes": 145502,
+            "duration": 41.70000000298023
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-training-brief-960.mp4",
+            "bytes": 216986,
+            "duration": 60.29999999701977
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-consulting-brief-960.mp4",
+            "bytes": 242229,
+            "duration": 45.30000000074506
+          }
+        ]
+      }
+    ]
+  }
+]

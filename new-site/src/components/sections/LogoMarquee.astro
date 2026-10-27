@@ -1,0 +1,114 @@
+---
+// The original site's 28 client logos, in their own colours with only the white surround removed
+// (public/logos/clients/colour, cut from the original images). Shown in full colour at all times:
+// the user chose this over the PDF's grayscale-to-colour hover idea.
+import { existsSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { clientLogos } from '../../data/site';
+interface Props { id?: string; compact?: boolean; }
+const { id = 'client-logos', compact = false } = Astro.props;
+const titleId = `${id}-title`;
+const logos = clientLogos.flatMap((logo) => {
+  const src = `/logos/clients/colour/${logo.file.replace(/\.(gif|jpg)$/i, '.png')}`;
+  const path = join(process.cwd(), 'public', src);
+  if (!existsSync(path)) return [];
+  const png = readFileSync(path);
+  const width = png.readUInt32BE(16), height = png.readUInt32BE(20);
+  // Optical size: equal visual area instead of equal height, so wide wordmarks (Caterpillar, Microsoft) do not
+  // dominate compact marks (WB, Mastercard). k scales the row's base height; 2.6:1 is the typical logo.
+  const k = Math.min(1.4, Math.max(0.62, Math.sqrt(2.6 / (width / height))));
+  return [{ ...logo, src, width, height, k: k.toFixed(3) }];
+});
+---
+<section class:list={['marquee', { 'marquee-compact': compact }]} data-marquee aria-labelledby={titleId} style={`--marquee-duration: ${logos.length * 4}s`}>
+  <div class="container-g marquee-head">
+    <h2 id={titleId} class="t-h3">Our clients</h2>
+    {!compact && <p class="marquee-description">Organizations we have worked with.</p>}
+  </div>
+  <div class="marquee-viewport">
+    <div class="marquee-track">
+      <ul class="marquee-list" role="list" aria-labelledby={titleId}>
+        {logos.map((logo) => <li class="client-logo" style={`--k: ${logo.k}`}><img src={logo.src} alt={logo.name} width={logo.width} height={logo.height} loading="lazy" decoding="async" fetchpriority="low" draggable="false" /></li>)}
+      </ul>
+      <ul class="marquee-list marquee-duplicate" aria-hidden="true" inert>
+        {logos.map((logo) => <li class="client-logo" style={`--k: ${logo.k}`}><img src={logo.src} alt="" width={logo.width} height={logo.height} loading="lazy" decoding="async" fetchpriority="low" draggable="false" /></li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-marquee]').forEach((band) => {
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    let loaded = false, visible = false;
+    const sync = () => {
+      band.toggleAttribute('data-animated', loaded && !reduced.matches);
+      band.toggleAttribute('data-resting', !visible || document.hidden);
+    };
+    reduced.addEventListener('change', sync);
+    document.addEventListener('visibilitychange', sync);
+    addEventListener('pageshow', sync);
+    if (!('IntersectionObserver' in window)) return;
+    new IntersectionObserver((entries) => { visible = entries.some((entry) => entry.isIntersecting); sync(); }).observe(band);
+    const near = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      near.disconnect();
+      const images = Array.from(band.querySelectorAll('img'));
+      images.forEach((image) => image.loading = 'eager');
+      Promise.all(images.map((image) => image.decode().catch(() => {}))).then(() => { loaded = true; sync(); });
+    }, { rootMargin: '240px 0px' });
+    near.observe(band);
+    sync();
+  });
+</script>
+
+<style>
+  .marquee {
+    --logo-gap: 2.5rem;
+    min-width: 0;
+    padding-block: clamp(2.5rem, 4vw, 4rem);
+    background: var(--bg);
+    color: var(--text);
+    overflow: clip;
+  }
+  .marquee-head { display: grid; gap: .5rem; margin-bottom: 1.5rem; }
+  .marquee-description { color: var(--text-muted); font-size: .9375rem; }
+  .marquee-viewport { overflow: clip; padding: .5rem var(--gutter); user-select: none; }
+  .marquee-track { width: 100%; }
+  .marquee-list { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1.5rem var(--logo-gap); margin: 0; padding: 0; list-style: none; }
+  .marquee-duplicate { display: none; }
+  .marquee { --logo-h: 2.75rem; }
+  .client-logo { display: grid; place-items: center; flex: none; height: calc(var(--logo-h) * 1.45); }
+  /* Original brand colours at all times (user instruction, 27 October 2026). */
+  .client-logo img {
+    display: block;
+    height: calc(var(--logo-h) * var(--k, 1));
+    width: auto;
+    max-width: 11rem;
+    object-fit: contain;
+  }
+  /* Dark theme on the standalone band (the white & crimson skin uses one light ribbon instead): a white chip keeps dark-lettered marks (Sprint, Microsoft, Motorola) legible. */
+  :global(html[data-theme='dark']:not([data-skin='white-red'])) .marquee:not(.marquee-compact) .client-logo { padding: .35rem .6rem; border-radius: 6px; background: #fff; }
+  /* The static list (reduced motion, no JavaScript) wraps inside the content column, not the gutters. */
+  :global(html:not(.motion-ok)) .marquee:not(.marquee-compact):not([data-animated]) .marquee-viewport { width: min(100% - 2 * var(--gutter), 1240px); margin-inline: auto; padding-inline: 0; }
+  .marquee-compact { padding-block: 0; width: 100%; background: transparent; text-align: center; }
+  .marquee-compact .marquee-head { width: 100%; margin-bottom: 1rem; }
+  .marquee-compact h2 { font-size: 1.125rem; font-weight: 600; letter-spacing: 0; }
+  .marquee-compact .marquee-viewport { padding-inline: 0; }
+  @media (min-width: 768px) { .marquee { --logo-gap: 3.5rem; } }
+  /* Phones: the static (reduced-motion / no-JS) list of all 28 stays compact. */
+  @media (max-width: 700px) {
+    .marquee-compact .marquee-list { gap: .9rem 1.25rem; }
+    .marquee-compact { --logo-h: 1.85rem; }
+    .marquee-compact .client-logo img { max-width: 7.5rem; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    :global(.motion-ok) .marquee-track, .marquee[data-animated] .marquee-track { display: flex; width: max-content; }
+    :global(.motion-ok) .marquee-list, .marquee[data-animated] .marquee-list { flex: none; flex-wrap: nowrap; justify-content: flex-start; padding-right: var(--logo-gap); }
+    .marquee[data-animated] .marquee-viewport { mask-image: linear-gradient(90deg, transparent, black 1rem, black calc(100% - 1rem), transparent); }
+    .marquee[data-animated] .marquee-track { animation: client-scroll var(--marquee-duration) linear infinite; will-change: transform; }
+    .marquee[data-animated] .marquee-duplicate { display: flex; }
+    .marquee[data-resting] .marquee-track { animation-play-state: paused; }
+  }
+  @keyframes client-scroll { to { transform: translate3d(-50%, 0, 0); } }
+</style>

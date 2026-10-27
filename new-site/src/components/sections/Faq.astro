@@ -1,0 +1,222 @@
+---
+// Questions people ask before they call, as a native <details> accordion: it works without JS, opens smoothly
+// where the browser can animate to height: auto (interpolate-size), and instantly everywhere else.
+// Reuse: <Faq id="training-faq" items={...} lines={[...]} /> with any list of { q, a }.
+import SplitHeading from '../ui/SplitHeading.astro';
+import Icon from '../ui/Icon.astro';
+import { faqs, company } from '../../data/site';
+
+interface Props {
+  id?: string;
+  items?: { q: string; a: string }[];
+  lines?: string[];
+  schema?: boolean;
+}
+
+const { id = 'faq', items = faqs, lines = ['Fair questions,', 'straight answers'], schema = true } = Astro.props;
+
+// Keep "8 p.m. ET" from breaking across lines.
+const bind = (t: string) => t.replace(/(\d) ([ap]\.m\.)/g, '$1\u00A0$2').replace(/([ap]\.m\.) ([A-Z]T)\b/g, '$1\u00A0$2');
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<section id={id} class="faq section-y-dense sheet" aria-labelledby={`${id}-title`}>
+  <div class="container-g faq-grid">
+    <div class="faq-aside">
+      <SplitHeading id={`${id}-title`} as="h2" lines={lines} class="t-h2 faq-title" />
+      <div class="faq-more" data-reveal style="--reveal-delay: 260ms">
+        <p class="faq-more-lead">Not answered here? Call us.</p>
+        <a class="faq-phone t-num" href={company.phoneHref}>
+          <Icon name="phone" size={20} />
+          {company.phoneDisplay}
+        </a>
+        <p class="faq-hours t-meta">
+          {company.hours.days}, {bind(company.hours.local)} ({bind(company.hours.eastern)})
+        </p>
+        <a class="link-arrow faq-ask" href="/contact/#contact-form">
+          Or send us your question
+          <span class="btn-arrow"><Icon name="arrow" size={18} /></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="faq-list" data-stagger>
+      {items.map((f, i) => (
+        <details class="faq-item" open={i === 0}>
+          <summary class="faq-q">
+            <span class="faq-q-text">{f.q}</span>
+            <span class="faq-icon" aria-hidden="true">
+              <Icon name="chevron" size={20} />
+            </span>
+          </summary>
+          <div class="faq-a">
+            <p>{f.a}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+  {schema && <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />}
+</section>
+
+<style>
+  .faq {
+    background: var(--surface-2);
+  }
+  .faq-grid {
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  /* ---------- Aside ---------- */
+  .faq-more {
+    display: grid;
+    gap: 0.25rem;
+    justify-items: start;
+    margin-top: 2rem;
+  }
+  .faq-more-lead {
+    font-weight: 600;
+  }
+  .faq-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-height: 2.75rem;
+    font-size: 1.375rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+    transition: color 160ms var(--ease-out-quart);
+  }
+  .faq-phone:hover {
+    color: var(--accent-ink);
+  }
+  .faq-phone :global(svg) {
+    color: var(--accent-ink);
+  }
+  .faq-hours {
+    color: var(--text-muted);
+  }
+  .faq-ask {
+    min-height: 2.75rem;
+    margin-top: 0.75rem;
+  }
+
+  /* ---------- Accordion ---------- */
+  .faq-list {
+    border-bottom: 1px solid var(--line-strong);
+    interpolate-size: allow-keywords;
+  }
+  .faq-item {
+    border-top: 1px solid var(--line-strong);
+  }
+  .faq-q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    min-height: 2.75rem;
+    padding-block: 1.3rem;
+    list-style: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.35;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .faq-q::-webkit-details-marker {
+    display: none;
+  }
+  .faq-q::marker {
+    content: '';
+  }
+  .faq-q-text {
+    text-wrap: balance;
+    transition: color 160ms var(--ease-out-quart);
+  }
+  .faq-q:hover .faq-q-text {
+    color: var(--accent-ink);
+  }
+  .faq-icon {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 999px;
+    color: var(--text);
+    box-shadow: inset 0 0 0 1px var(--line-strong);
+    transition:
+      transform 250ms var(--ease-out-quart),
+      box-shadow 160ms var(--ease-out-quart);
+  }
+  .faq-q:hover .faq-icon {
+    box-shadow: inset 0 0 0 1px var(--text);
+  }
+  .faq-item[open] .faq-icon {
+    transform: rotate(180deg);
+  }
+  .faq-a {
+    padding-bottom: 1.6rem;
+  }
+  .faq-a p {
+    max-width: 62ch;
+  }
+
+  /* Smooth open where height: auto can be interpolated; elsewhere the native instant toggle.
+     Opening uses the layout duration; closing runs the exit curve at about 60% of it. */
+  @supports (interpolate-size: allow-keywords) {
+    .faq-item::details-content {
+      block-size: 0;
+      overflow-y: clip;
+      opacity: 0;
+      transition:
+        block-size 300ms var(--ease-exit),
+        opacity 180ms var(--ease-exit),
+        content-visibility 300ms allow-discrete;
+    }
+    .faq-item[open]::details-content {
+      block-size: auto;
+      opacity: 1;
+      transition:
+        block-size 500ms var(--ease-out-expo),
+        opacity 300ms var(--ease-out-quart) 80ms,
+        content-visibility 500ms allow-discrete;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .faq-item::details-content,
+    .faq-item[open]::details-content {
+      transition: none;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .faq-a {
+      padding-right: 3.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .faq-grid {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: 4rem;
+      align-items: start;
+    }
+    .faq-aside {
+      position: sticky;
+      top: calc(var(--header-h) + 2rem);
+    }
+  }
+</style>

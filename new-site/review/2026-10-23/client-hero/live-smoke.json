@@ -1,0 +1,53 @@
+{
+  "base": "https://gforce-kappa.vercel.app",
+  "applicationCommit": "d818471",
+  "rows": [
+    {
+      "engine": "chromium",
+      "width": 390,
+      "pass": true,
+      "state": {
+        "logos": 21,
+        "buttons": 0,
+        "broken": [],
+        "transparent": true,
+        "cardBackground": "rgba(0, 0, 0, 0)",
+        "bottom": 629.875,
+        "overflow": false
+      },
+      "errors": []
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "pass": true,
+      "state": {
+        "logos": 21,
+        "buttons": 0,
+        "broken": [],
+        "transparent": true,
+        "cardBackground": "rgba(0, 0, 0, 0)",
+        "bottom": 653.40625,
+        "overflow": false
+      },
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "pass": true,
+      "state": {
+        "logos": 21,
+        "buttons": 0,
+        "broken": [],
+        "transparent": true,
+        "cardBackground": "rgba(0, 0, 0, 0)",
+        "bottom": 629.875,
+        "overflow": false
+      },
+      "errors": []
+    }
+  ],
+  "deploymentId": "dpl_MwhYe1Q9niAbNTNyjxcurQbLaxeW",
+  "deploymentState": "Ready"
+}

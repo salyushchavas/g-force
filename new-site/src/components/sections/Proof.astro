@@ -1,0 +1,352 @@
+---
+// Certification preparation and verified figures. Sample figures stay archived.
+// Original client logos are rendered separately in the hero at the user's request.
+import SplitHeading from '../ui/SplitHeading.astro';
+import Icon from '../ui/Icon.astro';
+import { stats, certTracks, paths } from '../../data/site';
+
+const format = (value: number, decimals: number) =>
+  value.toLocaleString('en-CA', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+
+// The final value is in the HTML; motion.ts only replays the count (same en-CA formatting), and only its last
+// stretch (from 85% of the value), so a figure never reads far below itself. Only the integer run counts: the
+// fraction holds still (uptime never flashes 66.6%), and a time figure never counts, since "15 min" climbing
+// would read as getting slower.
+// Each digit run reserves its final width, so nothing jitters while counting. Tabular digits share one width but
+// the point should not, so a decimal figure is set as an integer run, a proportional point and a fraction run.
+const digitBox = (run: string) => {
+  const n = run.replace(/\D/g, '').length;
+  return `min-width: calc(${n}ch - ${n} * 0.035em)`;
+};
+// A basis note is shown once real figures replace the samples; the placeholder note never is.
+const noteOf = (note?: string) => (!stats.sample && note && note !== 'Sample figure' ? note : undefined);
+// Archived layout figures stay in site.ts. Only verified figures may be published.
+const figures = (stats.sample ? [] : stats.items).map((item) => {
+  const decimals = (item as { decimals?: number }).decimals ?? 0;
+  const text = format(item.value, decimals);
+  const [intText, fracText = ''] = text.split('.');
+  // Labels are written to follow a number ("120+ businesses supported"); here they head a column.
+  const label = item.label.charAt(0).toUpperCase() + item.label.slice(1);
+  const unit = item.suffix.trim();
+  const intValue = Number(intText.replace(/\D/g, ''));
+  return {
+    ...item,
+    label,
+    text,
+    intText,
+    intValue,
+    countFrom: /response|min/i.test(label + unit) ? undefined : Math.round(intValue * 0.85),
+    fracText,
+    unit,
+    wordUnit: /^\s/.test(item.suffix),
+    note: noteOf(item.note),
+  };
+});
+
+// Exams grouped by field so the row scans quickly. First match wins; anything unmatched still renders.
+const fields = [
+  { name: 'Cybersecurity', test: /secur|hack|cissp/i },
+  { name: 'Cloud', test: /cloud|azure|aws/i },
+];
+const examGroups = [...fields.map((f) => ({ name: f.name, exams: [] as string[] })), { name: 'Other', exams: [] as string[] }];
+certTracks.forEach((exam) => {
+  const i = fields.findIndex((f) => f.test.test(exam));
+  examGroups[i === -1 ? fields.length : i].exams.push(exam);
+});
+const groups = examGroups.filter((g) => g.exams.length);
+---
+<section id="proof" class="proof section-y sheet" aria-labelledby="proof-title">
+  <div class="container-g">
+    <div class="proof-head">
+      <SplitHeading id="proof-title" as="h2" lines={['Build practical skills.', 'Prepare for your next exam.']} class="t-h2 proof-title" />
+      <p class="t-lead proof-lead" data-reveal style="--reveal-delay: 120ms">
+        Hands-on training in cloud and cybersecurity, with preparation for recognised industry certification exams.
+      </p>
+    </div>
+
+    {figures.length > 0 && <div class="ledger">
+      <div class="ledger-head" data-reveal="fade">
+        <h3 id="ledger-title" class="ledger-title">Key figures</h3>
+      </div>
+      <dl class="ledger-row" data-stagger>
+        {figures.map((f) => (
+          <div class="ledger-cell">
+            <dt class="ledger-label">{f.label}</dt>
+            <dd class="ledger-fig">
+              <span class="ledger-num" aria-hidden="true">
+                <span
+                  class="ledger-digits t-num"
+                  style={digitBox(f.intText)}
+                  data-count={f.countFrom === undefined ? undefined : f.intValue}
+                  data-count-from={f.countFrom}
+                >{f.intText}</span>
+                {f.fracText && <span class="ledger-point">.</span>}
+                {f.fracText && <span class="ledger-digits t-num" style={digitBox(f.fracText)}>{f.fracText}</span>}
+                <span class:list={['ledger-unit', { 'is-word': f.wordUnit }]}>{f.unit}</span>
+              </span>
+              <span class="sr-only">{f.text}{f.suffix}</span>
+            </dd>
+            {f.note && <dd class="ledger-note t-meta">{f.note}</dd>}
+          </div>
+        ))}
+      </dl>
+    </div>}
+
+    <div class="exams">
+      <h3 class="t-h4 exams-title" data-reveal>Certification exams our courses prepare you for</h3>
+      <div class="exam-groups">
+        {groups.map((g) => (
+          <div class="exam-group">
+            <p id={`exams-${g.name.toLowerCase()}`} class="exam-field t-meta" data-reveal="fade">{g.name}</p>
+            <ul class="exam-list" role="list" aria-labelledby={`exams-${g.name.toLowerCase()}`} data-stagger>
+              {g.exams.map((exam) => <li class="chip exam-chip">{exam}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <a class="link-arrow exams-link" href={paths.learners.cta.href}>
+        {paths.learners.cta.label}
+        <span class="btn-arrow"><Icon name="arrow" size={18} /></span>
+      </a>
+    </div>
+  </div>
+
+</section>
+
+<style>
+  /* The band and the logo track share one opaque ground, so the dark theme never shows a doubled strip. */
+  .proof {
+    --marquee-bg: var(--bg);
+    background: var(--bg);
+  }
+
+  .proof-head {
+    display: grid;
+    gap: 1.25rem;
+  }
+  /* SplitHeading renders the h2 with its own scope id, so reach it through :global under this section. */
+  .proof :global(.proof-title) {
+    max-width: 14ch;
+  }
+  .proof-lead {
+    max-width: 44ch;
+    color: var(--text-muted);
+  }
+
+  /* ---------- Ledger: a captioned table row, ruled like a statement ---------- */
+  .ledger {
+    margin-top: clamp(2.75rem, 2rem + 3vw, 4.5rem);
+  }
+  .ledger-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.9rem;
+    padding-bottom: 0.85rem;
+  }
+  .ledger-title {
+    margin: 0;
+    font-size: 0.9375rem;
+    font-weight: 650;
+    letter-spacing: 0.01em;
+    line-height: 1.3;
+  }
+  .ledger-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 0;
+  }
+  /* Top and bottom rules draw left to right as the row arrives. */
+  .ledger-row::before,
+  .ledger-row::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    transform-origin: left center;
+  }
+  .ledger-row::before {
+    top: 0;
+    background: var(--line-strong);
+  }
+  .ledger-row::after {
+    bottom: 0;
+    background: var(--line-strong);
+  }
+  :global(.motion-ok) .ledger-row::before,
+  :global(.motion-ok) .ledger-row::after {
+    transform: scaleX(0);
+    transition: transform 1100ms var(--ease-out-expo);
+  }
+  :global(.motion-ok) .ledger-row::after {
+    transition-delay: 160ms;
+  }
+  :global(.motion-ok) .ledger-row.is-in::before,
+  :global(.motion-ok) .ledger-row.is-in::after {
+    transform: none;
+  }
+
+  .ledger-cell {
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    align-content: start;
+    padding: 1.1rem 1rem 1.3rem;
+  }
+  @supports (grid-template-rows: subgrid) {
+    /* Labels that wrap to two lines keep every figure in the row on one baseline. */
+    .ledger-row {
+      grid-auto-rows: auto;
+    }
+    .ledger-cell {
+      grid-row: span 3;
+      grid-template-rows: subgrid;
+    }
+  }
+  .ledger-cell:nth-child(odd) {
+    padding-left: 0;
+  }
+  .ledger-cell:nth-child(even) {
+    border-left: 1px solid var(--line);
+  }
+  .ledger-cell:nth-child(n + 3) {
+    border-top: 1px solid var(--line);
+  }
+  .ledger-label {
+    font-size: 0.9375rem;
+    font-weight: 550;
+    line-height: 1.35;
+    color: var(--text);
+  }
+  .ledger-fig {
+    margin: 0.85rem 0 0;
+  }
+  .ledger-num {
+    display: flex;
+    align-items: baseline;
+    font-size: clamp(2.25rem, 1.7rem + 2.2vw, 3.5rem);
+    font-weight: 750;
+    letter-spacing: -0.035em;
+    line-height: 1;
+  }
+  .ledger-digits {
+    display: inline-block;
+    text-align: right;
+  }
+  .ledger-point {
+    font-variant-numeric: proportional-nums;
+    font-feature-settings: 'tnum' 0;
+    letter-spacing: 0;
+  }
+  .ledger-unit {
+    margin-inline-start: 0.04em;
+    font-size: 0.5em;
+    font-weight: 650;
+    letter-spacing: 0;
+    color: var(--text-muted);
+  }
+  .ledger-unit.is-word {
+    margin-inline-start: 0.22em;
+  }
+  .ledger-note {
+    margin: 0.7rem 0 0;
+    color: var(--text-muted);
+  }
+  .ledger-foot {
+    max-width: 68ch;
+    margin-top: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  /* ---------- Certification exams ---------- */
+  .exams {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: clamp(3.5rem, 2.5rem + 3vw, 5rem);
+  }
+  .exams-title {
+    max-width: 22ch;
+    margin: 0;
+  }
+  .exam-groups {
+    display: grid;
+    gap: 1.25rem;
+  }
+  .exam-field {
+    margin: 0 0 0.6rem;
+    color: var(--text-muted);
+  }
+  .exam-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .exam-chip {
+    padding: 0.5rem 0.85rem;
+    font-size: 0.875rem;
+    font-weight: 550;
+    line-height: 1.25;
+  }
+  .exams-link {
+    justify-self: start;
+    min-height: 2.75rem;
+  }
+
+  .proof :global(.proof-logos) {
+    margin-top: clamp(4rem, 3rem + 4vw, 6.5rem);
+  }
+
+  /* From tablet up, each field is a ruled row, like the ledger above it. */
+  @media (min-width: 640px) {
+    .exam-groups {
+      gap: 0;
+    }
+    .exam-group {
+      padding-block: 0.9rem 1.1rem;
+      border-top: 1px solid var(--line);
+    }
+    .exam-group:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+  }
+  @media (min-width: 900px) {
+    .proof-head {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: end;
+      gap: 4rem;
+    }
+    .proof-lead {
+      justify-self: end;
+    }
+    .ledger-row {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .ledger-cell {
+      padding: 1.35rem 1.5rem 1.5rem;
+    }
+    .ledger-cell:nth-child(odd) {
+      padding-left: 1.5rem;
+    }
+    .ledger-cell:first-child {
+      padding-left: 0;
+    }
+    .ledger-cell:nth-child(n + 2) {
+      border-left: 1px solid var(--line);
+    }
+    .ledger-cell:nth-child(n + 3) {
+      border-top: 0;
+    }
+    .exams {
+      grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+      gap: 1.5rem 4rem;
+      align-items: start;
+    }
+    .exams-link {
+      grid-column: 2;
+    }
+  }
+</style>

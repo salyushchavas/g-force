@@ -1,0 +1,32 @@
+[
+  {
+    "slot": "svc-managed-it",
+    "duration": 4,
+    "desktop": 179281,
+    "mobile": 92451
+  },
+  {
+    "slot": "svc-cloud-backup",
+    "duration": 4,
+    "desktop": 145202,
+    "mobile": 78608
+  },
+  {
+    "slot": "svc-training",
+    "duration": 4,
+    "desktop": 216686,
+    "mobile": 105954
+  },
+  {
+    "slot": "svc-consulting",
+    "duration": 4,
+    "desktop": 241929,
+    "mobile": 126453
+  },
+  {
+    "slot": "sky-daylight",
+    "duration": 4,
+    "desktop": 214738,
+    "mobile": 106221
+  }
+]

@@ -1,0 +1,358 @@
+[
+  {
+    "slot": "blog-future-jobs",
+    "kind": "image",
+    "title": "A developer at her desk beside a city-facing window",
+    "width": 1920,
+    "height": 1080,
+    "sources": {
+      "srcset": {
+        "avif": [
+          "/media/img/blog-future-jobs-air-640.avif",
+          "/media/img/blog-future-jobs-air-1280.avif",
+          "/media/img/blog-future-jobs-air-1920.avif"
+        ],
+        "webp": [
+          "/media/img/blog-future-jobs-air-640.webp",
+          "/media/img/blog-future-jobs-air-1280.webp",
+          "/media/img/blog-future-jobs-air-1920.webp"
+        ],
+        "jpg": [
+          "/media/img/blog-future-jobs-air-640.jpg",
+          "/media/img/blog-future-jobs-air-1280.jpg",
+          "/media/img/blog-future-jobs-air-1920.jpg"
+        ]
+      }
+    },
+    "credit": {
+      "author": "Christina Morillo",
+      "source": "Pexels",
+      "page_url": "https://www.pexels.com/photo/woman-sitting-while-operating-macbook-pro-1181676/",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/"
+    }
+  },
+  {
+    "slot": "blog-ai-automation",
+    "kind": "image",
+    "title": "Hands-on Python study on a laptop",
+    "width": 1920,
+    "height": 1080,
+    "sources": {
+      "srcset": {
+        "avif": [
+          "/media/img/blog-ai-automation-air-640.avif",
+          "/media/img/blog-ai-automation-air-1280.avif",
+          "/media/img/blog-ai-automation-air-1920.avif"
+        ],
+        "webp": [
+          "/media/img/blog-ai-automation-air-640.webp",
+          "/media/img/blog-ai-automation-air-1280.webp",
+          "/media/img/blog-ai-automation-air-1920.webp"
+        ],
+        "jpg": [
+          "/media/img/blog-ai-automation-air-640.jpg",
+          "/media/img/blog-ai-automation-air-1280.jpg",
+          "/media/img/blog-ai-automation-air-1920.jpg"
+        ]
+      }
+    },
+    "credit": {
+      "author": "Christina Morillo",
+      "source": "Pexels",
+      "page_url": "https://www.pexels.com/photo/woman-programming-on-a-notebook-1181359/",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/"
+    }
+  },
+  {
+    "slot": "case-accounting",
+    "kind": "image",
+    "title": "Illustrative accounting desk with calculator and paperwork",
+    "width": 1920,
+    "height": 1080,
+    "sources": {
+      "srcset": {
+        "avif": [
+          "/media/img/case-accounting-air-640.avif",
+          "/media/img/case-accounting-air-1280.avif",
+          "/media/img/case-accounting-air-1920.avif"
+        ],
+        "webp": [
+          "/media/img/case-accounting-air-640.webp",
+          "/media/img/case-accounting-air-1280.webp",
+          "/media/img/case-accounting-air-1920.webp"
+        ],
+        "jpg": [
+          "/media/img/case-accounting-air-640.jpg",
+          "/media/img/case-accounting-air-1280.jpg",
+          "/media/img/case-accounting-air-1920.jpg"
+        ]
+      }
+    },
+    "credit": {
+      "author": "Kaboompics",
+      "source": "Pexels",
+      "page_url": "https://www.pexels.com/photo/bookkeeper-writing-down-on-paper-while-using-calculator-4476378/",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/"
+    }
+  },
+  {
+    "slot": "case-clinic",
+    "kind": "image",
+    "title": "Illustrative dental practice with an empty treatment chair",
+    "width": 1920,
+    "height": 1080,
+    "sources": {
+      "srcset": {
+        "avif": [
+          "/media/img/case-clinic-air-640.avif",
+          "/media/img/case-clinic-air-1280.avif",
+          "/media/img/case-clinic-air-1920.avif"
+        ],
+        "webp": [
+          "/media/img/case-clinic-air-640.webp",
+          "/media/img/case-clinic-air-1280.webp",
+          "/media/img/case-clinic-air-1920.webp"
+        ],
+        "jpg": [
+          "/media/img/case-clinic-air-640.jpg",
+          "/media/img/case-clinic-air-1280.jpg",
+          "/media/img/case-clinic-air-1920.jpg"
+        ]
+      }
+    },
+    "credit": {
+      "author": "Pavel Danilyuk",
+      "source": "Pexels",
+      "page_url": "https://www.pexels.com/photo/empty-dentist-office-6812461/",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/"
+    }
+  },
+  {
+    "slot": "case-manufacturing",
+    "kind": "image",
+    "title": "Illustrative production-line machinery in a factory",
+    "width": 1920,
+    "height": 1080,
+    "sources": {
+      "srcset": {
+        "avif": [
+          "/media/img/case-manufacturing-air-640.avif",
+          "/media/img/case-manufacturing-air-1280.avif",
+          "/media/img/case-manufacturing-air-1920.avif"
+        ],
+        "webp": [
+          "/media/img/case-manufacturing-air-640.webp",
+          "/media/img/case-manufacturing-air-1280.webp",
+          "/media/img/case-manufacturing-air-1920.webp"
+        ],
+        "jpg": [
+          "/media/img/case-manufacturing-air-640.jpg",
+          "/media/img/case-manufacturing-air-1280.jpg",
+          "/media/img/case-manufacturing-air-1920.jpg"
+        ]
+      }
+    },
+    "credit": {
+      "author": "Vladimir Srajber",
+      "source": "Pexels",
+      "page_url": "https://www.pexels.com/photo/machinery-in-factory-18631420/",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/"
+    }
+  },
+  {
+    "slot": "svc-cloud-backup",
+    "kind": "video",
+    "title": "White clouds crossing a bright blue daytime sky",
+    "width": 960,
+    "height": 540,
+    "duration": 7.4,
+    "objectPosition": "50% 50%",
+    "sources": {
+      "mp4": "/media/video/svc-cloud-backup-air-loop-960.mp4",
+      "webm": "/media/video/svc-cloud-backup-air-loop-960.webm",
+      "mp4Mobile": "/media/video/svc-cloud-backup-air-loop-960.mp4",
+      "poster": {
+        "avif": "/media/img/svc-cloud-backup-air-loop-poster.avif",
+        "webp": "/media/img/svc-cloud-backup-air-loop-poster.webp",
+        "jpg": "/media/img/svc-cloud-backup-air-loop-poster.jpg"
+      }
+    },
+    "credit": {
+      "author": "Alexander Lutkov",
+      "source": "Pexels",
+      "page_url": "https://www.pexels.com/video/blue-sky-with-white-clouds-timelapse-mode-1860175/",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/"
+    }
+  },
+  {
+    "slot": "svc-consulting",
+    "kind": "video",
+    "title": "A small team discussing a project around a table in daylight",
+    "width": 960,
+    "height": 540,
+    "duration": 7.4,
+    "objectPosition": "50% 50%",
+    "sources": {
+      "mp4": "/media/video/svc-consulting-air-loop-960.mp4",
+      "webm": "/media/video/svc-consulting-air-loop-960.webm",
+      "mp4Mobile": "/media/video/svc-consulting-air-loop-960.mp4",
+      "poster": {
+        "avif": "/media/img/svc-consulting-air-loop-poster.avif",
+        "webp": "/media/img/svc-consulting-air-loop-poster.webp",
+        "jpg": "/media/img/svc-consulting-air-loop-poster.jpg"
+      }
+    },
+    "credit": {
+      "author": "fauxels",
+      "source": "Pexels",
+      "page_url": "https://www.pexels.com/video/group-of-people-having-business-meeting-in-office-space-3255321/",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/"
+    }
+  },
+  {
+    "slot": "svc-cybersecurity",
+    "kind": "video",
+    "title": "A laptop workspace in a bright office overlooking the city",
+    "width": 960,
+    "height": 540,
+    "duration": 7.4,
+    "objectPosition": "66% 50%",
+    "sources": {
+      "mp4": "/media/video/svc-cybersecurity-air-loop-960.mp4",
+      "webm": "/media/video/svc-cybersecurity-air-loop-960.webm",
+      "mp4Mobile": "/media/video/svc-cybersecurity-air-loop-960.mp4",
+      "poster": {
+        "avif": "/media/img/svc-cybersecurity-air-loop-poster.avif",
+        "webp": "/media/img/svc-cybersecurity-air-loop-poster.webp",
+        "jpg": "/media/img/svc-cybersecurity-air-loop-poster.jpg"
+      }
+    },
+    "credit": {
+      "author": "cottonbro studio",
+      "source": "Pexels",
+      "page_url": "https://www.pexels.com/video/a-man-using-laptop-in-the-office-5483214/",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/"
+    }
+  },
+  {
+    "slot": "svc-managed-it",
+    "kind": "video",
+    "title": "A technician seating a network lead in a labelled patch panel",
+    "width": 960,
+    "height": 540,
+    "duration": 7.4,
+    "objectPosition": "50% 50%",
+    "sources": {
+      "mp4": "/media/video/svc-managed-it-air-loop-960.mp4",
+      "webm": "/media/video/svc-managed-it-air-loop-960.webm",
+      "mp4Mobile": "/media/video/svc-managed-it-air-loop-960.mp4",
+      "poster": {
+        "avif": "/media/img/svc-managed-it-air-loop-poster.avif",
+        "webp": "/media/img/svc-managed-it-air-loop-poster.webp",
+        "jpg": "/media/img/svc-managed-it-air-loop-poster.jpg"
+      }
+    },
+    "credit": {
+      "author": "ListosParaRodar (Listos Para Rodar | Productora)",
+      "source": "Pixabay",
+      "page_url": "https://pixabay.com/videos/cable-network-connection-internet-197208/",
+      "license": "Pixabay Content License",
+      "license_url": "https://pixabay.com/service/license-summary/"
+    }
+  },
+  {
+    "slot": "blog-choose-training",
+    "kind": "image",
+    "title": "Mid-career learner typing in a row of adult students at a long table",
+    "sources": {
+      "srcset": {
+        "avif": [
+          "/media/img/img-classroom-640.avif",
+          "/media/img/img-classroom-1280.avif",
+          "/media/img/img-classroom-1920.avif"
+        ],
+        "webp": [
+          "/media/img/img-classroom-640.webp",
+          "/media/img/img-classroom-1280.webp",
+          "/media/img/img-classroom-1920.webp"
+        ],
+        "jpg": [
+          "/media/img/img-classroom-640.jpg",
+          "/media/img/img-classroom-1280.jpg",
+          "/media/img/img-classroom-1920.jpg"
+        ]
+      },
+      "mobile": {
+        "avif": "/media/img/img-classroom-mobile-800.avif",
+        "webp": "/media/img/img-classroom-mobile-800.webp",
+        "jpg": "/media/img/img-classroom-mobile-800.jpg"
+      }
+    },
+    "width": 1920,
+    "height": 1080,
+    "objectPosition": "35% 50%",
+    "credit": {
+      "author": "Pete Ryan (@cosell)",
+      "source": "Unsplash",
+      "page_url": "https://unsplash.com/photos/a-group-of-people-sitting-at-a-table-with-laptops-2uj65YGECks",
+      "license": "Unsplash License",
+      "license_url": "https://unsplash.com/license"
+    },
+    "score": 8
+  },
+  {
+    "slot": "blog-cyber-career",
+    "kind": "image",
+    "title": "Network patch leads connecting office systems",
+    "width": 960,
+    "height": 540,
+    "sources": {
+      "poster": {
+        "avif": "/media/img/svc-managed-it-air-loop-poster.avif",
+        "webp": "/media/img/svc-managed-it-air-loop-poster.webp",
+        "jpg": "/media/img/svc-managed-it-air-loop-poster.jpg"
+      }
+    },
+    "credit": {
+      "author": "ListosParaRodar (Listos Para Rodar | Productora)",
+      "source": "Pixabay",
+      "page_url": "https://pixabay.com/videos/cable-network-connection-internet-197208/",
+      "license": "Pixabay Content License",
+      "license_url": "https://pixabay.com/service/license-summary/"
+    }
+  },
+  {
+    "slot": "sky-daylight",
+    "kind": "video",
+    "title": "White clouds crossing a bright blue daytime sky",
+    "width": 960,
+    "height": 540,
+    "duration": 7.4,
+    "objectPosition": "50% 50%",
+    "sources": {
+      "mp4": "/media/video/svc-cloud-backup-air-loop-960.mp4",
+      "webm": "/media/video/svc-cloud-backup-air-loop-960.webm",
+      "mp4Mobile": "/media/video/svc-cloud-backup-air-loop-960.mp4",
+      "poster": {
+        "avif": "/media/img/svc-cloud-backup-air-loop-poster.avif",
+        "webp": "/media/img/svc-cloud-backup-air-loop-poster.webp",
+        "jpg": "/media/img/svc-cloud-backup-air-loop-poster.jpg"
+      }
+    },
+    "credit": {
+      "author": "Alexander Lutkov",
+      "source": "Pexels",
+      "page_url": "https://www.pexels.com/video/blue-sky-with-white-clouds-timelapse-mode-1860175/",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/"
+    }
+  }
+]

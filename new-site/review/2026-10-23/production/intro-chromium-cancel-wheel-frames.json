@@ -1,0 +1,170 @@
+{
+  "config": {
+    "name": "cancel-wheel",
+    "width": 1440,
+    "cancel": "wheel"
+  },
+  "frames": [
+    {
+      "now": 10.4,
+      "state": "preparing",
+      "y": 972,
+      "titleY": 1177.09375,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 43.7,
+      "state": "preparing",
+      "y": 972,
+      "titleY": 1177.09375,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 60.3,
+      "state": "preparing",
+      "y": 972,
+      "titleY": 1177.09375,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 77,
+      "state": "preparing",
+      "y": 972,
+      "titleY": 1177.09375,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 93.6,
+      "state": "preparing",
+      "y": 972,
+      "titleY": 1177.09375,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 110.4,
+      "state": "preparing",
+      "y": 972,
+      "titleY": 1177.09375,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 127,
+      "state": "running",
+      "y": 972,
+      "titleY": 1177.09375,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 4
+    },
+    {
+      "now": 143.7,
+      "state": "running",
+      "y": 972.000732421875,
+      "titleY": 1177.094482421875,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 4
+    },
+    {
+      "now": 160.4,
+      "state": "running",
+      "y": 971.9998779296875,
+      "titleY": 1177.0936279296875,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 4
+    },
+    {
+      "now": 177,
+      "state": "complete",
+      "y": 0,
+      "titleY": 205.09375,
+      "progress": 0.00001,
+      "scrollY": 0,
+      "art": false,
+      "draws": 8
+    },
+    {
+      "now": 193.7,
+      "state": "complete",
+      "y": -7,
+      "titleY": 198.09375,
+      "progress": 0.00001,
+      "scrollY": 7,
+      "art": false,
+      "draws": 8
+    },
+    {
+      "now": 210.3,
+      "state": "complete",
+      "y": -13,
+      "titleY": 192.09375,
+      "progress": 0.00001,
+      "scrollY": 13,
+      "art": false,
+      "draws": 8
+    },
+    {
+      "now": 227,
+      "state": "complete",
+      "y": -18,
+      "titleY": 187.09375,
+      "progress": 0.00001,
+      "scrollY": 18,
+      "art": false,
+      "draws": 8
+    },
+    {
+      "now": 243.7,
+      "state": "complete",
+      "y": -23,
+      "titleY": 182.09375,
+      "progress": 0.00001,
+      "scrollY": 23,
+      "art": false,
+      "draws": 8
+    },
+    {
+      "now": 260.3,
+      "state": "complete",
+      "y": -26,
+      "titleY": 179.09375,
+      "progress": 0.00001,
+      "scrollY": 26,
+      "art": false,
+      "draws": 8
+    },
+    {
+      "now": 277,
+      "state": "complete",
+      "y": -30,
+      "titleY": 175.09375,
+      "progress": 0.00001,
+      "scrollY": 30,
+      "art": false,
+      "draws": 8
+    }
+  ],
+  "longTasks": []
+}

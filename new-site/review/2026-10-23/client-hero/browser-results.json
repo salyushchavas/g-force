@@ -1,0 +1,285 @@
+{
+  "base": "http://127.0.0.1:4404",
+  "rows": [
+    {
+      "engine": "chromium",
+      "width": 320,
+      "theme": "light",
+      "pass": true,
+      "state": {
+        "logos": 21,
+        "buttons": 0,
+        "broken": [],
+        "transparentSources": true,
+        "background": "rgba(0, 0, 0, 0)",
+        "left": 20,
+        "right": 300,
+        "bottom": 636.71875,
+        "heroBottom": 716.71875,
+        "afterNav": true,
+        "titleFits": true,
+        "overflow": false
+      },
+      "frameP95": 16.800000000000182,
+      "frameMax": 16.800000000000182,
+      "interactionStops": true,
+      "keyboardPan": true,
+      "errors": []
+    },
+    {
+      "engine": "chromium",
+      "width": 320,
+      "theme": "dark",
+      "pass": true,
+      "state": {
+        "logos": 21,
+        "buttons": 0,
+        "broken": [],
+        "transparentSources": true,
+        "background": "rgba(0, 0, 0, 0)",
+        "left": 20,
+        "right": 300,
+        "bottom": 636.71875,
+        "heroBottom": 716.71875,
+        "afterNav": true,
+        "titleFits": true,
+        "overflow": false
+      },
+      "frameP95": 16.800000000000182,
+      "frameMax": 16.800000000000182,
+      "interactionStops": true,
+      "keyboardPan": true,
+      "errors": []
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "light",
+      "pass": true,
+      "state": {
+        "logos": 21,
+        "buttons": 0,
+        "broken": [],
+        "transparentSources": true,
+        "background": "rgba(0, 0, 0, 0)",
+        "left": 20,
+        "right": 370,
+        "bottom": 629.875,
+        "heroBottom": 844,
+        "afterNav": true,
+        "titleFits": true,
+        "overflow": false
+      },
+      "frameP95": 16.800000000000182,
+      "frameMax": 16.800000000000182,
+      "interactionStops": true,
+      "keyboardPan": true,
+      "errors": []
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "dark",
+      "pass": true,
+      "state": {
+        "logos": 21,
+        "buttons": 0,
+        "broken": [],
+        "transparentSources": true,
+        "background": "rgba(0, 0, 0, 0)",
+        "left": 20,
+        "right": 370,
+        "bottom": 629.875,
+        "heroBottom": 844,
+        "afterNav": true,
+        "titleFits": true,
+        "overflow": false
+      },
+      "frameP95": 16.799999999999727,
+      "frameMax": 16.799999999999727,
+      "interactionStops": true,
+      "keyboardPan": true,
+      "errors": []
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "pass": true,
+      "state": {
+        "logos": 21,
+        "buttons": 0,
+        "broken": [],
+        "transparentSources": true,
+        "background": "rgba(0, 0, 0, 0)",
+        "left": 100,
+        "right": 1340,
+        "bottom": 653.40625,
+        "heroBottom": 900,
+        "afterNav": true,
+        "titleFits": true,
+        "overflow": false
+      },
+      "frameP95": 16.799999999999727,
+      "frameMax": 16.799999999999727,
+      "interactionStops": true,
+      "keyboardPan": true,
+      "errors": []
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "pass": true,
+      "state": {
+        "logos": 21,
+        "buttons": 0,
+        "broken": [],
+        "transparentSources": true,
+        "background": "rgba(0, 0, 0, 0)",
+        "left": 100,
+        "right": 1340,
+        "bottom": 653.40625,
+        "heroBottom": 900,
+        "afterNav": true,
+        "titleFits": true,
+        "overflow": false
+      },
+      "frameP95": 16.799999999999727,
+      "frameMax": 16.799999999999727,
+      "interactionStops": true,
+      "keyboardPan": true,
+      "errors": []
+    },
+    {
+      "engine": "chromium",
+      "fallback": "reduce",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "fallback": "nojs",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "route": "/business/",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "light",
+      "pass": true,
+      "state": {
+        "logos": 21,
+        "buttons": 0,
+        "broken": [],
+        "transparentSources": true,
+        "background": "rgba(0, 0, 0, 0)",
+        "left": 20,
+        "right": 370,
+        "bottom": 629.875,
+        "heroBottom": 844,
+        "afterNav": true,
+        "titleFits": true,
+        "overflow": false
+      },
+      "frameP95": 17,
+      "frameMax": 18,
+      "interactionStops": true,
+      "keyboardPan": true,
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "dark",
+      "pass": true,
+      "state": {
+        "logos": 21,
+        "buttons": 0,
+        "broken": [],
+        "transparentSources": true,
+        "background": "rgba(0, 0, 0, 0)",
+        "left": 20,
+        "right": 370,
+        "bottom": 629.875,
+        "heroBottom": 844,
+        "afterNav": true,
+        "titleFits": true,
+        "overflow": false
+      },
+      "frameP95": 18,
+      "frameMax": 18,
+      "interactionStops": true,
+      "keyboardPan": true,
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "light",
+      "pass": true,
+      "state": {
+        "logos": 21,
+        "buttons": 0,
+        "broken": [],
+        "transparentSources": true,
+        "background": "rgba(0, 0, 0, 0)",
+        "left": 100,
+        "right": 1340,
+        "bottom": 653.40625,
+        "heroBottom": 900,
+        "afterNav": true,
+        "titleFits": true,
+        "overflow": false
+      },
+      "frameP95": 18,
+      "frameMax": 18,
+      "interactionStops": true,
+      "keyboardPan": true,
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "pass": true,
+      "state": {
+        "logos": 21,
+        "buttons": 0,
+        "broken": [],
+        "transparentSources": true,
+        "background": "rgba(0, 0, 0, 0)",
+        "left": 100,
+        "right": 1340,
+        "bottom": 653.40625,
+        "heroBottom": 900,
+        "afterNav": true,
+        "titleFits": true,
+        "overflow": false
+      },
+      "frameP95": 18,
+      "frameMax": 18,
+      "interactionStops": true,
+      "keyboardPan": true,
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "fallback": "reduce",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "fallback": "nojs",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "route": "/business/",
+      "pass": true
+    }
+  ]
+}

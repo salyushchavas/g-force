@@ -1,0 +1,159 @@
+{
+  "checked_at_utc": "2026-10-23T09:48:55.444919+00:00",
+  "dist_index_mtime_utc": "2026-10-23T09:47:35.842840+00:00",
+  "scope": "Static built HTML, CSS url(), direct JS public-asset literals, original deferred geometry, local links and fragments. Explicit hidden/template/head/script/style text excluded; CSS visibility is not evaluated. Ordinary blog uses of example are retained separately from demo-control text.",
+  "pages": 15,
+  "references_checked": 1773,
+  "local_asset_references": 834,
+  "unique_local_assets": 120,
+  "anchor_references": 392,
+  "external_or_non_http_references_skipped": 154,
+  "missing_files": [],
+  "missing_anchors": [],
+  "href_hash_placeholders": [],
+  "visible_demo_control_or_sample_text": [],
+  "ordinary_example_mentions": [
+    {
+      "route": "/blog/ai-and-automation-in-it-careers/",
+      "hits": [
+        {
+          "word": "example",
+          "context": "b this month. It is the quickest way to learn, and it gives you a concrete example to show an employer. For a wider view of what employers want, read the IT skills Canadian employers"
+        }
+      ]
+    },
+    {
+      "route": "/blog/choosing-an-it-training-program/",
+      "hits": [
+        {
+          "word": "example",
+          "context": "ing without a class to show up for. Some programs let you mix formats, for example self-paced lessons with live sessions for questions. If you work shifts, ask whether recordings are"
+        }
+      ]
+    }
+  ],
+  "h1_issues": [],
+  "routes": [
+    {
+      "route": "/404.html",
+      "html": "404.html",
+      "h1": 1,
+      "ids": 6,
+      "references": 63,
+      "visible_demo_controls_or_sample_words": 0
+    },
+    {
+      "route": "/accessibility/",
+      "html": "accessibility/index.html",
+      "h1": 1,
+      "ids": 20,
+      "references": 70,
+      "visible_demo_controls_or_sample_words": 0
+    },
+    {
+      "route": "/blog/ai-and-automation-in-it-careers/",
+      "html": "blog/ai-and-automation-in-it-careers/index.html",
+      "h1": 1,
+      "ids": 18,
+      "references": 123,
+      "visible_demo_controls_or_sample_words": 0
+    },
+    {
+      "route": "/blog/building-a-career-in-cybersecurity/",
+      "html": "blog/building-a-career-in-cybersecurity/index.html",
+      "h1": 1,
+      "ids": 20,
+      "references": 117,
+      "visible_demo_controls_or_sample_words": 0
+    },
+    {
+      "route": "/blog/choosing-an-it-training-program/",
+      "html": "blog/choosing-an-it-training-program/index.html",
+      "h1": 1,
+      "ids": 18,
+      "references": 122,
+      "visible_demo_controls_or_sample_words": 0
+    },
+    {
+      "route": "/blog/",
+      "html": "blog/index.html",
+      "h1": 1,
+      "ids": 12,
+      "references": 103,
+      "visible_demo_controls_or_sample_words": 0
+    },
+    {
+      "route": "/blog/it-skills-canadian-employers-hire-for/",
+      "html": "blog/it-skills-canadian-employers-hire-for/index.html",
+      "h1": 1,
+      "ids": 21,
+      "references": 127,
+      "visible_demo_controls_or_sample_words": 0
+    },
+    {
+      "route": "/business/",
+      "html": "business/index.html",
+      "h1": 1,
+      "ids": 47,
+      "references": 105,
+      "visible_demo_controls_or_sample_words": 0
+    },
+    {
+      "route": "/contact/",
+      "html": "contact/index.html",
+      "h1": 1,
+      "ids": 25,
+      "references": 79,
+      "visible_demo_controls_or_sample_words": 0
+    },
+    {
+      "route": "/",
+      "html": "index.html",
+      "h1": 1,
+      "ids": 64,
+      "references": 212,
+      "visible_demo_controls_or_sample_words": 0
+    },
+    {
+      "route": "/it-health-check/",
+      "html": "it-health-check/index.html",
+      "h1": 1,
+      "ids": 12,
+      "references": 61,
+      "visible_demo_controls_or_sample_words": 0
+    },
+    {
+      "route": "/privacy/",
+      "html": "privacy/index.html",
+      "h1": 1,
+      "ids": 32,
+      "references": 89,
+      "visible_demo_controls_or_sample_words": 0
+    },
+    {
+      "route": "/resources/security-checklist/",
+      "html": "resources/security-checklist/index.html",
+      "h1": 1,
+      "ids": 40,
+      "references": 62,
+      "visible_demo_controls_or_sample_words": 0
+    },
+    {
+      "route": "/terms/",
+      "html": "terms/index.html",
+      "h1": 1,
+      "ids": 28,
+      "references": 82,
+      "visible_demo_controls_or_sample_words": 0
+    },
+    {
+      "route": "/training/",
+      "html": "training/index.html",
+      "h1": 1,
+      "ids": 33,
+      "references": 109,
+      "visible_demo_controls_or_sample_words": 0
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,340 @@
+---
+// Two early paths, with a photographed sky for business and a dawn window for learners.
+// Each panel is a single link target; hover lifts its surface, never the photo.
+import Picture from '../ui/Picture.astro';
+import SplitHeading from '../ui/SplitHeading.astro';
+import Icon from '../ui/Icon.astro';
+import { paths } from '../../data/site';
+
+const { business, learners } = paths;
+
+// An *accent* phrase gets its own line, so the italic word lands as the heading's last beat.
+const toLines = (heading: string) => {
+  const m = heading.match(/^(.+?)\s*(\*[^*]+\*.*)$/);
+  return m ? [m[1], m[2]] : [heading];
+};
+---
+<section id="paths" class="paths band-night sky-photo" aria-labelledby="paths-title">
+  <div class="container-g paths-grid">
+    <div class="paths-lead">
+      <SplitHeading id="paths-title" as="h2" lines={['Here for your business,', 'or your *career*?']} class="t-h2 paths-title" />
+
+      <div class="path path-business">
+        <div class="path-photo" data-reveal="media">
+          <Picture
+            slot="img-helpdesk"
+            alt="A support technician helping a colleague at a laptop"
+            sizes="(min-width: 1360px) 700px, (min-width: 1024px) 54vw, 100vw"
+            class="path-pic"
+            imgClass="path-img"
+          />
+        </div>
+        <div class="path-body">
+          <p class="path-for"><Icon name="monitor" size={20} /><span>{business.title}</span></p>
+          <SplitHeading id="path-business-title" as="h3" lines={toLines(business.heading)} class="t-h3 path-title" delay={80} />
+          <p class="path-text" data-reveal style="--reveal-delay: 140ms">{business.body}</p>
+          <ul class="path-points" data-stagger style="--reveal-delay: 200ms">
+            {business.points.map((point) => (
+              <li><Icon name="check" size={18} /><span>{point}</span></li>
+            ))}
+          </ul>
+          <a class="btn btn-primary path-cta" href={business.cta.href} data-reveal="fade" style="--reveal-delay: 320ms">
+            {business.cta.label}
+            <span class="btn-arrow"><Icon name="arrow" size={18} /></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="path path-learner band-dawn" data-scroll-progress="enter" data-rest-p="1">
+      <div class="path-body">
+        <p class="path-for"><Icon name="cap" size={20} /><span>{learners.title}</span></p>
+        <SplitHeading id="path-learner-title" as="h3" lines={toLines(learners.heading)} class="t-h3 path-title" delay={80} />
+        <p class="path-text" data-reveal style="--reveal-delay: 140ms">{learners.body}</p>
+        <ul class="path-points" data-stagger style="--reveal-delay: 200ms">
+          {learners.points.map((point) => (
+            <li><Icon name="check" size={18} /><span>{point}</span></li>
+          ))}
+        </ul>
+        <a class="btn btn-primary path-cta" href={learners.cta.href} data-reveal="fade" style="--reveal-delay: 320ms">
+          {learners.cta.label}
+          <span class="btn-arrow"><Icon name="arrow" size={18} /></span>
+        </a>
+      </div>
+      <div class="path-horizon">
+        <div class="path-photo" data-reveal="media">
+          <Picture
+            slot="img-learner"
+            alt="A learner studying on a laptop at home in the evening"
+            sizes="(min-width: 1360px) 500px, (min-width: 1024px) 38vw, (min-width: 640px) 88vw, 100vw"
+            class="path-pic"
+            imgClass="path-img"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* The night band paints the sky (.band-night), so this section meets the hero and the dawn band the same way
+     every night band does. */
+  .paths {
+    /* Resolved here on the night band, so the dawn panel's focus ring keeps night contrast (it is drawn on the band). */
+    --path-focus: var(--focus);
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    padding-block: clamp(3.5rem, 2rem + 4.5vw, 6rem) clamp(4.5rem, 2.5rem + 6vw, 8rem);
+  }
+  /* A trace of blue-hour light carried down from the hero film. */
+  .paths::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(60% 40% at 18% 48%, color-mix(in oklch, var(--color-dusk-500) 16%, transparent), transparent 72%);
+  }
+
+  .paths-grid {
+    display: grid;
+    gap: clamp(1rem, 0.5rem + 1.5vw, 1.75rem);
+  }
+  .paths-lead {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2rem, 1.25rem + 2.5vw, 3.5rem);
+  }
+  /* SplitHeading renders the heading inside its own scope, so headings are styled from a scoped parent. */
+  .paths-lead :global(.paths-title .accent) {
+    color: var(--color-dawn-200);
+  }
+
+  /* ---------- Shared panel anatomy ---------- */
+  .path {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius-card);
+    color: var(--text);
+  }
+  /* Surface lift on hover or keyboard focus: a wash above the panel background, below the content and the photo. */
+  .path::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 420ms var(--ease-out-quart);
+  }
+  @media (hover: hover) {
+    .path:hover::after {
+      opacity: 1;
+    }
+  }
+  .path:has(.path-cta:focus-visible)::after {
+    opacity: 1;
+  }
+  /* The whole panel is the link, so keyboard focus rings the panel (outside its clip, where it can't be cut off). */
+  @supports selector(:has(*)) {
+    .path-cta:focus-visible {
+      outline: none;
+    }
+    .path:has(.path-cta:focus-visible) {
+      outline: 2px solid var(--path-focus);
+      outline-offset: 4px;
+    }
+  }
+
+  .path-photo {
+    position: relative;
+    overflow: hidden;
+  }
+  .path-photo :global(.path-pic),
+  .path-photo :global(.path-img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* Full-bleed photos: the panel rounds the outer corners, so the clip reveal settles square. */
+  :global(.motion-ok) .path-photo[data-reveal='media'].is-in {
+    clip-path: inset(0 0 0 0 round 0);
+  }
+
+  .path-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: clamp(1.4rem, 1rem + 1.6vw, 2.25rem);
+  }
+  .path-for {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.9375rem;
+    font-weight: 650;
+    line-height: 1.3;
+  }
+  .path-for :global(svg) {
+    flex-shrink: 0;
+    color: var(--accent-ink);
+  }
+  .path-body :global(.path-title) {
+    margin-top: 0.6rem;
+  }
+  .path-body :global(.path-title .accent) {
+    color: var(--accent-ink);
+  }
+  .path-text {
+    margin-top: 0.85rem;
+    max-width: 46ch;
+    color: var(--text-muted);
+  }
+  .path-points {
+    display: grid;
+    width: 100%;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .path-points li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    padding-block: 0.7rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.96875rem;
+    font-weight: 550;
+    line-height: 1.45;
+  }
+  .path-points :global(svg) {
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+    color: var(--accent-ink);
+  }
+  .path-cta {
+    margin-top: 1.75rem;
+  }
+  /* The whole panel is the link's hit area; keep the pressed nudge off so the overlay never shrinks mid-click. */
+  .path-cta:active {
+    transform: none;
+  }
+  .path-cta::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: var(--radius-card);
+  }
+
+  /* ---------- Business: an opaque, slightly raised night surface (readable over any sky behind it), photo on top ---------- */
+  .path-business {
+    flex: 1 1 auto;
+    background: color-mix(in oklch, var(--bg) 93%, white);
+    border: 1px solid var(--line);
+  }
+  .path-business::after {
+    background: color-mix(in oklch, white 7%, transparent);
+  }
+  .path-business .path-photo {
+    flex: 1 0 auto;
+    aspect-ratio: 16 / 10;
+  }
+
+  /* ---------- Learners: a dawn window, photo below a rising sun ---------- */
+  .path-learner {
+    /* --p comes from motion.ts as the panel enters; the sun is fully up by the time the panel is well in view. */
+    --q: clamp(0, calc((var(--p, 1) - 0.12) / 0.48), 1);
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklch, var(--color-dawn-sky) 45%, var(--color-mist-50)) 0%,
+      color-mix(in oklch, var(--color-dawn-200) 55%, var(--color-mist-50)) 42%,
+      var(--color-dawn-200) 80%
+    );
+  }
+  .path-learner::after {
+    background: linear-gradient(180deg, color-mix(in oklch, white 55%, transparent), transparent 65%);
+  }
+  /* The dark theme supplies white type. Its panel must change with that type:
+     the pale custom gradient otherwise makes the entire learner path disappear. */
+  :global(html[data-theme='dark']) .path-learner {
+    background-image: var(--dusk-gradient);
+  }
+  :global(html[data-theme='dark']) .path-learner::after {
+    background: linear-gradient(180deg, color-mix(in oklch, white 8%, transparent), transparent 65%);
+  }
+  .path-horizon {
+    position: relative;
+    margin-top: auto;
+  }
+  /* The sun: a warm glow centred on the photo's top edge, rising from behind it with scroll. */
+  .path-horizon::before {
+    content: '';
+    position: absolute;
+    inset: -60% -20% 40%;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+      closest-side,
+      color-mix(in oklch, var(--color-dawn-400) 80%, transparent),
+      color-mix(in oklch, var(--color-dawn-400) 28%, transparent) 55%,
+      transparent
+    );
+    transform: translate3d(0, calc((1 - var(--q)) * 38%), 0);
+    opacity: calc(0.25 + var(--q) * 0.75);
+  }
+  :global(.motion-ok) .path-horizon::before {
+    will-change: transform, opacity;
+  }
+  .path-learner .path-photo {
+    aspect-ratio: 3 / 2;
+  }
+
+  /* Business points pair up only when each column can hold the longest point on one line. */
+  .path-business .path-points {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16.5rem), 1fr));
+    column-gap: 1.5rem;
+  }
+
+  /* ---------- Tablet: stacked, with the learner window set in from the left ---------- */
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .path-business .path-photo {
+      aspect-ratio: 2 / 1;
+    }
+    .path-learner {
+      margin-inline-start: clamp(2rem, 10vw, 6rem);
+    }
+    .path-learner .path-photo {
+      aspect-ratio: 21 / 9;
+    }
+  }
+
+  /* ---------- Desktop: 7/5 split, learner window dropped lower, bottoms aligned ---------- */
+  @media (min-width: 1024px) {
+    .paths-grid {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      column-gap: clamp(1.5rem, 0.5rem + 2vw, 2.5rem);
+    }
+    /* The question may hang into the gutter, so "Here for your business," holds one line down to 1024px. */
+    .paths-lead :global(.paths-title) {
+      margin-inline-end: -1.5rem;
+    }
+    .path-learner {
+      align-self: end;
+      margin-top: clamp(4rem, 1rem + 6vw, 8rem);
+    }
+    /* The business photo absorbs any height difference, so both panels always finish on the same line. */
+    .path-business .path-photo {
+      aspect-ratio: 16 / 9;
+    }
+    .path-learner .path-photo {
+      aspect-ratio: 4 / 3;
+    }
+  }
+</style>

@@ -1,0 +1,218 @@
+{
+  "engine": "chromium",
+  "base": "https://gforce-kappa.vercel.app",
+  "testedAt": "2026-10-23T15:15:52.087Z",
+  "results": [
+    {
+      "name": "desktop",
+      "passed": true,
+      "width": 1440,
+      "elapsedMs": 4270,
+      "state": {
+        "state": "complete",
+        "active": false,
+        "art": false,
+        "canvas": false,
+        "scrollY": 0,
+        "title": {
+          "top": 205.09375,
+          "bottom": 334.6875,
+          "opacity": "1"
+        },
+        "cta": {
+          "top": 437.0625,
+          "bottom": 485.0625,
+          "afterCopy": true
+        },
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "overflow": false,
+        "copyTransform": "",
+        "draws": 0,
+        "contexts": 0,
+        "completed": 1,
+        "errors": []
+      },
+      "evidence": {
+        "frames": 115,
+        "durationMs": 1900,
+        "medianIntervalMs": 16.699999999999818,
+        "p95IntervalMs": 16.799999999999955,
+        "maxIntervalMs": 16.800000000000182,
+        "framesOver34ms": 0,
+        "endJumpPx": 0.0006103515625,
+        "startupLongTasks": [],
+        "movingLongTasks": []
+      },
+      "geometryRequests": [
+        "https://gforce-kappa.vercel.app/3d/gforce-glass-original-desktop.json",
+        "https://gforce-kappa.vercel.app/3d/gforce-glass-original-desktop.bin",
+        "https://gforce-kappa.vercel.app/3d/glass-light-v2.png"
+      ],
+      "errors": []
+    },
+    {
+      "name": "mobile",
+      "passed": true,
+      "width": 390,
+      "elapsedMs": 3571,
+      "state": {
+        "state": "complete",
+        "active": false,
+        "art": false,
+        "canvas": false,
+        "scrollY": 0,
+        "title": {
+          "top": 195,
+          "bottom": 261.53125,
+          "opacity": "1"
+        },
+        "cta": {
+          "top": 353.53125,
+          "bottom": 461.53125,
+          "afterCopy": true
+        },
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "overflow": false,
+        "copyTransform": "",
+        "draws": 310,
+        "contexts": 1,
+        "completed": 1,
+        "errors": []
+      },
+      "evidence": {
+        "frames": 116,
+        "durationMs": 1916.6000000000001,
+        "medianIntervalMs": 16.699999999999818,
+        "p95IntervalMs": 16.700000000000273,
+        "maxIntervalMs": 16.800000000000182,
+        "framesOver34ms": 0,
+        "endJumpPx": 0.00152587890625,
+        "startupLongTasks": [],
+        "movingLongTasks": []
+      },
+      "geometryRequests": [
+        "https://gforce-kappa.vercel.app/3d/gforce-glass-original-mobile.json",
+        "https://gforce-kappa.vercel.app/3d/gforce-glass-original-mobile.bin",
+        "https://gforce-kappa.vercel.app/3d/glass-light-v2.png"
+      ],
+      "errors": []
+    },
+    {
+      "name": "cancel-wheel",
+      "passed": true,
+      "width": 1440,
+      "elapsedMs": 1102,
+      "cancellationMs": 38,
+      "state": {
+        "state": "complete",
+        "active": false,
+        "art": false,
+        "canvas": false,
+        "scrollY": 32,
+        "title": {
+          "top": 173.09375,
+          "bottom": 302.6875,
+          "opacity": "1"
+        },
+        "cta": {
+          "top": 405.0625,
+          "bottom": 453.0625,
+          "afterCopy": true
+        },
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "overflow": false,
+        "copyTransform": "",
+        "draws": 4,
+        "contexts": 1,
+        "completed": 1,
+        "errors": []
+      },
+      "evidence": {
+        "frames": 2,
+        "durationMs": 16.69999999999999,
+        "medianIntervalMs": 16.69999999999999,
+        "p95IntervalMs": 16.69999999999999,
+        "maxIntervalMs": 16.69999999999999,
+        "framesOver34ms": 0,
+        "endJumpPx": 972,
+        "startupLongTasks": [],
+        "movingLongTasks": []
+      },
+      "geometryRequests": [
+        "https://gforce-kappa.vercel.app/3d/gforce-glass-original-desktop.json",
+        "https://gforce-kappa.vercel.app/3d/gforce-glass-original-desktop.bin",
+        "https://gforce-kappa.vercel.app/3d/glass-light-v2.png"
+      ],
+      "errors": []
+    },
+    {
+      "name": "reload",
+      "passed": true,
+      "width": 390,
+      "elapsedMs": 5211,
+      "state": {
+        "state": "complete",
+        "active": false,
+        "art": false,
+        "canvas": false,
+        "scrollY": 0,
+        "title": {
+          "top": 195,
+          "bottom": 261.53125,
+          "opacity": "1"
+        },
+        "cta": {
+          "top": 353.53125,
+          "bottom": 461.53125,
+          "afterCopy": true
+        },
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "overflow": false,
+        "copyTransform": "",
+        "draws": 313,
+        "contexts": 1,
+        "completed": 1,
+        "errors": []
+      },
+      "evidence": {
+        "frames": 116,
+        "durationMs": 1916.6,
+        "medianIntervalMs": 16.69999999999999,
+        "p95IntervalMs": 16.799999999999955,
+        "maxIntervalMs": 16.800000000000182,
+        "framesOver34ms": 0,
+        "endJumpPx": 0.0003662109375,
+        "startupLongTasks": [],
+        "movingLongTasks": []
+      },
+      "geometryRequests": [
+        "https://gforce-kappa.vercel.app/3d/gforce-glass-original-mobile.json",
+        "https://gforce-kappa.vercel.app/3d/gforce-glass-original-mobile.bin",
+        "https://gforce-kappa.vercel.app/3d/glass-light-v2.png",
+        "https://gforce-kappa.vercel.app/3d/gforce-glass-original-mobile.json",
+        "https://gforce-kappa.vercel.app/3d/gforce-glass-original-mobile.bin",
+        "https://gforce-kappa.vercel.app/3d/glass-light-v2.png"
+      ],
+      "errors": []
+    }
+  ],
+  "deployment": {
+    "commit": "bb4f156",
+    "heroAsset": "Hero.astro_astro_type_script_index_0_lang.D2mIyJpl.js",
+    "localSHA256": "02036ff3d8a533541e9c8ae4facb7fa2fa638eb88458fda46bdd67a5f75825ae",
+    "liveSHA256": "02036ff3d8a533541e9c8ae4facb7fa2fa638eb88458fda46bdd67a5f75825ae",
+    "matches": true
+  }
+}

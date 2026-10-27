@@ -1,0 +1,115 @@
+# G-Force IT: Apache rules for the static site on the cPanel host.
+# Upload the contents of dist/ (this file included) to public_html.
+# Every module-specific block sits inside <IfModule>, so a missing module never turns into a 500 error.
+# Canonical origin: https://www.gforceit.ca
+
+<IfModule mod_autoindex.c>
+  Options -Indexes
+</IfModule>
+DirectoryIndex index.html
+AddDefaultCharset utf-8
+
+# Missing pages get the branded 404 (built from src/pages/404.astro).
+ErrorDocument 404 /404.html
+
+<IfModule mod_mime.c>
+  AddType image/avif .avif
+  AddType image/webp .webp
+  AddType font/woff2 .woff2
+  AddType video/mp4 .mp4
+  AddType video/webm .webm
+  AddType text/javascript .js .mjs
+  AddType application/manifest+json .webmanifest
+  AddCharset utf-8 .css .js .mjs .json .xml .txt .svg .webmanifest
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Certificate checks (AutoSSL / Let's Encrypt) and other /.well-known/ files pass through untouched,
+  # over plain HTTP if need be.
+  RewriteRule ^\.well-known/ - [L]
+
+  # Never serve other hidden files (.git, .env, editor leftovers).
+  RewriteRule (?:^|/)\. - [F,L]
+
+  # ---- Old site → new site (301, straight to the final URL so there is only one hop) ----
+  # Keep this list in step with `legacy` in src/data/posts.ts.
+  RewriteRule ^services\.html$ https://www.gforceit.ca/business/ [R=301,L,NC]
+  RewriteRule ^contact\.html$ https://www.gforceit.ca/contact/ [R=301,L,NC]
+  RewriteRule ^blog1_details\.html$ https://www.gforceit.ca/blog/it-skills-canadian-employers-hire-for/ [R=301,L,NC]
+  RewriteRule ^blog2_details\.html$ https://www.gforceit.ca/blog/choosing-an-it-training-program/ [R=301,L,NC]
+  RewriteRule ^blog3_details\.html$ https://www.gforceit.ca/blog/building-a-career-in-cybersecurity/ [R=301,L,NC]
+  RewriteRule ^blog4_details\.html$ https://www.gforceit.ca/blog/ai-and-automation-in-it-careers/ [R=301,L,NC]
+  # blog5 duplicated blog2 on the old site.
+  RewriteRule ^blog5_details\.html$ https://www.gforceit.ca/blog/choosing-an-it-training-program/ [R=301,L,NC]
+  # Template page the old navigation linked to.
+  RewriteRule ^topics-listing\.html$ https://www.gforceit.ca/blog/ [R=301,L,NC]
+
+  # /index.html and /any/folder/index.html → the clean URL. Only for what the visitor actually asked for
+  # (THE_REQUEST), so Apache's own DirectoryIndex lookup can never loop.
+  RewriteCond %{THE_REQUEST} \s/+((?:[^\s?]*/)?)index\.html[\s?] [NC]
+  RewriteRule ^ https://www.gforceit.ca/%1 [R=301,L,NE]
+
+  # ---- One canonical origin ----
+  # Bare domain → www, and HTTPS, in a single hop.
+  RewriteCond %{HTTP_HOST} ^gforceit\.ca\.?$ [NC]
+  RewriteRule ^ https://www.gforceit.ca%{REQUEST_URI} [R=301,L,NE]
+  # Any remaining plain-HTTP request → HTTPS on the same host (X-Forwarded-Proto covers a proxy or CDN in front).
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L,NE]
+
+  # Fingerprinted build output and the media library get the long cache below.
+  RewriteRule ^(?:_astro|media)/ - [E=GF_IMMUTABLE:1]
+</IfModule>
+
+# ---- Security headers ----
+<IfModule mod_headers.c>
+  # HSTS only on HTTPS responses. Add "; includeSubDomains" once every subdomain (mail, cpanel, webmail) serves HTTPS.
+  Header always set Strict-Transport-Security "max-age=31536000" env=HTTPS
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Content-Security-Policy "frame-ancestors 'self'"
+  Header always unset X-Powered-By
+  Header unset X-Powered-By
+</IfModule>
+
+# ---- Caching ----
+# Default: a week for files without a content hash (logos, favicons, the share image).
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 week"
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType application/xml "access plus 1 hour"
+  ExpiresByType text/xml "access plus 1 hour"
+  ExpiresByType text/plain "access plus 1 hour"
+  ExpiresByType application/manifest+json "access plus 1 day"
+</IfModule>
+<IfModule mod_headers.c>
+  # /_astro/ files carry a content hash in their name; /media/ files are renamed whenever they are replaced.
+  Header set Cache-Control "public, max-age=31536000, immutable" env=GF_IMMUTABLE
+  Header set Cache-Control "public, max-age=31536000, immutable" env=REDIRECT_GF_IMMUTABLE
+  # HTML is always revalidated (a cheap 304), so a new deploy shows on the very next visit.
+  <FilesMatch "\.html?$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "\.(?:xml|txt)$">
+    Header set Cache-Control "public, max-age=3600"
+  </FilesMatch>
+</IfModule>
+
+# ---- Compression: Brotli where the server has it, gzip otherwise. Images, video and woff2 are already compressed. ----
+<IfModule mod_brotli.c>
+  <IfModule mod_filter.c>
+    AddOutputFilterByType BROTLI_COMPRESS text/html text/css text/plain text/xml text/javascript application/javascript application/json application/ld+json application/xml application/manifest+json image/svg+xml
+  </IfModule>
+</IfModule>
+<IfModule mod_deflate.c>
+  <IfModule mod_filter.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml text/javascript application/javascript application/json application/ld+json application/xml application/manifest+json image/svg+xml
+  </IfModule>
+</IfModule>

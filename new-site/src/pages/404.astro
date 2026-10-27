@@ -1,0 +1,41 @@
+---
+// 404: the cloud-sky hero, six ways back, and a one-click way to tell us about the broken link.
+// Served by Apache for any missing URL (.htaccess), so location.pathname is the address that failed.
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/ui/PageHero.astro';
+import LostLinks from '../components/sections/LostLinks.astro';
+
+// White & crimson skin: a compact crimson banner, then the links in a white section, so the banner never runs into
+// the crimson footer.
+const split = import.meta.env.PUBLIC_SKIN === 'white-red';
+---
+<Base
+  title="Page not found"
+  description="This page may have moved when the G-Force IT website was rebuilt. Find managed IT services, IT training or our contact details instead."
+  nightHero
+  noindex
+>
+  <PageHero
+    tone="night"
+    lines={['We can’t find', 'that *page.*']}
+    crumb={split ? { label: 'Home', href: '/', current: 'Error 404' } : undefined}
+    intro="The link may be out of date, or the page moved when we rebuilt the site. One of these should get you where you were going."
+  >
+    {!split && <LostLinks />}
+  </PageHero>
+  {split && (
+    <section class="lost-sheet sheet section-y">
+      <div class="container-g"><LostLinks code={false} /></div>
+    </section>
+  )}
+
+  <script is:inline>
+    (() => {
+      const link = document.querySelector('[data-report-link]');
+      if (!link) return;
+      const lines = ['Missing page: ' + location.pathname];
+      if (document.referrer) lines.push('Linked from: ' + document.referrer);
+      link.href = link.getAttribute('href') + '&body=' + encodeURIComponent(lines.join('\n'));
+    })();
+  </script>
+</Base>

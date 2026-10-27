@@ -1,0 +1,710 @@
+/*
+  White & crimson skin (build with PUBLIC_SKIN=white-red; Base.astro sets html[data-skin="white-red"]).
+
+  Design: red and white only, after the original gforceit.ca (user request and reference):
+  - The original's crimson gradient, linear-gradient(15deg, #cb1f45, #89001e), for the header bar, the inner-page
+    title banners (PageHero renders them as .page-hero-red), the home audience band and the footer.
+  - White sections alternating with the original's rose-white section ground (#f6f1f2), divided by hairlines.
+  - White pills with crimson text on red (the original's Contact button); crimson pills on white.
+  - The home hero stays white so the ruby glass opening reads.
+  - Light theme only: Base.astro never sets data-theme="dark" under this skin and Header renders no theme switch.
+  - Ink #1b1b1b for type.
+  Every component keeps its markup and motion. This file remaps tokens and swaps the sky imagery, so the Air skin
+  is untouched. Specificity: :root[data-skin] (0,2,0) and up, which beats scoped component rules (0,2,0 with cid).
+*/
+
+:root[data-skin='white-red'] {
+  /* Deep crimson where the Air skin uses deep sky (band-night, header frost, mobile menu). */
+  --color-sky-deep: #89001e;
+  --color-sky-mid: #af1234;
+  --color-dusk-500: #cb1f45;
+  --color-dusk-300: #f0c3cd;
+  --color-sky-light: #e8e5e6;
+  --color-sky-pale: #f1eeef;
+  /* White pill on crimson: hover and press tints. */
+  --color-sky-50: #fdf0f3;
+  --color-sky-100: #f8dde4;
+  --color-twilight: #6a6970;
+
+  /* Charcoal greys (Air uses navy here); this skin is light only, so they appear only as ink tints. */
+  --color-ink-950: #0f0f11;
+  --color-ink-900: #17171a;
+  --color-ink-850: #1f1f23;
+  --color-ink-800: #29292e;
+  --color-ink-700: #35353b;
+
+  /* Neutral greys without the Air skin's blue cast. */
+  --color-mist-600: #56565d;
+  --color-mist-500: #7b7b82;
+  --color-mist-300: #d2d0d3;
+  --color-mist-200: #e7e5e7;
+  --color-mist-100: #f5f4f5;
+  --color-mist-50: #fafafa;
+  --color-air-copy: #3f3f45;
+  --color-air-haze: #f5f4f5;
+
+  /* The dawn tokens become the neutral ground and a faint rose. */
+  --color-dawn-400: #f3c5cf;
+  --color-dawn-200: #fbe8ec;
+  --color-dawn-sky: #f3f1f2;
+  --color-dawn-mist: #f5f3f4;
+  --color-dawn-sand: #f7f5f6;
+
+  --control-border: #8a888d;
+  /* The original site's header, hero overlay and section gradient. */
+  --sky-gradient: linear-gradient(15deg, #cb1f45 0%, #89001e 100%);
+  --dawn-gradient: linear-gradient(#ffffff, #ffffff);
+  --dusk-gradient: radial-gradient(100% 70% at 50% 100%, color-mix(in oklch, #cb1f45 16%, transparent), transparent 80%),
+    linear-gradient(180deg, #121214 0%, #17171a 55%, #1c1c20 100%);
+}
+
+/* ---------- Bands ---------- */
+
+/* Crimson bands: white type, white pills with ink text, light rose for links and the muted line. */
+:root[data-skin='white-red'] .band-night {
+  /* Light enough for 4.5:1 on the bright #cb1f45 end of the gradient. */
+  --text-muted: #fdeef2;
+  --accent-ink: #fff0f4;
+  --line: color-mix(in oklch, white 24%, transparent);
+  --line-strong: color-mix(in oklch, white 50%, transparent);
+  --glass: color-mix(in oklch, white 10%, transparent);
+  --glass-line: color-mix(in oklch, white 26%, transparent);
+}
+
+/* Light bands that used the dawn ground: the original's rose-white section ground. */
+:root[data-skin='white-red'] .band-dawn {
+  --bg: #f6f1f2;
+  --text-muted: #3f3f45;
+  --glass: #ffffff;
+  --glass-line: var(--color-mist-200);
+}
+
+/* ---------- Page structure: full-width white sections divided by hairlines ---------- */
+/* The Air skin floats inset white sheets on a blue sky; on a near-white ground the inset only looks accidental. */
+:root[data-skin='white-red'] body.has-air-sky .air-sky {
+  background: var(--bg);
+}
+:root[data-skin='white-red'] body.has-air-sky .sheet {
+  width: 100%;
+  border-radius: 0;
+  background: var(--bg);
+}
+:root[data-skin='white-red'] body.has-air-sky :is(.sheet, .hero, .page-hero, .band-night, .band-dawn) + .sheet {
+  margin-top: 0;
+  border-top: 1px solid var(--line);
+}
+:root[data-skin='white-red'] body.has-air-sky main > .sheet:last-child {
+  margin-bottom: 0;
+}
+/* Dawn bands become the rose-white alternate section (Air made them windows onto the sky). */
+:root[data-skin='white-red'] body.has-air-sky section.band-dawn:not(.hero) {
+  background: var(--bg);
+}
+
+/* ---------- Heroes ---------- */
+
+/* Home hero (see the editorial hero section below for its layout). Grey cloud photography read as smoke on white, so the clouds
+   live only inside the ruby glass (glass-name.ts). */
+:root[data-skin='white-red'] .hero-clouds {
+  background-image: none;
+  filter: none;
+  opacity: 1;
+  mask-image: none;
+}
+
+/* Inner pages: the original site's crimson title banner, white type (PageHero adds .page-hero-red). It is a
+   banner, not a wall: compact padding and a 3.75rem title, with the content starting right under it. The banner
+   starts under the transparent header, so one gradient paints both (no seam at the header's edge). */
+:root[data-skin='white-red'] .page-hero.page-hero-red {
+  min-height: 0;
+  padding-top: calc(var(--header-h) + clamp(2.25rem, 1.5rem + 2.5vw, 3.75rem));
+  padding-bottom: clamp(2.25rem, 1.5rem + 2.5vw, 3.75rem);
+  background-color: var(--color-crimson-500);
+  background-image: var(--sky-gradient);
+}
+/* The health check's card still rises into the banner by its overlap (it-health-check.astro). */
+:root[data-skin='white-red'] .page-hero.page-hero-red:has(+ .check) {
+  padding-bottom: calc(clamp(2.25rem, 1.5rem + 2.5vw, 3.75rem) + var(--overlap));
+}
+:root[data-skin='white-red'] .page-hero.page-hero-red .page-hero-title {
+  font-size: clamp(2.25rem, 1.2rem + 3vw, 3.75rem);
+}
+/* PageHero's scoped intro colour (mist-200) is under 4.5:1 on the bright end of the gradient. */
+:root[data-skin='white-red'] .page-hero.page-hero-red .page-hero-intro {
+  color: #ffffff;
+}
+/* Any night hero that still renders (one with media) paints crimson, never the cloud photo. */
+:root[data-skin='white-red'] .page-hero-sky {
+  display: none;
+}
+:root[data-skin='white-red'] .page-hero-night {
+  background-color: var(--color-sky-deep);
+  background-image: var(--sky-gradient);
+}
+
+/* ---------- Crimson moments ---------- */
+
+/* Bands that showed the cloud photo paint the crimson gradient alone. */
+:root[data-skin='white-red'] .sky-photo {
+  background-color: var(--color-sky-deep);
+  background-image: var(--sky-gradient);
+}
+
+/* Footer: the crimson gradient, starting cleanly after the last section on its own base, so its contrast never
+   depends on the painted layer behind it. */
+:root[data-skin='white-red'] body.has-air-sky .site-footer {
+  padding-top: clamp(4rem, 2.5rem + 5vw, 6.5rem);
+  background-color: var(--color-sky-deep);
+  background-image: var(--sky-gradient);
+}
+:root[data-skin='white-red'] body.has-air-sky .footer-sky {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+/* Home audience band: rose-white, so the crimson hero is not followed straight away by a second crimson band (the
+   original puts white content after its hero). The business panel carries the crimson; the learner panel is white.
+   The band keeps its band-night class for the header probe, so its tokens are reset to light here. */
+:root[data-skin='white-red'] .paths.band-night {
+  color-scheme: light;
+  --bg: #f6f1f2;
+  --text: var(--color-air-ink);
+  --text-muted: #3f3f45;
+  --line: var(--color-mist-200);
+  --line-strong: var(--color-mist-300);
+  --accent: var(--color-crimson-500);
+  --accent-hover: var(--color-crimson-600);
+  --accent-press: var(--color-crimson-700);
+  --btn-text: #ffffff;
+  --accent-ink: var(--color-crimson-700);
+  --focus: var(--color-crimson-700);
+  --glass: #ffffff;
+  --glass-line: var(--color-mist-200);
+  color: var(--text);
+  background: #f6f1f2;
+}
+:root[data-skin='white-red'] .paths::before {
+  display: none;
+}
+:root[data-skin='white-red'] .paths .paths-title .accent {
+  color: var(--color-crimson-500);
+}
+:root[data-skin='white-red'] .paths .path-business {
+  color-scheme: dark;
+  --text: #ffffff;
+  --text-muted: #fdeef2;
+  --line: color-mix(in oklch, white 24%, transparent);
+  --line-strong: color-mix(in oklch, white 50%, transparent);
+  --accent: #ffffff;
+  --accent-hover: var(--color-sky-50);
+  --accent-press: var(--color-sky-100);
+  --btn-text: var(--color-crimson-600);
+  --accent-ink: #fff0f4;
+  --focus: #ffffff;
+  border-color: transparent;
+  background: var(--color-crimson-500) var(--sky-gradient);
+  color: var(--text);
+}
+:root[data-skin='white-red'] .paths .path-learner {
+  border: 1px solid var(--color-mist-200);
+}
+/* The learner panel: white, ink type. */
+:root[data-skin='white-red'] .path-learner {
+  background: #ffffff;
+}
+
+/* The checklist promotion is a light panel: one crimson band per page is enough. */
+:root[data-skin='white-red'] .magnet {
+  color-scheme: light;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --text: var(--color-air-ink);
+  --text-muted: #3f3f45;
+  --line: var(--color-mist-200);
+  --line-strong: var(--color-mist-300);
+  --accent: var(--color-crimson-500);
+  --accent-hover: var(--color-crimson-600);
+  --accent-press: var(--color-crimson-700);
+  --btn-text: #ffffff;
+  --accent-ink: var(--color-crimson-700);
+  --focus: var(--color-crimson-700);
+  background: var(--bg);
+  background-image: none;
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+/* ---------- Header: the original's crimson bar ---------- */
+/* One state everywhere (top, scrolled, over the opening): the crimson gradient, white navigation, a white pill with
+   crimson text, and the logo artwork directly on the bar. :root:root and the doubled class outrank Header.astro's
+   state rules, the strongest of which is body.has-glass-hero .site-header.is-over-dawn.is-scrolled (0,5,1). */
+:root:root[data-skin='white-red'] body .site-header.site-header[data-site-header] {
+  color-scheme: dark;
+  --text: #ffffff;
+  --text-muted: #fdeef2;
+  --line: color-mix(in oklch, white 18%, transparent);
+  --line-strong: color-mix(in oklch, white 40%, transparent);
+  --logo-word: #ffffff;
+  --focus: #ffffff;
+  --accent: #ffffff;
+  --accent-hover: var(--color-sky-50);
+  --accent-press: var(--color-sky-100);
+  --btn-text: var(--color-crimson-600);
+  color: var(--text);
+  background-color: var(--color-crimson-500);
+  background-image: var(--sky-gradient);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+:root[data-skin='white-red'] .site-header .logo {
+  padding-inline: 0;
+  background: transparent;
+}
+/* At the top of a page the bar is transparent over the crimson hero or banner, which paints both; once the page
+   scrolls (or over a later crimson band) it is the solid bar again. */
+:root:root[data-skin='white-red'] body .site-header.site-header[data-site-header].is-over-night:not(.is-solid-night):not(.is-scrolled) {
+  background: transparent;
+}
+@media (max-width: 479px) {
+  :root[data-skin='white-red'] .site-header .logo-md {
+    width: clamp(140px, 44vw, 180px);
+  }
+}
+
+/* ---------- Type scale and alignment ---------- */
+/* A section heading never outranks the page's H1. The "Proactive care" head is left-aligned like the hero above
+   it, in two lines. */
+:root[data-skin='white-red'] .dawn-head {
+  justify-items: start;
+  text-align: left;
+}
+:root[data-skin='white-red'] .dawn-head .shift-controls {
+  justify-content: flex-start;
+}
+:root[data-skin='white-red'] .dawn-title {
+  max-width: 22ch;
+  font-size: clamp(2.25rem, 1rem + 3vw, 3.5rem);
+  line-height: 1.02;
+}
+
+/* ---------- Home hero: Toronto at night, in crimson ---------- */
+/* No 3D opening in this skin (Hero.astro renders the settled hero). The original site's first impression is a crimson
+   hero over a photograph; here the photograph is the company's city. The licensed Toronto skyline (img-toronto-night,
+   Unsplash, otherwise unused) is greyscaled and screened onto the 15deg gradient, so the dark sky and water take the
+   brand crimson and the city lights glow white. Desktop: the copy on the left on clean gradient, the skyline filling
+   the right and bleeding to the edge. Phones: the skyline is a band under the actions. The client logos close the hero
+   on a full-width white strip (their own colours need white). On load the copy rises in sequence while the city lights
+   come up; reduced motion shows the final state.
+   body + .band-night outranks Hero.astro's forced light tokens (html[data-theme] .hero, 0,3,1 with its scope). */
+:root[data-skin='white-red'] body .hero.band-night {
+  color-scheme: dark;
+  --text: #ffffff;
+  --text-muted: #fdeef2;
+  --accent: #ffffff;
+  --accent-hover: var(--color-sky-50);
+  --accent-press: var(--color-sky-100);
+  --btn-text: var(--color-crimson-600);
+  --accent-ink: #fff0f4;
+  --line: color-mix(in oklch, white 24%, transparent);
+  --line-strong: color-mix(in oklch, white 55%, transparent);
+  --focus: #ffffff;
+  min-height: 0;
+  color: var(--text);
+  background-color: var(--color-crimson-500);
+  background-image: var(--sky-gradient);
+}
+/* hero-inner is not a stacking context here (it is only raised above the 3D art), so the skyline blends with the
+   hero's gradient. */
+:root[data-skin='white-red'] body .hero.band-night .hero-inner {
+  --hero-top: calc(var(--header-h) + clamp(3rem, 1.5rem + 5svh, 5.5rem));
+  --strip-gap: clamp(2.5rem, 1.5rem + 3vw, 4rem);
+  z-index: auto;
+  justify-items: start;
+  row-gap: 1.25rem;
+  padding-top: var(--hero-top);
+  padding-bottom: 0;
+  text-align: left;
+}
+:root[data-skin='white-red'] .hero .hero-copy {
+  justify-items: start;
+}
+:root[data-skin='white-red'] .hero .hero-location::before {
+  content: '';
+  display: block;
+  width: 3rem;
+  height: 4px;
+  margin-bottom: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+  border-radius: 2px;
+  background: #ffffff;
+}
+:root[data-skin='white-red'] .hero .hero-copy .hero-title {
+  max-width: none;
+  font-size: clamp(2.25rem, 0.5rem + 4.4vw, 4.75rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+:root[data-skin='white-red'] .hero .hero-sub {
+  max-width: 40ch;
+  margin-top: 1.25rem;
+  font-size: 1.125rem;
+}
+:root[data-skin='white-red'] .hero .hero-ctas {
+  justify-content: flex-start;
+  margin-top: 0.75rem;
+}
+/* The service links are the original's pills: white outline on red, filled white on hover. */
+:root[data-skin='white-red'] .hero .hero-specialties {
+  justify-content: flex-start;
+  gap: 0.5rem;
+  margin-top: 0;
+}
+:root[data-skin='white-red'] .hero .hero-specialties a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  padding: 0.3rem 0.85rem;
+  border: 1px solid color-mix(in oklch, white 32%, transparent);
+  border-radius: 999px;
+  background: color-mix(in oklch, white 6%, transparent);
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 550;
+  text-decoration: none;
+  transition: background-color 160ms var(--ease-out-quart), color 160ms var(--ease-out-quart);
+}
+:root[data-skin='white-red'] .hero .hero-specialties a:hover {
+  background: #ffffff;
+  color: var(--color-crimson-600);
+}
+/* Three tiers of action: the filled pill, the outline pill (a firmer outline than the chips), the quiet chips. */
+:root[data-skin='white-red'] .hero .btn-secondary {
+  border-color: color-mix(in oklch, white 72%, transparent);
+}
+@media (max-width: 479px) {
+  /* One swipeable row of chips on phones. */
+  :root[data-skin='white-red'] .hero .hero-specialties {
+    flex-wrap: nowrap;
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(90deg, black 85%, transparent);
+    mask-image: linear-gradient(90deg, black 85%, transparent);
+  }
+  :root[data-skin='white-red'] .hero .hero-specialties a {
+    flex: none;
+  }
+}
+/* The skyline (hero-city crops in Hero.astro: the greyscale tone curve is baked in, so the sky is black and screens to
+   pure crimson, and the lit tower and city add light). Each crop has the waterline at 92% of its height, so it stands
+   on the client strip; the desktop crop has the CN Tower at 55% across. Phones: a wide band under the actions. */
+:root[data-skin='white-red'] .hero .hero-city {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  justify-self: stretch;
+  height: clamp(9rem, 42vw, 12rem);
+  margin-inline: calc(50% - 50vw);
+  margin-bottom: calc(-1 * var(--strip-gap) - 1.25rem);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(180deg, transparent, black 35%, black 94%, transparent);
+  mask-image: linear-gradient(180deg, transparent, black 35%, black 94%, transparent);
+}
+:root[data-skin='white-red'] .hero .hero-city-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 92%;
+}
+:root[data-skin='white-red'] .hero .marquee-compact .marquee-head {
+  width: min(100% - 2 * var(--gutter), 1240px);
+  margin-inline: auto;
+  text-align: left;
+}
+:root[data-skin='white-red'] .hero .marquee-compact {
+  color-scheme: light;
+  --text: var(--color-air-ink);
+  --text-muted: var(--color-air-copy);
+  --line: var(--color-mist-200);
+  --focus: var(--color-crimson-700);
+  position: relative;
+  margin-top: var(--strip-gap);
+  justify-self: stretch;
+  width: auto;
+  margin-inline: calc(50% - 50vw);
+  padding: 1.75rem 0 2rem;
+  border-bottom: 1px solid var(--line);
+  background: #ffffff;
+  color: var(--text);
+}
+@media (min-width: 1024px) {
+  :root[data-skin='white-red'] body .hero.band-night .hero-inner {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    grid-template-areas:
+      'location city'
+      'title city'
+      'sub city'
+      'ctas city'
+      'links city'
+      'clients clients';
+    grid-template-rows: auto auto auto auto 1fr auto;
+    column-gap: 3rem;
+    align-items: start;
+  }
+  :root[data-skin='white-red'] .hero .hero-copy {
+    display: contents;
+  }
+  :root[data-skin='white-red'] .hero .hero-location {
+    grid-area: location;
+  }
+  :root[data-skin='white-red'] .hero .hero-copy .hero-title {
+    grid-area: title;
+  }
+  :root[data-skin='white-red'] .hero .hero-sub {
+    grid-area: sub;
+    margin-top: 0;
+  }
+  :root[data-skin='white-red'] .hero .hero-ctas {
+    grid-area: ctas;
+  }
+  :root[data-skin='white-red'] .hero .hero-specialties {
+    grid-area: links;
+  }
+  /* Desktop: the skyline fills the right of the hero, from under the header to the client strip and out to the
+     viewport edge, fading in from the left so the copy column stays clean gradient. */
+  :root[data-skin='white-red'] .hero .hero-city {
+    grid-area: city;
+    align-self: stretch;
+    height: auto;
+    margin: calc(-1 * var(--hero-top)) calc(-1 * max(var(--gutter), (100vw - 1240px) / 2)) calc(-1 * var(--strip-gap) - 1.25rem) calc(-1 * clamp(2rem, 6vw, 8rem));
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 45%, black 94%, transparent), linear-gradient(180deg, transparent 4%, black 22%, black 94%, transparent);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(90deg, transparent, black 45%, black 94%, transparent), linear-gradient(180deg, transparent 4%, black 22%, black 94%, transparent);
+    mask-composite: intersect;
+  }
+  :root[data-skin='white-red'] .hero .hero-city-img {
+    object-position: 55% 92%;
+  }
+  :root[data-skin='white-red'] .hero .marquee-compact {
+    grid-area: clients;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  :root[data-skin='white-red'] .hero :is(.hero-location, .hero-sub, .hero-sub-short, .hero-ctas, .hero-specialties) {
+    animation: hero-rise 900ms var(--ease-out-expo) both;
+  }
+  /* The headline is the largest paint, so it only moves; it is never transparent. */
+  :root[data-skin='white-red'] .hero .hero-title {
+    animation: hero-lift 900ms var(--ease-out-expo) 80ms both;
+  }
+  :root[data-skin='white-red'] .hero :is(.hero-sub, .hero-sub-short) { animation-delay: 200ms; }
+  :root[data-skin='white-red'] .hero .hero-ctas { animation-delay: 300ms; }
+  :root[data-skin='white-red'] .hero .hero-specialties { animation-delay: 400ms; }
+  :root[data-skin='white-red'] .hero .hero-city {
+    animation: hero-city-in 900ms var(--ease-out-quart) both;
+  }
+  :root[data-skin='white-red'] .hero .hero-city-img {
+    animation: hero-city-on 1600ms var(--ease-out-quart) 300ms both;
+  }
+}
+@keyframes hero-lift {
+  from {
+    transform: translate3d(0, 18px, 0);
+  }
+}
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+  }
+}
+@keyframes hero-city-in {
+  from {
+    opacity: 0;
+  }
+}
+/* The city lights come up: the photo's own brightness rises to its black point. */
+@keyframes hero-city-on {
+  from {
+    filter: brightness(0.35);
+  }
+}
+
+/* ---------- More crimson: the original's red and white alternation ---------- */
+/* The user asked for more red on the home page (only the home page: inner pages keep their banner, white and
+   rose-white sections). Like gforceit.ca (crimson hero, white, crimson "Why Choose" band, white, rose, crimson
+   footer), home sections alternate: these become crimson bands with white type. Their cards and panels take the same
+   white-on-crimson tokens the crimson banners use (the DawnBand panel keeps its own white surface). IDs, because
+   these sections also carry sheet/band-dawn classes whose sky-page backgrounds are specific. */
+:root[data-skin='white-red'] :is(#morning, #training, #tools) {
+  color-scheme: dark;
+  --bg: var(--color-crimson-500);
+  --surface: color-mix(in oklch, white 10%, transparent);
+  --surface-2: color-mix(in oklch, white 16%, transparent);
+  --text: #ffffff;
+  --text-muted: #fdeef2;
+  --line: color-mix(in oklch, white 24%, transparent);
+  --line-strong: color-mix(in oklch, white 50%, transparent);
+  --accent: #ffffff;
+  --accent-hover: var(--color-sky-50);
+  --accent-press: var(--color-sky-100);
+  --btn-text: var(--color-crimson-600);
+  --accent-ink: #fff0f4;
+  --accent-tint: color-mix(in oklch, white 14%, transparent);
+  --focus: #ffffff;
+  --control-border: color-mix(in oklch, white 60%, transparent);
+  --glass: color-mix(in oklch, white 10%, transparent);
+  --glass-line: color-mix(in oklch, white 28%, transparent);
+  margin-top: 0;
+  border-top: 0;
+  color: var(--text);
+  background-color: var(--color-crimson-500);
+  background-image: var(--sky-gradient);
+}
+/* The section after a crimson band needs no hairline: the colour change divides them. */
+:root[data-skin='white-red'] body :is(#morning, #training, #tools) + .sheet {
+  border-top: 0;
+}
+
+/* ---------- "How we work": the original's "Why Choose G-FORCE?" device ---------- */
+/* A crimson band with white-outlined circles joined by a white line, white type. The rail starts under each circle
+   (the circles are transparent on the gradient) and the reading-line fill (Process.astro) draws it in white. */
+:root[data-skin='white-red'] .process {
+  --marker: 3.5rem;
+  color-scheme: dark;
+  --text: #ffffff;
+  --text-muted: #fdeef2;
+  --line: color-mix(in oklch, white 40%, transparent);
+  --line-strong: color-mix(in oklch, white 70%, transparent);
+  --accent: #ffffff;
+  --accent-ink: #fff0f4;
+  --focus: #ffffff;
+  color: var(--text);
+  background-color: var(--color-crimson-500);
+  background-image: var(--sky-gradient);
+}
+:root[data-skin='white-red'] .process .step-line {
+  top: calc(var(--marker) + 0.5rem);
+  bottom: 0.5rem;
+}
+:root[data-skin='white-red'] .process .step-marker {
+  background: transparent;
+  box-shadow: inset 0 0 0 2px var(--line-strong);
+}
+:root[data-skin='white-red'] .process .step-num {
+  color: #ffffff;
+  font-size: 1rem;
+}
+:root[data-skin='white-red'] .process .step-num-lit {
+  color: var(--color-crimson-600);
+}
+
+/* ---------- Business: the original's section pills under the banner ---------- */
+:root[data-skin='white-red'] .page-index {
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+}
+:root[data-skin='white-red'] .page-index .container-g {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding-block: 1.25rem;
+}
+:root[data-skin='white-red'] .page-index-label {
+  margin-right: 0.5rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+:root[data-skin='white-red'] .page-index ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+:root[data-skin='white-red'] .page-index a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0.4rem 1.1rem;
+  border: 1px solid var(--color-crimson-500);
+  border-radius: 999px;
+  color: var(--color-crimson-600);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 160ms var(--ease-out-quart), color 160ms var(--ease-out-quart);
+}
+:root[data-skin='white-red'] .page-index a:hover {
+  background: var(--color-crimson-500);
+  color: #ffffff;
+}
+
+@media (max-width: 700px) {
+  /* One swipeable row instead of three wrapped rows. */
+  :root[data-skin='white-red'] .page-index ul {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(90deg, black 85%, transparent);
+    mask-image: linear-gradient(90deg, black 85%, transparent);
+  }
+  :root[data-skin='white-red'] .page-index li {
+    flex: none;
+    scroll-snap-align: start;
+  }
+}
+/* The timeline ends at its last circle. */
+:root[data-skin='white-red'] .process .is-last .step-line {
+  display: none;
+}
+
+/* After the crimson timeline the colour change already divides the sections: no hairline on top of the calculator. */
+:root[data-skin='white-red'] .process + .calc .dc {
+  padding-top: 0;
+  border-top: 0;
+}
+
+/* Reduced motion or no JavaScript: the hero's static client list wraps inside the content column, rows from the left. */
+:root[data-skin='white-red']:not(.motion-ok) .hero .marquee-compact .marquee-viewport {
+  width: min(100% - 2 * var(--gutter), 1240px);
+  margin-inline: auto;
+  padding-inline: 0;
+}
+:root[data-skin='white-red']:not(.motion-ok) .hero .marquee-compact .marquee-list {
+  justify-content: flex-start;
+}
+
+/* ---------- 404: the links follow the banner closely ---------- */
+:root[data-skin='white-red'] .lost-sheet {
+  padding-top: clamp(2rem, 1.5rem + 2vw, 3rem);
+}
+:root[data-skin='white-red'] .lost-sheet .lost {
+  margin-top: 0;
+}
+
+/* ---------- Details ---------- */
+
+/* The ambient sky film in the "Proactive care" band is blue sky; it has no place on white, so it is not shown
+   (Video.astro only attaches sources to visible players, so it is not downloaded either). */
+:root[data-skin='white-red'] .dawn-atmosphere {
+  display: none;
+}
+
+/* The rising suns were apricot light on a blue dawn; on white they read as pink stains, so they set. */
+:root[data-skin='white-red'] :is(.training-sun, .enquire-sun),
+:root[data-skin='white-red'] .path-horizon::before {
+  display: none;
+}
+
+/* The map placeholder: a neutral veil over the Toronto photo, not a coloured one. */
+:root[data-skin='white-red'] .map-facade {
+  background: linear-gradient(180deg, transparent, color-mix(in oklch, var(--color-air-ink) 14%, transparent));
+}
+

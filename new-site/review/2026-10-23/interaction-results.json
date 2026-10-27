@@ -1,0 +1,67 @@
+[
+  {
+    "width": 1440,
+    "check": "Course finder updates results and selected state",
+    "before": 6,
+    "after": 1,
+    "pass": true
+  },
+  {
+    "width": 1440,
+    "check": "Health check completes five questions and displays result",
+    "pass": true
+  },
+  {
+    "width": 1440,
+    "check": "Downtime calculator recalculates from inputs",
+    "oldTotal": "Per year\n$6,480",
+    "newTotal": "Per year\n$21,600",
+    "pass": true
+  },
+  {
+    "width": 1440,
+    "check": "Contact validation gives an error and newsletter consent starts unticked",
+    "status": "Please add your name so we know who to reply to.",
+    "pass": true
+  },
+  {
+    "width": 1440,
+    "check": "Story tabs support arrow keys and hide inactive content",
+    "pass": true
+  },
+  {
+    "width": 390,
+    "check": "Course finder updates results and selected state",
+    "before": 6,
+    "after": 1,
+    "pass": true
+  },
+  {
+    "width": 390,
+    "check": "Health check completes five questions and displays result",
+    "pass": true
+  },
+  {
+    "width": 390,
+    "check": "Downtime calculator recalculates from inputs",
+    "oldTotal": "Per year\n$6,480",
+    "newTotal": "Per year\n$21,600",
+    "pass": true
+  },
+  {
+    "width": 390,
+    "check": "Contact validation gives an error and newsletter consent starts unticked",
+    "status": "Please add your name so we know who to reply to.",
+    "pass": true
+  },
+  {
+    "width": 390,
+    "check": "Story tabs support arrow keys and hide inactive content",
+    "pass": true
+  },
+  {
+    "width": 390,
+    "check": "Mobile menu opens and Escape closes it",
+    "pass": true
+  }
+]

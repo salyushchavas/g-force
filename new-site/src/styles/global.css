@@ -1,0 +1,783 @@
+@import "tailwindcss";
+@import "@fontsource-variable/archivo/wght.css";
+/* Optional build-time skin (PUBLIC_SKIN=white-red). Every rule in it is scoped to html[data-skin="white-red"]. */
+@import "./skin-white-red.css";
+
+/* Width axis for the compressed .t-mega display only; downloaded only on pages that use it. */
+@font-face {
+  font-family: "Archivo Wide";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  src: url("/fonts/archivo-latin-standard-normal.woff2") format("woff2-variations");
+}
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/*
+  Air-inspired sky surfaces with the supplied G-Force crimson identity.
+  Legacy token names (ink / mist / crimson / dawn / dusk) are kept so every component inherits the Air colours:
+  ink-*  = deep sky navies (night bands, scrims)      mist-* = neutral haze greys
+  crimson-* = original G-Force brand accents          dawn-* = dawn apricot and sand
+*/
+@theme {
+  --font-sans: "Archivo Variable", "Archivo", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-accent: var(--font-sans);
+
+  --color-ink-950: #071e3d;
+  --color-ink-900: #0c2c55;
+  --color-ink-850: #123a6b;
+  --color-ink-800: #1a4a82;
+  --color-ink-700: #2a5e98;
+  --color-dusk-500: #2b6fb6;
+  --color-dusk-300: #90bad7;
+  --color-sky-deep: #123e73;
+  --color-sky-mid: #1f5a99;
+  --color-sky-light: #90bad7;
+  --color-sky-pale: #b3d4e7;
+  /* White pill on sky: hover and press tints. */
+  --color-sky-50: #eaf2fb;
+  --color-sky-100: #dce8f5;
+  --color-air-ink: #1b1b1b;
+  --color-air-ink-hover: #3a3a3a;
+  --color-air-ink-press: #000000;
+  --color-air-copy: #37414d;
+  --color-air-haze: #f5f5f5;
+  --color-twilight: #426188;
+  --color-signal: #cb1f45;
+  --color-mist-600: #545d69;
+  --color-mist-500: #7a828c;
+  --color-mist-300: #c9d3de;
+  --color-mist-200: #e3e8ee;
+  --color-mist-100: #f5f5f5;
+  --color-mist-50: #fafbfc;
+  --color-crimson-700: #89001e;
+  --color-crimson-600: #af1234;
+  --color-crimson-500: #cb1f45;
+  --color-crimson-300: #f9b2c3;
+  --color-crimson-100: #fce8ed;
+  --color-dawn-400: #efc383;
+  --color-dawn-200: #f5d6a2;
+  --color-dawn-sky: #b3d4e7;
+  --color-dawn-mist: #bfd2d3;
+  --color-dawn-sand: #d2d2bf;
+
+  /* Air's measured house curve (98 of its 107 curves) for every entrance; exits run ~60% of the entrance duration. */
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-quart: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-exit: cubic-bezier(0.32, 0, 0.67, 0);
+  --ease-scrub: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+
+  /* Air: 8px buttons are pills here, 4px inputs, flat cards with borders, no shadows. */
+  --radius-input: 4px;
+  --radius-card: 12px;
+}
+
+/* Semantic tokens: light sections (white surfaces, Air ink text). */
+:root {
+  color-scheme: light;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: var(--color-air-haze);
+  --text: var(--color-air-ink);
+  --text-muted: var(--color-mist-600);
+  --line: var(--color-mist-200);
+  --line-strong: var(--color-mist-300);
+  --accent: var(--color-crimson-500);
+  --accent-hover: var(--color-crimson-600);
+  --accent-press: var(--color-crimson-700);
+  --btn-text: #ffffff;
+  --accent-ink: var(--color-signal);
+  --accent-tint: var(--color-crimson-100);
+  --focus: var(--color-signal);
+  --logo-word: var(--color-air-ink);
+  --control-border: #848d98;
+  --glass: color-mix(in oklch, white 70%, transparent);
+  --glass-line: color-mix(in oklch, var(--color-air-ink) 10%, transparent);
+
+  --sky-gradient: linear-gradient(180deg, #0c2c55 0%, #123e73 30%, #1f5a99 70%, #2b6fb6 100%);
+  --dawn-gradient: linear-gradient(180deg, #90bad7 0%, #b3d4e7 20%, #bfd2d3 44%, #d2d2bf 66%, #e3d2ad 84%, #f5d6a2 100%);
+  /* Dark theme's dawn: deep sky with a faint apricot glow at the horizon. */
+  --dusk-gradient: radial-gradient(100% 70% at 50% 100%, color-mix(in oklch, var(--color-dawn-200) 28%, transparent), transparent 80%), linear-gradient(180deg, #0c2c55 0%, #123e73 50%, #1f5a99 100%);
+  /* Sky system: the sky visible around and between white sheets. */
+  --sheet-gap-x: clamp(0.75rem, 2vw, 2rem);
+  --sheet-gap-y: clamp(0.75rem, 2.2vw, 2.25rem);
+
+  --z-raised: 10;
+  --z-sticky: 100;
+  --z-overlay: 200;
+  --z-modal: 300;
+  --z-toast: 400;
+
+  --gutter: clamp(1.25rem, 0.6rem + 2.6vw, 3rem);
+  --section-y: clamp(5rem, 3rem + 8vw, 9rem);
+  --section-y-dense: clamp(3.5rem, 2rem + 5vw, 6rem);
+  --header-h: 4.5rem;
+}
+
+/* Sky bands (Air's blue sky): white type, white pill buttons, frosted glass panels. */
+[data-theme="dark"],
+.band-night {
+  color-scheme: dark;
+  --bg: var(--color-sky-deep);
+  --surface: color-mix(in oklch, white 10%, transparent);
+  --surface-2: color-mix(in oklch, white 16%, transparent);
+  --text: #ffffff;
+  --text-muted: #d4e2f1;
+  --line: color-mix(in oklch, white 22%, transparent);
+  --line-strong: color-mix(in oklch, white 45%, transparent);
+  --accent: #ffffff;
+  --accent-hover: #eaf2fb;
+  --accent-press: #dce8f5;
+  --btn-text: var(--color-air-ink);
+  --accent-ink: var(--color-crimson-300);
+  --accent-tint: color-mix(in oklch, white 14%, transparent);
+  --focus: #ffffff;
+  --logo-word: #ffffff;
+  --control-border: color-mix(in oklch, white 60%, transparent);
+  --glass: color-mix(in oklch, white 12%, transparent);
+  --glass-line: color-mix(in oklch, white 28%, transparent);
+}
+/* Dark theme page surfaces are opaque deep sky (never slate, never see-through). .band-night keeps its glass tokens above. */
+[data-theme='dark'] {
+  --bg: var(--color-ink-900);
+  --surface: var(--color-ink-850);
+  --surface-2: var(--color-ink-800);
+  --accent-tint: var(--color-ink-800);
+}
+
+.band-night {
+  background-color: var(--color-sky-deep);
+  background-image: var(--sky-gradient);
+  color: var(--text);
+}
+/* Deep-sky band as Air does it: the hero's cloud photo under the PageHero veil. Owners drop their own background. */
+.sky-photo {
+  background-color: var(--color-sky-deep);
+  background-image:
+    linear-gradient(180deg, color-mix(in oklab, var(--color-ink-900) 78%, transparent) 0%, color-mix(in oklab, var(--color-sky-deep) 62%, transparent) 55%, color-mix(in oklab, var(--color-sky-mid) 70%, transparent) 100%),
+    url('/3d/sky-1280.jpg');
+  background-image:
+    linear-gradient(180deg, color-mix(in oklab, var(--color-ink-900) 78%, transparent) 0%, color-mix(in oklab, var(--color-sky-deep) 62%, transparent) 55%, color-mix(in oklab, var(--color-sky-mid) 70%, transparent) 100%),
+    image-set(url('/3d/sky-2560.avif') type('image/avif'), url('/3d/sky-1280.jpg') type('image/jpeg'));
+  background-size: cover;
+  background-position: center 30%;
+}
+
+/* Dawn bands (Air's sunrise gradient): ink type on blue-to-apricot, white cards. */
+.band-dawn {
+  color-scheme: light;
+  --bg: #bfd2d3;
+  --surface: #ffffff;
+  --surface-2: color-mix(in oklch, white 60%, transparent);
+  --text: var(--color-air-ink);
+  --text-muted: #37414d;
+  --line: color-mix(in oklch, var(--color-air-ink) 12%, transparent);
+  --line-strong: color-mix(in oklch, var(--color-air-ink) 28%, transparent);
+  --accent: var(--color-crimson-500);
+  --accent-hover: var(--color-crimson-600);
+  --accent-press: var(--color-crimson-700);
+  --btn-text: #ffffff;
+  --accent-ink: var(--color-crimson-700);
+  --accent-tint: color-mix(in oklch, white 55%, transparent);
+  --focus: var(--color-crimson-700);
+  --logo-word: var(--color-air-ink);
+  --glass: color-mix(in oklch, white 55%, transparent);
+  --glass-line: color-mix(in oklch, white 70%, transparent);
+  background-color: var(--bg);
+  background-image: var(--dawn-gradient);
+  color: var(--text);
+}
+
+.band-light {
+  color-scheme: light;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: var(--color-air-haze);
+  --text: var(--color-air-ink);
+  --text-muted: var(--color-mist-600);
+  --line: var(--color-mist-200);
+  --line-strong: var(--color-mist-300);
+  --accent: var(--color-crimson-500);
+  --accent-hover: var(--color-crimson-600);
+  --accent-press: var(--color-crimson-700);
+  --btn-text: #ffffff;
+  --accent-ink: var(--color-signal);
+  --accent-tint: var(--color-crimson-100);
+  --focus: var(--color-signal);
+  --logo-word: var(--color-air-ink);
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+[data-theme="dark"] .band-light,
+[data-theme="dark"] .band-dawn {
+  color-scheme: dark;
+  --bg: var(--color-ink-900);
+  --surface: var(--color-ink-850);
+  --surface-2: var(--color-ink-800);
+  --text: #ffffff;
+  --text-muted: #d4e2f1;
+  --line: color-mix(in oklch, white 14%, transparent);
+  --line-strong: color-mix(in oklch, white 30%, transparent);
+  --accent: #ffffff;
+  --accent-hover: #eaf2fb;
+  --accent-press: #dce8f5;
+  --btn-text: var(--color-air-ink);
+  --accent-ink: var(--color-crimson-300);
+  --accent-tint: var(--color-ink-800);
+  --focus: #ffffff;
+  --logo-word: #ffffff;
+  --glass: color-mix(in oklch, white 12%, transparent);
+  --glass-line: color-mix(in oklch, white 28%, transparent);
+}
+[data-theme="dark"] .band-light {
+  background-image: none;
+}
+/* Dark dawn is dusk: deep sky with a faint apricot horizon, never flattened to one navy. */
+[data-theme="dark"] .band-dawn {
+  background-image: var(--dusk-gradient);
+}
+
+/* ---------- Sky system (Air): one viewport-fixed sky that white sheets float on. Pages opt in with <Base sky>. ---------- */
+.air-sky {
+  display: none;
+}
+body.has-air-sky .air-sky {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  height: 100lvh;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--dawn-gradient);
+  transform: translateZ(0);
+}
+[data-theme='dark'] body.has-air-sky .air-sky {
+  background: var(--dusk-gradient);
+}
+body.has-air-sky {
+  background: transparent;
+}
+/* Safety net (zero specificity): blocks not yet converted stay opaque, so muted text never lands on raw sky. */
+:where(body.has-air-sky main > :not(.sheet, [class*='band-'], .page-hero, .hero, script, style)) {
+  background-color: var(--bg);
+}
+/* overflow: clip is not a scroll container, so sticky children (Services preview, Process intro) keep sticking. */
+body.has-air-sky .sheet {
+  --section-y: clamp(3rem, 1.5rem + 4vw, 5rem);
+  --section-y-dense: clamp(2.5rem, 1.5rem + 3vw, 4rem);
+  width: min(100% - 2 * var(--sheet-gap-x), 1340px);
+  margin-inline: auto;
+  border-radius: 16px;
+  background: var(--bg);
+  overflow: clip;
+}
+body.has-air-sky :is(.sheet, .hero, .page-hero, .band-night) + .sheet {
+  margin-top: var(--sheet-gap-y);
+}
+body.has-air-sky main > .sheet:last-child {
+  margin-bottom: var(--sheet-gap-y);
+}
+body.has-air-sky .sheet .container-g {
+  width: min(100% - 2 * clamp(1rem, 0.4rem + 2.6vw, 3rem), 1240px);
+}
+/* Dawn bands become windows onto the one sky. */
+body.has-air-sky section.band-dawn {
+  background: transparent;
+}
+@media print {
+  .air-sky {
+    display: none !important;
+  }
+  body.has-air-sky {
+    background: #fff;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-text: var(--text);
+  --color-muted: var(--text-muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-tint: var(--accent-tint);
+}
+
+@layer base {
+  html {
+    background-color: var(--bg);
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+  }
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+  }
+  p, li, dd, blockquote {
+    text-wrap: pretty;
+  }
+  ::selection {
+    background: var(--color-signal);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+  [hidden] {
+    display: none !important;
+  }
+}
+
+@layer components {
+  .container-g {
+    width: min(100% - 2 * var(--gutter), 1240px);
+    margin-inline: auto;
+  }
+  .section-y {
+    padding-block: var(--section-y);
+  }
+  .section-y-dense {
+    padding-block: var(--section-y-dense);
+  }
+
+  .t-display {
+    font-size: clamp(2.6rem, 1.5rem + 4.6vw, 5.5rem);
+    font-weight: 560;
+    letter-spacing: -0.035em;
+    line-height: 0.98;
+  }
+  .t-h2 {
+    font-size: clamp(2rem, 1.3rem + 2.8vw, 3.5rem);
+    font-weight: 560;
+    letter-spacing: -0.03em;
+    line-height: 1.04;
+  }
+  .t-h3 {
+    font-size: clamp(1.375rem, 1.1rem + 1vw, 1.875rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .t-h4 {
+    font-size: 1.1875rem;
+    font-weight: 620;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+  /* Air's compressed uppercase statement (Control TNT → Archivo at 62% width). */
+  .t-mega {
+    font-family: "Archivo Wide", var(--font-sans);
+    font-size: clamp(3.75rem, 0.5rem + 6vw, 6rem);
+    font-weight: 850;
+    font-stretch: 62%;
+    letter-spacing: -0.01em;
+    line-height: 0.86;
+    text-transform: uppercase;
+  }
+  .t-lead {
+    font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+    line-height: 1.5;
+  }
+  .t-meta {
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    line-height: 1.4;
+  }
+  .t-label {
+    font-size: 0.8125rem;
+    font-weight: 650;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+  .t-num {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+  }
+  /* Consistent, upright Archivo throughout the interface. */
+  .accent {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: inherit;
+    font-size: 1em;
+    letter-spacing: inherit;
+    line-height: inherit;
+  }
+  /* Air's frosted panel over sky. */
+  .glass {
+    background: var(--glass);
+    border: 1px solid var(--glass-line);
+    border-radius: var(--radius-card);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    backdrop-filter: blur(18px) saturate(140%);
+  }
+  /* About 75 characters of Archivo (ch is measured on its wide zero, so 68ch ran 83 to 90). */
+  .measure {
+    max-width: 40rem;
+  }
+  /* Keeps phone numbers, hours and brand names in one piece. */
+  .nowrap {
+    white-space: nowrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 3rem;
+    padding: 0.8rem 1.4rem;
+    border-radius: 999px;
+    font-weight: 650;
+    font-size: 1rem;
+    line-height: 1.1;
+    letter-spacing: 0.005em;
+    text-decoration: none;
+    transition:
+      background-color 160ms var(--ease-out-quart),
+      color 160ms var(--ease-out-quart),
+      border-color 160ms var(--ease-out-quart),
+      transform 160ms var(--ease-out-quart);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn:active {
+    transform: scale(0.97);
+    transition-timing-function: var(--ease-exit);
+    transition-duration: 100ms;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--btn-text);
+  }
+  .btn-primary:hover {
+    background: var(--accent-hover);
+  }
+  .btn-primary:active {
+    background: var(--accent-press);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    box-shadow: inset 0 0 0 1px var(--line-strong);
+  }
+  .btn-secondary:hover {
+    box-shadow: inset 0 0 0 1px var(--text);
+  }
+  .btn .btn-arrow {
+    transition: transform 220ms var(--ease-out-expo);
+  }
+  .btn:hover .btn-arrow,
+  .link-arrow:hover .btn-arrow {
+    transform: translateX(4px);
+  }
+  .link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-weight: 650;
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-underline-offset: 0.3em;
+    text-decoration-thickness: 1px;
+    transition: text-decoration-color 160ms var(--ease-out-quart), color 160ms var(--ease-out-quart);
+  }
+  .link-arrow:hover {
+    text-decoration-color: var(--accent);
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text);
+  }
+  .sample-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    border: 1px dashed var(--line-strong);
+    color: var(--text-muted);
+    font-size: 0.6875rem;
+    font-weight: 650;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+  .hairline {
+    height: 1px;
+    background: var(--line);
+  }
+
+  .field {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.75rem 0.9rem;
+    border-radius: var(--radius-input);
+    border: 1px solid var(--control-border, var(--line-strong));
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+    font-size: 1rem;
+    transition: border-color 160ms var(--ease-out-quart), box-shadow 160ms var(--ease-out-quart);
+  }
+  .field::placeholder {
+    color: var(--text-muted);
+    opacity: 1;
+  }
+  .field:hover {
+    border-color: var(--text-muted);
+  }
+  .field:focus-visible {
+    outline: none;
+    border-color: var(--focus);
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--focus) 28%, transparent);
+  }
+  .field-label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+  }
+  /* Drawn checkbox: an outlined box that fills with the accent and shows a tick. Never pre-ticked (CASL).
+     In this layer so a component's own checkbox styles still win. */
+  input[type='checkbox'] {
+    appearance: none;
+    display: inline-grid;
+    place-content: center;
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0;
+    border: 1.5px solid var(--control-border);
+    border-radius: var(--radius-input);
+    background: var(--surface);
+    cursor: pointer;
+    transition:
+      background-color 160ms var(--ease-out-quart),
+      border-color 160ms var(--ease-out-quart);
+  }
+  input[type='checkbox']::before {
+    content: '';
+    width: 0.4rem;
+    height: 0.75rem;
+    margin-top: -0.15rem;
+    border: solid var(--btn-text);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg) scale(0);
+    transition: transform 160ms var(--ease-out-quart);
+  }
+  input[type='checkbox']:checked {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  input[type='checkbox']:checked::before {
+    transform: rotate(45deg) scale(1);
+  }
+  input[type='checkbox']:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+  }
+  @media (forced-colors: active) {
+    input[type='checkbox'] {
+      appearance: auto;
+    }
+  }
+
+  .logo-mark {
+    display: inline-block;
+    aspect-ratio: 260 / 200;
+    background-color: var(--logo-word);
+    -webkit-mask: url("/brand/mark-white.png") center / contain no-repeat;
+    mask: url("/brand/mark-white.png") center / contain no-repeat;
+  }
+  .logo-word {
+    display: inline-block;
+    aspect-ratio: 1135 / 62;
+    background-color: var(--logo-word);
+    -webkit-mask: url("/brand/wordmark-white.png") center / contain no-repeat;
+    mask: url("/brand/wordmark-white.png") center / contain no-repeat;
+  }
+  .logo-tagline {
+    display: inline-block;
+    aspect-ratio: 1135 / 39;
+    background-color: var(--text-muted);
+    -webkit-mask: url("/brand/tagline-white.png") center / contain no-repeat;
+    mask: url("/brand/tagline-white.png") center / contain no-repeat;
+  }
+}
+
+/* ---------- Motion (see DESIGN.md). Observer readiness is required before anything can be masked. ---------- */
+.motion-ok [data-reveal].is-reveal-ready {
+  opacity: 1;
+  transform: translate3d(0, 16px, 0);
+  transition:
+    opacity 500ms var(--ease-out-expo),
+    transform 600ms var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+/* Already on screen when JS starts: no replay. */
+.is-instant,
+.is-instant * {
+  transition: none !important;
+}
+.motion-ok [data-reveal="fade"].is-reveal-ready {
+  transform: none;
+}
+.motion-ok [data-reveal="media"].is-reveal-ready {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(6% 6% 6% 6% round var(--radius-card));
+  transition: clip-path 1000ms var(--ease-out-expo);
+}
+.motion-ok [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+.motion-ok [data-reveal="media"].is-in {
+  clip-path: inset(0 0 0 0 round var(--radius-card));
+}
+.motion-ok [data-reveal-mask] .rm-inner {
+  display: inline-block;
+}
+.motion-ok [data-reveal-mask].is-reveal-ready .rm-line {
+  display: block;
+  overflow: hidden;
+  padding-block-end: 0.08em;
+  margin-block-end: -0.08em;
+}
+.motion-ok [data-reveal-mask].is-reveal-ready .rm-inner {
+  transform: translate3d(0, 110%, 0);
+  transition: transform 650ms var(--ease-out-expo);
+  transition-delay: calc(var(--reveal-delay, 0ms) + var(--line-i, 0) * 70ms);
+}
+.motion-ok [data-reveal-mask].is-in .rm-inner {
+  transform: none;
+}
+/* The script word writes on with its own line: a left-to-right clip-path wipe, never blurred, never faded.
+   The clip margins (0.35em above and below, 0.1em at the sides) leave room for Pacifico's swashes and descenders. */
+.motion-ok [data-reveal-mask].is-reveal-ready .accent.rm-inner {
+  clip-path: inset(-0.35em 100% -0.35em -0.1em);
+  transition:
+    transform 650ms var(--ease-out-expo),
+    clip-path 560ms var(--ease-out-expo);
+  transition-delay: calc(var(--reveal-delay, 0ms) + var(--line-i, 0) * 70ms + 60ms);
+}
+.motion-ok [data-reveal-mask].is-in .accent.rm-inner {
+  clip-path: inset(-0.35em -0.1em -0.35em -0.1em);
+}
+
+/* Above-the-fold intros run from first paint in pure CSS and stay PAINTED from frame one (opacity 1, no clipping),
+   so the LCP text counts at first paint: a short blur-to-sharp rise, never a fade-in (Air verdict + LCP rule). */
+@keyframes rm-rise {
+  from {
+    transform: translate3d(0, 0.28em, 0);
+    filter: blur(6px);
+  }
+  to {
+    transform: none;
+    filter: none;
+  }
+}
+@keyframes rm-accent {
+  from {
+    transform: translate3d(0, 0.28em, 0);
+    clip-path: inset(-0.35em 100% -0.35em -0.1em);
+  }
+  to {
+    transform: none;
+    clip-path: inset(-0.35em -0.1em -0.35em -0.1em);
+  }
+}
+@keyframes reveal-rise {
+  from {
+    transform: translate3d(0, 12px, 0);
+    filter: blur(4px);
+  }
+  to {
+    transform: none;
+    filter: none;
+  }
+}
+.motion-ok [data-reveal-mask='load'] .rm-line {
+  overflow: visible;
+}
+.motion-ok [data-reveal-mask='load'] .rm-inner {
+  transition: none;
+  animation: rm-rise 560ms var(--ease-out-expo) both;
+  animation-delay: calc(var(--reveal-delay, 0ms) * 0.3 + var(--line-i, 0) * 60ms);
+}
+.motion-ok [data-reveal-mask='load'] .accent.rm-inner {
+  /* load intros never receive .is-in, so undo the scroll-reveal start state (clipped) here; the animation drives the wipe */
+  clip-path: none;
+  transition: none;
+  animation: rm-accent 560ms var(--ease-out-expo) both;
+  animation-delay: calc(var(--reveal-delay, 0ms) * 0.3 + var(--line-i, 0) * 60ms + 60ms);
+}
+.motion-ok [data-reveal='load'] {
+  opacity: 1;
+  transform: none;
+  transition: none;
+  animation: reveal-rise 520ms var(--ease-out-expo) both;
+  animation-delay: calc(var(--reveal-delay, 0ms) * 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-ok [data-reveal],
+  .motion-ok [data-reveal-mask] .rm-inner {
+    transform: none;
+    opacity: 1;
+    clip-path: none;
+    filter: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "width": 1440,
+    "pauseInFirstViewport": true,
+    "pausePixelsUnchanged": true,
+    "resume": true,
+    "film": {
+      "src": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-960.webm",
+      "ready": 4,
+      "paused": false
+    },
+    "errors": []
+  },
+  {
+    "width": 390,
+    "pauseInFirstViewport": true,
+    "pausePixelsUnchanged": true,
+    "resume": true,
+    "film": {
+      "src": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-960.mp4",
+      "ready": 4,
+      "paused": false
+    },
+    "errors": []
+  }
+]

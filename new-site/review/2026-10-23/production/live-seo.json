@@ -1,0 +1,36 @@
+{
+  "homeStatus": 200,
+  "xRobotsTag": "noindex, follow",
+  "canonical": [
+    "https://www.gforceit.ca/"
+  ],
+  "og": {
+    "og:type": "website",
+    "og:site_name": "G-Force IT Services",
+    "og:locale": "en_CA",
+    "og:title": "G-Force IT Services | Managed IT and IT Training in Toronto",
+    "og:description": "Proactive managed IT, cybersecurity, cloud and backup for Toronto small businesses, plus hands-on IT training in cloud, cybersecurity, AI, data and DevOps.",
+    "og:url": "https://www.gforceit.ca/",
+    "og:image": "https://www.gforceit.ca/og/og-default.jpg",
+    "og:image:alt": "G-Force IT Services. Dependable IT support and practical IT training.",
+    "og:image:width": "1200",
+    "og:image:height": "630",
+    "og:image:type": "image/jpeg"
+  },
+  "assets": [
+    {
+      "path": "/og/og-default.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 66554,
+      "matchesCommittedAsset": true
+    },
+    {
+      "path": "/brand/logo-schema.png",
+      "status": 200,
+      "contentType": "image/png",
+      "bytes": 63595,
+      "matchesCommittedAsset": true
+    }
+  ]
+}

@@ -1,0 +1,432 @@
+---
+// Home "Resources": the four migrated articles (one featured, three compact) with the newsletter beside them,
+// then the security checklist lead magnet, a paper sheet on cloud sky (.sky-photo, global.css).
+// CASL: newsletter consent is its own unticked box, before the button, with sender identity, and the exact consent
+// wording travels with the sign-up (consent_text), as the privacy policy promises.
+import SplitHeading from '../ui/SplitHeading.astro';
+import Icon from '../ui/Icon.astro';
+import BlogCard from '../BlogCard.astro';
+import { posts } from '../../data/posts';
+import { checklist, company } from '../../data/site';
+
+interface Props {
+  id?: string;
+}
+const { id = 'resources' } = Astro.props;
+
+const [featured, ...rest] = posts;
+const words = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen'];
+const count = (n: number) => words[n] ?? String(n);
+const capital = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+const total = checklist.length;
+const areas = new Set(checklist.map((c) => c.area)).size;
+
+// The preview sheet shows the real first items (the card edge cuts it off); the ticks only illustrate the page.
+const preview = checklist.slice(0, 8);
+const ticked = [0, 1, 3];
+// Non-breaking spaces keep the province and postal code together on one line.
+const address = `${company.address.street}, ${company.address.city}, ${company.address.region}\u00A0${company.address.postal.replace(' ', '\u00A0')}`;
+const consentText = 'Yes, email me G-Force\u2019s monthly IT security notes. I can unsubscribe at any time.';
+---
+<section id={id} class="resources section-y sheet" aria-labelledby={`${id}-title`}>
+  <div class="container-g">
+    <div class="res-head">
+      <SplitHeading id={`${id}-title`} as="h2" lines={['IT insights and', 'career guidance']} class="t-h2" />
+      <a class="link-arrow res-all" href="/blog/" data-reveal="fade" style="--reveal-delay: 300ms">
+        All articles
+        <span class="btn-arrow"><Icon name="arrow" size={18} /></span>
+      </a>
+    </div>
+
+    <div class="res-posts">
+      {featured && (
+        <div class="res-featured" data-reveal>
+          <BlogCard post={featured} variant="default" headingLevel="h3" />
+        </div>
+      )}
+
+      <div class="res-side">
+        {rest.length > 0 && (
+          <ul class="res-list" role="list" data-stagger style="--reveal-delay: 120ms">
+            {rest.map((p) => (
+              <li>
+                <BlogCard post={p} variant="compact" headingLevel="h3" />
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <div class="newsletter" data-reveal style="--reveal-delay: 200ms">
+          <h3 id={`${id}-nl-title`} class="t-h4">One email a month</h3>
+          <p class="nl-text">Practical IT security notes for small offices, plus new articles from the blog.</p>
+          <form class="nl-form" data-lead-form="newsletter" novalidate aria-labelledby={`${id}-nl-title`}>
+            <label for={`${id}-nl-email`} class="field-label">Email address</label>
+            <input
+              id={`${id}-nl-email`}
+              name="email"
+              type="email"
+              class="field nl-email"
+              autocomplete="email"
+              placeholder="you@company.ca"
+              required
+              data-error="Enter your email address, like name@company.ca."
+            />
+            <label class="consent" for={`${id}-nl-consent`}>
+              <input
+                id={`${id}-nl-consent`}
+                type="checkbox"
+                name="consent"
+                value="yes"
+                required
+                data-error="Tick the box to confirm you want the monthly email."
+              />
+              <span>{consentText}</span>
+            </label>
+            <input type="hidden" name="consent_text" value={consentText} />
+            <button class="btn btn-primary nl-submit" type="submit">Subscribe</button>
+            <p class="nl-sender t-meta">
+              Sent by {company.legalName}, {address}. Read our <a href="/privacy/">privacy policy</a>.
+            </p>
+            <input type="text" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp" />
+            <p class="form-status t-meta" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <article class="magnet band-night sky-photo" aria-labelledby={`${id}-magnet-title`} data-reveal>
+      <div class="magnet-copy">
+        <h3 id={`${id}-magnet-title`} class="t-h3 magnet-title">IT Security Checklist for Small Businesses</h3>
+        <p class="magnet-text">
+          {capital(count(total))} checks in {count(areas)} areas, from backups and passwords to an incident plan, built around
+          the Canadian Centre for Cyber Security's baseline controls. Tick it online, then print it or save it as a PDF.
+        </p>
+        <ul class="magnet-facts t-meta" role="list">
+          <li><Icon name="check" size={16} />Free, no sign-up</li>
+          <li><Icon name="check" size={16} />Prints on one page</li>
+        </ul>
+        <a class="btn btn-primary magnet-cta" href="/resources/security-checklist/">
+          Get the checklist
+          <span class="btn-arrow"><Icon name="arrow" size={18} /></span>
+        </a>
+      </div>
+
+      <div class="magnet-sheet band-light" aria-hidden="true">
+        <div class="sheet-top">
+          <span class="logo-mark sheet-mark"></span>
+          <span class="sheet-brand">G-Force IT</span>
+          <span class="sheet-count t-num">{ticked.length} of {total} done</span>
+        </div>
+        <p class="sheet-title">IT security checklist</p>
+        <ul class="sheet-list">
+          {preview.map((c, i) => {
+            const t = ticked.indexOf(i);
+            return (
+              <li>
+                <span class:list={['sheet-box', { 'is-ticked': t > -1 }]} style={t > -1 ? `--t: ${t}` : undefined}>
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m5 12.5 4.2 4.2L19 7" />
+                  </svg>
+                </span>
+                <span class="sheet-text">{c.item}</span>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<style>
+  /* ---------- Head ---------- */
+  .res-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.25rem 2rem;
+  }
+  .res-all {
+    min-height: 2.75rem;
+  }
+
+  /* ---------- Articles and newsletter ---------- */
+  .res-posts {
+    display: grid;
+    gap: 2.5rem;
+    margin-top: clamp(2.5rem, 1.5rem + 3vw, 4rem);
+  }
+  .res-side {
+    display: grid;
+    gap: 2.5rem;
+    align-content: start;
+  }
+  /* Until the side column appears, the featured story takes a wider, shorter crop. */
+  @media (max-width: 1023.98px) {
+    .res-featured :global(.bc-media) {
+      aspect-ratio: 16 / 9;
+    }
+  }
+  .res-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    align-content: start;
+  }
+  .res-list > li + li {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .newsletter {
+    padding: 1.5rem;
+    border-radius: var(--radius-card);
+    background: var(--surface-2);
+  }
+  .nl-text {
+    margin-top: 0.4rem;
+    max-width: 44ch;
+    color: var(--text-muted);
+  }
+  .nl-form {
+    margin-top: 1.25rem;
+  }
+  .nl-email {
+    min-width: 0;
+  }
+  /* Consent first, then the button: the required box is read before anyone presses Subscribe. */
+  .nl-submit {
+    margin-top: 0.85rem;
+  }
+  .consent {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    min-height: 2.75rem;
+    margin-top: 0.85rem;
+    padding-block: 0.25rem;
+    font-size: 0.9375rem;
+    line-height: 1.45;
+    cursor: pointer;
+  }
+  .consent input {
+    flex: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin: 0.1rem 0 0;
+    accent-color: var(--accent);
+    cursor: pointer;
+  }
+  .nl-sender {
+    margin-top: 0.6rem;
+    color: var(--text-muted);
+  }
+  .nl-sender a {
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+  .nl-sender a:hover {
+    text-decoration-color: var(--accent);
+  }
+  .hp {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+  .form-status {
+    margin-top: 0.75rem;
+  }
+  .form-status:empty {
+    display: none;
+  }
+  .form-status[data-state='error'] {
+    color: var(--accent-ink);
+  }
+
+  /* ---------- Lead magnet ---------- */
+  .magnet {
+    --pad: clamp(1.75rem, 1rem + 3vw, 3.5rem);
+    position: relative;
+    display: grid;
+    gap: 2.25rem;
+    overflow: clip;
+    margin-top: clamp(3.5rem, 2.5rem + 4vw, 6rem);
+    padding: var(--pad) var(--pad) 0;
+    border-radius: var(--radius-card);
+  }
+  .magnet-copy {
+    display: grid;
+    gap: 1.25rem;
+    align-content: start;
+    justify-items: start;
+  }
+  .magnet-title {
+    max-width: 21ch;
+    color: var(--text);
+  }
+  .magnet-text {
+    max-width: 48ch;
+    color: var(--text-muted);
+  }
+  .magnet-facts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    color: var(--text);
+  }
+  .magnet-facts li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .magnet-facts :global(svg) {
+    color: var(--accent-ink);
+  }
+  .magnet-cta {
+    margin-top: 0.25rem;
+  }
+
+  /* A real page of the checklist, cut off by the card's bottom edge as if it continues below. */
+  .magnet-sheet {
+    align-self: end;
+    justify-self: center;
+    width: min(100%, 25rem);
+    max-height: 15.5rem;
+    overflow: hidden;
+    padding: 1.25rem 1.25rem 0;
+    border-radius: 6px 6px 0 0;
+    background: var(--surface);
+    color: var(--text);
+  }
+  .sheet-top {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.75rem;
+    line-height: 1.2;
+  }
+  .sheet-mark {
+    height: 0.95rem;
+  }
+  .sheet-brand {
+    font-weight: 650;
+    letter-spacing: -0.01em;
+  }
+  .sheet-count {
+    margin-inline-start: auto;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+  .sheet-title {
+    margin-top: 0.85rem;
+    font-size: 1rem;
+    font-weight: 620;
+    letter-spacing: -0.01em;
+  }
+  .sheet-list {
+    list-style: none;
+    margin: 0.6rem 0 0;
+    padding: 0;
+  }
+  .sheet-list li {
+    display: grid;
+    grid-template-columns: 1rem minmax(0, 1fr);
+    gap: 0.65rem;
+    align-items: start;
+    padding-block: 0.55rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+  .sheet-list li:first-child {
+    border-top: 0;
+  }
+  .sheet-box {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 1rem;
+    height: 1rem;
+    margin-top: 0.05rem;
+    border-radius: 3px;
+    box-shadow: inset 0 0 0 1.5px var(--line-strong);
+    color: var(--btn-text);
+  }
+  .sheet-box svg {
+    position: relative;
+    width: 0.7rem;
+    height: 0.7rem;
+    visibility: hidden;
+  }
+  .sheet-box.is-ticked {
+    box-shadow: none;
+  }
+  .sheet-box.is-ticked::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--accent);
+  }
+  .sheet-box.is-ticked svg {
+    visibility: visible;
+  }
+
+  /* ---------- Motion: the sample ticks land one by one once the card is in view ---------- */
+  :global(.motion-ok) .sheet-box.is-ticked::before {
+    opacity: 0;
+    transition: opacity 180ms var(--ease-out-quart);
+    transition-delay: calc(500ms + var(--t, 0) * 240ms);
+  }
+  :global(.motion-ok) .sheet-box.is-ticked svg {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 300ms var(--ease-out-expo);
+    transition-delay: calc(580ms + var(--t, 0) * 240ms);
+  }
+  :global(.motion-ok) .magnet.is-in .sheet-box.is-ticked::before {
+    opacity: 1;
+  }
+  :global(.motion-ok) .magnet.is-in .sheet-box.is-ticked svg {
+    clip-path: inset(0 0 0 0);
+  }
+
+  /* ---------- Layout ---------- */
+  @media (min-width: 768px) {
+    .magnet {
+      grid-template-columns: minmax(0, 1fr) min(25rem, 44%);
+      column-gap: clamp(2.5rem, 1rem + 4vw, 5rem);
+      padding-bottom: 0;
+    }
+    .magnet-copy {
+      padding-bottom: var(--pad);
+    }
+    /* Size-contained, so the copy alone sets the card's height; the sheet fills it and runs off the bottom edge. */
+    .magnet-sheet {
+      contain: size;
+      width: 100%;
+      max-height: none;
+      align-self: stretch;
+      margin-top: 1.25rem;
+      margin-bottom: calc(-1 * var(--pad));
+    }
+  }
+  @media (min-width: 1024px) {
+    .res-posts {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      gap: 3.5rem;
+      align-items: start;
+    }
+  }
+</style>

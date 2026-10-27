@@ -1,0 +1,30 @@
+{
+  "base": "https://gforce-kappa.vercel.app",
+  "applicationCommit": "604cc16",
+  "rows": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "pass": true,
+      "continuesOnHover": true,
+      "noManualScrolling": true,
+      "reloadAtTop": true,
+      "introReplayed": true,
+      "backAfterReloadRestoresPosition": true,
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "pass": true,
+      "continuesOnHover": true,
+      "noManualScrolling": true,
+      "reloadAtTop": true,
+      "introReplayed": true,
+      "backAfterReloadRestoresPosition": true,
+      "errors": []
+    }
+  ],
+  "deploymentId": "dpl_8Y6YqVWGUsaQeGWs3L2Ups8Nm1Jz",
+  "deploymentState": "Ready"
+}

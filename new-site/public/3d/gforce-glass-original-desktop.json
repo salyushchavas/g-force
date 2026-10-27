@@ -1,0 +1,64 @@
+{
+  "version": 2,
+  "scale": 5.457313750753403,
+  "width": 10.914518356323242,
+  "height": 2.348759062588215,
+  "depth": 0.42500001192092896,
+  "encoding": {
+    "positions": "int16-normalized",
+    "normals": "int16-normalized",
+    "byteOrder": "little-endian",
+    "offsets": "bytes",
+    "lengths": "elements"
+  },
+  "meshes": [
+    {
+      "name": "name",
+      "count": 47316,
+      "vertexCount": 8404,
+      "positions": {
+        "offset": 0,
+        "length": 25212
+      },
+      "normals": {
+        "offset": 50424,
+        "length": 25212,
+        "type": "int16"
+      },
+      "indices": {
+        "offset": 100848,
+        "length": 47316,
+        "type": "uint16"
+      },
+      "union": {
+        "inputIslands": 7,
+        "unionIslands": 7,
+        "outlinePoints": 566
+      }
+    },
+    {
+      "name": "descriptor",
+      "count": 26736,
+      "vertexCount": 6746,
+      "positions": {
+        "offset": 195480,
+        "length": 20238
+      },
+      "normals": {
+        "offset": 235956,
+        "length": 20238,
+        "type": "int16"
+      },
+      "indices": {
+        "offset": 276432,
+        "length": 26736,
+        "type": "uint16"
+      },
+      "union": {
+        "inputIslands": 13,
+        "unionIslands": 13,
+        "outlinePoints": 560
+      }
+    }
+  ]
+}

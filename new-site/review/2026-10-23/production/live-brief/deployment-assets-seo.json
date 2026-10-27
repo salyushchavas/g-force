@@ -1,0 +1,53 @@
+{
+  "applicationCommit": "bb4f156859a7f13bc7697f366fa843d1f07f3ff7",
+  "base": "https://gforce-kappa.vercel.app",
+  "results": {
+    "/": {
+      "status": 200,
+      "robots": "noindex, follow",
+      "canonical": "https://www.gforceit.ca/",
+      "hasIntro": true
+    },
+    "/business/": {
+      "status": 200,
+      "robots": "noindex, follow",
+      "canonical": "https://www.gforceit.ca/business/",
+      "hasIntro": false
+    },
+    "/training/": {
+      "status": 200,
+      "robots": "noindex, follow",
+      "canonical": "https://www.gforceit.ca/training/",
+      "hasIntro": false
+    },
+    "/blog/building-a-career-in-cybersecurity/": {
+      "status": 200,
+      "robots": "noindex, follow",
+      "canonical": "https://www.gforceit.ca/blog/building-a-career-in-cybersecurity/",
+      "hasIntro": false
+    },
+    "/media/video/svc-cloud-backup-brief-640.mp4": {
+      "status": 200,
+      "bytes": 78608,
+      "matchesLocal": true
+    },
+    "/media/video/svc-training-brief-640.mp4": {
+      "status": 200,
+      "bytes": 105954,
+      "matchesLocal": true
+    },
+    "/media/img/security-key-laptop-640.avif": {
+      "status": 200,
+      "bytes": 2453,
+      "matchesLocal": true
+    },
+    "byteRange": {
+      "status": 206,
+      "contentRange": "bytes 0-1023/78608",
+      "length": 1024
+    }
+  },
+  "deploymentId": "dpl_8sLxo2BqjBHcAeuZNzh7koeGacFK",
+  "deploymentUrl": "https://gforce-j2c0zs3ag-koushik-s-workspace.vercel.app",
+  "deploymentState": "Ready"
+}

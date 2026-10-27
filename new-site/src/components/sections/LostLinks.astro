@@ -1,0 +1,122 @@
+---
+// The 404's six ways back and a one-click report of the broken link (the page's inline script adds the address).
+import Icon from '../ui/Icon.astro';
+import { company } from '../../data/site';
+
+const routes = [
+  { href: '/', label: 'Home', note: 'Start again from the home page' },
+  { href: '/business/', label: 'For businesses', note: 'Managed IT, cybersecurity, cloud and consulting' },
+  { href: '/training/', label: 'Training', note: 'Courses in cloud, cybersecurity, AI, data and DevOps' },
+  { href: '/it-health-check/', label: 'IT health check', note: 'Score your IT in five questions' },
+  { href: '/blog/', label: 'Resources', note: 'Guides and the security checklist' },
+  { href: '/contact/', label: 'Contact', note: 'Call, email or send us a message' },
+];
+interface Props {
+  /** Show the "Error 404" footnote (the white & crimson 404 names it in the breadcrumb instead). */
+  code?: boolean;
+}
+const { code = true } = Astro.props;
+const reportHref = `mailto:${company.email}?subject=${encodeURIComponent('Broken link')}`;
+---
+<nav class="lost" aria-label="Main pages">
+  <ul role="list">
+    {routes.map((r, i) => (
+      <li data-reveal="load" style={`--reveal-delay: ${560 + i * 60}ms`}>
+        <a href={r.href}>
+          <span class="lost-label">{r.label}</span>
+          <span class="lost-note">{r.note}</span>
+          <span class="lost-arrow" aria-hidden="true"><Icon name="arrow" size={22} /></span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+<p class="lost-help" data-reveal="load" style="--reveal-delay: 920ms">
+  Followed a link here? <a href={reportHref} data-report-link>Tell us about this link</a>.
+  Need help now? Call <a href={company.phoneHref}>{company.phoneDisplay}</a>.
+</p>
+{code && <p class="lost-code t-meta">Error 404</p>}
+
+<style>
+  .lost {
+    margin-top: clamp(2rem, 1.5rem + 2vw, 3rem);
+    max-width: 52rem;
+  }
+  .lost ul {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--line);
+  }
+  .lost a {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.15rem 1.5rem;
+    align-items: center;
+    min-height: 2.75rem;
+    padding-block: 1rem;
+    border-bottom: 1px solid var(--line);
+    color: var(--text);
+    text-decoration: none;
+  }
+  .lost-label {
+    font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+  }
+  .lost-note {
+    grid-column: 1;
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+  }
+  .lost-arrow {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    display: grid;
+    color: var(--text-muted);
+    transition:
+      transform 220ms var(--ease-out-expo),
+      color 160ms var(--ease-out-quart);
+  }
+  .lost a:hover .lost-label {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--accent-ink);
+    text-underline-offset: 0.2em;
+  }
+  .lost a:hover .lost-arrow {
+    transform: translateX(4px);
+    color: var(--accent-ink);
+  }
+  .lost-help {
+    max-width: 52ch;
+    margin-top: 1.75rem;
+    color: var(--text-muted);
+  }
+  /* Underlined, not colour alone, so the links stand out from the sentence around them (WCAG 1.4.1). */
+  .lost-help a {
+    color: var(--text);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    white-space: nowrap;
+  }
+  .lost-help a:hover {
+    text-decoration-color: var(--accent-ink);
+  }
+  .lost-code {
+    margin-top: 1.25rem;
+    color: var(--text-muted);
+  }
+
+  @media (min-width: 768px) {
+    .lost ul {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 2.5rem;
+    }
+  }
+</style>

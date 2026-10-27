@@ -1,0 +1,27 @@
+[
+  {
+    "device": "desktop",
+    "frames": {
+      "count": 269,
+      "p50": 16.699999999999818,
+      "p95": 16.799999999999272,
+      "max": 16.80000000000109,
+      "over33ms": 0
+    },
+    "previewLoading": {
+      "beforeHover": 0,
+      "afterHover": 1,
+      "pass": true
+    }
+  },
+  {
+    "device": "mobile",
+    "frames": {
+      "count": 269,
+      "p50": 16.699999999999818,
+      "p95": 16.799999999999272,
+      "max": 16.80000000000109,
+      "over33ms": 0
+    }
+  }
+]

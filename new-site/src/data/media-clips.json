@@ -1,0 +1,128 @@
+[
+  {
+    "slot": "svc-managed-it",
+    "kind": "video",
+    "title": "A technician seating a network lead in a labelled patch panel",
+    "width": 960,
+    "height": 540,
+    "duration": 4,
+    "objectPosition": "50% 50%",
+    "sources": {
+      "mp4": "/media/video/svc-managed-it-brief-960.mp4",
+      "mp4Mobile": "/media/video/svc-managed-it-brief-640.mp4",
+      "poster": {
+        "avif": "/media/img/svc-managed-it-brief-poster.avif",
+        "webp": "/media/img/svc-managed-it-brief-poster.webp",
+        "jpg": "/media/img/svc-managed-it-brief-poster.jpg"
+      }
+    },
+    "credit": {
+      "author": "ListosParaRodar (Listos Para Rodar | Productora)",
+      "source": "Pixabay",
+      "page_url": "https://pixabay.com/videos/cable-network-connection-internet-197208/",
+      "license": "Pixabay Content License",
+      "license_url": "https://pixabay.com/service/license-summary/"
+    }
+  },
+  {
+    "slot": "svc-cloud-backup",
+    "kind": "video",
+    "title": "Storage drive units and activity indicators in a server rack",
+    "width": 960,
+    "height": 540,
+    "duration": 4,
+    "objectPosition": "50% 50%",
+    "sources": {
+      "mp4": "/media/video/svc-cloud-backup-brief-960.mp4",
+      "mp4Mobile": "/media/video/svc-cloud-backup-brief-640.mp4",
+      "poster": {
+        "avif": "/media/img/svc-cloud-backup-brief-poster.avif",
+        "webp": "/media/img/svc-cloud-backup-brief-poster.webp",
+        "jpg": "/media/img/svc-cloud-backup-brief-poster.jpg"
+      }
+    },
+    "credit": {
+      "author": "MrColo",
+      "source": "Pexels",
+      "page_url": "https://www.pexels.com/video/close-up-of-a-cpu-7140928/",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/"
+    }
+  },
+  {
+    "slot": "svc-training",
+    "kind": "video",
+    "title": "Instructor working through a problem with two learners in a library",
+    "sources": {
+      "mp4": "/media/video/svc-training-brief-960.mp4",
+      "mp4Mobile": "/media/video/svc-training-brief-640.mp4",
+      "poster": {
+        "avif": "/media/img/svc-training-brief-poster.avif",
+        "webp": "/media/img/svc-training-brief-poster.webp",
+        "jpg": "/media/img/svc-training-brief-poster.jpg"
+      }
+    },
+    "width": 960,
+    "height": 540,
+    "duration": 4,
+    "objectPosition": "73% 50%",
+    "credit": {
+      "author": "Kampus Production",
+      "source": "Pexels",
+      "page_url": "https://www.pexels.com/video/teacher-explaining-to-students-in-a-library-5940049/",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/"
+    },
+    "score": 7.5
+  },
+  {
+    "slot": "svc-consulting",
+    "kind": "video",
+    "title": "A small team discussing a project around a table in daylight",
+    "width": 960,
+    "height": 540,
+    "duration": 4,
+    "objectPosition": "50% 50%",
+    "sources": {
+      "mp4": "/media/video/svc-consulting-brief-960.mp4",
+      "mp4Mobile": "/media/video/svc-consulting-brief-640.mp4",
+      "poster": {
+        "avif": "/media/img/svc-consulting-brief-poster.avif",
+        "webp": "/media/img/svc-consulting-brief-poster.webp",
+        "jpg": "/media/img/svc-consulting-brief-poster.jpg"
+      }
+    },
+    "credit": {
+      "author": "fauxels",
+      "source": "Pexels",
+      "page_url": "https://www.pexels.com/video/group-of-people-having-business-meeting-in-office-space-3255321/",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/"
+    }
+  },
+  {
+    "slot": "sky-daylight",
+    "kind": "video",
+    "title": "White clouds crossing a bright blue daytime sky",
+    "width": 960,
+    "height": 540,
+    "duration": 4,
+    "objectPosition": "50% 50%",
+    "sources": {
+      "mp4": "/media/video/sky-daylight-brief-960.mp4",
+      "mp4Mobile": "/media/video/sky-daylight-brief-640.mp4",
+      "poster": {
+        "avif": "/media/img/sky-daylight-brief-poster.avif",
+        "webp": "/media/img/sky-daylight-brief-poster.webp",
+        "jpg": "/media/img/sky-daylight-brief-poster.jpg"
+      }
+    },
+    "credit": {
+      "author": "Alexander Lutkov",
+      "source": "Pexels",
+      "page_url": "https://www.pexels.com/video/blue-sky-with-white-clouds-timelapse-mode-1860175/",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/"
+    }
+  }
+]

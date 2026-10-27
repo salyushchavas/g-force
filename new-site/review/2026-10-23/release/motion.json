@@ -1,0 +1,46 @@
+[
+  {
+    "width": 1440,
+    "idle": {
+      "draws": 0,
+      "geometryRequests": 0
+    },
+    "startupMs": 163,
+    "noDrawsAtRest": true,
+    "noDrawsAfterExit": true,
+    "reversible": true,
+    "errors": [],
+    "longTasks": []
+  },
+  {
+    "width": 390,
+    "idle": {
+      "draws": 0,
+      "geometryRequests": 0
+    },
+    "startupMs": 97,
+    "noDrawsAtRest": true,
+    "noDrawsAfterExit": true,
+    "reversible": true,
+    "errors": [],
+    "longTasks": []
+  },
+  {
+    "fallback": "reduce",
+    "ready": false,
+    "posterVisible": true,
+    "posterLoaded": true
+  },
+  {
+    "fallback": "saveData",
+    "ready": false,
+    "posterVisible": true,
+    "posterLoaded": true
+  },
+  {
+    "fallback": "noWebGL",
+    "ready": false,
+    "posterVisible": true,
+    "posterLoaded": true
+  }
+]

@@ -1,0 +1,392 @@
+---
+// Services as an editorial index rather than a grid of icon cards (PDF: services with hover animation and "Learn more").
+// Desktop with a mouse: rows on the left, one sticky preview on the right. Hovering or focusing a row plays that
+// service's short silent clip and shows what's included. Touch screens and narrow windows: each row carries its clip inline,
+// played while in view. One <Video> per service serves both layouts: the row is its [data-hover-scope], so the shared player
+// handles hover, focus and in-view playback; on desktop the row box dissolves (display: contents) into the index grid.
+// Without JS the inline layout is used everywhere, so every service's details stay visible.
+import Video from '../ui/Video.astro';
+import SplitHeading from '../ui/SplitHeading.astro';
+import Icon from '../ui/Icon.astro';
+import { services } from '../../data/site';
+import { media } from '../../lib/media';
+
+const numberWords = ['No', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten'];
+const count = numberWords[services.length] ?? String(services.length);
+
+// Until a clip lands in the media manifest, the frame shows the service's own line icon on the night gradient.
+const hasMedia = (slot: string) => {
+  const s = media(slot)?.sources;
+  return Boolean(s && (s.mp4 || s.webm || s.srcset));
+};
+---
+<section id="services" class="services" aria-labelledby="services-title">
+  <div class="container-g">
+    <div class="svc-top">
+      <SplitHeading id="services-title" as="h2" lines={[`${count} services,`, 'one *accountable* team.']} class="t-h2 svc-title" />
+    </div>
+
+    <div class="svc-index" data-svc-index style={`--rows: ${services.length}`}>
+      {services.map((s, i) => (
+        <div
+          class="svc-row"
+          data-svc-row
+          data-hover-scope
+          data-active={i === 0 ? '' : undefined}
+          data-reveal
+          style={`--row: ${i + 1}`}
+        >
+          <div class="svc-cell" data-reveal style={`--reveal-delay: ${i * 70}ms`}>
+            <div class="svc-name">
+              <span class="svc-icon"><Icon name={s.icon} size={28} /></span>
+              <h3 class="t-h3" id={`svc-${s.id}`}>{s.name}</h3>
+            </div>
+            <p class="svc-summary">{s.summary}</p>
+            <a class="link-arrow svc-link" href={s.href}>
+              Learn more<span class="sr-only"> about {s.name}</span>
+              <span class="btn-arrow"><Icon name="arrow" size={18} /></span>
+            </a>
+          </div>
+
+          <div class="svc-media">
+            <div class="svc-stage">
+              <div class="svc-frame" data-reveal="media">
+                <Video slot={s.video} mode="hover" label={`${s.name} video`} class="svc-video" />
+                {!hasMedia(s.video) && (
+                  <span class="svc-frame-icon" aria-hidden="true"><Icon name={s.icon} size={56} /></span>
+                )}
+              </div>
+              <div class="svc-included">
+                <p class="svc-included-name" aria-hidden="true">{s.name}</p>
+                <ul class="svc-details" id={`svc-${s.id}-details`}>
+                  {s.details.map((d, j) => (
+                    <li style={`--i: ${j}`}><Icon name="check" size={18} /><span>{d}<span class="sr-only">.</span></span></li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+    <!-- Opt into the desktop preview while parsing, so the layout never switches after first paint. -->
+    <script is:inline>document.currentScript?.previousElementSibling?.setAttribute('data-enhanced', '');</script>
+  </div>
+</section>
+
+<script>
+  // The last row hovered or focused stays active, so the preview never snaps back when the pointer leaves the list.
+  // Keyboard focus wins over a resting mouse: when focus scrolls the page, the browser re-targets hover to whatever
+  // row slides under the still cursor, so hover is ignored until the pointer really moves again.
+  document.querySelectorAll<HTMLElement>('[data-svc-index]').forEach((index) => {
+    const rows = Array.from(index.querySelectorAll<HTMLElement>('[data-svc-row]'));
+    let keyboardLock = false;
+    let lastX = NaN;
+    let lastY = NaN;
+    const activate = (row: HTMLElement) => {
+      if (row.hasAttribute('data-active')) return;
+      for (const r of rows) r.toggleAttribute('data-active', r === row);
+    };
+    document.addEventListener(
+      'pointermove',
+      (e) => {
+        if (e.clientX !== lastX || e.clientY !== lastY) keyboardLock = false;
+        lastX = e.clientX;
+        lastY = e.clientY;
+      },
+      { passive: true },
+    );
+    for (const row of rows) {
+      const onPointer = () => {
+        if (!keyboardLock) activate(row);
+      };
+      row.addEventListener('pointerenter', onPointer);
+      row.addEventListener('pointermove', onPointer, { passive: true });
+      row.addEventListener('focusin', (e) => {
+        if ((e.target as HTMLElement).matches(':focus-visible')) keyboardLock = true;
+        activate(row);
+      });
+    }
+  });
+
+</script>
+
+<style>
+  .services {
+    background: var(--bg);
+    color: var(--text);
+    padding-block: var(--section-y);
+  }
+  .svc-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.25rem 2rem;
+    margin-bottom: clamp(2.5rem, 1.5rem + 3vw, 4rem);
+  }
+  /* SplitHeading renders the heading inside its own scope, so it is styled from a scoped parent. */
+  .svc-top :global(.svc-title .accent) {
+    color: var(--accent-ink);
+  }
+
+  /* ---------- Inline layout (default: touch screens, narrow windows, no JS) ---------- */
+  .svc-index {
+    border-bottom: 1px solid var(--line);
+  }
+  .svc-row {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-block: clamp(1.75rem, 1.25rem + 2vw, 2.5rem);
+    border-top: 1px solid var(--line);
+  }
+  /* The cell only becomes a box in the desktop preview layout; here its parts are ordered around the clip. */
+  .svc-cell {
+    display: contents;
+  }
+  .svc-name {
+    order: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+  .svc-icon {
+    display: inline-grid;
+    flex-shrink: 0;
+    color: var(--accent-ink);
+  }
+  .svc-summary {
+    order: 2;
+    max-width: 52ch;
+    color: var(--text-muted);
+  }
+  .svc-media {
+    order: 3;
+    margin-top: 0.5rem;
+  }
+  .svc-link {
+    order: 4;
+    align-self: flex-start;
+    min-height: 2.75rem;
+  }
+  .svc-frame {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-card);
+    background: var(--color-ink-900);
+  }
+  .svc-frame :global(.svc-video) {
+    position: absolute;
+    inset: 0;
+  }
+  .svc-frame-icon {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: color-mix(in oklch, var(--color-mist-100) 72%, transparent);
+  }
+  .svc-included-name {
+    display: none;
+  }
+  .svc-details {
+    display: grid;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .svc-details li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding-block: 0.6rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.9375rem;
+    line-height: 1.45;
+  }
+  .svc-details :global(svg) {
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+    color: var(--accent-ink);
+  }
+
+  /* Phone visitors get the service, its film and a clear next step. The full inclusion lists live on the
+     service pages; repeating all five here added more than a screenful to the mobile index. */
+  @media (max-width: 639px) {
+    .svc-included {
+      display: none;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .svc-stage {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: clamp(1.25rem, 0.5rem + 2vw, 2.5rem);
+      align-items: start;
+    }
+    .svc-details {
+      margin-top: 0;
+    }
+    .svc-details li:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+  }
+
+  /* ---------- Desktop with a mouse: index on the left, one sticky preview on the right ---------- */
+  @media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+    /* Stretch over the desktop text cell only. On touch, a row-wide link would
+       intercept the film's own play/pause button. */
+    .svc-index[data-enhanced] .svc-link::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+    .svc-index[data-enhanced] {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      grid-template-rows: repeat(var(--rows), auto);
+      border-bottom: 0;
+    }
+    .svc-index[data-enhanced] .svc-row {
+      display: contents;
+    }
+    .svc-index[data-enhanced] .svc-cell {
+      grid-column: 1;
+      grid-row: var(--row);
+      position: relative;
+      isolation: isolate;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-areas:
+        'name link'
+        'summary summary';
+      align-items: center;
+      gap: 0.5rem 1.5rem;
+      /* The right padding bridges the gap to the preview, so the pointer never crosses dead space on the way. */
+      padding: 1.6rem clamp(2rem, 0.5rem + 2.5vw, 3.5rem) 1.75rem 1rem;
+      border-top: 1px solid var(--line);
+    }
+    .svc-index[data-enhanced] .svc-row:last-child .svc-cell {
+      border-bottom: 1px solid var(--line);
+    }
+    /* Active row: the surface shifts and the icon takes the accent. */
+    .svc-index[data-enhanced] .svc-cell::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: var(--surface-2);
+      opacity: 0;
+      transition: opacity 320ms var(--ease-out-quart);
+    }
+    .svc-index[data-enhanced] .svc-row[data-active] .svc-cell::before {
+      opacity: 1;
+    }
+    .svc-index[data-enhanced] .svc-name {
+      grid-area: name;
+    }
+    .svc-index[data-enhanced] .svc-icon {
+      color: var(--text-muted);
+    }
+    .svc-index[data-enhanced] .svc-row[data-active] .svc-icon {
+      color: var(--accent-ink);
+    }
+    .svc-index[data-enhanced] .svc-summary {
+      grid-area: summary;
+      padding-inline-start: calc(28px + 0.85rem);
+    }
+    .svc-index[data-enhanced] .svc-link {
+      grid-area: link;
+      align-self: center;
+    }
+    .svc-index[data-enhanced] .svc-row[data-active] .svc-link {
+      text-decoration-color: var(--accent);
+    }
+    .svc-index[data-enhanced] .svc-link :global(.btn-arrow) {
+      transition: transform 220ms var(--ease-out-expo);
+    }
+    .svc-index[data-enhanced] .svc-row[data-active] .svc-link :global(.btn-arrow) {
+      transform: translateX(4px);
+    }
+
+    /* All previews share one grid area; only the active row's is shown. Text swaps at once (no overlapping copy). */
+    .svc-index[data-enhanced] .svc-media {
+      grid-column: 2;
+      grid-row: 1 / -1;
+      z-index: 0;
+      margin-top: 0;
+      visibility: hidden;
+    }
+    .svc-index[data-enhanced] .svc-row[data-active] .svc-media {
+      z-index: 1;
+      visibility: visible;
+    }
+    .svc-index[data-enhanced] .svc-included {
+      visibility: hidden;
+    }
+    .svc-index[data-enhanced] .svc-row[data-active] .svc-included {
+      visibility: visible;
+    }
+    .svc-index[data-enhanced] .svc-stage {
+      position: sticky;
+      top: calc(var(--header-h) + 1.5rem);
+      display: block;
+    }
+    .svc-index[data-enhanced] .svc-frame {
+      aspect-ratio: 16 / 10;
+    }
+    .svc-index[data-enhanced] .svc-included {
+      padding-top: 1.25rem;
+    }
+    .svc-index[data-enhanced] .svc-included-name {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 1.1875rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+    .svc-index[data-enhanced] .svc-details li:first-child {
+      border-top: 1px solid var(--line);
+      padding-top: 0.6rem;
+    }
+    /* Crossfade: the incoming clip fades in on top while the outgoing one holds underneath, then drops away. */
+    :global(.motion-ok) .svc-index[data-enhanced] .svc-media {
+      transition: visibility 0s linear 360ms;
+    }
+    :global(.motion-ok) .svc-index[data-enhanced] .svc-row[data-active] .svc-media {
+      transition: visibility 0s;
+    }
+    :global(.motion-ok) .svc-index[data-enhanced] .svc-frame {
+      opacity: 0;
+      transition:
+        opacity 0s linear 360ms,
+        clip-path 1000ms var(--ease-out-expo);
+    }
+    :global(.motion-ok) .svc-index[data-enhanced] .svc-row[data-active] .svc-frame {
+      opacity: 1;
+      transition:
+        opacity 360ms var(--ease-out-quart),
+        clip-path 1000ms var(--ease-out-expo);
+    }
+    /* What's included steps in after the clip, item by item. */
+    :global(.motion-ok) .svc-index[data-enhanced] .svc-details li {
+      opacity: 0;
+      transform: translate3d(0, 6px, 0);
+      transition:
+        opacity 380ms var(--ease-out-quart),
+        transform 520ms var(--ease-out-expo);
+    }
+    :global(.motion-ok) .svc-index[data-enhanced] .svc-row[data-active] .svc-details li {
+      opacity: 1;
+      transform: none;
+      transition-delay: calc(120ms + var(--i, 0) * 45ms);
+    }
+  }
+</style>

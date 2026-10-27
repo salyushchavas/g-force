@@ -1,0 +1,101 @@
+{
+  "base": "http://127.0.0.1:4404",
+  "rows": [
+    {
+      "engine": "chromium",
+      "width": 390,
+      "pass": true,
+      "keepsMovingOnHover": true,
+      "keepsMovingOnClick": true,
+      "keepsMovingOnWheel": true,
+      "keepsMovingOnTouch": false,
+      "manualScroll": false,
+      "buttons": 0,
+      "errors": []
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "pass": true,
+      "keepsMovingOnHover": true,
+      "keepsMovingOnClick": true,
+      "keepsMovingOnWheel": true,
+      "keepsMovingOnTouch": false,
+      "manualScroll": false,
+      "buttons": 0,
+      "errors": []
+    },
+    {
+      "engine": "chromium",
+      "fallback": "reduce",
+      "pass": true,
+      "state": {
+        "logos": 21,
+        "wrap": "wrap",
+        "animation": "none",
+        "scrollable": false,
+        "overflow": false
+      }
+    },
+    {
+      "engine": "chromium",
+      "fallback": "nojs",
+      "pass": true,
+      "state": {
+        "logos": 21,
+        "wrap": "wrap",
+        "animation": "none",
+        "scrollable": false,
+        "overflow": false
+      }
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "pass": true,
+      "keepsMovingOnHover": true,
+      "keepsMovingOnClick": true,
+      "keepsMovingOnWheel": false,
+      "keepsMovingOnTouch": true,
+      "manualScroll": false,
+      "buttons": 0,
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "pass": true,
+      "keepsMovingOnHover": true,
+      "keepsMovingOnClick": true,
+      "keepsMovingOnWheel": true,
+      "keepsMovingOnTouch": false,
+      "manualScroll": false,
+      "buttons": 0,
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "fallback": "reduce",
+      "pass": true,
+      "state": {
+        "logos": 21,
+        "wrap": "wrap",
+        "animation": "none",
+        "scrollable": false,
+        "overflow": false
+      }
+    },
+    {
+      "engine": "webkit",
+      "fallback": "nojs",
+      "pass": true,
+      "state": {
+        "logos": 21,
+        "wrap": "wrap",
+        "animation": "none",
+        "scrollable": false,
+        "overflow": false
+      }
+    }
+  ]
+}

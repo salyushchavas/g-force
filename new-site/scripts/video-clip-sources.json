@@ -1,0 +1,23 @@
+[
+  {
+    "slot": "svc-cloud-backup",
+    "downloadUrl": "https://videos.pexels.com/video-files/7140928/7140928-uhd_3840_2160_24fps.mp4",
+    "start": 1,
+    "duration": 4,
+    "title": "Storage drive units and activity indicators in a server rack",
+    "objectPosition": "50% 50%",
+    "filter": "eq=brightness=0.035:gamma=1.08",
+    "credit": {
+      "author": "MrColo",
+      "source": "Pexels",
+      "page_url": "https://www.pexels.com/video/close-up-of-a-cpu-7140928/",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/"
+    }
+  },
+  {
+    "slot": "svc-cybersecurity",
+    "omit": true,
+    "reason": "Replaced with responsive security-key photography in media-security.json; avoids an unrelated workplace film."
+  }
+]

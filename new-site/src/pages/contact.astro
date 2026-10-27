@@ -1,0 +1,223 @@
+---
+// /contact: the friendlier contact the PDF asked for. The cloud-sky hero carries the promise, the contact band
+// opens straight on the form and direct routes, then what happens after you write, and quick answers (the shared
+// FAQ section, with its FAQPage data).
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/ui/PageHero.astro';
+import SplitHeading from '../components/ui/SplitHeading.astro';
+import Icon from '../components/ui/Icon.astro';
+import ContactSection from '../components/sections/ContactSection.astro';
+import Faq from '../components/sections/Faq.astro';
+import { company, faqs } from '../data/site';
+
+// The free assessment, step by step. Timings and terms come from the FAQ and the hero offer in site.ts.
+const steps = [
+  { when: 'Now', title: 'You send a message', body: 'Name and email are all we need. Anything else you add helps us prepare.' },
+  { when: 'Within one business day', title: 'A person replies', body: 'By email, or by phone if you left a number, to find a time that suits you.' },
+  { when: 'Your first call', title: '30 minutes on how you work', body: 'What your team does, what has been going wrong and what you want to change. No sales pitch.' },
+  { when: 'After the call', title: 'A written report you keep', body: 'Your top risks and what fixing them would cost. It is yours whether or not you hire us.' },
+];
+
+const pick = ['What does the free IT assessment include?', 'How quickly do you respond', 'Do you only work with businesses in Toronto?', 'I have no IT background'];
+const questions = pick
+  .map((start) => faqs.find((f) => f.q.startsWith(start)))
+  .filter((f): f is (typeof faqs)[number] => Boolean(f));
+
+const origin = (Astro.site ?? new URL(company.url)).origin;
+const contactLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Contact G-Force IT Services',
+  url: `${origin}/contact/`,
+  about: { '@id': `${company.url}/#org` },
+};
+---
+<Base
+  title="Contact us and book a free IT assessment"
+  description={`Call ${company.phoneDisplay}, send a message or book a call. A person replies within one business day. Head office at 130 King Street West, Toronto.`}
+  nightHero
+  sky
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(contactLd)} />
+
+  <PageHero
+    tone="night"
+    lines={['Let’s discuss', 'your *IT needs.*']}
+    intro="Call during business hours, send a message any time, or book a call that suits you. Every message gets a reply from a person within one business day."
+  />
+
+  <ContactSection compact />
+
+  <section id="next-steps" class="next section-y sheet" aria-labelledby="next-title">
+    <div class="container-g">
+      <div class="next-head">
+        <SplitHeading id="next-title" as="h2" lines={['What happens next']} class="t-h2" />
+        <p class="t-lead next-intro" data-reveal style="--reveal-delay: 150ms">
+          Here is what to expect when you enquire about a free IT assessment.
+        </p>
+      </div>
+
+      <ol class="next-list" role="list" data-stagger>
+        {steps.map((s, i) => (
+          <li class:list={['next-step', { 'is-here': i === 0 }]}>
+            <p class="next-when t-meta">
+              <span class="next-stop" aria-hidden="true"></span>
+              {s.when}
+              {i === 0 && <span class="next-here">You are here</span>}
+            </p>
+            <h3 class="t-h4">{s.title}</h3>
+            <p class="next-body">{s.body}</p>
+          </li>
+        ))}
+      </ol>
+
+      <div class="next-note">
+        <Icon name="cap" size={20} />
+        <div>
+          <p>Asking about training instead? We reply with course details and can book a call to help you choose a track.</p>
+          <a class="link-arrow" href="/training/#course-finder">
+            Browse the courses
+            <span class="btn-arrow"><Icon name="arrow" size={18} /></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Faq id="contact-faq" items={questions} lines={['Quick answers']} />
+</Base>
+
+<style>
+  /* ---------- What happens next ---------- */
+  .next-head {
+    display: grid;
+    gap: 1.25rem;
+    margin-bottom: clamp(2.5rem, 2rem + 3vw, 4rem);
+  }
+  .next-intro {
+    max-width: 44ch;
+    color: var(--text-muted);
+  }
+  /* A route with stops, not a numbered list: the first stop is where the reader is standing. */
+  .next-list {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .next-step {
+    position: relative;
+    padding: 0 0 2.25rem 2rem;
+  }
+  .next-step::before {
+    content: '';
+    position: absolute;
+    top: 0.55rem;
+    bottom: 0;
+    left: 0.3rem;
+    width: 1px;
+    background: var(--line-strong);
+  }
+  .next-step:last-child {
+    padding-bottom: 0;
+  }
+  .next-step:last-child::before {
+    display: none;
+  }
+  .next-when {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
+    margin-bottom: 0.6rem;
+    color: var(--text-muted);
+  }
+  .next-stop {
+    position: absolute;
+    top: 0.3rem;
+    left: -2rem;
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 50%;
+    background: var(--bg);
+    box-shadow: inset 0 0 0 1.5px var(--line-strong);
+  }
+  .is-here .next-stop {
+    background: var(--accent);
+    box-shadow: 0 0 0 4px color-mix(in oklch, var(--accent) 22%, transparent);
+  }
+  .next-here {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    background: var(--accent-tint);
+    color: var(--text);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .next-step h3 {
+    margin-bottom: 0.45rem;
+  }
+  .next-body {
+    max-width: 34ch;
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+  .next-note {
+    display: grid;
+    grid-template-columns: 1.25rem minmax(0, 1fr);
+    gap: 0.85rem;
+    max-width: 64ch;
+    margin-top: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    color: var(--text-muted);
+  }
+  .next-note > :global(svg) {
+    margin-top: 0.2rem;
+    color: var(--accent-ink);
+  }
+  .next-note .link-arrow {
+    min-height: 2.75rem;
+    margin-top: 0.35rem;
+  }
+
+  @media (min-width: 768px) {
+    .next-list {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 2rem;
+    }
+    .next-step {
+      padding: 2rem 0 0;
+    }
+    .next-step::before {
+      top: 0.3rem;
+      bottom: auto;
+      left: 0.65rem;
+      right: -2rem;
+      width: auto;
+      height: 1px;
+    }
+    .next-step:last-child::before {
+      display: block;
+      right: 0;
+      background: linear-gradient(90deg, var(--line-strong), transparent);
+    }
+    .next-stop {
+      top: -1.95rem;
+      left: 0;
+    }
+  }
+  @media (min-width: 1024px) {
+    .next-head {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: end;
+      gap: 4rem;
+    }
+  }
+</style>

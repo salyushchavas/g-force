@@ -1,0 +1,531 @@
+{
+  "base": "http://127.0.0.1:4404",
+  "scope": "Five routes, two widths, both themes; normal motion; axe WCAG2/2.1/2.2AA; raw flags retained with fully visible filter recheck when applicable.",
+  "results": [
+    {
+      "route": "/",
+      "width": 390,
+      "theme": "light",
+      "motion": "normal",
+      "status": 200,
+      "errors": [],
+      "requestFailures": [],
+      "overflow": false,
+      "h1": 1,
+      "broken": [],
+      "fallbacks": 0,
+      "violations": [],
+      "focused": [
+        {
+          "scope": "selected Support panel and media control",
+          "violations": []
+        }
+      ]
+    },
+    {
+      "route": "/business/",
+      "width": 390,
+      "theme": "light",
+      "motion": "normal",
+      "status": 200,
+      "errors": [],
+      "requestFailures": [],
+      "overflow": false,
+      "h1": 1,
+      "broken": [],
+      "fallbacks": 0,
+      "violations": [],
+      "focused": []
+    },
+    {
+      "route": "/training/",
+      "width": 390,
+      "theme": "light",
+      "motion": "normal",
+      "status": 200,
+      "errors": [],
+      "requestFailures": [],
+      "overflow": false,
+      "h1": 1,
+      "broken": [],
+      "fallbacks": 0,
+      "violations": [
+        {
+          "id": "target-size",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".cf-group-goal > .cf-options > .cf-chip[type=\"button\"]:nth-child(1)"
+              ],
+              "summary": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 95.2px by 12.5px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 12.6px instead of at least 24px."
+            }
+          ]
+        }
+      ],
+      "focused": [
+        {
+          "scope": "fully visible course-goal filters",
+          "violations": [],
+          "targets": [
+            {
+              "text": "Cloud",
+              "rect": {
+                "x": 28.546875,
+                "y": 434.6875,
+                "width": 95.1875,
+                "height": 44,
+                "top": 434.6875,
+                "right": 123.734375,
+                "bottom": 478.6875,
+                "left": 28.546875
+              }
+            },
+            {
+              "text": "Cybersecurity",
+              "rect": {
+                "x": 131.734375,
+                "y": 434.6875,
+                "width": 150.796875,
+                "height": 44,
+                "top": 434.6875,
+                "right": 282.53125,
+                "bottom": 478.6875,
+                "left": 131.734375
+              }
+            },
+            {
+              "text": "AI",
+              "rect": {
+                "x": 290.53125,
+                "y": 434.6875,
+                "width": 68.859375,
+                "height": 44,
+                "top": 434.6875,
+                "right": 359.390625,
+                "bottom": 478.6875,
+                "left": 290.53125
+              }
+            },
+            {
+              "text": "Data",
+              "rect": {
+                "x": 28.546875,
+                "y": 486.6875,
+                "width": 86.296875,
+                "height": 44,
+                "top": 486.6875,
+                "right": 114.84375,
+                "bottom": 530.6875,
+                "left": 28.546875
+              }
+            },
+            {
+              "text": "DevOps",
+              "rect": {
+                "x": 122.84375,
+                "y": 486.6875,
+                "width": 109.984375,
+                "height": 44,
+                "top": 486.6875,
+                "right": 232.828125,
+                "bottom": 530.6875,
+                "left": 122.84375
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/contact/",
+      "width": 390,
+      "theme": "light",
+      "motion": "normal",
+      "status": 200,
+      "errors": [],
+      "requestFailures": [],
+      "overflow": false,
+      "h1": 1,
+      "broken": [],
+      "fallbacks": 0,
+      "violations": [],
+      "focused": []
+    },
+    {
+      "route": "/blog/",
+      "width": 390,
+      "theme": "light",
+      "motion": "normal",
+      "status": 200,
+      "errors": [],
+      "requestFailures": [],
+      "overflow": false,
+      "h1": 1,
+      "broken": [],
+      "fallbacks": 0,
+      "violations": [],
+      "focused": []
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "theme": "dark",
+      "motion": "normal",
+      "status": 200,
+      "errors": [],
+      "requestFailures": [],
+      "overflow": false,
+      "h1": 1,
+      "broken": [],
+      "fallbacks": 0,
+      "violations": [],
+      "focused": [
+        {
+          "scope": "selected Support panel and media control",
+          "violations": []
+        }
+      ]
+    },
+    {
+      "route": "/business/",
+      "width": 390,
+      "theme": "dark",
+      "motion": "normal",
+      "status": 200,
+      "errors": [],
+      "requestFailures": [],
+      "overflow": false,
+      "h1": 1,
+      "broken": [],
+      "fallbacks": 0,
+      "violations": [],
+      "focused": []
+    },
+    {
+      "route": "/training/",
+      "width": 390,
+      "theme": "dark",
+      "motion": "normal",
+      "status": 200,
+      "errors": [],
+      "requestFailures": [],
+      "overflow": false,
+      "h1": 1,
+      "broken": [],
+      "fallbacks": 0,
+      "violations": [
+        {
+          "id": "target-size",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".cf-group-goal > .cf-options > .cf-chip[type=\"button\"]:nth-child(1)"
+              ],
+              "summary": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 95.2px by 12.5px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 12.6px instead of at least 24px."
+            }
+          ]
+        }
+      ],
+      "focused": [
+        {
+          "scope": "fully visible course-goal filters",
+          "violations": [],
+          "targets": [
+            {
+              "text": "Cloud",
+              "rect": {
+                "x": 28.546875,
+                "y": 434.55438232421875,
+                "width": 95.1875,
+                "height": 44,
+                "top": 434.55438232421875,
+                "right": 123.734375,
+                "bottom": 478.55438232421875,
+                "left": 28.546875
+              }
+            },
+            {
+              "text": "Cybersecurity",
+              "rect": {
+                "x": 131.734375,
+                "y": 434.55438232421875,
+                "width": 150.796875,
+                "height": 44,
+                "top": 434.55438232421875,
+                "right": 282.53125,
+                "bottom": 478.55438232421875,
+                "left": 131.734375
+              }
+            },
+            {
+              "text": "AI",
+              "rect": {
+                "x": 290.53125,
+                "y": 434.55438232421875,
+                "width": 68.859375,
+                "height": 44,
+                "top": 434.55438232421875,
+                "right": 359.390625,
+                "bottom": 478.55438232421875,
+                "left": 290.53125
+              }
+            },
+            {
+              "text": "Data",
+              "rect": {
+                "x": 28.546875,
+                "y": 486.55438232421875,
+                "width": 86.296875,
+                "height": 44,
+                "top": 486.55438232421875,
+                "right": 114.84375,
+                "bottom": 530.5543823242188,
+                "left": 28.546875
+              }
+            },
+            {
+              "text": "DevOps",
+              "rect": {
+                "x": 122.84375,
+                "y": 486.55438232421875,
+                "width": 109.984375,
+                "height": 44,
+                "top": 486.55438232421875,
+                "right": 232.828125,
+                "bottom": 530.5543823242188,
+                "left": 122.84375
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/contact/",
+      "width": 390,
+      "theme": "dark",
+      "motion": "normal",
+      "status": 200,
+      "errors": [],
+      "requestFailures": [],
+      "overflow": false,
+      "h1": 1,
+      "broken": [],
+      "fallbacks": 0,
+      "violations": [],
+      "focused": []
+    },
+    {
+      "route": "/blog/",
+      "width": 390,
+      "theme": "dark",
+      "motion": "normal",
+      "status": 200,
+      "errors": [],
+      "requestFailures": [],
+      "overflow": false,
+      "h1": 1,
+      "broken": [],
+      "fallbacks": 0,
+      "violations": [],
+      "focused": []
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "theme": "light",
+      "motion": "normal",
+      "status": 200,
+      "errors": [],
+      "requestFailures": [],
+      "overflow": false,
+      "h1": 1,
+      "broken": [],
+      "fallbacks": 0,
+      "violations": [],
+      "focused": [
+        {
+          "scope": "selected Support panel and media control",
+          "violations": []
+        }
+      ]
+    },
+    {
+      "route": "/business/",
+      "width": 1440,
+      "theme": "light",
+      "motion": "normal",
+      "status": 200,
+      "errors": [],
+      "requestFailures": [],
+      "overflow": false,
+      "h1": 1,
+      "broken": [],
+      "fallbacks": 0,
+      "violations": [],
+      "focused": []
+    },
+    {
+      "route": "/training/",
+      "width": 1440,
+      "theme": "light",
+      "motion": "normal",
+      "status": 200,
+      "errors": [],
+      "requestFailures": [],
+      "overflow": false,
+      "h1": 1,
+      "broken": [],
+      "fallbacks": 0,
+      "violations": [],
+      "focused": []
+    },
+    {
+      "route": "/contact/",
+      "width": 1440,
+      "theme": "light",
+      "motion": "normal",
+      "status": 200,
+      "errors": [],
+      "requestFailures": [],
+      "overflow": false,
+      "h1": 1,
+      "broken": [],
+      "fallbacks": 0,
+      "violations": [],
+      "focused": []
+    },
+    {
+      "route": "/blog/",
+      "width": 1440,
+      "theme": "light",
+      "motion": "normal",
+      "status": 200,
+      "errors": [],
+      "requestFailures": [],
+      "overflow": false,
+      "h1": 1,
+      "broken": [],
+      "fallbacks": 0,
+      "violations": [],
+      "focused": []
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "theme": "dark",
+      "motion": "normal",
+      "status": 200,
+      "errors": [],
+      "requestFailures": [],
+      "overflow": false,
+      "h1": 1,
+      "broken": [],
+      "fallbacks": 0,
+      "violations": [],
+      "focused": [
+        {
+          "scope": "selected Support panel and media control",
+          "violations": []
+        }
+      ]
+    },
+    {
+      "route": "/business/",
+      "width": 1440,
+      "theme": "dark",
+      "motion": "normal",
+      "status": 200,
+      "errors": [],
+      "requestFailures": [],
+      "overflow": false,
+      "h1": 1,
+      "broken": [],
+      "fallbacks": 0,
+      "violations": [],
+      "focused": []
+    },
+    {
+      "route": "/training/",
+      "width": 1440,
+      "theme": "dark",
+      "motion": "normal",
+      "status": 200,
+      "errors": [],
+      "requestFailures": [],
+      "overflow": false,
+      "h1": 1,
+      "broken": [],
+      "fallbacks": 0,
+      "violations": [],
+      "focused": []
+    },
+    {
+      "route": "/contact/",
+      "width": 1440,
+      "theme": "dark",
+      "motion": "normal",
+      "status": 200,
+      "errors": [],
+      "requestFailures": [],
+      "overflow": false,
+      "h1": 1,
+      "broken": [],
+      "fallbacks": 0,
+      "violations": [],
+      "focused": []
+    },
+    {
+      "route": "/blog/",
+      "width": 1440,
+      "theme": "dark",
+      "motion": "normal",
+      "status": 200,
+      "errors": [],
+      "requestFailures": [],
+      "overflow": false,
+      "h1": 1,
+      "broken": [],
+      "fallbacks": 0,
+      "violations": [],
+      "focused": []
+    }
+  ],
+  "buildWindowRechecks": {
+    "reason": "Two requests coincided with rebuilding the static output; repeated after completion.",
+    "results": [
+      {
+        "route": "/business/",
+        "width": 1440,
+        "theme": "light",
+        "motion": "normal",
+        "status": 200,
+        "errors": [],
+        "requestFailures": [],
+        "overflow": false,
+        "h1": 1,
+        "broken": [],
+        "fallbacks": 0,
+        "violations": [],
+        "focused": []
+      },
+      {
+        "route": "/training/",
+        "width": 1440,
+        "theme": "light",
+        "motion": "normal",
+        "status": 200,
+        "errors": [],
+        "requestFailures": [],
+        "overflow": false,
+        "h1": 1,
+        "broken": [],
+        "fallbacks": 0,
+        "violations": [],
+        "focused": []
+      }
+    ]
+  }
+}

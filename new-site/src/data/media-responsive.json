@@ -1,0 +1,483 @@
+[
+  {
+    "slot": "img-office-team",
+    "kind": "image",
+    "title": "Small team working at a long oak table in a bright daylit office",
+    "sources": {
+      "srcset": {
+        "avif": [
+          "/media/img/img-office-team-640.avif",
+          "/media/img/img-office-team-responsive-800.avif",
+          "/media/img/img-office-team-1280.avif",
+          "/media/img/img-office-team-1920.avif"
+        ],
+        "webp": [
+          "/media/img/img-office-team-640.webp",
+          "/media/img/img-office-team-responsive-800.webp",
+          "/media/img/img-office-team-1280.webp",
+          "/media/img/img-office-team-1920.webp"
+        ],
+        "jpg": [
+          "/media/img/img-office-team-640.jpg",
+          "/media/img/img-office-team-responsive-800.jpg",
+          "/media/img/img-office-team-1280.jpg",
+          "/media/img/img-office-team-1920.jpg"
+        ]
+      },
+      "mobile": {
+        "avif": "/media/img/img-office-team-mobile-800.avif",
+        "webp": "/media/img/img-office-team-mobile-800.webp",
+        "jpg": "/media/img/img-office-team-mobile-800.jpg"
+      }
+    },
+    "width": 1920,
+    "height": 1080,
+    "objectPosition": "22% 50%",
+    "credit": {
+      "author": "CoWomen (@cowomen)",
+      "source": "Unsplash",
+      "page_url": "https://unsplash.com/photos/a-group-of-people-sitting-around-a-wooden-table-ZKHksse8tUU",
+      "license": "Unsplash License",
+      "license_url": "https://unsplash.com/license"
+    },
+    "score": 7.5
+  },
+  {
+    "slot": "img-helpdesk",
+    "kind": "image",
+    "title": "Support lead leaning in beside a headset colleague at her laptop",
+    "sources": {
+      "srcset": {
+        "avif": [
+          "/media/img/img-helpdesk-640.avif",
+          "/media/img/img-helpdesk-responsive-800.avif",
+          "/media/img/img-helpdesk-1280.avif",
+          "/media/img/img-helpdesk-1920.avif"
+        ],
+        "webp": [
+          "/media/img/img-helpdesk-640.webp",
+          "/media/img/img-helpdesk-responsive-800.webp",
+          "/media/img/img-helpdesk-1280.webp",
+          "/media/img/img-helpdesk-1920.webp"
+        ],
+        "jpg": [
+          "/media/img/img-helpdesk-640.jpg",
+          "/media/img/img-helpdesk-responsive-800.jpg",
+          "/media/img/img-helpdesk-1280.jpg",
+          "/media/img/img-helpdesk-1920.jpg"
+        ]
+      },
+      "mobile": {
+        "avif": "/media/img/img-helpdesk-mobile-800.avif",
+        "webp": "/media/img/img-helpdesk-mobile-800.webp",
+        "jpg": "/media/img/img-helpdesk-mobile-800.jpg"
+      }
+    },
+    "width": 1920,
+    "height": 1080,
+    "objectPosition": "73% 50%",
+    "credit": {
+      "author": "Jep Gambardella (@jep-gambardella)",
+      "source": "Pexels",
+      "page_url": "https://www.pexels.com/photo/man-and-woman-looking-at-a-laptop-7689854/",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/"
+    },
+    "score": 8
+  },
+  {
+    "slot": "img-learner",
+    "kind": "image",
+    "title": "Adult learner studying on a laptop at home at blue hour, warm string lights",
+    "sources": {
+      "srcset": {
+        "avif": [
+          "/media/img/img-learner-640.avif",
+          "/media/img/img-learner-responsive-800.avif",
+          "/media/img/img-learner-1280.avif",
+          "/media/img/img-learner-1600.avif"
+        ],
+        "webp": [
+          "/media/img/img-learner-640.webp",
+          "/media/img/img-learner-responsive-800.webp",
+          "/media/img/img-learner-1280.webp",
+          "/media/img/img-learner-1600.webp"
+        ],
+        "jpg": [
+          "/media/img/img-learner-640.jpg",
+          "/media/img/img-learner-responsive-800.jpg",
+          "/media/img/img-learner-1280.jpg",
+          "/media/img/img-learner-1600.jpg"
+        ]
+      },
+      "mobile": {
+        "avif": "/media/img/img-learner-mobile-800.avif",
+        "webp": "/media/img/img-learner-mobile-800.webp",
+        "jpg": "/media/img/img-learner-mobile-800.jpg"
+      }
+    },
+    "width": 1600,
+    "height": 900,
+    "objectPosition": "47% 50%",
+    "credit": {
+      "author": "Mohammad Shahhosseini (@mohammadshahhosseini)",
+      "source": "Unsplash",
+      "page_url": "https://unsplash.com/photos/woman-in-gray-long-sleeve-shirt-using-macbook-MUsyGmmdxuo",
+      "license": "Unsplash License",
+      "license_url": "https://unsplash.com/license"
+    },
+    "score": 8.5
+  },
+  {
+    "slot": "img-classroom",
+    "kind": "image",
+    "title": "Mid-career learner typing in a row of adult students at a long table",
+    "sources": {
+      "srcset": {
+        "avif": [
+          "/media/img/img-classroom-640.avif",
+          "/media/img/img-classroom-responsive-800.avif",
+          "/media/img/img-classroom-1280.avif",
+          "/media/img/img-classroom-1920.avif"
+        ],
+        "webp": [
+          "/media/img/img-classroom-640.webp",
+          "/media/img/img-classroom-responsive-800.webp",
+          "/media/img/img-classroom-1280.webp",
+          "/media/img/img-classroom-1920.webp"
+        ],
+        "jpg": [
+          "/media/img/img-classroom-640.jpg",
+          "/media/img/img-classroom-responsive-800.jpg",
+          "/media/img/img-classroom-1280.jpg",
+          "/media/img/img-classroom-1920.jpg"
+        ]
+      },
+      "mobile": {
+        "avif": "/media/img/img-classroom-mobile-800.avif",
+        "webp": "/media/img/img-classroom-mobile-800.webp",
+        "jpg": "/media/img/img-classroom-mobile-800.jpg"
+      }
+    },
+    "width": 1920,
+    "height": 1080,
+    "objectPosition": "35% 50%",
+    "credit": {
+      "author": "Pete Ryan (@cosell)",
+      "source": "Unsplash",
+      "page_url": "https://unsplash.com/photos/a-group-of-people-sitting-at-a-table-with-laptops-2uj65YGECks",
+      "license": "Unsplash License",
+      "license_url": "https://unsplash.com/license"
+    },
+    "score": 8
+  },
+  {
+    "slot": "img-toronto-day",
+    "kind": "image",
+    "title": "Toronto skyline from the Islands in soft low sun, mirror-calm water",
+    "sources": {
+      "srcset": {
+        "avif": [
+          "/media/img/img-toronto-day-640.avif",
+          "/media/img/img-toronto-day-responsive-800.avif",
+          "/media/img/img-toronto-day-1280.avif",
+          "/media/img/img-toronto-day-1920.avif"
+        ],
+        "webp": [
+          "/media/img/img-toronto-day-640.webp",
+          "/media/img/img-toronto-day-responsive-800.webp",
+          "/media/img/img-toronto-day-1280.webp",
+          "/media/img/img-toronto-day-1920.webp"
+        ],
+        "jpg": [
+          "/media/img/img-toronto-day-640.jpg",
+          "/media/img/img-toronto-day-responsive-800.jpg",
+          "/media/img/img-toronto-day-1280.jpg",
+          "/media/img/img-toronto-day-1920.jpg"
+        ]
+      },
+      "mobile": {
+        "avif": "/media/img/img-toronto-day-mobile-800.avif",
+        "webp": "/media/img/img-toronto-day-mobile-800.webp",
+        "jpg": "/media/img/img-toronto-day-mobile-800.jpg"
+      }
+    },
+    "width": 1920,
+    "height": 1080,
+    "objectPosition": "50% 50%",
+    "credit": {
+      "author": "Jan Weber (@itsjanweber)",
+      "source": "Unsplash",
+      "page_url": "https://unsplash.com/photos/body-of-water-near-city-buildings-during-daytime-DSxIjXSxjTI",
+      "license": "Unsplash License",
+      "license_url": "https://unsplash.com/license"
+    },
+    "score": 8.5
+  },
+  {
+    "slot": "img-toronto-night",
+    "kind": "image",
+    "title": "Toronto skyline at deep blue hour over silky water, CN Tower lit red",
+    "sources": {
+      "srcset": {
+        "avif": [
+          "/media/img/img-toronto-night-640.avif",
+          "/media/img/img-toronto-night-responsive-800.avif",
+          "/media/img/img-toronto-night-1280.avif",
+          "/media/img/img-toronto-night-1920.avif"
+        ],
+        "webp": [
+          "/media/img/img-toronto-night-640.webp",
+          "/media/img/img-toronto-night-responsive-800.webp",
+          "/media/img/img-toronto-night-1280.webp",
+          "/media/img/img-toronto-night-1920.webp"
+        ],
+        "jpg": [
+          "/media/img/img-toronto-night-640.jpg",
+          "/media/img/img-toronto-night-responsive-800.jpg",
+          "/media/img/img-toronto-night-1280.jpg",
+          "/media/img/img-toronto-night-1920.jpg"
+        ]
+      },
+      "mobile": {
+        "avif": "/media/img/img-toronto-night-mobile-800.avif",
+        "webp": "/media/img/img-toronto-night-mobile-800.webp",
+        "jpg": "/media/img/img-toronto-night-mobile-800.jpg"
+      }
+    },
+    "width": 1920,
+    "height": 1080,
+    "objectPosition": "50% 50%",
+    "credit": {
+      "author": "Frank Huang (@frankhme)",
+      "source": "Unsplash",
+      "page_url": "https://unsplash.com/photos/torontos-skyline-shines-at-night-over-the-water-KJWcpt41ayw",
+      "license": "Unsplash License",
+      "license_url": "https://unsplash.com/license"
+    },
+    "score": 9
+  },
+  {
+    "slot": "blog-future-jobs",
+    "kind": "image",
+    "title": "A developer at her desk beside a city-facing window",
+    "width": 1920,
+    "height": 1080,
+    "sources": {
+      "srcset": {
+        "avif": [
+          "/media/img/blog-future-jobs-air-640.avif",
+          "/media/img/blog-future-jobs-air-responsive-800.avif",
+          "/media/img/blog-future-jobs-air-1280.avif",
+          "/media/img/blog-future-jobs-air-1920.avif"
+        ],
+        "webp": [
+          "/media/img/blog-future-jobs-air-640.webp",
+          "/media/img/blog-future-jobs-air-responsive-800.webp",
+          "/media/img/blog-future-jobs-air-1280.webp",
+          "/media/img/blog-future-jobs-air-1920.webp"
+        ],
+        "jpg": [
+          "/media/img/blog-future-jobs-air-640.jpg",
+          "/media/img/blog-future-jobs-air-responsive-800.jpg",
+          "/media/img/blog-future-jobs-air-1280.jpg",
+          "/media/img/blog-future-jobs-air-1920.jpg"
+        ]
+      }
+    },
+    "credit": {
+      "author": "Christina Morillo",
+      "source": "Pexels",
+      "page_url": "https://www.pexels.com/photo/woman-sitting-while-operating-macbook-pro-1181676/",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/"
+    }
+  },
+  {
+    "slot": "blog-ai-automation",
+    "kind": "image",
+    "title": "Hands-on Python study on a laptop",
+    "width": 1920,
+    "height": 1080,
+    "sources": {
+      "srcset": {
+        "avif": [
+          "/media/img/blog-ai-automation-air-640.avif",
+          "/media/img/blog-ai-automation-air-responsive-800.avif",
+          "/media/img/blog-ai-automation-air-1280.avif",
+          "/media/img/blog-ai-automation-air-1920.avif"
+        ],
+        "webp": [
+          "/media/img/blog-ai-automation-air-640.webp",
+          "/media/img/blog-ai-automation-air-responsive-800.webp",
+          "/media/img/blog-ai-automation-air-1280.webp",
+          "/media/img/blog-ai-automation-air-1920.webp"
+        ],
+        "jpg": [
+          "/media/img/blog-ai-automation-air-640.jpg",
+          "/media/img/blog-ai-automation-air-responsive-800.jpg",
+          "/media/img/blog-ai-automation-air-1280.jpg",
+          "/media/img/blog-ai-automation-air-1920.jpg"
+        ]
+      }
+    },
+    "credit": {
+      "author": "Christina Morillo",
+      "source": "Pexels",
+      "page_url": "https://www.pexels.com/photo/woman-programming-on-a-notebook-1181359/",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/"
+    }
+  },
+  {
+    "slot": "case-accounting",
+    "kind": "image",
+    "title": "Illustrative accounting desk with calculator and paperwork",
+    "width": 1920,
+    "height": 1080,
+    "sources": {
+      "srcset": {
+        "avif": [
+          "/media/img/case-accounting-air-640.avif",
+          "/media/img/case-accounting-air-responsive-800.avif",
+          "/media/img/case-accounting-air-1280.avif",
+          "/media/img/case-accounting-air-1920.avif"
+        ],
+        "webp": [
+          "/media/img/case-accounting-air-640.webp",
+          "/media/img/case-accounting-air-responsive-800.webp",
+          "/media/img/case-accounting-air-1280.webp",
+          "/media/img/case-accounting-air-1920.webp"
+        ],
+        "jpg": [
+          "/media/img/case-accounting-air-640.jpg",
+          "/media/img/case-accounting-air-responsive-800.jpg",
+          "/media/img/case-accounting-air-1280.jpg",
+          "/media/img/case-accounting-air-1920.jpg"
+        ]
+      }
+    },
+    "credit": {
+      "author": "Kaboompics",
+      "source": "Pexels",
+      "page_url": "https://www.pexels.com/photo/bookkeeper-writing-down-on-paper-while-using-calculator-4476378/",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/"
+    }
+  },
+  {
+    "slot": "case-clinic",
+    "kind": "image",
+    "title": "Illustrative dental practice with an empty treatment chair",
+    "width": 1920,
+    "height": 1080,
+    "sources": {
+      "srcset": {
+        "avif": [
+          "/media/img/case-clinic-air-640.avif",
+          "/media/img/case-clinic-air-responsive-800.avif",
+          "/media/img/case-clinic-air-1280.avif",
+          "/media/img/case-clinic-air-1920.avif"
+        ],
+        "webp": [
+          "/media/img/case-clinic-air-640.webp",
+          "/media/img/case-clinic-air-responsive-800.webp",
+          "/media/img/case-clinic-air-1280.webp",
+          "/media/img/case-clinic-air-1920.webp"
+        ],
+        "jpg": [
+          "/media/img/case-clinic-air-640.jpg",
+          "/media/img/case-clinic-air-responsive-800.jpg",
+          "/media/img/case-clinic-air-1280.jpg",
+          "/media/img/case-clinic-air-1920.jpg"
+        ]
+      }
+    },
+    "credit": {
+      "author": "Pavel Danilyuk",
+      "source": "Pexels",
+      "page_url": "https://www.pexels.com/photo/empty-dentist-office-6812461/",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/"
+    }
+  },
+  {
+    "slot": "case-manufacturing",
+    "kind": "image",
+    "title": "Illustrative production-line machinery in a factory",
+    "width": 1920,
+    "height": 1080,
+    "sources": {
+      "srcset": {
+        "avif": [
+          "/media/img/case-manufacturing-air-640.avif",
+          "/media/img/case-manufacturing-air-responsive-800.avif",
+          "/media/img/case-manufacturing-air-1280.avif",
+          "/media/img/case-manufacturing-air-1920.avif"
+        ],
+        "webp": [
+          "/media/img/case-manufacturing-air-640.webp",
+          "/media/img/case-manufacturing-air-responsive-800.webp",
+          "/media/img/case-manufacturing-air-1280.webp",
+          "/media/img/case-manufacturing-air-1920.webp"
+        ],
+        "jpg": [
+          "/media/img/case-manufacturing-air-640.jpg",
+          "/media/img/case-manufacturing-air-responsive-800.jpg",
+          "/media/img/case-manufacturing-air-1280.jpg",
+          "/media/img/case-manufacturing-air-1920.jpg"
+        ]
+      }
+    },
+    "credit": {
+      "author": "Vladimir Srajber",
+      "source": "Pexels",
+      "page_url": "https://www.pexels.com/photo/machinery-in-factory-18631420/",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/"
+    }
+  },
+  {
+    "slot": "blog-choose-training",
+    "kind": "image",
+    "title": "Mid-career learner typing in a row of adult students at a long table",
+    "sources": {
+      "srcset": {
+        "avif": [
+          "/media/img/img-classroom-640.avif",
+          "/media/img/img-classroom-responsive-800.avif",
+          "/media/img/img-classroom-1280.avif",
+          "/media/img/img-classroom-1920.avif"
+        ],
+        "webp": [
+          "/media/img/img-classroom-640.webp",
+          "/media/img/img-classroom-responsive-800.webp",
+          "/media/img/img-classroom-1280.webp",
+          "/media/img/img-classroom-1920.webp"
+        ],
+        "jpg": [
+          "/media/img/img-classroom-640.jpg",
+          "/media/img/img-classroom-responsive-800.jpg",
+          "/media/img/img-classroom-1280.jpg",
+          "/media/img/img-classroom-1920.jpg"
+        ]
+      },
+      "mobile": {
+        "avif": "/media/img/img-classroom-mobile-800.avif",
+        "webp": "/media/img/img-classroom-mobile-800.webp",
+        "jpg": "/media/img/img-classroom-mobile-800.jpg"
+      }
+    },
+    "width": 1920,
+    "height": 1080,
+    "objectPosition": "35% 50%",
+    "credit": {
+      "author": "Pete Ryan (@cosell)",
+      "source": "Unsplash",
+      "page_url": "https://unsplash.com/photos/a-group-of-people-sitting-at-a-table-with-laptops-2uj65YGECks",
+      "license": "Unsplash License",
+      "license_url": "https://unsplash.com/license"
+    },
+    "score": 8
+  }
+]

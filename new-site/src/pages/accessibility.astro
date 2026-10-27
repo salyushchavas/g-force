@@ -1,0 +1,476 @@
+---
+// Accessibility statement: WCAG 2.2 AA target, AODA context, known limitations and a real feedback channel.
+// Draft for legal review.
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/ui/PageHero.astro';
+import { company } from '../data/site';
+import { formatDate } from '../data/posts';
+
+const updated = '2026-10-23';
+const toc = [
+  { id: 'commitment', title: 'Our commitment' },
+  { id: 'status', title: 'Where we stand' },
+  { id: 'built-in', title: 'What we have built in' },
+  { id: 'limitations', title: 'Known limitations' },
+  { id: 'feedback', title: 'Tell us about a barrier' },
+  { id: 'technical', title: 'How the site is built' },
+  { id: 'about', title: 'About this statement' },
+];
+const title = (id: string) => toc.find((t) => t.id === id)?.title ?? id;
+
+const builtIn = [
+  {
+    name: 'Keyboard',
+    body: 'Every link, button, form and tool works with a keyboard, with a clearly visible focus outline. A “Skip to content” link starts every page.',
+  },
+  {
+    name: 'Screen readers',
+    body: 'Pages use landmarks and headings in order, every form field has a label, errors are explained in words next to the field, and results such as the health check score are announced.',
+  },
+  {
+    name: 'Colour and contrast',
+    body: 'Text meets the AA contrast ratios in both the light and dark themes, and colour is never the only way information is shown.',
+  },
+  {
+    name: 'Motion',
+    body: 'If your device is set to reduce motion, the opening animation is skipped and films stay on their posters until you choose Play. Automatic clips are brief, play once and stop when they leave view. The client-logo row shows a still, wrapped list when reduced motion is enabled.',
+  },
+  {
+    name: 'Zoom and small screens',
+    body: 'Pages are built to reflow on small screens and when zoomed, without sideways scrolling.',
+  },
+  {
+    name: 'Forms',
+    body: 'No time limits and no CAPTCHA puzzles. Spam is filtered in ways you won’t notice.',
+  },
+  {
+    name: 'Media',
+    body: 'Our films are silent and decorative, so they don’t need captions. Images that carry information have text alternatives.',
+  },
+  {
+    name: 'Light and dark',
+    body: 'Choose a light or dark theme from the header. Until you do, the site follows your device setting.',
+  },
+];
+---
+<Base
+  title="Accessibility statement"
+  description="How gforceit.ca works toward WCAG 2.2 Level AA, what we know still needs work, and how to tell us about a barrier. A person replies within one business day."
+>
+  <div class="legal">
+    <PageHero
+      tone="light"
+      lines={['Accessibility statement']}
+      intro="We want everyone to be able to use this site, including people who use a keyboard, a screen reader, magnification or voice control. Here is where we stand, and how to tell us about a problem."
+    >
+      <div class="legal-meta">
+        <p class="legal-updated t-meta">Last updated <time datetime={updated}>{formatDate(updated)}</time></p>
+      </div>
+    </PageHero>
+
+    <div class="legal-body">
+      <div class="container-g legal-grid">
+        <nav class="legal-toc legal-toc-wide" aria-label="On this page">
+          <p class="legal-toc-title t-meta">On this page</p>
+          <ul role="list">{toc.map((t) => <li><a href={`#${t.id}`}>{t.title}</a></li>)}</ul>
+        </nav>
+        <nav class="legal-toc legal-toc-narrow" aria-label="On this page">
+          <details>
+            <summary>On this page</summary>
+            <ul role="list">{toc.map((t) => <li><a href={`#${t.id}`}>{t.title}</a></li>)}</ul>
+          </details>
+        </nav>
+
+        <article class="legal-prose">
+          <section id="commitment" aria-labelledby="commitment-h">
+            <h2 id="commitment-h">{title('commitment')}</h2>
+            <p>
+              We aim to meet the <a href="https://www.w3.org/TR/WCAG22/">Web Content Accessibility Guidelines (WCAG) 2.2</a> at Level AA
+              on every page of gforceit.ca.
+            </p>
+            <p>
+              In Ontario, the <em>Accessibility for Ontarians with Disabilities Act</em> (AODA) and its Integrated Accessibility Standards
+              require organizations with 50 or more employees to meet WCAG 2.0 Level AA on their websites. We hold this site to the
+              newer WCAG 2.2 standard whatever our size, and we follow the AODA’s customer service principles: dignity, independence,
+              integration and equal opportunity.
+            </p>
+          </section>
+
+          <section id="status" aria-labelledby="status-h">
+            <h2 id="status-h">{title('status')}</h2>
+            <p>
+              WCAG 2.2 Level AA is the target for this site. Automated checks and keyboard reviews support that work,
+              but do not establish accessibility for every person or assistive technology. The site has not had an independent
+              accessibility audit. Known limitations and a way to report barriers are listed below.
+            </p>
+          </section>
+
+          <section id="built-in" aria-labelledby="built-in-h">
+            <h2 id="built-in-h">{title('built-in')}</h2>
+            <dl class="legal-list">
+              {builtIn.map((b) => (
+                <div>
+                  <dt>{b.name}</dt>
+                  <dd>{b.body}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+
+          <section id="limitations" aria-labelledby="limitations-h">
+            <h2 id="limitations-h">{title('limitations')}</h2>
+            <ul>
+              <li>
+                <strong>Office map.</strong> The map comes from OpenStreetMap and may not work fully with a keyboard or screen reader.
+                The full address and a directions link are always shown next to it.
+              </li>
+              <li>
+                <strong>Online booking.</strong> If we connect a third-party booking calendar, its accessibility is outside our control.
+                You can always book by phone or email instead.
+              </li>
+              <li>
+                <strong>Saved checklists.</strong> When you save the security checklist as a PDF, your browser creates the file, so how
+                accessible it is depends on your browser. The checklist page itself is the most accessible version.
+              </li>
+            </ul>
+            <p>If one of these gets in your way, contact us and we will give you the information another way.</p>
+          </section>
+
+          <section id="feedback" aria-labelledby="feedback-h">
+            <h2 id="feedback-h">{title('feedback')}</h2>
+            <p>
+              If something on this site is hard to use, or you need information in another format such as large print or plain text,
+              please tell us:
+            </p>
+            <ul>
+              <li>Email <a href={`mailto:${company.email}?subject=Accessibility`}>{company.email}</a> with “Accessibility” in the subject line.</li>
+              <li>Call <a href={company.phoneHref}>{company.phoneDisplay}</a>, {company.hours.days}, {company.hours.local} ({company.hours.eastern}).</li>
+              <li>Write to {company.legalName}, {company.address.street}, {company.address.city}, {company.address.region} {company.address.postal}.</li>
+            </ul>
+            <p>
+              Tell us the page, what you were trying to do and, if you’re comfortable sharing it, the device or assistive technology you
+              use. A person replies within one business day and tells you what we will do about it.
+            </p>
+          </section>
+
+          <section id="technical" aria-labelledby="technical-h">
+            <h2 id="technical-h">{title('technical')}</h2>
+            <p>
+              The site is built with standard HTML, CSS and JavaScript. Pages and their content work without JavaScript; the interactive
+              tools, such as the health check, the course finder and the calculator, need it. It is designed for current versions of
+              Chrome, Edge, Firefox and Safari, and for assistive technology such as the NVDA, JAWS and VoiceOver screen readers.
+            </p>
+          </section>
+
+          <section id="about" aria-labelledby="about-h">
+            <h2 id="about-h">{title('about')}</h2>
+            <p>
+              This statement was prepared on <time datetime={updated}>{formatDate(updated)}</time>. We review it at least once a year,
+              and whenever the site changes in a way that affects accessibility.
+            </p>
+          </section>
+        </article>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  /* Legal pages (privacy, terms, accessibility) share this layout. Light by default; in the dark theme the
+     PageHero's light band follows the theme too, so the long read never flips to a bright page. */
+  :global([data-theme='dark']) .legal :global(.band-light) {
+    color-scheme: inherit;
+    --bg: inherit;
+    --surface: inherit;
+    --surface-2: inherit;
+    --text: inherit;
+    --text-muted: inherit;
+    --line: inherit;
+    --line-strong: inherit;
+    --accent: inherit;
+    --accent-hover: inherit;
+    --accent-press: inherit;
+    --btn-text: inherit;
+    --accent-ink: inherit;
+    --accent-tint: inherit;
+    --focus: inherit;
+    --logo-word: inherit;
+  }
+  .legal-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.5rem;
+    margin-top: 2rem;
+  }
+  .legal-draft {
+    padding: 0.55rem 1rem;
+    border: 1px dashed var(--line-strong);
+    border-radius: var(--radius-card);
+    background: var(--surface);
+    color: var(--text);
+    font-size: 0.9375rem;
+    line-height: 1.4;
+  }
+  .legal-updated {
+    color: var(--text-muted);
+  }
+  .legal-body {
+    padding-block: clamp(2rem, 1.5rem + 3vw, 4rem) var(--section-y);
+  }
+  .legal-grid {
+    display: grid;
+    gap: 2rem;
+  }
+
+  /* On this page: a sticky list beside the text on wide screens, a collapsed list on phones. */
+  .legal-toc ul {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .legal-toc a {
+    display: flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0.35rem 0 0.35rem 1rem;
+    border-left: 1px solid var(--line);
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.35;
+    text-decoration: none;
+    transition:
+      color 160ms var(--ease-out-quart),
+      border-color 160ms var(--ease-out-quart);
+  }
+  .legal-toc a:hover {
+    border-left-color: var(--text);
+    color: var(--text);
+  }
+  .legal-toc-title {
+    margin-bottom: 0.75rem;
+    color: var(--text);
+    font-weight: 650;
+  }
+  .legal-toc-wide {
+    display: none;
+  }
+  .legal-toc-narrow details {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    background: var(--surface);
+  }
+  .legal-toc-narrow summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 3rem;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-card);
+    font-weight: 650;
+    cursor: pointer;
+    list-style: none;
+  }
+  .legal-toc-narrow summary::-webkit-details-marker {
+    display: none;
+  }
+  .legal-toc-narrow summary::after {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-right: 0.25rem;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: translateY(-25%) rotate(45deg);
+    transition: transform 220ms var(--ease-out-expo);
+  }
+  .legal-toc-narrow details[open] summary::after {
+    transform: translateY(25%) rotate(225deg);
+  }
+  .legal-toc-narrow ul {
+    padding: 0 1rem 0.75rem;
+  }
+
+  /* Prose */
+  .legal-prose {
+    max-width: 68ch;
+    min-width: 0;
+  }
+  .legal-prose section {
+    scroll-margin-top: calc(var(--header-h) + 1.5rem);
+  }
+  .legal-prose section + section {
+    margin-top: clamp(2.25rem, 1.75rem + 2vw, 3.25rem);
+    padding-top: clamp(2.25rem, 1.75rem + 2vw, 3.25rem);
+    border-top: 1px solid var(--line);
+  }
+  .legal-prose h2 {
+    margin-bottom: 1rem;
+    font-size: clamp(1.375rem, 1.15rem + 0.9vw, 1.75rem);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+  }
+  .legal-prose h3 {
+    margin: 2rem 0 0.75rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .legal-prose p + p,
+  .legal-prose p + ul,
+  .legal-prose ul + p,
+  .legal-prose p + address,
+  .legal-prose address + p,
+  .legal-prose p + .legal-table {
+    margin-top: 1rem;
+  }
+  .legal-prose ul {
+    display: grid;
+    gap: 0.6rem;
+    margin: 0;
+    padding-left: 1.2rem;
+    list-style: disc;
+  }
+  .legal-prose li {
+    padding-left: 0.25rem;
+  }
+  .legal-prose li::marker {
+    color: var(--accent-ink);
+  }
+  .legal-prose a {
+    color: var(--text);
+    font-weight: 550;
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.22em;
+    transition: color 160ms var(--ease-out-quart);
+  }
+  .legal-prose a:hover {
+    color: var(--accent-ink);
+  }
+  .legal-prose strong {
+    font-weight: 700;
+  }
+  .legal-prose code {
+    padding: 0.05rem 0.35rem;
+    border-radius: 4px;
+    background: var(--surface-2);
+    font-size: 0.9em;
+  }
+  .legal-prose .sample-badge {
+    margin-left: 0.15rem;
+    vertical-align: 0.1em;
+  }
+  .legal-list {
+    margin: 0;
+  }
+  .legal-list > div {
+    display: grid;
+    gap: 0.25rem;
+    padding-block: 1rem;
+    border-top: 1px solid var(--line);
+  }
+  .legal-list > div:first-child {
+    padding-top: 0.25rem;
+    border-top: 0;
+  }
+  .legal-list dt {
+    font-weight: 700;
+  }
+  .legal-list dd {
+    margin: 0;
+  }
+  .legal-address {
+    padding-left: 1rem;
+    border-left: 1px solid var(--line-strong);
+    font-style: normal;
+    line-height: 1.6;
+  }
+
+  /* Data table: three columns on wide screens; on phones each row becomes a labelled block. */
+  .legal-table {
+    width: 100%;
+    margin-top: 1.25rem;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+  .legal-table th,
+  .legal-table td {
+    padding: 0.95rem 1.25rem 0.95rem 0;
+    border-top: 1px solid var(--line);
+    text-align: left;
+    vertical-align: top;
+  }
+  .legal-table thead th {
+    padding-block: 0 0.65rem;
+    border-top: 0;
+    color: var(--text-muted);
+    font-size: 0.8125rem;
+    font-weight: 650;
+  }
+  .legal-table tbody th {
+    width: 24%;
+    font-weight: 700;
+  }
+  .legal-table td:last-child,
+  .legal-table th:last-child {
+    padding-right: 0;
+  }
+
+  @media (max-width: 719px) {
+    .legal-table thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+    .legal-table tr {
+      display: block;
+      padding-block: 1rem;
+      border-top: 1px solid var(--line);
+    }
+    .legal-table tbody th,
+    .legal-table td {
+      display: block;
+      width: auto;
+      padding: 0;
+      border: 0;
+    }
+    .legal-table td::before {
+      content: attr(data-label);
+      content: attr(data-label) / '';
+      display: block;
+      margin-top: 0.6rem;
+      color: var(--text-muted);
+      font-size: 0.8125rem;
+      font-weight: 650;
+    }
+  }
+  @media (min-width: 720px) {
+    .legal-list > div {
+      grid-template-columns: 11rem minmax(0, 1fr);
+      gap: 1.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .legal-grid {
+      grid-template-columns: 14.5rem minmax(0, 1fr);
+      gap: clamp(3rem, 6vw, 6rem);
+      align-items: start;
+    }
+    .legal-toc-wide {
+      display: block;
+      position: sticky;
+      top: calc(var(--header-h) + 2rem);
+    }
+    .legal-toc-narrow {
+      display: none;
+    }
+  }
+</style>

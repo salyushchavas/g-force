@@ -1,0 +1,627 @@
+[
+  {
+    "config": {
+      "name": "mobile",
+      "mobile": true
+    },
+    "errors": [],
+    "initial": {
+      "playing": 1,
+      "attached": 1,
+      "films": [
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": true,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+          "paused": false,
+          "time": 1.3839,
+          "ready": 4,
+          "shown": true,
+          "ambient": false,
+          "width": 640,
+          "frames": 38,
+          "dropped": 5
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        }
+      ],
+      "requests": [
+        {
+          "name": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+          "bytes": 187449,
+          "duration": 48.40000000037253
+        }
+      ]
+    },
+    "advancement": 0.9062000000000001,
+    "samples": [
+      {
+        "at": "row-2",
+        "playing": 1,
+        "attached": 2,
+        "films": [
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": true,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+            "paused": true,
+            "time": 2.9446,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 76,
+            "dropped": 5
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-cybersecurity-air-loop-mobile-640.mp4",
+            "paused": false,
+            "time": 0.4227,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 14,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          }
+        ],
+        "requests": [
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+            "bytes": 187449,
+            "duration": 48.40000000037253
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cybersecurity-air-loop-mobile-640.mp4",
+            "bytes": 161375,
+            "duration": 121.19999999925494
+          }
+        ]
+      },
+      {
+        "at": "row-3",
+        "playing": 1,
+        "attached": 3,
+        "films": [
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": true,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+            "paused": true,
+            "time": 2.9446,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 76,
+            "dropped": 5
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-cybersecurity-air-loop-mobile-640.mp4",
+            "paused": true,
+            "time": 0.5647,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 18,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-air-loop-mobile-640.mp4",
+            "paused": false,
+            "time": 0.2265,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 10,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          }
+        ],
+        "requests": [
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+            "bytes": 187449,
+            "duration": 48.40000000037253
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cybersecurity-air-loop-mobile-640.mp4",
+            "bytes": 161375,
+            "duration": 121.19999999925494
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-air-loop-mobile-640.mp4",
+            "bytes": 241737,
+            "duration": 349.69999999925494
+          }
+        ]
+      },
+      {
+        "at": "row-4",
+        "playing": 1,
+        "attached": 4,
+        "films": [
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": true,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+            "paused": true,
+            "time": 2.9446,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 76,
+            "dropped": 5
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-cybersecurity-air-loop-mobile-640.mp4",
+            "paused": true,
+            "time": 0.5647,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 18,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-air-loop-mobile-640.mp4",
+            "paused": true,
+            "time": 0.3594,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 13,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-training-mobile-640.mp4",
+            "paused": false,
+            "time": 0.2455,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 10,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          }
+        ],
+        "requests": [
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+            "bytes": 187449,
+            "duration": 48.40000000037253
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cybersecurity-air-loop-mobile-640.mp4",
+            "bytes": 161375,
+            "duration": 121.19999999925494
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-air-loop-mobile-640.mp4",
+            "bytes": 241737,
+            "duration": 349.69999999925494
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-training-mobile-640.mp4",
+            "bytes": 290388,
+            "duration": 300.80000000074506
+          }
+        ]
+      },
+      {
+        "at": "row-5",
+        "playing": 1,
+        "attached": 5,
+        "films": [
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": true,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+            "paused": true,
+            "time": 2.9446,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 76,
+            "dropped": 5
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-cybersecurity-air-loop-mobile-640.mp4",
+            "paused": true,
+            "time": 0.5647,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 18,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-air-loop-mobile-640.mp4",
+            "paused": true,
+            "time": 0.3594,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 13,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-training-mobile-640.mp4",
+            "paused": true,
+            "time": 0.3847,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 13,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-consulting-air-loop-mobile-640.mp4",
+            "paused": false,
+            "time": 0.2295,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 10,
+            "dropped": 0
+          }
+        ],
+        "requests": [
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+            "bytes": 187449,
+            "duration": 48.40000000037253
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cybersecurity-air-loop-mobile-640.mp4",
+            "bytes": 161375,
+            "duration": 121.19999999925494
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-air-loop-mobile-640.mp4",
+            "bytes": 241737,
+            "duration": 349.69999999925494
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-training-mobile-640.mp4",
+            "bytes": 290388,
+            "duration": 300.80000000074506
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-consulting-air-loop-mobile-640.mp4",
+            "bytes": 301508,
+            "duration": 311.2000000011176
+          }
+        ]
+      },
+      {
+        "at": "dawn",
+        "playing": 1,
+        "attached": 6,
+        "films": [
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": true,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+            "paused": false,
+            "time": 0.7586,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 23,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+            "paused": true,
+            "time": 2.9446,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 76,
+            "dropped": 5
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-cybersecurity-air-loop-mobile-640.mp4",
+            "paused": true,
+            "time": 0.5647,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 18,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-air-loop-mobile-640.mp4",
+            "paused": true,
+            "time": 0.3594,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 13,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-training-mobile-640.mp4",
+            "paused": true,
+            "time": 0.3847,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 13,
+            "dropped": 0
+          },
+          {
+            "src": "https://gforce-kappa.vercel.app/media/video/svc-consulting-air-loop-mobile-640.mp4",
+            "paused": true,
+            "time": 0.2579,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 11,
+            "dropped": 0
+          }
+        ],
+        "requests": [
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+            "bytes": 187449,
+            "duration": 48.40000000037253
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cybersecurity-air-loop-mobile-640.mp4",
+            "bytes": 161375,
+            "duration": 121.19999999925494
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-air-loop-mobile-640.mp4",
+            "bytes": 241737,
+            "duration": 349.69999999925494
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-training-mobile-640.mp4",
+            "bytes": 290388,
+            "duration": 300.80000000074506
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-consulting-air-loop-mobile-640.mp4",
+            "bytes": 301508,
+            "duration": 311.2000000011176
+          }
+        ]
+      }
+    ]
+  }
+]

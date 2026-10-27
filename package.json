@@ -1,0 +1,13 @@
+{
+  "name": "gforce-website",
+  "private": true,
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "dev": "npm --prefix new-site run dev",
+    "build": "npm --prefix new-site run build",
+    "preview": "npm --prefix new-site run preview",
+    "check:tokens": "npm --prefix new-site run check:tokens"
+  }
+}

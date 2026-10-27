@@ -1,0 +1,1021 @@
+---
+// Article layout for the Markdown pages in src/pages/blog/*.md.
+// Frontmatter: slug, title, excerpt, category, image, published, updated. Read time comes from posts.ts by slug.
+// A light editorial hero, the duotone cover, a 40rem reading column (about 76 characters) beside a sticky table of
+// contents, then one next step for the article's audience (posts.ts `audience`): learners get a dawn panel keyed
+// to the topic that opens the course finder already filtered, businesses get the assessment panel. Then the other
+// articles.
+import type { MarkdownLayoutProps } from 'astro';
+import Base from './Base.astro';
+import Picture from '../components/ui/Picture.astro';
+import Icon from '../components/ui/Icon.astro';
+import BlogCard from '../components/BlogCard.astro';
+import { posts, formatDate, audienceOf, type PostMeta } from '../data/posts';
+import { company, courses, hero, paths, type Course } from '../data/site';
+import { media, imageSets, largest } from '../lib/media';
+
+type Frontmatter = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  category: PostMeta['category'];
+  image: string;
+  published: string;
+  updated: string;
+};
+type Props = MarkdownLayoutProps<Frontmatter>;
+
+const { frontmatter, headings = [], rawContent } = Astro.props;
+const meta = posts.find((p) => p.slug === frontmatter.slug);
+
+// Unquoted YAML dates arrive as Date objects; normalize everything to YYYY-MM-DD.
+const isoDate = (value: unknown, fallback = '') =>
+  value instanceof Date ? value.toISOString().slice(0, 10) : typeof value === 'string' && value ? value.slice(0, 10) : fallback;
+
+const title = frontmatter.title ?? meta?.title ?? '';
+const excerpt = frontmatter.excerpt ?? meta?.excerpt ?? '';
+const category = frontmatter.category ?? meta?.category ?? 'Careers';
+const image = frontmatter.image ?? meta?.image ?? '';
+const published = isoDate(frontmatter.published, meta?.published ?? '');
+const updated = isoDate(frontmatter.updated, meta?.updated ?? published);
+const revised = Boolean(updated) && updated !== published;
+
+const words = (rawContent?.() ?? '')
+  .replace(/<[^>]+>/g, ' ')
+  .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+  .split(/\s+/)
+  .filter((w) => /[A-Za-z0-9]/.test(w)).length;
+const readMinutes = meta?.readMinutes ?? Math.max(1, Math.round(words / 220));
+
+const topicSlug = (c: string) => c.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const toc = headings.filter((h) => h.depth === 2);
+const others = posts
+  .filter((p) => p.slug !== frontmatter.slug)
+  .sort((a, b) => Number(b.category === category) - Number(a.category === category));
+
+// The next step under the article. Learner posts: one dawn panel whose heading follows the topic and whose button
+// opens the course finder filtered to that goal (CourseFinder reads ?goal= on load). Business posts: the assessment.
+const audience = audienceOf(meta);
+const topicHeading: Record<PostMeta['category'], string> = {
+  Cybersecurity: 'Start in cybersecurity with a plan',
+  'AI and automation': 'Start in AI and automation with a plan',
+  Careers: 'Start your IT career with a plan',
+  Training: 'Pick a program that fits your goal',
+};
+// Topics that map to one course-finder goal; the others open the whole catalogue.
+const topicGoal: Partial<Record<PostMeta['category'], { goal: Course['goal']; noun: string }>> = {
+  Cybersecurity: { goal: 'cybersecurity', noun: 'cybersecurity' },
+  'AI and automation': { goal: 'ai', noun: 'AI and machine learning' },
+};
+const listOf = (items: string[]) => (items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} and ${items.at(-1)}`);
+const topic = topicGoal[category];
+const goalCourses = topic ? courses.filter((c) => c.goal === topic.goal) : [];
+// "Cybersecurity Essentials (beginner, prepares you for CompTIA Security+) and ...", read from the catalogue.
+const courseLine = goalCourses
+  .map((c) => `${c.name} (${c.level}${c.certs.length ? `, prepares you for ${listOf(c.certs)}` : ''})`);
+const learnerNext = {
+  heading: topicHeading[category] ?? paths.learners.heading,
+  body: courseLine.length ? `${listOf(courseLine)}. Compare formats and levels in the course finder.` : paths.learners.body,
+  href: topic ? `/training/?goal=${topic.goal}#course-finder` : '/training/#course-finder',
+  label: topic ? `See the ${topic.noun} ${goalCourses.length === 1 ? 'course' : 'courses'}` : paths.learners.cta.label,
+};
+
+const site = Astro.site ?? new URL(company.url);
+const canonical = new URL(Astro.url.pathname, site).href;
+const cover = largest(imageSets(media(image))?.jpg);
+
+const ld = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      '@id': `${canonical}#article`,
+      headline: title,
+      description: excerpt,
+      datePublished: published,
+      dateModified: updated || published,
+      inLanguage: 'en-CA',
+      articleSection: category,
+      wordCount: words,
+      timeRequired: `PT${readMinutes}M`,
+      mainEntityOfPage: canonical,
+      ...(cover ? { image: [new URL(cover, site).href] } : {}),
+      author: { '@type': 'Organization', name: 'G-Force IT team', url: company.url },
+      publisher: {
+        '@type': 'Organization',
+        '@id': `${company.url}/#org`,
+        name: 'G-Force IT Services',
+        logo: { '@type': 'ImageObject', url: `${company.url}/brand/logo-schema.png`, width: 1200, height: 240 },
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${company.url}/` },
+        { '@type': 'ListItem', position: 2, name: 'Blog', item: `${company.url}/blog/` },
+        { '@type': 'ListItem', position: 3, name: title, item: canonical },
+      ],
+    },
+  ],
+};
+---
+<Base title={title} description={excerpt} type="article" image={cover} imageAlt={`Cover image for ${title}`}>
+  <Fragment slot="head">
+    <meta property="article:published_time" content={published} />
+    {revised && <meta property="article:modified_time" content={updated} />}
+    <meta property="article:section" content={category} />
+    <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+  </Fragment>
+
+  <article class="post" aria-labelledby="post-title">
+    <header class="post-hero">
+      <div class="container-g post-grid">
+        <nav class="post-crumb" aria-label="Breadcrumb">
+          <ol>
+            <li>
+              <a class="crumb-link" href="/blog/">Blog</a>
+              <span class="crumb-sep" aria-hidden="true">/</span>
+            </li>
+            <li>
+              <a class="chip crumb-topic" href={`/blog/?category=${topicSlug(category)}`}>
+                {category}
+              </a>
+            </li>
+          </ol>
+        </nav>
+
+        <div class="post-head">
+          <h1 id="post-title" class="t-display post-title">{title}</h1>
+          <p class="t-lead post-excerpt">{excerpt}</p>
+          <div class="post-byline">
+            <span class="post-avatar" aria-hidden="true"><span class="logo-mark"></span></span>
+            <div>
+              <p class="post-author">G-Force IT team</p>
+              <p class="post-dates t-meta">
+                <span>Published <time datetime={published}>{formatDate(published)}</time></span>
+                {revised && <span>Updated <time datetime={updated}>{formatDate(updated)}</time></span>}
+                <span>{readMinutes} min read</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-g post-cover-wrap">
+        <Picture
+          slot={image}
+          alt=""
+          variant="duo"
+          loading="eager"
+          fetchpriority="high"
+          sizes="(min-width: 1340px) 1240px, calc(100vw - 2.5rem)"
+          class="post-cover"
+          imgClass="post-cover-img"
+          reveal
+        />
+      </div>
+    </header>
+
+    <div class="container-g post-grid post-body">
+      {toc.length > 1 && (
+        <nav class="toc toc-rail" aria-labelledby="toc-title" data-toc>
+          <p id="toc-title" class="toc-title t-meta">In this article</p>
+          <ol>
+            {toc.map((h) => (
+              <li><a href={`#${h.slug}`}>{h.text}</a></li>
+            ))}
+          </ol>
+        </nav>
+      )}
+
+      <div class="post-main">
+        {toc.length > 1 && (
+          <nav class="toc toc-inline" aria-label="In this article" data-toc>
+            <details>
+              <summary>In this article <Icon name="chevron" size={20} /></summary>
+              <ol>
+                {toc.map((h) => (
+                  <li><a href={`#${h.slug}`}>{h.text}</a></li>
+                ))}
+              </ol>
+            </details>
+          </nav>
+        )}
+
+        <div class="prose" data-scroll-progress="sticky" data-rest-p="0">
+          <span class="read-progress" aria-hidden="true"></span>
+          <slot />
+        </div>
+
+        {revised && (
+          <p class="post-revised t-meta">
+            <Icon name="calendar" size={18} />
+            <span>First published {formatDate(published)}. Revised {formatDate(updated)}.</span>
+          </p>
+        )}
+      </div>
+    </div>
+  </article>
+
+  <section id="next-step" class="next" aria-labelledby="next-title">
+    <div class="container-g">
+      {audience === 'business' ? (
+        <div class="next-panel next-biz band-night" data-reveal>
+          <div class="next-copy">
+            <p class="next-for t-meta">{paths.business.title}</p>
+            <h2 id="next-title" class="t-h2 next-h">{paths.business.heading}</h2>
+            <p class="next-body">{paths.business.body}</p>
+            <ul class="next-reassure t-meta" role="list" aria-label="About the free assessment">
+              {hero.reassurance.map((r) => <li>{r}</li>)}
+            </ul>
+          </div>
+          <div class="next-actions">
+            <a class="btn btn-primary" href={hero.primary.href}>
+              {hero.primary.label}
+              <span class="btn-arrow"><Icon name="arrow" size={18} /></span>
+            </a>
+            <a class="link-arrow" href={paths.business.cta.href}>{paths.business.cta.label}</a>
+          </div>
+        </div>
+      ) : (
+        <div class="next-panel next-learn band-dawn" data-reveal>
+          <div class="next-copy">
+            <p class="next-for t-meta">{paths.learners.title}</p>
+            <h2 id="next-title" class="t-h2 next-h">{learnerNext.heading}</h2>
+            <p class="next-body">{learnerNext.body}</p>
+          </div>
+          <div class="next-actions">
+            <a class="btn btn-primary" href={learnerNext.href}>
+              {learnerNext.label}
+              <span class="btn-arrow"><Icon name="arrow" size={18} /></span>
+            </a>
+            <a class="link-arrow" href="/contact/?interest=training#contact-form">Ask about training</a>
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section id="keep-reading" class="more" aria-labelledby="more-title">
+    <div class="container-g">
+      <div class="more-head">
+        <h2 id="more-title" class="t-h3">Keep reading</h2>
+        <a class="link-arrow more-all" href="/blog/">
+          All articles
+          <span class="btn-arrow"><Icon name="arrow" size={18} /></span>
+        </a>
+      </div>
+      <ul class="more-grid" role="list" data-stagger>
+        {others.map((p) => (
+          <li><BlogCard post={p} /></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <script>
+    // Marks the contents entry for the section being read (aria-current="location").
+    // It is state, not decoration, so it also runs under reduced motion. A rAF-throttled scroll check
+    // rather than an IntersectionObserver: a jump (End key, scrollbar drag, a contents link) can skip
+    // every heading without any of them crossing an observed edge.
+    const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-toc] a[href^="#"]'));
+    const idOf = (a: HTMLAnchorElement) => decodeURIComponent(a.hash.slice(1));
+    const targets = [...new Set(links.map(idOf))]
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    if (targets.length) {
+      let current: string | null = null;
+      let queued = false;
+      const update = () => {
+        queued = false;
+        const line = innerHeight * 0.32;
+        let active = '';
+        for (const t of targets) {
+          if (t.getBoundingClientRect().top <= line) active = t.id;
+          else break;
+        }
+        if (active === current) return;
+        current = active;
+        for (const a of links) {
+          if (active && idOf(a) === active) a.setAttribute('aria-current', 'location');
+          else a.removeAttribute('aria-current');
+        }
+      };
+      const queue = () => {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(update);
+      };
+      addEventListener('scroll', queue, { passive: true });
+      addEventListener('resize', queue, { passive: true });
+      update();
+    }
+  </script>
+</Base>
+
+<style>
+  /* ---------- Hero ---------- */
+  .post-hero {
+    padding-top: calc(var(--header-h) + clamp(2.5rem, 1.5rem + 4vw, 5rem));
+    background:
+      radial-gradient(55% 60% at 100% 0%, color-mix(in oklch, var(--color-dawn-sky) 38%, transparent), transparent 72%),
+      radial-gradient(35% 45% at 78% 0%, color-mix(in oklch, var(--color-dawn-400) 18%, transparent), transparent 70%);
+  }
+  :global([data-theme='dark']) .post-hero {
+    background: radial-gradient(55% 60% at 100% 0%, color-mix(in oklch, var(--color-dusk-500) 30%, transparent), transparent 72%);
+  }
+  .post-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .post-crumb {
+    margin-bottom: 1.5rem;
+  }
+  .post-crumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .post-crumb li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .crumb-link {
+    position: relative;
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    font-weight: 550;
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+    transition: color 160ms var(--ease-out-quart), text-decoration-color 160ms var(--ease-out-quart);
+  }
+  .crumb-link:hover {
+    color: var(--text);
+    text-decoration-color: var(--accent-ink);
+  }
+  .crumb-sep {
+    color: var(--line-strong);
+  }
+  .crumb-topic {
+    position: relative;
+    text-decoration: none;
+    transition: border-color 160ms var(--ease-out-quart);
+  }
+  .crumb-topic:hover {
+    border-color: var(--text-muted);
+  }
+  /* Small visual chips, 44px hit areas. */
+  .crumb-link::before,
+  .crumb-topic::before {
+    content: '';
+    position: absolute;
+    inset: -0.6rem -0.35rem;
+  }
+  .crumb-link::before {
+    inset-block: -0.75rem;
+  }
+
+  /* Weight, tracking and leading come from .t-display; articles step the size down a notch. */
+  .post-title {
+    max-width: 19ch;
+    font-size: clamp(2.25rem, 1.3rem + 3.6vw, 4.25rem);
+  }
+  .post-excerpt {
+    margin-top: 1.25rem;
+    max-width: 54ch;
+    color: var(--text-muted);
+  }
+  .post-byline {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-top: 2rem;
+  }
+  .post-avatar {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 999px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+  }
+  .post-avatar .logo-mark {
+    width: 1.5rem;
+  }
+  .post-author {
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  /* Stacked on phones; one line with spacing from 640px. */
+  .post-dates {
+    display: grid;
+    gap: 0.1rem;
+    margin-top: 0.15rem;
+    color: var(--text-muted);
+  }
+  @media (min-width: 640px) {
+    .post-dates {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.1rem 0.7rem;
+    }
+  }
+
+  .post-cover-wrap {
+    margin-top: clamp(2.25rem, 1.5rem + 3vw, 4rem);
+  }
+  .post-cover-wrap :global(.post-cover) {
+    display: block;
+    width: 100%;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: var(--radius-card);
+    background-color: var(--surface-2);
+  }
+  .post-cover-wrap :global(.post-cover-img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ---------- Body ---------- */
+  .post-body {
+    padding-block: clamp(2.5rem, 1.5rem + 4vw, 4.5rem) var(--section-y-dense);
+  }
+  /* About 76 characters a line at the body size. */
+  .post-main {
+    min-width: 0;
+    max-width: 40rem;
+    font-size: clamp(1.0625rem, 1rem + 0.25vw, 1.15rem);
+  }
+
+  .toc-title {
+    margin-bottom: 0.5rem;
+    color: var(--text-muted);
+    font-weight: 650;
+  }
+  .toc ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .toc a {
+    position: relative;
+    display: block;
+    padding: 0.42rem 0 0.42rem 1.1rem;
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.35;
+    text-decoration: none;
+    transition: color 160ms var(--ease-out-quart);
+  }
+  .toc a::before {
+    content: '';
+    position: absolute;
+    left: 0.1rem;
+    top: calc(0.42rem + 0.675em - 3px);
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--accent-ink);
+    transform: scale(0);
+    transition: transform 240ms var(--ease-out-expo);
+  }
+  .toc a:hover,
+  .toc a[aria-current] {
+    color: var(--text);
+  }
+  .toc a[aria-current]::before {
+    transform: scale(1);
+  }
+  .toc-rail {
+    display: none;
+  }
+  .toc-inline {
+    margin-bottom: 2.25rem;
+    border-block: 1px solid var(--line);
+  }
+  .toc-inline summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 3rem;
+    font-size: 1rem;
+    font-weight: 650;
+    list-style: none;
+    cursor: pointer;
+  }
+  .toc-inline summary::-webkit-details-marker {
+    display: none;
+  }
+  .toc-inline summary :global(svg) {
+    flex-shrink: 0;
+    color: var(--text-muted);
+    transition: transform 220ms var(--ease-out-expo);
+  }
+  .toc-inline details[open] summary :global(svg) {
+    transform: rotate(180deg);
+  }
+  .toc-inline ol {
+    padding-bottom: 0.75rem;
+  }
+  .toc-inline a {
+    display: flex;
+    align-items: center;
+    min-height: 2.75rem;
+  }
+  .toc-inline a::before {
+    top: calc(50% - 3px);
+  }
+
+  /* Reading progress: an accent hairline under the header that fills as you read (hidden without motion). */
+  .read-progress {
+    display: none;
+  }
+  :global(.motion-ok) .read-progress {
+    display: block;
+    position: fixed;
+    inset: var(--header-h) 0 auto 0;
+    z-index: calc(var(--z-sticky) - 1);
+    height: 2px;
+    background: var(--accent-ink);
+    transform: scaleX(var(--p, 0));
+    transform-origin: 0 50%;
+    pointer-events: none;
+  }
+
+  /* ---------- Prose (Markdown content) ---------- */
+  .prose {
+    color: var(--text);
+    line-height: 1.65;
+    overflow-wrap: break-word;
+  }
+  .prose > :global(.read-progress + *) {
+    margin-top: 0;
+  }
+  .prose :global(p) {
+    margin: 0 0 1.2em;
+  }
+  .prose :global(h2) {
+    margin: 2.3em 0 0.6em;
+    font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    scroll-margin-top: calc(var(--header-h) + 1.75rem);
+  }
+  .prose :global(h3) {
+    margin: 1.9em 0 0.45em;
+    font-size: 1.25rem;
+    font-weight: 620;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    scroll-margin-top: calc(var(--header-h) + 1.75rem);
+  }
+  .prose :global(h2 + h3) {
+    margin-top: 1.1em;
+  }
+  /* The closing "Where to start" section sits apart, under a hairline. */
+  .prose :global(h2#where-to-start) {
+    padding-top: 1.4em;
+    border-top: 1px solid var(--line);
+  }
+  .prose :global(.lead-in) {
+    margin: 1.3em 0 0.4em;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    font-weight: 650;
+    letter-spacing: 0.01em;
+    line-height: 1.4;
+  }
+  /* Tailwind's preflight removes list markers; prose lists get them back. */
+  .prose :global(ul),
+  .prose :global(ol) {
+    margin: 0 0 1.4em;
+    padding-left: 1.25em;
+  }
+  .prose :global(ul) {
+    list-style: disc;
+  }
+  .prose :global(ol) {
+    list-style: decimal;
+  }
+  .prose :global(li) {
+    margin-block: 0.4em;
+    padding-left: 0.3em;
+  }
+  .prose :global(ul > li::marker) {
+    color: var(--accent-ink);
+  }
+  .prose :global(ol > li::marker) {
+    color: var(--text-muted);
+    font-weight: 650;
+    font-variant-numeric: tabular-nums;
+  }
+  .prose :global(strong) {
+    font-weight: 650;
+  }
+  .prose :global(a) {
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-color: var(--accent-ink);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    transition: color 160ms var(--ease-out-quart);
+  }
+  .prose :global(a:hover) {
+    color: var(--accent-ink);
+    text-decoration-thickness: 2px;
+  }
+  .prose :global(blockquote) {
+    margin: 2em 0;
+    padding-block: 1.25rem;
+    border-block: 1px solid var(--line);
+    font-size: 1.375rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.4;
+  }
+  .prose :global(blockquote p:last-child) {
+    margin-bottom: 0;
+  }
+  .prose :global(code) {
+    padding: 0.12em 0.38em;
+    border-radius: var(--radius-input);
+    background: var(--surface-2);
+    font-family: inherit;
+    font-size: 0.92em;
+  }
+  .prose :global(hr) {
+    height: 1px;
+    margin: 2.5em 0;
+    border: 0;
+    background: var(--line);
+  }
+
+  /* Career route figure (the cybersecurity article): vertical on narrow columns, horizontal when there is room. */
+  .prose :global(.route) {
+    container-type: inline-size;
+    margin: 2rem 0 2.25rem;
+    padding: clamp(1.25rem, 1rem + 1.5vw, 2rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    background: var(--surface);
+  }
+  .prose :global(.route-steps) {
+    display: grid;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .prose :global(.route-steps > li) {
+    position: relative;
+    display: grid;
+    align-content: start;
+    gap: 0.3rem;
+    margin: 0;
+    padding: 0 0 0 1.85rem;
+  }
+  .prose :global(.route-steps > li::before) {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.4em;
+    z-index: 1;
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--accent-ink);
+    border-radius: 999px;
+    background: var(--surface);
+  }
+  .prose :global(.route-steps > li:last-child::before) {
+    background: var(--accent-ink);
+  }
+  .prose :global(.route-steps > li:not(:last-child)::after) {
+    content: '';
+    position: absolute;
+    left: 5.5px;
+    top: calc(0.4em + 12px);
+    bottom: calc(-1.5rem - 0.4em);
+    width: 1px;
+    background: var(--line-strong);
+  }
+  .prose :global(.route p) {
+    margin: 0;
+  }
+  .prose :global(.route-role) {
+    font-weight: 620;
+    line-height: 1.35;
+  }
+  .prose :global(.route-text) {
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+  .prose :global(.route-cert) {
+    justify-self: start;
+    margin-top: 0.35rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-input);
+    background: var(--accent-tint);
+    color: var(--text);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .prose :global(.route figcaption) {
+    margin-top: 1.25rem;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    line-height: 1.45;
+  }
+  @container (min-width: 34rem) {
+    .prose :global(.route-steps) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .prose :global(.route-steps > li) {
+      padding: 1.9rem 0 0;
+    }
+    .prose :global(.route-steps > li::before) {
+      top: 0;
+    }
+    .prose :global(.route-steps > li:not(:last-child)::after) {
+      left: 12px;
+      right: -1.5rem;
+      top: 5.5px;
+      bottom: auto;
+      width: auto;
+      height: 1px;
+    }
+  }
+
+  /* Matrix figure (the IT skills article): a captioned, ruled table on the same card as .route. On a narrow column
+     each row restacks into a labelled block; the ARIA roles in the Markdown keep it a table for screen readers. */
+  .prose :global(.figure-matrix) {
+    container-type: inline-size;
+    margin: 2rem 0 2.25rem;
+    padding: clamp(1.25rem, 1rem + 1.5vw, 2rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    background: var(--surface);
+  }
+  .prose :global(.figure-matrix table) {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+    line-height: 1.45;
+  }
+  .prose :global(.figure-matrix caption) {
+    margin-bottom: 1rem;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    line-height: 1.45;
+    text-align: left;
+  }
+  .prose :global(.figure-matrix th),
+  .prose :global(.figure-matrix td) {
+    padding: 0.8rem 1rem 0.8rem 0;
+    border-top: 1px solid var(--line);
+    text-align: left;
+    vertical-align: top;
+  }
+  .prose :global(.figure-matrix th:last-child),
+  .prose :global(.figure-matrix td:last-child) {
+    padding-right: 0;
+  }
+  .prose :global(.figure-matrix thead th) {
+    padding-top: 0;
+    border-top: 0;
+    color: var(--text-muted);
+    font-size: 0.8125rem;
+    font-weight: 650;
+  }
+  .prose :global(.figure-matrix tbody th) {
+    width: 32%;
+    font-weight: 620;
+  }
+  .prose :global(.figure-matrix td) {
+    color: var(--text-muted);
+  }
+  @container (max-width: 33.99rem) {
+    .prose :global(.figure-matrix thead) {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+    .prose :global(.figure-matrix tr) {
+      display: block;
+      padding-block: 0.85rem;
+      border-top: 1px solid var(--line);
+    }
+    .prose :global(.figure-matrix tbody th),
+    .prose :global(.figure-matrix td) {
+      display: block;
+      width: auto;
+      padding: 0;
+      border: 0;
+    }
+    .prose :global(.figure-matrix td::before) {
+      content: attr(data-label);
+      content: attr(data-label) / '';
+      display: block;
+      margin-top: 0.45rem;
+      color: var(--text);
+      font-size: 0.8125rem;
+      font-weight: 650;
+    }
+  }
+
+  .post-revised {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-top: 2.75rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line);
+    color: var(--text-muted);
+  }
+  .post-revised :global(svg) {
+    flex-shrink: 0;
+  }
+
+  /* ---------- Next step: one full-width panel for the article's audience ---------- */
+  .next {
+    padding-block: var(--section-y-dense);
+  }
+  /* Full-bleed bands on phones, a rounded panel from 640px. */
+  .next-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-inline: calc(-1 * var(--gutter));
+    padding: 2.5rem var(--gutter) 2.75rem;
+  }
+  .next-for {
+    color: var(--text-muted);
+    font-weight: 650;
+  }
+  .next-h {
+    max-width: 20ch;
+    margin-top: 0.6rem;
+  }
+  .next-body {
+    max-width: 54ch;
+    margin-top: 1rem;
+    color: var(--text-muted);
+  }
+  .next-reassure {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.1rem;
+    margin: 1.1rem 0 0;
+    padding: 0;
+    list-style: none;
+    color: var(--text-muted);
+  }
+  .next-reassure li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+  .next-reassure li::before {
+    content: '';
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 999px;
+    background: var(--accent-ink);
+  }
+  .next-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.5rem;
+    margin-top: auto;
+    padding-top: 2rem;
+  }
+  .next-actions .link-arrow,
+  .more-all {
+    min-height: 2.75rem;
+  }
+  .more-all .btn-arrow {
+    display: inline-flex;
+    transition: transform 220ms var(--ease-out-expo);
+  }
+
+  /* ---------- Keep reading ---------- */
+  .more {
+    padding-block: var(--section-y-dense) var(--section-y);
+    background: var(--surface-2);
+  }
+  .more-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 2rem;
+    margin-bottom: clamp(1.75rem, 1.25rem + 2vw, 2.75rem);
+  }
+  .more-grid {
+    display: grid;
+    gap: 2.75rem 1.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (min-width: 640px) {
+    .next-panel {
+      margin-inline: 0;
+      padding: clamp(2rem, 1.2rem + 2.5vw, 3.25rem);
+      border-radius: var(--radius-card);
+    }
+    .more-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 900px) {
+    .post-cover-wrap :global(.post-cover) {
+      aspect-ratio: 21 / 9;
+    }
+    /* The panel spans the container: the words on the left, the actions at the bottom right. */
+    .next-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      column-gap: clamp(2.5rem, 5vw, 5rem);
+    }
+    .next-actions {
+      justify-content: flex-end;
+      padding-top: 0;
+    }
+  }
+  @media (min-width: 1024px) {
+    .more-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  /* Desktop: a left rail carries the breadcrumb in the hero and the contents beside the text. */
+  @media (min-width: 1080px) {
+    .post-grid {
+      grid-template-columns: 13.5rem minmax(0, 1fr);
+      column-gap: clamp(3rem, -1rem + 5vw, 5.5rem);
+    }
+    .post-crumb {
+      margin-bottom: 0;
+      padding-top: 0.85rem;
+    }
+    .post-main {
+      grid-column: 2;
+    }
+    .toc-rail {
+      display: block;
+      grid-column: 1;
+      grid-row: 1;
+      align-self: start;
+      position: sticky;
+      top: calc(var(--header-h) + 2.5rem);
+      max-height: calc(100svh - var(--header-h) - 5rem);
+      overflow-y: auto;
+      padding-top: 0.3rem;
+    }
+    .toc-inline {
+      display: none;
+    }
+  }
+  @media (pointer: coarse) {
+    .toc-rail a {
+      display: flex;
+      align-items: center;
+      min-height: 2.75rem;
+    }
+    .toc-rail a::before {
+      top: calc(50% - 3px);
+    }
+  }
+  @media print {
+    .toc,
+    .read-progress,
+    .next,
+    .more {
+      display: none !important;
+    }
+  }
+</style>

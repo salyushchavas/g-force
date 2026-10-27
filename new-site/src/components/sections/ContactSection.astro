@@ -1,0 +1,936 @@
+---
+// Contact, on the dawn band: Air closes on its sunrise, so the page ends on a white form card in daylight, not in
+// a dark well. One form that actually delivers (forms.ts → leads.ts), with every direct route beside it:
+// click-to-call, email, the hours, booking, and an office map that makes no third-party request until the visitor
+// asks for it. On sky pages the band is transparent onto the fixed sky (global.css).
+// WhatsApp is left out on purpose: business enquiries need a record the whole team can see and act on, which
+// phone, email and the form give and a personal chat app does not.
+//
+// Default (home, /business): headline and intro, then the form card beside the direct routes.
+// `compact` (/contact/): the PageHero above already carries the headline, so the band opens straight on the form.
+import SplitHeading from '../ui/SplitHeading.astro';
+import Icon from '../ui/Icon.astro';
+import Picture from '../ui/Picture.astro';
+import { company, courses, services } from '../../data/site';
+
+interface Props {
+  lines?: string[];
+  intro?: string;
+  compact?: boolean;
+}
+
+const {
+  lines = ['Discuss your', 'IT and training needs'],
+  intro = 'Book a free IT assessment, ask about training or contact our team. We respond within one business day.',
+  compact = false,
+} = Astro.props;
+
+const serviceName = (id: string) => services.find((s) => s.id === id)?.name ?? id;
+
+// "I'm interested in": the hint under Message changes with the topic, so people know what is worth telling us.
+const interests: { value: string; label: string; hint: string; required?: boolean }[] = [
+  { value: 'assessment', label: 'Free IT assessment', hint: 'A line about your team and what has been going wrong helps us prepare.' },
+  { value: 'managed-it', label: serviceName('managed-it'), hint: 'Roughly how many people and computers do you have?' },
+  { value: 'cybersecurity', label: serviceName('cybersecurity'), hint: 'Did something prompt this, like a phishing email or a lost laptop?' },
+  { value: 'cloud-backup', label: serviceName('cloud-backup'), hint: 'What do you back up today, and where does it go?' },
+  { value: 'training', label: serviceName('training'), hint: 'Which track interests you, and is it for you or for your team?' },
+  { value: 'consulting', label: serviceName('consulting'), hint: 'What is the project, and when would you like it done?' },
+  { value: 'other', label: 'Something else', hint: 'Tell us what you need and we will point you to the right person.', required: true },
+];
+
+// Opening hours come from the schema.org string (Toronto time, "Mo-Fr 11:00-20:00"), so the live badge can never
+// disagree with the published hours. If the format ever changes, the badge simply stays hidden.
+// A live "Open now / Closed now" badge is a promise, so it only appears once G-Force has confirmed the hours
+// (company.hours.confirmed in site.ts). Until then the hours are shown as text only.
+const hoursConfirmed = (company.hours as typeof company.hours & { confirmed?: boolean }).confirmed === true;
+const DAY_CODES = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
+const minutes = (hhmm: string) => {
+  const [h, m] = hhmm.split(':').map(Number);
+  return h * 60 + m;
+};
+const hoursMatch = /^(Mo|Tu|We|Th|Fr|Sa|Su)-(Mo|Tu|We|Th|Fr|Sa|Su) (\d{2}:\d{2})-(\d{2}:\d{2})$/.exec(company.hours.schema[0] ?? '');
+const hours = hoursMatch
+  ? {
+      from: DAY_CODES.indexOf(hoursMatch[1]) + 1,
+      to: DAY_CODES.indexOf(hoursMatch[2]) + 1,
+      open: minutes(hoursMatch[3]),
+      close: minutes(hoursMatch[4]),
+    }
+  : null;
+
+// Map: OpenStreetMap, embedded only after a click. Directions open in the visitor's own maps app or site.
+const { lat, lng } = company.geo;
+const street = company.address.street.split(',')[0];
+// The label on the map photo, as a street sign would put it: "130 King Street West" → "130 King St W".
+const streetShort = street.replace(/\bStreet\b/g, 'St').replace(/\b(North|South|East|West)\b/g, (d) => d.charAt(0));
+const bbox = [lng - 0.0062, lat - 0.0032, lng + 0.0062, lat + 0.0032].map((n) => n.toFixed(4)).join(',');
+const mapEmbed = `https://www.openstreetmap.org/export/embed.html?bbox=${encodeURIComponent(bbox)}&layer=mapnik&marker=${encodeURIComponent(`${lat},${lng}`)}`;
+const mapLink = `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lng}#map=17/${lat}/${lng}`;
+const directions = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+  `${street}, ${company.address.city}, ${company.address.region} ${company.address.postal}`,
+)}`;
+
+// Without JavaScript the form still posts somewhere sensible: the form endpoint when one is set, otherwise the
+// visitor's email app. Never the default GET, which would put names and messages into URLs and server logs.
+const fallbackAction = company.formEndpoint
+  ? { action: String(company.formEndpoint), enctype: undefined }
+  : { action: `mailto:${company.email}?subject=${encodeURIComponent('Website enquiry')}`, enctype: 'text/plain' };
+
+// Booking: the client's calendar link when it is configured, otherwise a pre-filled email.
+const bookingBody = "Hi G-Force,\n\nI'd like to book a call about:\n\nTimes that suit me (Toronto time):\n\nName:\nPhone:\n";
+const booking = company.bookingUrl
+  ? { href: String(company.bookingUrl), external: true }
+  : {
+      href: `mailto:${company.email}?subject=${encodeURIComponent('Book a call')}&body=${encodeURIComponent(bookingBody)}`,
+      external: false,
+    };
+
+// The course finder's enquire links arrive as ?course=<id>; the script names that course in the message.
+const courseNames = JSON.stringify(Object.fromEntries(courses.map((c) => [c.id, c.name])));
+
+// The consent wording is sent with the form when the box is ticked, as the privacy policy promises.
+const newsletterConsent = 'Also send me G-Force’s monthly IT security notes. I can unsubscribe at any time.';
+---
+<section id="contact" class:list={['contact', 'band-dawn', { 'is-compact': compact }]} aria-labelledby="contact-title">
+  <div class="container-g contact-grid">
+    {compact ? (
+      <h2 id="contact-title" class="sr-only">Ways to contact G-Force</h2>
+    ) : (
+      <header class="contact-head">
+        <SplitHeading id="contact-title" as="h2" lines={lines} class="t-h2 contact-title" />
+        {intro && <p class="t-lead contact-intro" data-reveal style="--reveal-delay: 200ms">{intro}</p>}
+      </header>
+    )}
+
+    <div class="contact-direct">
+      <h3 class="t-h4 contact-sub">Call, email or book a time</h3>
+      <dl class="direct" data-stagger={compact ? undefined : true}>
+        <div class="direct-row">
+          <dt class="direct-label t-meta">Call</dt>
+          <dd class="direct-value">
+            <a class="direct-phone t-num" href={company.phoneHref}>{company.phoneDisplay}</a>
+            <p class="direct-hours">
+              {company.hours.days}, {company.hours.local}{' '}
+              <span>That’s {company.hours.eastern} in Toronto.</span>
+            </p>
+            {hours && hoursConfirmed && (
+              <p
+                class="hours-status t-meta"
+                data-hours-status
+                data-from={hours.from}
+                data-to={hours.to}
+                data-open={hours.open}
+                data-close={hours.close}
+                hidden
+              >
+                <Icon name="clock" size={16} />
+                <span data-hours-text></span>
+              </p>
+            )}
+          </dd>
+        </div>
+        <div class="direct-row">
+          <dt class="direct-label t-meta">Email</dt>
+          <dd class="direct-value">
+            <a class="direct-email" href={`mailto:${company.email}`}>{company.email}</a>
+          </dd>
+        </div>
+        <div class="direct-row">
+          <dt class="direct-label t-meta">Book</dt>
+          <dd class="direct-value">
+            <a class="btn btn-secondary direct-book" href={booking.href}>
+              <Icon name="calendar" size={18} />
+              Book a call
+              {booking.external && <Icon name="arrow-up-right" size={16} />}
+            </a>
+            {!booking.external && <p class="direct-note t-meta">Opens your email app with a request ready to send.</p>}
+          </dd>
+        </div>
+      </dl>
+    </div>
+
+    {/* A white card on the dawn band: haze inputs and an ink "Send message" pill come from the light tokens.
+        On /contact the form sits just under the hero, so it is never held back for a scroll reveal. */}
+    <div class="contact-form-wrap band-light" data-reveal={compact ? undefined : true} style={compact ? undefined : '--reveal-delay: 250ms'}>
+      <form
+        id="contact-form"
+        class="contact-form"
+        method="post"
+        action={fallbackAction.action}
+        enctype={fallbackAction.enctype}
+        data-lead-form="contact"
+        data-contact-form
+        data-courses={courseNames}
+        novalidate
+        aria-labelledby="contact-form-title"
+      >
+        <h3 id="contact-form-title" class="t-h4 contact-sub">Send a message</h3>
+
+        <div class="form-grid">
+          <div class="form-field">
+            <label class="field-label" for="cf-name">Name</label>
+            <input
+              id="cf-name"
+              name="name"
+              type="text"
+              class="field"
+              autocomplete="name"
+              required
+              aria-describedby="cf-name-error"
+              data-error="Please add your name so we know who to reply to."
+              data-error-missing="Please add your name so we know who to reply to."
+            />
+            <p class="field-error" id="cf-name-error"></p>
+          </div>
+
+          <div class="form-field">
+            <label class="field-label" for="cf-email">Email</label>
+            <input
+              id="cf-email"
+              name="email"
+              type="email"
+              class="field"
+              autocomplete="email"
+              spellcheck="false"
+              required
+              aria-describedby="cf-email-error"
+              data-error="Please add your email address so we can reply."
+              data-error-missing="Please add your email address so we can reply."
+              data-error-type="That email address looks incomplete. It should look like name@company.ca."
+            />
+            <p class="field-error" id="cf-email-error"></p>
+          </div>
+
+          <div class="form-field">
+            <label class="field-label" for="cf-phone">Phone <span class="field-opt">Optional</span></label>
+            <input id="cf-phone" name="phone" type="tel" class="field" autocomplete="tel" />
+          </div>
+
+          <div class="form-field">
+            <label class="field-label" for="cf-company">Company <span class="field-opt">Optional</span></label>
+            <input id="cf-company" name="company" type="text" class="field" autocomplete="organization" />
+          </div>
+
+          <div class="form-field form-field-wide">
+            <label class="field-label" for="cf-interest">I’m interested in</label>
+            <div class="select-wrap">
+              <select id="cf-interest" name="interest" class="field">
+                {interests.map((o) => (
+                  <option value={o.value} data-hint={o.hint} data-required={o.required ? 'true' : undefined}>
+                    {o.label}
+                  </option>
+                ))}
+              </select>
+              <Icon name="chevron" size={20} class="select-chevron" />
+            </div>
+          </div>
+
+          <div class="form-field form-field-wide">
+            <label class="field-label" for="cf-message">
+              Message <span class="field-opt" data-message-optional>Optional</span>
+            </label>
+            <p class="field-hint" id="cf-message-hint" data-message-hint>{interests[0].hint}</p>
+            <textarea
+              id="cf-message"
+              name="message"
+              class="field"
+              rows="5"
+              aria-describedby="cf-message-hint cf-message-error"
+              data-error="Please tell us a little about what you need."
+              data-error-missing="Please tell us a little about what you need."
+            ></textarea>
+            <p class="field-error" id="cf-message-error"></p>
+          </div>
+        </div>
+
+        <label class="form-consent" for="cf-newsletter">
+          <input id="cf-newsletter" name="newsletter" type="checkbox" value="yes" />
+          <span>{newsletterConsent}</span>
+        </label>
+        {/* Enabled only while the box is ticked (script below), so the wording travels only with a consent. */}
+        <input type="hidden" name="consent_text" value={newsletterConsent} disabled data-consent-text />
+
+        <p class="form-privacy">We use your details to reply to this message, and for the newsletter only if you tick the box. Read our <a href="/privacy/">privacy policy</a>.</p>
+
+        <input type="text" name="company_website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Send message</button>
+        </div>
+        <p class="form-status t-meta" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+
+    <div class="contact-office">
+      <h3 class="t-h4 contact-sub">Head office</h3>
+      <address class="office-address">
+        {company.address.street}<br />
+        {company.address.city}, {company.address.region} {company.address.postal}
+      </address>
+      <div
+        class="map"
+        data-map
+        data-map-src={mapEmbed}
+        data-map-title={`Map of ${company.name} head office at ${street}, ${company.address.city}`}
+        data-reveal="media"
+      >
+        <Picture slot="img-toronto-day" alt="" sizes="(min-width: 1024px) 34vw, 100vw" class="map-photo" imgClass="map-photo-img" />
+        <div class="map-facade" data-map-facade>
+          {/* A sign on the photo; the full address is in the text above, so screen readers skip the repeat. */}
+          <p class="map-chip" aria-hidden="true"><Icon name="pin" size={16} />{streetShort}</p>
+          <div class="map-panel" data-map-panel hidden>
+            <button type="button" class="btn btn-primary" data-map-load>Show interactive map</button>
+            <p class="map-note">Loads OpenStreetMap. Nothing is sent to them until you click.</p>
+          </div>
+        </div>
+      </div>
+      <p class="map-links">
+        <a class="link-arrow" href={directions}>Get directions <Icon name="arrow-up-right" size={16} /></a>
+        <a class="link-arrow" href={mapLink}>Open in OpenStreetMap <Icon name="arrow-up-right" size={16} /></a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  type Field = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+
+  /* ---------- Open or closed right now, in Toronto. The badge is only rendered once the hours are confirmed
+     (company.hours.confirmed), so until then this does nothing. Without JS the badge stays hidden. ---------- */
+  const badges = document.querySelectorAll<HTMLElement>('[data-hours-status]');
+  if (badges.length) {
+    const parts = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/Toronto',
+      weekday: 'short',
+      hour: 'numeric',
+      minute: 'numeric',
+      hourCycle: 'h23',
+    });
+    const WEEK = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    const NAMES = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    const clock = (mins: number) => {
+      const h = Math.floor(mins / 60);
+      const m = mins % 60;
+      return `${h % 12 || 12}${m ? `:${String(m).padStart(2, '0')}` : ''} ${h < 12 ? 'a.m.' : 'p.m.'}`;
+    };
+    const render = () => {
+      const now = Object.fromEntries(parts.formatToParts(new Date()).map((p) => [p.type, p.value]));
+      const day = WEEK.indexOf(now.weekday) + 1; // 1 = Monday
+      const minute = (Number(now.hour) % 24) * 60 + Number(now.minute);
+      if (!day || Number.isNaN(minute)) return;
+      badges.forEach((el) => {
+        const [from, to, open, close] = ['from', 'to', 'open', 'close'].map((k) => Number(el.dataset[k]));
+        if ([from, to, open, close].some(Number.isNaN)) return;
+        const workday = (d: number) => d >= from && d <= to;
+        const isOpen = workday(day) && minute >= open && minute < close;
+        let text = `Open now, until ${clock(close)} ET`;
+        if (!isOpen) {
+          let next = day;
+          let ahead = 0;
+          if (!(workday(day) && minute < open)) {
+            do {
+              next = (next % 7) + 1;
+              ahead += 1;
+            } while (!workday(next) && ahead < 7);
+          }
+          const when = ahead === 0 ? 'today' : ahead === 1 ? 'tomorrow' : NAMES[next - 1];
+          text = `Closed now. Opens ${when} at ${clock(open)} ET`;
+        }
+        const out = el.querySelector('[data-hours-text]');
+        if (out) out.textContent = text;
+        el.dataset.state = isOpen ? 'open' : 'closed';
+        el.hidden = false;
+      });
+    };
+    render();
+    setInterval(render, 60_000);
+  }
+
+  /* ---------- The contact form: topic-aware hint, topic links and inline errors ---------- */
+  document.querySelectorAll<HTMLFormElement>('form[data-contact-form]').forEach((form) => {
+    const select = form.querySelector<HTMLSelectElement>('select[name="interest"]');
+    const message = form.querySelector<HTMLTextAreaElement>('textarea[name="message"]');
+    const hint = form.querySelector<HTMLElement>('[data-message-hint]');
+    const optional = form.querySelector<HTMLElement>('[data-message-optional]');
+
+    const errorOutput = (el: Field) => (el.id ? document.getElementById(`${el.id}-error`) : null);
+    const errorText = (el: Field) =>
+      (el.validity.typeMismatch && el.dataset.errorType) || el.dataset.errorMissing || 'Please check this field.';
+    const showError = (el: Field) => {
+      const text = errorText(el);
+      el.dataset.error = text; // forms.ts repeats the first message in the status line
+      el.setAttribute('aria-invalid', 'true');
+      const out = errorOutput(el);
+      if (out) out.textContent = text;
+    };
+    const clearError = (el: Field) => {
+      el.removeAttribute('aria-invalid');
+      const out = errorOutput(el);
+      if (out) out.textContent = '';
+    };
+
+    const syncTopic = () => {
+      const option = select?.selectedOptions[0];
+      if (!option || !message) return;
+      if (hint) hint.textContent = option.dataset.hint ?? '';
+      message.required = option.dataset.required === 'true';
+      if (optional) optional.hidden = message.required;
+      if (!message.required) clearError(message);
+    };
+    const choose = (value: string | null | undefined) => {
+      if (!select || !value || !Array.from(select.options).some((o) => o.value === value)) return;
+      select.value = value;
+      syncTopic();
+    };
+
+    // ?interest=… (hero and header links) and in-page links such as <a href="#contact-form" data-interest="cybersecurity">.
+    const params = new URLSearchParams(location.search);
+    choose(params.get('interest'));
+
+    // ?course=<id> (the course finder's enquire links): name the course in the message, unless one is typed already.
+    const courseId = params.get('course');
+    if (courseId && message && !message.value.trim()) {
+      let names: Record<string, unknown> = {};
+      try {
+        names = JSON.parse(form.dataset.courses ?? '{}');
+      } catch {
+        names = {};
+      }
+      const name = Object.prototype.hasOwnProperty.call(names, courseId) ? names[courseId] : undefined;
+      if (typeof name === 'string') message.value = `I'd like the next start date and tuition for ${name}.`;
+    }
+
+    select?.addEventListener('change', syncTopic);
+    syncTopic();
+
+    // The consent wording is sent only with a ticked box (and is cleared again by a reset).
+    const consent = form.querySelector<HTMLInputElement>('input[name="newsletter"]');
+    const consentText = form.querySelector<HTMLInputElement>('[data-consent-text]');
+    const syncConsent = () => {
+      if (consent && consentText) consentText.disabled = !consent.checked;
+    };
+    consent?.addEventListener('change', syncConsent);
+    form.addEventListener('reset', () => setTimeout(syncConsent));
+    syncConsent();
+    document
+      .querySelectorAll<HTMLAnchorElement>(`a[data-interest][href$="#${form.id}"]`)
+      .forEach((a) => a.addEventListener('click', () => choose(a.dataset.interest)));
+
+    // Inline messages replace the browser's bubble; the first invalid field takes focus.
+    let focused = false;
+    form.addEventListener(
+      'invalid',
+      (e) => {
+        const el = e.target as Field;
+        e.preventDefault();
+        showError(el);
+        if (!focused) {
+          focused = true;
+          el.focus();
+          setTimeout(() => (focused = false));
+        }
+      },
+      true,
+    );
+    const recheck = (e: Event) => {
+      const el = e.target as Field;
+      if (el.getAttribute('aria-invalid') === 'true' && el.validity.valid) clearError(el);
+    };
+    form.addEventListener('input', recheck);
+    form.addEventListener('change', recheck);
+  });
+
+  /* ---------- Office map: nothing loads from OpenStreetMap until the visitor asks ---------- */
+  document.querySelectorAll<HTMLElement>('[data-map]').forEach((map) => {
+    const button = map.querySelector<HTMLButtonElement>('[data-map-load]');
+    const src = map.dataset.mapSrc;
+    if (!button || !src) return;
+    map.querySelector<HTMLElement>('[data-map-panel]')?.removeAttribute('hidden');
+    button.addEventListener(
+      'click',
+      () => {
+        const frame = document.createElement('iframe');
+        frame.className = 'map-frame';
+        frame.src = src;
+        frame.title = map.dataset.mapTitle ?? 'Office map';
+        frame.loading = 'lazy';
+        frame.referrerPolicy = 'strict-origin-when-cross-origin';
+        map.querySelector('[data-map-facade]')?.remove();
+        map.append(frame);
+        map.classList.add('is-live');
+        frame.focus();
+      },
+      { once: true },
+    );
+  });
+</script>
+
+<style>
+  .contact {
+    /* Error glyph (a filled circle with a cut-out "!"), shared by the field errors and the status line. */
+    --alert-glyph: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' d='M12 2a10 10 0 1 1 0 20a10 10 0 0 1 0-20zm-1 4.5h2v7h-2zm0 9h2v2h-2z'/%3E%3C/svg%3E");
+    position: relative;
+    overflow: clip;
+    padding-top: var(--section-y);
+    padding-bottom: var(--section-y-dense);
+  }
+
+  /* On /contact the PageHero above fades into the sky, so the band simply opens a dense step below it. */
+  .is-compact {
+    padding-top: var(--section-y-dense);
+  }
+
+  .contact-grid {
+    display: grid;
+    gap: clamp(2.75rem, 2rem + 3vw, 4rem);
+  }
+
+  .contact-head {
+    max-width: 40rem;
+  }
+  .contact-head :global(.contact-title) {
+    color: var(--text);
+  }
+  .contact-intro {
+    margin-top: clamp(1.75rem, 1.2rem + 1vw, 2.25rem);
+    max-width: 50ch;
+    color: var(--text-muted);
+  }
+  .contact-sub {
+    margin-bottom: 1.25rem;
+  }
+
+  /* ---------- Direct routes ---------- */
+  .direct {
+    margin: 0;
+    border-top: 1px solid var(--line);
+  }
+  .direct-row {
+    display: grid;
+    gap: 0.4rem;
+    padding-block: 1.25rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .direct-label {
+    color: var(--text-muted);
+  }
+  .direct-value {
+    margin: 0;
+    min-width: 0;
+  }
+  .direct-phone {
+    display: inline-block;
+    padding-block: 0.15rem;
+    color: var(--text);
+    font-size: clamp(1.625rem, 1.25rem + 1.5vw, 2.375rem);
+    font-weight: 750;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 160ms var(--ease-out-quart);
+  }
+  .direct-phone:hover {
+    color: var(--accent-ink);
+  }
+  .direct-hours {
+    margin-top: 0.6rem;
+    color: var(--text);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+  .direct-hours span {
+    display: block;
+    color: var(--text-muted);
+  }
+  .hours-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.85rem;
+    padding: 0.4rem 0.85rem 0.4rem 0.7rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    color: var(--text);
+  }
+
+  .direct-email {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    color: var(--text);
+    font-size: 1.125rem;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.3em;
+    overflow-wrap: anywhere;
+    transition: text-decoration-color 160ms var(--ease-out-quart);
+  }
+  .direct-email:hover {
+    text-decoration-color: var(--accent-ink);
+  }
+  .direct-book {
+    margin-top: 0.15rem;
+  }
+  .direct-note {
+    margin-top: 0.6rem;
+    color: var(--text-muted);
+  }
+
+  /* ---------- Form ---------- */
+  /* The card takes its colours from .band-light: white in light, a lifted deep-sky surface in dark. */
+  .contact-form-wrap {
+    border-radius: 16px;
+    padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+    background-color: var(--surface);
+  }
+  .form-grid {
+    display: grid;
+    gap: 1.25rem 1rem;
+  }
+  .form-field {
+    min-width: 0;
+  }
+  .field-opt {
+    margin-left: 0.35rem;
+    color: var(--text-muted);
+    font-weight: 450;
+    font-size: 0.875rem;
+  }
+  .field-hint {
+    margin: -0.1rem 0 0.55rem;
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.45;
+  }
+  /* Errors are told apart from hints without colour: the alert glyph, the heavier weight, and a 2px field edge. */
+  .field-error {
+    display: flex;
+    gap: 0.4rem;
+    align-items: flex-start;
+    color: var(--text);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .field-error:not(:empty) {
+    margin-top: 0.5rem;
+  }
+  .field-error:not(:empty)::before,
+  .form-status[data-state='error']:not(:empty)::before {
+    content: '';
+    flex: none;
+    width: 16px;
+    height: 16px;
+    margin-top: 0.15rem;
+    background-color: currentColor;
+    -webkit-mask: var(--alert-glyph) center / contain no-repeat;
+    mask: var(--alert-glyph) center / contain no-repeat;
+  }
+  @media (forced-colors: active) {
+    .field-error:not(:empty)::before,
+    .form-status[data-state='error']:not(:empty)::before {
+      forced-color-adjust: none;
+      background-color: CanvasText;
+    }
+  }
+  /* Haze inputs on the white card; edges at 3:1 or better against both the field and the card (WCAG 1.4.11). */
+  .contact-form .field {
+    background-color: var(--surface-2);
+    border-color: color-mix(in oklch, var(--text-muted) 72%, transparent);
+  }
+  .contact-form .field:hover {
+    border-color: var(--text-muted);
+  }
+  .contact-form .field:focus-visible {
+    border-color: var(--focus);
+  }
+  .contact-form .field[aria-invalid='true'] {
+    border-color: var(--text);
+    box-shadow: inset 0 0 0 1px var(--text);
+  }
+  .contact-form .field[aria-invalid='true']:focus-visible {
+    box-shadow:
+      inset 0 0 0 1px var(--text),
+      0 0 0 3px color-mix(in oklch, var(--focus) 28%, transparent);
+  }
+  .contact-form textarea.field {
+    min-height: 8.5rem;
+    resize: vertical;
+    line-height: 1.5;
+  }
+  .select-wrap {
+    position: relative;
+  }
+  .select-wrap select {
+    appearance: none;
+    padding-right: 2.75rem;
+    cursor: pointer;
+  }
+  .select-wrap :global(.select-chevron) {
+    position: absolute;
+    top: 50%;
+    right: 0.85rem;
+    translate: 0 -50%;
+    color: var(--text-muted);
+    pointer-events: none;
+  }
+  /* The whole row is the target (44px+); the box itself is 24px. */
+  .form-consent {
+    display: flex;
+    gap: 0.8rem;
+    align-items: flex-start;
+    min-height: 2.75rem;
+    margin-top: 1.25rem;
+    padding-block: 0.35rem;
+    color: var(--text);
+    font-size: 0.9375rem;
+    line-height: 1.45;
+    cursor: pointer;
+  }
+  /* Drawn checkbox: an outline box that fills with the accent and shows a tick. Never pre-ticked (CASL). */
+  .form-consent input {
+    appearance: none;
+    display: grid;
+    flex-shrink: 0;
+    place-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: -0.1rem 0 0;
+    border: 1.5px solid var(--text-muted);
+    border-radius: var(--radius-input);
+    background: transparent;
+    cursor: pointer;
+    transition:
+      background-color 160ms var(--ease-out-quart),
+      border-color 160ms var(--ease-out-quart);
+  }
+  .form-consent input::before {
+    content: '';
+    width: 0.4rem;
+    height: 0.75rem;
+    margin-top: -0.15rem;
+    border: solid var(--btn-text);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg) scale(0);
+    transition: transform 160ms var(--ease-out-quart);
+  }
+  .form-consent:hover input {
+    border-color: var(--text);
+  }
+  .form-consent input:checked {
+    border-color: var(--accent);
+    background: var(--accent);
+  }
+  .form-consent input:checked::before {
+    transform: rotate(45deg) scale(1);
+  }
+  .form-consent input:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+  }
+  @media (forced-colors: active) {
+    .form-consent input:checked::before {
+      border-color: CanvasText;
+    }
+  }
+  .form-privacy {
+    margin-top: 0.85rem;
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.45;
+  }
+  .form-privacy a {
+    color: var(--text);
+    text-decoration-line: underline;
+    text-decoration-color: var(--line-strong);
+    text-underline-offset: 0.2em;
+  }
+  .form-privacy a:hover {
+    text-decoration-color: var(--accent-ink);
+  }
+  .hp {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+  .form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.25rem;
+    margin-top: 1.75rem;
+  }
+  /* Kept in the accessibility tree while empty so screen readers announce what arrives. */
+  .form-status {
+    margin-top: 1rem;
+    font-size: 0.9375rem;
+  }
+  .form-status:empty {
+    margin: 0;
+  }
+  .form-status[data-state='error'] {
+    display: flex;
+    gap: 0.4rem;
+    align-items: flex-start;
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* ---------- Office and map ---------- */
+  .office-address {
+    font-style: normal;
+    line-height: 1.55;
+  }
+  .map {
+    position: relative;
+    margin-top: 1.25rem;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .map :global(.map-photo),
+  .map :global(.map-photo-img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: cover;
+  }
+  /* Daylight Toronto under a light sky veil. The sign and the controls sit on frosted white, so they stay legible
+     on any part of the photo without darkening it. */
+  .map-facade {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    padding: 3.5rem 1rem 1rem;
+    text-align: center;
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklch, var(--color-sky-deep) 4%, transparent),
+      color-mix(in oklch, var(--color-sky-deep) 20%, transparent)
+    );
+  }
+  :global([data-theme='dark']) .map-facade {
+    background: color-mix(in oklch, var(--color-ink-900) 30%, transparent);
+  }
+  .map-chip,
+  .map-panel {
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    backdrop-filter: blur(16px) saturate(140%);
+    box-shadow: inset 0 0 0 1px color-mix(in oklch, white 70%, transparent);
+    color: var(--color-air-ink);
+  }
+  .map-chip {
+    position: absolute;
+    top: 0.85rem;
+    left: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.85rem 0.4rem 0.65rem;
+    border-radius: 999px;
+    background: color-mix(in oklch, white 88%, transparent);
+    font-size: 0.875rem;
+    font-weight: 650;
+    line-height: 1.2;
+  }
+  /* Always frosted white, so it keeps the light button tokens in both themes. */
+  .map-panel {
+    --text: var(--color-air-ink);
+    --accent: var(--color-air-ink);
+    --accent-hover: color-mix(in oklch, var(--color-air-ink) 84%, white);
+    --accent-press: var(--color-air-ink);
+    --btn-text: #fff;
+    --focus: var(--color-signal);
+    display: grid;
+    justify-items: center;
+    gap: 0.65rem;
+    max-width: 100%;
+    padding: 1rem 1.25rem 0.9rem;
+    border-radius: var(--radius-card);
+    background: color-mix(in oklch, white 82%, transparent);
+  }
+  .map-note {
+    max-width: 30ch;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+  .map :global(.map-frame) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: var(--surface);
+  }
+  .map-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 1.5rem;
+    margin-top: 0.5rem;
+  }
+  .map-links a {
+    min-height: 2.75rem;
+    font-size: 0.9375rem;
+  }
+
+  @media (min-width: 480px) {
+    .direct-row {
+      grid-template-columns: 4.25rem minmax(0, 1fr);
+      gap: 1rem;
+    }
+    .direct-label {
+      padding-top: 0.3rem;
+    }
+  }
+  @media (min-width: 640px) {
+    .form-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .form-field-wide {
+      grid-column: 1 / -1;
+    }
+  }
+  /* Two columns: headline and form on the left, direct routes and the office on the right.
+     The DOM order (head, direct, form, office) is the phone order, so call and email come before the form. */
+  @media (min-width: 1024px) {
+    .contact-grid {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      grid-template-rows: auto auto 1fr;
+      grid-template-areas:
+        'head direct'
+        'form direct'
+        'form office';
+      column-gap: clamp(4rem, 1rem + 5vw, 7rem);
+      row-gap: 3rem;
+    }
+    .is-compact .contact-grid {
+      grid-template-rows: auto 1fr;
+      grid-template-areas:
+        'form direct'
+        'form office';
+    }
+    .contact-head {
+      grid-area: head;
+    }
+    .contact-direct {
+      grid-area: direct;
+    }
+    .contact-form-wrap {
+      grid-area: form;
+    }
+    .contact-office {
+      grid-area: office;
+      align-self: start;
+    }
+  }
+</style>

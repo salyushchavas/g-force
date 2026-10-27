@@ -1,0 +1,76 @@
+[
+  {
+    "slot": "svc-cybersecurity",
+    "kind": "image",
+    "title": "A USB security key beside a laptop",
+    "width": 1920,
+    "height": 1080,
+    "objectPosition": "60% 65%",
+    "sources": {
+      "srcset": {
+        "avif": [
+          "/media/img/security-key-laptop-640.avif",
+          "/media/img/security-key-laptop-800.avif",
+          "/media/img/security-key-laptop-1280.avif",
+          "/media/img/security-key-laptop-1920.avif"
+        ],
+        "webp": [
+          "/media/img/security-key-laptop-640.webp",
+          "/media/img/security-key-laptop-800.webp",
+          "/media/img/security-key-laptop-1280.webp",
+          "/media/img/security-key-laptop-1920.webp"
+        ],
+        "jpg": [
+          "/media/img/security-key-laptop-640.jpg",
+          "/media/img/security-key-laptop-800.jpg",
+          "/media/img/security-key-laptop-1280.jpg",
+          "/media/img/security-key-laptop-1920.jpg"
+        ]
+      }
+    },
+    "credit": {
+      "author": "cottonbro studio",
+      "source": "Pexels",
+      "page_url": "https://www.pexels.com/photo/close-up-shot-of-a-laptop-5474301/",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/"
+    }
+  },
+  {
+    "slot": "blog-cyber-career",
+    "kind": "image",
+    "title": "A USB security key beside a laptop",
+    "width": 1920,
+    "height": 1080,
+    "objectPosition": "60% 65%",
+    "sources": {
+      "srcset": {
+        "avif": [
+          "/media/img/security-key-laptop-640.avif",
+          "/media/img/security-key-laptop-800.avif",
+          "/media/img/security-key-laptop-1280.avif",
+          "/media/img/security-key-laptop-1920.avif"
+        ],
+        "webp": [
+          "/media/img/security-key-laptop-640.webp",
+          "/media/img/security-key-laptop-800.webp",
+          "/media/img/security-key-laptop-1280.webp",
+          "/media/img/security-key-laptop-1920.webp"
+        ],
+        "jpg": [
+          "/media/img/security-key-laptop-640.jpg",
+          "/media/img/security-key-laptop-800.jpg",
+          "/media/img/security-key-laptop-1280.jpg",
+          "/media/img/security-key-laptop-1920.jpg"
+        ]
+      }
+    },
+    "credit": {
+      "author": "cottonbro studio",
+      "source": "Pexels",
+      "page_url": "https://www.pexels.com/photo/close-up-shot-of-a-laptop-5474301/",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/"
+    }
+  }
+]

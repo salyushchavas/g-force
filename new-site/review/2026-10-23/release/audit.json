@@ -1,0 +1,356 @@
+[
+  {
+    "type": "header",
+    "width": 320,
+    "overflow": false,
+    "headerWidth": 280,
+    "headerRight": 300,
+    "logoRight": 172,
+    "actionsLeft": 204,
+    "fullLogo": true
+  },
+  {
+    "type": "header",
+    "width": 390,
+    "overflow": false,
+    "headerWidth": 350,
+    "headerRight": 370,
+    "logoRight": 226,
+    "actionsLeft": 274,
+    "fullLogo": true
+  },
+  {
+    "type": "header",
+    "width": 640,
+    "overflow": false,
+    "headerWidth": 587.515625,
+    "headerRight": 613.75,
+    "logoRight": 294.234375,
+    "actionsLeft": 318.234375,
+    "fullLogo": true
+  },
+  {
+    "type": "header",
+    "width": 768,
+    "overflow": false,
+    "headerWidth": 708.859375,
+    "headerRight": 738.421875,
+    "logoRight": 297.5625,
+    "actionsLeft": 409.96875,
+    "fullLogo": true
+  },
+  {
+    "type": "header",
+    "width": 1024,
+    "overflow": false,
+    "headerWidth": 951.546875,
+    "headerRight": 987.765625,
+    "logoRight": 304.21875,
+    "actionsLeft": 659.3125,
+    "fullLogo": true
+  },
+  {
+    "type": "header",
+    "width": 1200,
+    "overflow": false,
+    "headerWidth": 1118.390625,
+    "headerRight": 1159.1875,
+    "logoRight": 308.796875,
+    "actionsLeft": 882.734375,
+    "fullLogo": true
+  },
+  {
+    "type": "header",
+    "width": 1360,
+    "overflow": false,
+    "headerWidth": 1240,
+    "headerRight": 1300,
+    "logoRight": 328,
+    "actionsLeft": 916.78125,
+    "fullLogo": true
+  },
+  {
+    "type": "header",
+    "width": 1440,
+    "overflow": false,
+    "headerWidth": 1240,
+    "headerRight": 1340,
+    "logoRight": 368,
+    "actionsLeft": 956.78125,
+    "fullLogo": true
+  },
+  {
+    "type": "header",
+    "width": 1920,
+    "overflow": false,
+    "headerWidth": 1240,
+    "headerRight": 1580,
+    "logoRight": 608,
+    "actionsLeft": 1196.78125,
+    "fullLogo": true
+  },
+  {
+    "type": "route",
+    "route": "/",
+    "width": 390,
+    "theme": "light",
+    "status": 200,
+    "errors": [],
+    "overflow": false,
+    "h1": 1,
+    "broken": [],
+    "violations": []
+  },
+  {
+    "type": "route",
+    "route": "/business/",
+    "width": 390,
+    "theme": "light",
+    "status": 200,
+    "errors": [],
+    "overflow": false,
+    "h1": 1,
+    "broken": [],
+    "violations": []
+  },
+  {
+    "type": "route",
+    "route": "/training/",
+    "width": 390,
+    "theme": "light",
+    "status": 200,
+    "errors": [],
+    "overflow": false,
+    "h1": 1,
+    "broken": [],
+    "violations": [
+      {
+        "id": "target-size",
+        "nodes": [
+          {
+            "target": [
+              ".cf-group-goal > .cf-options > .cf-chip[type=\"button\"]:nth-child(1)"
+            ],
+            "summary": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 95.2px by 12.5px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 12.6px instead of at least 24px."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "route",
+    "route": "/contact/",
+    "width": 390,
+    "theme": "light",
+    "status": 200,
+    "errors": [],
+    "overflow": false,
+    "h1": 1,
+    "broken": [],
+    "violations": []
+  },
+  {
+    "type": "route",
+    "route": "/blog/",
+    "width": 390,
+    "theme": "light",
+    "status": 200,
+    "errors": [],
+    "overflow": false,
+    "h1": 1,
+    "broken": [],
+    "violations": []
+  },
+  {
+    "type": "route",
+    "route": "/",
+    "width": 390,
+    "theme": "dark",
+    "status": 200,
+    "errors": [],
+    "overflow": false,
+    "h1": 1,
+    "broken": [],
+    "violations": []
+  },
+  {
+    "type": "route",
+    "route": "/business/",
+    "width": 390,
+    "theme": "dark",
+    "status": 200,
+    "errors": [],
+    "overflow": false,
+    "h1": 1,
+    "broken": [],
+    "violations": []
+  },
+  {
+    "type": "route",
+    "route": "/training/",
+    "width": 390,
+    "theme": "dark",
+    "status": 200,
+    "errors": [],
+    "overflow": false,
+    "h1": 1,
+    "broken": [],
+    "violations": [
+      {
+        "id": "target-size",
+        "nodes": [
+          {
+            "target": [
+              ".cf-group-goal > .cf-options > .cf-chip[type=\"button\"]:nth-child(1)"
+            ],
+            "summary": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 95.2px by 12.5px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 12.6px instead of at least 24px."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "route",
+    "route": "/contact/",
+    "width": 390,
+    "theme": "dark",
+    "status": 200,
+    "errors": [],
+    "overflow": false,
+    "h1": 1,
+    "broken": [],
+    "violations": []
+  },
+  {
+    "type": "route",
+    "route": "/blog/",
+    "width": 390,
+    "theme": "dark",
+    "status": 200,
+    "errors": [],
+    "overflow": false,
+    "h1": 1,
+    "broken": [],
+    "violations": []
+  },
+  {
+    "type": "route",
+    "route": "/",
+    "width": 1440,
+    "theme": "light",
+    "status": 200,
+    "errors": [],
+    "overflow": false,
+    "h1": 1,
+    "broken": [],
+    "violations": []
+  },
+  {
+    "type": "route",
+    "route": "/business/",
+    "width": 1440,
+    "theme": "light",
+    "status": 200,
+    "errors": [],
+    "overflow": false,
+    "h1": 1,
+    "broken": [],
+    "violations": []
+  },
+  {
+    "type": "route",
+    "route": "/training/",
+    "width": 1440,
+    "theme": "light",
+    "status": 200,
+    "errors": [],
+    "overflow": false,
+    "h1": 1,
+    "broken": [],
+    "violations": []
+  },
+  {
+    "type": "route",
+    "route": "/contact/",
+    "width": 1440,
+    "theme": "light",
+    "status": 200,
+    "errors": [],
+    "overflow": false,
+    "h1": 1,
+    "broken": [],
+    "violations": []
+  },
+  {
+    "type": "route",
+    "route": "/blog/",
+    "width": 1440,
+    "theme": "light",
+    "status": 200,
+    "errors": [],
+    "overflow": false,
+    "h1": 1,
+    "broken": [],
+    "violations": []
+  },
+  {
+    "type": "route",
+    "route": "/",
+    "width": 1440,
+    "theme": "dark",
+    "status": 200,
+    "errors": [],
+    "overflow": false,
+    "h1": 1,
+    "broken": [],
+    "violations": []
+  },
+  {
+    "type": "route",
+    "route": "/business/",
+    "width": 1440,
+    "theme": "dark",
+    "status": 200,
+    "errors": [],
+    "overflow": false,
+    "h1": 1,
+    "broken": [],
+    "violations": []
+  },
+  {
+    "type": "route",
+    "route": "/training/",
+    "width": 1440,
+    "theme": "dark",
+    "status": 200,
+    "errors": [],
+    "overflow": false,
+    "h1": 1,
+    "broken": [],
+    "violations": []
+  },
+  {
+    "type": "route",
+    "route": "/contact/",
+    "width": 1440,
+    "theme": "dark",
+    "status": 200,
+    "errors": [],
+    "overflow": false,
+    "h1": 1,
+    "broken": [],
+    "violations": []
+  },
+  {
+    "type": "route",
+    "route": "/blog/",
+    "width": 1440,
+    "theme": "dark",
+    "status": 200,
+    "errors": [],
+    "overflow": false,
+    "h1": 1,
+    "broken": [],
+    "violations": []
+  }
+]

@@ -1,0 +1,1660 @@
+[
+  {
+    "config": {
+      "name": "mobile",
+      "mobile": true
+    },
+    "errors": [],
+    "initial": {
+      "playing": 1,
+      "attached": 1,
+      "films": [
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": true,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+          "paused": false,
+          "time": 1.52,
+          "ready": 4,
+          "shown": true,
+          "ambient": false,
+          "width": 640,
+          "frames": 41,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        }
+      ],
+      "requests": [
+        {
+          "name": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+          "bytes": 187449,
+          "duration": 1.199999999254942
+        }
+      ]
+    },
+    "advancement": 0.9162999999999999,
+    "samples": [
+      {
+        "at": "row-2",
+        "playing": 1,
+        "attached": 2,
+        "films": [
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": true,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+            "paused": true,
+            "time": 3.1148,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 79,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-cybersecurity-air-loop-mobile-640.mp4",
+            "paused": false,
+            "time": 0.5149,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 17,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          }
+        ],
+        "requests": [
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+            "bytes": 187449,
+            "duration": 1.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cybersecurity-air-loop-mobile-640.mp4",
+            "bytes": 161375,
+            "duration": 3.100000001490116
+          }
+        ]
+      },
+      {
+        "at": "row-3",
+        "playing": 1,
+        "attached": 3,
+        "films": [
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": true,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+            "paused": true,
+            "time": 3.1148,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 79,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-cybersecurity-air-loop-mobile-640.mp4",
+            "paused": true,
+            "time": 0.6702,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 20,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-cloud-backup-air-loop-mobile-640.mp4",
+            "paused": false,
+            "time": 0.4958,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 18,
+            "dropped": 3
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          }
+        ],
+        "requests": [
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+            "bytes": 187449,
+            "duration": 1.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cybersecurity-air-loop-mobile-640.mp4",
+            "bytes": 161375,
+            "duration": 3.100000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cloud-backup-air-loop-mobile-640.mp4",
+            "bytes": 241737,
+            "duration": 3.599999999627471
+          }
+        ]
+      },
+      {
+        "at": "row-4",
+        "playing": 1,
+        "attached": 4,
+        "films": [
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": true,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+            "paused": true,
+            "time": 3.1148,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 79,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-cybersecurity-air-loop-mobile-640.mp4",
+            "paused": true,
+            "time": 0.6702,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 20,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-cloud-backup-air-loop-mobile-640.mp4",
+            "paused": true,
+            "time": 0.6529,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 21,
+            "dropped": 3
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-training-mobile-640.mp4",
+            "paused": false,
+            "time": 0.4917,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 17,
+            "dropped": 3
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          }
+        ],
+        "requests": [
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+            "bytes": 187449,
+            "duration": 1.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cybersecurity-air-loop-mobile-640.mp4",
+            "bytes": 161375,
+            "duration": 3.100000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cloud-backup-air-loop-mobile-640.mp4",
+            "bytes": 241737,
+            "duration": 3.599999999627471
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-training-mobile-640.mp4",
+            "bytes": 290388,
+            "duration": 3.800000000745058
+          }
+        ]
+      },
+      {
+        "at": "row-5",
+        "playing": 1,
+        "attached": 5,
+        "films": [
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": true,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+            "paused": true,
+            "time": 3.1148,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 79,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-cybersecurity-air-loop-mobile-640.mp4",
+            "paused": true,
+            "time": 0.6702,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 20,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-cloud-backup-air-loop-mobile-640.mp4",
+            "paused": true,
+            "time": 0.6529,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 21,
+            "dropped": 3
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-training-mobile-640.mp4",
+            "paused": true,
+            "time": 0.6529,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 21,
+            "dropped": 3
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-consulting-air-loop-mobile-640.mp4",
+            "paused": false,
+            "time": 0.4963,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 18,
+            "dropped": 3
+          }
+        ],
+        "requests": [
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+            "bytes": 187449,
+            "duration": 1.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cybersecurity-air-loop-mobile-640.mp4",
+            "bytes": 161375,
+            "duration": 3.100000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cloud-backup-air-loop-mobile-640.mp4",
+            "bytes": 241737,
+            "duration": 3.599999999627471
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-training-mobile-640.mp4",
+            "bytes": 290388,
+            "duration": 3.800000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-consulting-air-loop-mobile-640.mp4",
+            "bytes": 301508,
+            "duration": 3.099999999627471
+          }
+        ]
+      },
+      {
+        "at": "dawn",
+        "playing": 1,
+        "attached": 6,
+        "films": [
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": true,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+            "paused": false,
+            "time": 0.7533,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 23,
+            "dropped": 3
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+            "paused": true,
+            "time": 3.1148,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 79,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-cybersecurity-air-loop-mobile-640.mp4",
+            "paused": true,
+            "time": 0.6702,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 20,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-cloud-backup-air-loop-mobile-640.mp4",
+            "paused": true,
+            "time": 0.6529,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 21,
+            "dropped": 3
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-training-mobile-640.mp4",
+            "paused": true,
+            "time": 0.6529,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 21,
+            "dropped": 3
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-consulting-air-loop-mobile-640.mp4",
+            "paused": true,
+            "time": 0.5336,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 19,
+            "dropped": 3
+          }
+        ],
+        "requests": [
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+            "bytes": 187449,
+            "duration": 1.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cybersecurity-air-loop-mobile-640.mp4",
+            "bytes": 161375,
+            "duration": 3.100000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cloud-backup-air-loop-mobile-640.mp4",
+            "bytes": 241737,
+            "duration": 3.599999999627471
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-training-mobile-640.mp4",
+            "bytes": 290388,
+            "duration": 3.800000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-consulting-air-loop-mobile-640.mp4",
+            "bytes": 301508,
+            "duration": 3.099999999627471
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "config": {
+      "name": "desktop",
+      "mobile": false
+    },
+    "errors": [],
+    "initial": {
+      "playing": 2,
+      "attached": 2,
+      "films": [
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": true,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-960.mp4",
+          "paused": false,
+          "time": 1.607,
+          "ready": 4,
+          "shown": true,
+          "ambient": false,
+          "width": 960,
+          "frames": 45,
+          "dropped": 0
+        },
+        {
+          "src": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-960.mp4",
+          "paused": false,
+          "time": 1.6047,
+          "ready": 4,
+          "shown": true,
+          "ambient": false,
+          "width": 960,
+          "frames": 45,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        }
+      ],
+      "requests": [
+        {
+          "name": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-960.mp4",
+          "bytes": 375547,
+          "duration": 3.200000001117587
+        },
+        {
+          "name": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-960.mp4",
+          "bytes": 375547,
+          "duration": 3.199999999254942
+        }
+      ]
+    },
+    "advancement": 0.9098999999999999,
+    "samples": [
+      {
+        "at": "hover-2",
+        "playing": 1,
+        "attached": 3,
+        "films": [
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": true,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-960.mp4",
+            "paused": true,
+            "time": 2.6099,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 70,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-960.mp4",
+            "paused": true,
+            "time": 3.141,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 83,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-cybersecurity-air-loop-960.mp4",
+            "paused": false,
+            "time": 0.3802,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 14,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          }
+        ],
+        "requests": [
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-960.mp4",
+            "bytes": 375547,
+            "duration": 3.200000001117587
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-960.mp4",
+            "bytes": 375547,
+            "duration": 3.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cybersecurity-air-loop-960.mp4",
+            "bytes": 330875,
+            "duration": 3.099999999627471
+          }
+        ]
+      },
+      {
+        "at": "hover-3",
+        "playing": 1,
+        "attached": 4,
+        "films": [
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": true,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-960.mp4",
+            "paused": true,
+            "time": 2.6099,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 70,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-960.mp4",
+            "paused": true,
+            "time": 3.141,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 83,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-cybersecurity-air-loop-960.mp4",
+            "paused": true,
+            "time": 0.4287,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 15,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "paused": false,
+            "time": 0.3769,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 14,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          }
+        ],
+        "requests": [
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-960.mp4",
+            "bytes": 375547,
+            "duration": 3.200000001117587
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-960.mp4",
+            "bytes": 375547,
+            "duration": 3.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cybersecurity-air-loop-960.mp4",
+            "bytes": 330875,
+            "duration": 3.099999999627471
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "bytes": 532735,
+            "duration": 3.5
+          }
+        ]
+      },
+      {
+        "at": "hover-4",
+        "playing": 1,
+        "attached": 5,
+        "films": [
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": true,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-960.mp4",
+            "paused": true,
+            "time": 2.6099,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 70,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-960.mp4",
+            "paused": true,
+            "time": 3.141,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 83,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-cybersecurity-air-loop-960.mp4",
+            "paused": true,
+            "time": 0.4287,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 15,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "paused": true,
+            "time": 0.4354,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 15,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-training-960.mp4",
+            "paused": false,
+            "time": 0.3733,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 14,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          }
+        ],
+        "requests": [
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-960.mp4",
+            "bytes": 375547,
+            "duration": 3.200000001117587
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-960.mp4",
+            "bytes": 375547,
+            "duration": 3.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cybersecurity-air-loop-960.mp4",
+            "bytes": 330875,
+            "duration": 3.099999999627471
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "bytes": 532735,
+            "duration": 3.5
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-training-960.mp4",
+            "bytes": 680705,
+            "duration": 3.300000000745058
+          }
+        ]
+      },
+      {
+        "at": "hover-5",
+        "playing": 1,
+        "attached": 6,
+        "films": [
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "shown": false,
+            "ambient": true,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-960.mp4",
+            "paused": true,
+            "time": 2.6099,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 70,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-960.mp4",
+            "paused": true,
+            "time": 3.141,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 83,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-cybersecurity-air-loop-960.mp4",
+            "paused": true,
+            "time": 0.4287,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 15,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "paused": true,
+            "time": 0.4354,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 15,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-training-960.mp4",
+            "paused": true,
+            "time": 0.4323,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 15,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-consulting-air-loop-960.mp4",
+            "paused": false,
+            "time": 0.3691,
+            "ready": 4,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 13,
+            "dropped": 0
+          }
+        ],
+        "requests": [
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-960.mp4",
+            "bytes": 375547,
+            "duration": 3.200000001117587
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-960.mp4",
+            "bytes": 375547,
+            "duration": 3.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cybersecurity-air-loop-960.mp4",
+            "bytes": 330875,
+            "duration": 3.099999999627471
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "bytes": 532735,
+            "duration": 3.5
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-training-960.mp4",
+            "bytes": 680705,
+            "duration": 3.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-consulting-air-loop-960.mp4",
+            "bytes": 634861,
+            "duration": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "config": {
+      "name": "reduced",
+      "mobile": true,
+      "reduced": true
+    },
+    "errors": [],
+    "initial": {
+      "playing": 0,
+      "attached": 0,
+      "films": [
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": true,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        }
+      ],
+      "requests": []
+    },
+    "advancement": 0.9127000000000001,
+    "samples": []
+  },
+  {
+    "config": {
+      "name": "savedata",
+      "mobile": true,
+      "saveData": true
+    },
+    "errors": [],
+    "initial": {
+      "playing": 0,
+      "attached": 0,
+      "films": [
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": true,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        }
+      ],
+      "requests": []
+    },
+    "advancement": 0.9106000000000001,
+    "samples": []
+  },
+  {
+    "config": {
+      "name": "blocked",
+      "mobile": true,
+      "blocked": true
+    },
+    "errors": [],
+    "initial": {
+      "playing": 0,
+      "attached": 1,
+      "films": [
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": true,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+          "paused": true,
+          "time": 0,
+          "ready": 4,
+          "shown": false,
+          "ambient": false,
+          "width": 640,
+          "frames": 4,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        }
+      ],
+      "requests": [
+        {
+          "name": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+          "bytes": 187449,
+          "duration": 1.900000000372529
+        }
+      ]
+    },
+    "advancement": 0.9110999999999999,
+    "samples": []
+  },
+  {
+    "config": {
+      "name": "error",
+      "mobile": true,
+      "error": true
+    },
+    "errors": [],
+    "initial": {
+      "playing": 0,
+      "attached": 1,
+      "films": [
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": true,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "error": "MEDIA_ELEMENT_ERROR: Format error",
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        }
+      ],
+      "requests": [
+        {
+          "name": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+          "bytes": 0,
+          "duration": 2.5
+        }
+      ]
+    },
+    "advancement": 0.9119999999999999,
+    "samples": []
+  },
+  {
+    "config": {
+      "name": "stalled",
+      "mobile": true,
+      "stalled": true
+    },
+    "errors": [],
+    "initial": {
+      "playing": 1,
+      "attached": 1,
+      "films": [
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": true,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+          "paused": false,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "ready": 0,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        }
+      ],
+      "requests": []
+    },
+    "advancement": 0.9051,
+    "timeoutRecovery": {
+      "elapsedMs": 9763,
+      "mediaAttempts": 1,
+      "state": {
+        "paused": true,
+        "shown": false,
+        "source": null,
+        "current": "http://127.0.0.1:4404/media/video/svc-managed-it-air-loop-mobile-640.mp4",
+        "ready": 0
+      }
+    },
+    "samples": []
+  }
+]

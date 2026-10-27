@@ -1,0 +1,200 @@
+---
+// Small native controller: the help button works without downloading React on every page.
+import { TOPICS, GREETING } from '../../data/chat';
+---
+<div class="gf-chat" data-chat data-tucked hidden>
+  <div class="gf-chat-panel" role="dialog" aria-modal="false" aria-labelledby="gf-chat-title" hidden>
+    <div class="gf-chat-head">
+      <div>
+        <p id="gf-chat-title" class="gf-chat-title">Ask G-Force</p>
+        <p class="gf-chat-sub">Automated answers. Real people reply by phone or email.</p>
+      </div>
+      <button type="button" class="gf-chat-x" data-chat-close aria-label="Close help">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+      </button>
+    </div>
+    <div class="gf-chat-log" role="log" aria-label="Conversation" aria-live="polite" tabindex="0"><div class="gf-msg gf-msg-bot"><p>{GREETING.text}</p></div></div>
+    <div class="gf-chat-topics">
+      {TOPICS.map((topic, index) => <button type="button" data-chat-topic={index}>{topic.label}</button>)}
+      <button type="button" class="gf-chat-msgbtn" data-chat-message>Leave a message for a person</button>
+    </div>
+    <form class="gf-chat-form" novalidate hidden>
+      <label><span>Name</span><input class="field" name="name" autocomplete="name" required /></label>
+      <label><span>Email</span><input class="field" name="email" type="email" autocomplete="email" required /></label>
+      <label><span>Message</span><textarea class="field" name="message" rows="3" required></textarea></label>
+      <input type="text" name="company_website" tabindex="-1" autocomplete="off" class="gf-hp" aria-hidden="true" />
+      <p class="gf-chat-fine">We use your details only to reply. <a href="/privacy/">Privacy policy</a>.</p>
+      <div class="gf-chat-actions">
+        <button type="button" class="btn btn-secondary" data-chat-back>Back</button>
+        <button type="submit" class="btn btn-primary">Send message</button>
+      </div>
+      <p class="gf-chat-fine" role="status"></p>
+    </form>
+  </div>
+  <button type="button" class="gf-chat-launcher" aria-expanded="false" aria-controls="gf-chat-panel">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g data-chat-open-icon><path d="M4.5 5.5h15v10h-8l-4.5 3.5v-3.5h-2.5z" /><path d="M8.5 10.5h7" /></g><path data-chat-close-icon d="M6 6l12 12M18 6 6 18" hidden /></svg>
+    <span class="gf-chat-launcher-label">Questions? Ask us</span>
+  </button>
+  {TOPICS.map((topic, index) => <template data-chat-reply={index}><div class="gf-msg gf-msg-bot"><p>{topic.reply.text}</p><div class="gf-msg-links">{topic.reply.links.map(link => <a href={link.href}>{link.label}</a>)}</div></div></template>)}
+</div>
+
+<script>
+  import { submitLead } from '../../lib/leads';
+  const root = document.querySelector<HTMLElement>('[data-chat]');
+  if (root) {
+    const panel = root.querySelector<HTMLElement>('.gf-chat-panel')!;
+    panel.id = 'gf-chat-panel';
+    const launcher = root.querySelector<HTMLButtonElement>('.gf-chat-launcher')!;
+    const label = launcher.querySelector<HTMLElement>('.gf-chat-launcher-label')!;
+    const log = root.querySelector<HTMLElement>('.gf-chat-log')!;
+    const topics = root.querySelector<HTMLElement>('.gf-chat-topics')!;
+    const form = root.querySelector<HTMLFormElement>('.gf-chat-form')!;
+    let open = false;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const scrollLog = () => log.scrollTo({ top: log.scrollHeight, behavior: reduced.matches ? 'instant' : 'smooth' });
+    const appendMessage = (text: string) => {
+      const entry = document.createElement('div');
+      entry.className = 'gf-msg gf-msg-you';
+      const p = document.createElement('p');
+      p.textContent = text;
+      entry.append(p);
+      log.append(entry);
+    };
+    const setOpen = (next: boolean) => {
+      open = next;
+      panel.hidden = !open;
+      root.toggleAttribute('data-open', open);
+      launcher.setAttribute('aria-expanded', String(open));
+      label.textContent = open ? 'Close help' : 'Questions? Ask us';
+      root.querySelector('[data-chat-open-icon]')!.toggleAttribute('hidden', open);
+      root.querySelector('[data-chat-close-icon]')!.toggleAttribute('hidden', !open);
+      if (open) panel.querySelector<HTMLButtonElement>('button')?.focus();
+      else launcher.focus();
+    };
+    launcher.addEventListener('click', () => setOpen(!open));
+    root.querySelector('[data-chat-close]')!.addEventListener('click', () => setOpen(false));
+    document.addEventListener('keydown', (event) => { if (open && event.key === 'Escape') setOpen(false); });
+    root.querySelectorAll<HTMLButtonElement>('[data-chat-topic]').forEach(button => {
+      button.addEventListener('click', () => {
+        appendMessage(button.textContent?.trim() ?? '');
+        const reply = root.querySelector<HTMLTemplateElement>(`[data-chat-reply="${button.dataset.chatTopic}"]`)!;
+        log.append(reply.content.cloneNode(true));
+        scrollLog();
+      });
+    });
+    const setMessageMode = (messageMode: boolean) => {
+      topics.hidden = messageMode;
+      form.hidden = !messageMode;
+      if (messageMode) form.querySelector<HTMLInputElement>('input')?.focus();
+      else topics.querySelector<HTMLButtonElement>('button')?.focus();
+      scrollLog();
+    };
+    root.querySelector('[data-chat-message]')!.addEventListener('click', () => setMessageMode(true));
+    root.querySelector('[data-chat-back]')!.addEventListener('click', () => setMessageMode(false));
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+      const status = form.querySelector<HTMLElement>('[role="status"]')!;
+      const submit = form.querySelector<HTMLButtonElement>('[type="submit"]')!;
+      const data = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
+      status.textContent = 'Sending…';
+      submit.disabled = true;
+      try {
+        const result = await submitLead('contact', { ...data, source: 'chat helper' });
+        appendMessage(data.message);
+        const reply = document.createElement('div');
+        reply.className = 'gf-msg gf-msg-bot';
+        const p = document.createElement('p');
+        p.textContent = result.message;
+        reply.append(p);
+        log.append(reply);
+        status.textContent = '';
+        if (result.ok) { form.reset(); setMessageMode(false); }
+        scrollLog();
+      } finally { submit.disabled = false; }
+    });
+
+    // Keep the launcher clear of forms and the bottom contact/footer band.
+    const narrow = matchMedia('(max-width: 639px)');
+    const hero = document.querySelector('[data-dawn-hero], [data-night-hero], main .page-hero, main .post-hero');
+    const targets = Array.from(document.querySelectorAll('#contact, .site-footer, .map-links'));
+    const isField = (target: EventTarget | null) => target instanceof Element && target.matches('input, select, textarea') && !root.contains(target);
+    const covering = new Set<Element>();
+    let heroUnder = false;
+    let typing = isField(document.activeElement);
+    const sync = () => {
+      root.toggleAttribute('data-compact', !heroUnder);
+      root.toggleAttribute('data-tucked', typing || covering.size > 0 || (heroUnder && narrow.matches));
+    };
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.target === hero) heroUnder = entry.isIntersecting;
+          else if (entry.isIntersecting) covering.add(entry.target);
+          else covering.delete(entry.target);
+        });
+        sync();
+      }, { rootMargin: '-82% 0px 0px 0px', threshold: 0 });
+      if (hero) observer.observe(hero);
+      targets.forEach(target => observer.observe(target));
+    }
+    document.addEventListener('focusin', event => { typing = isField(event.target); sync(); });
+    document.addEventListener('focusout', event => { typing = isField(event.relatedTarget); sync(); });
+    narrow.addEventListener('change', sync);
+    root.hidden = false;
+    if (!hero && !targets.length) sync();
+  }
+</script>
+
+<style is:global>
+
+/* The right edge stays inside the container's gutter on wide screens. */
+.gf-chat { position: fixed; right: max(1rem, env(safe-area-inset-right), calc((100vw - 1240px) / 2 - 72px)); bottom: max(1rem, env(safe-area-inset-bottom)); z-index: var(--z-overlay); display: flex; flex-direction: column; align-items: flex-end; gap: .75rem; font-family: var(--font-sans); }
+/* Air's floating control: a frosted white pill with ink type, never a coloured fill. */
+.gf-chat-launcher { display: inline-flex; align-items: center; gap: .55rem; min-height: 3.25rem; padding: .8rem 1.15rem; border: 0; border-radius: 999px; background: color-mix(in oklch, white 84%, transparent); color: var(--color-air-ink); font: inherit; font-weight: 650; font-size: .9375rem; cursor: pointer; box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--color-air-ink) 12%, transparent), 0 6px 16px -8px rgb(18 62 115 / .45); -webkit-backdrop-filter: blur(16px) saturate(150%); backdrop-filter: blur(16px) saturate(150%); transition: background-color 160ms var(--ease-out-quart), transform 420ms var(--ease-out-expo), opacity 300ms var(--ease-out-expo); }
+.gf-chat-launcher:hover { background: #fff; }
+.gf-chat-launcher:active { transform: translateY(1px); transition-duration: 100ms; }
+[data-theme="dark"] .gf-chat-launcher { background: #fff; color: var(--color-air-ink); }
+/* Past the hero (and always on phones): a 3.5rem circle. The label stays as the button's accessible name. */
+.gf-chat[data-compact] .gf-chat-launcher { width: 3.5rem; height: 3.5rem; min-height: 3.5rem; padding: 0; justify-content: center; }
+.gf-chat[data-compact] .gf-chat-launcher-label { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+@media (max-width: 639px) {
+  .gf-chat-launcher { width: 3.5rem; height: 3.5rem; min-height: 3.5rem; padding: 0; justify-content: center; }
+  .gf-chat-launcher-label { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+}
+/* Tucked below the edge (exit curve, ~60% of the entrance). It comes back the moment it takes keyboard focus. */
+.gf-chat[data-tucked]:not([data-open]) .gf-chat-launcher:not(:focus-visible) { transform: translateY(calc(100% + 1.5rem)); opacity: 0; pointer-events: none; transition: transform 250ms var(--ease-exit), opacity 200ms var(--ease-exit); }
+@media (prefers-reduced-motion: reduce) { .gf-chat .gf-chat-launcher { transition: none !important; } }
+.gf-chat-panel { width: min(24rem, calc(100vw - 2rem)); max-height: min(36rem, calc(100svh - 7rem)); display: flex; flex-direction: column; background: var(--surface); color: var(--text); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; transform-origin: bottom right; animation: gf-pop 260ms var(--ease-out-expo); }
+/* Dark: an opaque deep-sky panel, so page text never prints through the messages. */
+[data-theme="dark"] .gf-chat-panel { background: var(--color-ink-900); --surface-2: var(--color-ink-850); }
+.gf-chat-panel[hidden] { display: none; }
+@keyframes gf-pop { from { opacity: 0; transform: translateY(8px) scale(.98); } to { opacity: 1; transform: none; } }
+.gf-chat-head { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 1rem .9rem 1.1rem; background: var(--color-sky-deep); color: #fff; }
+.gf-chat-title { font-weight: 750; font-size: 1.0625rem; letter-spacing: -.01em; }
+.gf-chat-sub { margin-top: .15rem; font-size: .8125rem; color: var(--color-mist-300); line-height: 1.4; }
+.gf-chat-x { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border: 0; border-radius: 999px; background: transparent; color: #fff; cursor: pointer; flex-shrink: 0; }
+.gf-chat-x:hover { background: rgb(255 255 255 / .1); }
+.gf-chat-log { min-height: 0; flex: 1; overflow-y: auto; padding: 1rem 1.1rem; display: grid; gap: .7rem; align-content: start; }
+.gf-msg { max-width: 88%; padding: .65rem .85rem; border-radius: 10px; font-size: .9375rem; line-height: 1.5; }
+.gf-msg-bot { background: var(--surface-2); justify-self: start; border-bottom-left-radius: 3px; }
+.gf-msg-you { background: var(--color-air-ink); color: #fff; justify-self: end; border-bottom-right-radius: 3px; }
+[data-theme="dark"] .gf-msg-you { background: #fff; color: var(--color-air-ink); }
+.gf-msg-links { display: flex; flex-wrap: wrap; gap: .4rem .9rem; margin-top: .5rem; }
+.gf-msg-links a { color: var(--accent-ink); font-weight: 650; text-underline-offset: .25em; }
+.gf-chat-topics { min-height: 0; overflow-y: auto; display: grid; gap: .4rem; padding: .25rem 1.1rem 1.1rem; }
+.gf-chat-topics button { text-align: left; padding: .6rem .8rem; border-radius: 8px; border: 1px solid var(--line); background: transparent; color: var(--text); font: inherit; font-size: .9375rem; font-weight: 550; cursor: pointer; transition: border-color 160ms var(--ease-out-quart), background-color 160ms var(--ease-out-quart); }
+.gf-chat-topics button:hover { border-color: var(--text-muted); background: var(--surface-2); }
+.gf-chat-topics .gf-chat-msgbtn { border-style: dashed; color: var(--accent-ink); }
+.gf-chat-form { min-height: 0; overflow-y: auto; display: grid; gap: .6rem; padding: .25rem 1.1rem 1.1rem; }
+.gf-chat-form label { display: grid; gap: .3rem; font-size: .875rem; font-weight: 600; }
+.gf-chat-form .field { min-height: 2.6rem; padding: .55rem .7rem; }
+.gf-chat-fine { font-size: .8125rem; color: var(--text-muted); }
+.gf-chat-fine:empty { display: none; }
+.gf-chat-fine a { text-decoration: underline; text-underline-offset: .2em; }
+.gf-chat-actions { display: flex; justify-content: flex-end; gap: .5rem; }
+.gf-chat-actions .btn { min-height: 2.6rem; padding: .55rem 1rem; font-size: .9375rem; }
+.gf-hp { position: absolute; left: -10000px; width: 1px; height: 1px; opacity: 0; }
+
+.gf-chat[hidden], .gf-chat [hidden] { display: none !important; }
+</style>

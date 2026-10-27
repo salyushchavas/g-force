@@ -1,0 +1,64 @@
+{
+  "engine": "webkit",
+  "base": "https://gforce-kappa.vercel.app",
+  "testedAt": "2026-10-23T15:16:08.229Z",
+  "results": [
+    {
+      "name": "mobile",
+      "passed": true,
+      "width": 390,
+      "elapsedMs": 4018,
+      "state": {
+        "state": "complete",
+        "active": false,
+        "art": false,
+        "canvas": false,
+        "scrollY": 0,
+        "title": {
+          "top": 195,
+          "bottom": 261.53125,
+          "opacity": "1"
+        },
+        "cta": {
+          "top": 353.53125,
+          "bottom": 461.53125,
+          "afterCopy": true
+        },
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "overflow": false,
+        "copyTransform": "",
+        "draws": 0,
+        "contexts": 1,
+        "completed": 1,
+        "errors": []
+      },
+      "evidence": {
+        "frames": 115,
+        "durationMs": 1900,
+        "medianIntervalMs": 17,
+        "p95IntervalMs": 18,
+        "maxIntervalMs": 18,
+        "framesOver34ms": 0,
+        "endJumpPx": 6.103515625e-05,
+        "startupLongTasks": [],
+        "movingLongTasks": []
+      },
+      "geometryRequests": [
+        "https://gforce-kappa.vercel.app/3d/gforce-glass-original-mobile.json",
+        "https://gforce-kappa.vercel.app/3d/gforce-glass-original-mobile.bin",
+        "https://gforce-kappa.vercel.app/3d/glass-light-v2.png"
+      ],
+      "errors": []
+    }
+  ],
+  "deployment": {
+    "commit": "bb4f156",
+    "heroAsset": "Hero.astro_astro_type_script_index_0_lang.D2mIyJpl.js",
+    "localSHA256": "02036ff3d8a533541e9c8ae4facb7fa2fa638eb88458fda46bdd67a5f75825ae",
+    "liveSHA256": "02036ff3d8a533541e9c8ae4facb7fa2fa638eb88458fda46bdd67a5f75825ae",
+    "matches": true
+  }
+}

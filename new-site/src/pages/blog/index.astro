@@ -1,0 +1,711 @@
+---
+// Blog index ("Resources" in the nav): a compact dawn hero that names both audiences, a row of the two free tools
+// for business owners, the latest article featured and the rest in a grid, then a newsletter signup with its own
+// unticked consent box before the button (CASL), and sender identity.
+// The topic filter only appears once a topic has more than one article. It is plain links (?category=); a tiny
+// inline script filters in place, sets aria-pressed and announces the result; without JavaScript every article
+// stays visible.
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/ui/PageHero.astro';
+import SplitHeading from '../../components/ui/SplitHeading.astro';
+import Picture from '../../components/ui/Picture.astro';
+import Icon from '../../components/ui/Icon.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { posts, formatDate } from '../../data/posts';
+import { checklist, company, quiz } from '../../data/site';
+
+const topicSlug = (c: string) => c.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const sorted = [...posts].sort((a, b) => b.updated.localeCompare(a.updated) || b.published.localeCompare(a.published));
+const [featured, ...rest] = sorted;
+const topics = [...new Set(posts.map((p) => p.category))];
+// One chip per article filters nothing, so the filter waits until a topic has more than one article.
+const showFilter = topics.some((t) => posts.filter((p) => p.category === t).length > 1);
+const featuredRevised = Boolean(featured) && featured.updated !== featured.published;
+const featuredDate = featured ? (featuredRevised ? featured.updated : featured.published) : '';
+// The year of the newest revision. ISO dates parse as UTC, so the UTC year is the date's own year.
+const updatedFor = `Updated for ${Math.max(...posts.map((p) => new Date(p.updated).getUTCFullYear()))}.`;
+
+const areaWords: Record<string, string> = { plan: 'planning' };
+const areas = [...new Set(checklist.map((c) => c.area.toLowerCase()))].map((a) => areaWords[a] ?? a);
+const areaList = areas.length > 1 ? `${areas.slice(0, -1).join(', ')} and ${areas.at(-1)}` : areas.join('');
+const numberWords = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+const quizCount = numberWords[quiz.questions.length] ?? String(quiz.questions.length);
+const capital = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
+// CASL: the consent wording is shown beside the box and sent with the signup as the record of what was agreed to.
+const nlConsent = 'Yes, email me G\u2011Force’s monthly IT security notes. I can unsubscribe at any time.';
+// Non-breaking spaces keep the province and postal code together on one line.
+const address = `${company.address.street}, ${company.address.city}, ${company.address.region}\u00A0${company.address.postal.replace(' ', '\u00A0')}`;
+
+const base = (Astro.site ?? new URL(company.url)).href.replace(/\/$/, '');
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  '@id': `${base}/blog/#blog`,
+  name: 'G-Force IT blog',
+  url: `${base}/blog/`,
+  inLanguage: 'en-CA',
+  publisher: { '@id': `${company.url}/#org` },
+  blogPost: sorted.map((p) => ({
+    '@type': 'BlogPosting',
+    headline: p.title,
+    description: p.excerpt,
+    url: `${base}/blog/${p.slug}/`,
+    datePublished: p.published,
+    dateModified: p.updated,
+    articleSection: p.category,
+  })),
+};
+---
+<Base
+  title="IT careers and training blog"
+  description="Guides from G-Force IT in Toronto on the IT skills Canadian employers hire for, choosing a training program, starting in cybersecurity and how AI is changing IT work."
+  sky
+  footerNewsletter={false}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+  </Fragment>
+
+  <PageHero
+    tone="dawn"
+    compact
+    lines={['Read this before', 'you *enrol*']}
+    intro={`Guides for people moving into IT: the skills Canadian employers hire for, choosing a training program, and where cybersecurity and AI careers begin. Running a small business? Start with the two free security tools below. ${updatedFor}`}
+  />
+
+  <section id="for-business" class="owners sheet" aria-labelledby="owners-title">
+    <div class="container-g">
+      <h2 id="owners-title" class="owners-label t-meta">For business owners</h2>
+      <ul class="owners-list" role="list">
+        <li>
+          <a class="card owner-card" href="/resources/security-checklist/">
+            <span class="owner-icon" aria-hidden="true"><Icon name="shield" size={22} /></span>
+            <span class="owner-text">
+              <span class="owner-title">{checklist.length}-point IT security checklist</span>
+              <span class="owner-sub t-meta">{capital(numberWords[checklist.length] ?? String(checklist.length))} checks covering {areaList}.</span>
+            </span>
+            <span class="btn-arrow" aria-hidden="true"><Icon name="arrow" size={20} /></span>
+          </a>
+        </li>
+        <li>
+          <a class="card owner-card" href="/it-health-check/">
+            <span class="owner-icon" aria-hidden="true"><Icon name="monitor" size={22} /></span>
+            <span class="owner-text">
+              <span class="owner-title">{capital(quizCount)}-question IT health check</span>
+              <span class="owner-sub t-meta">A score out of 100 and the fixes worth doing first, in about two minutes.</span>
+            </span>
+            <span class="btn-arrow" aria-hidden="true"><Icon name="arrow" size={20} /></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="articles" class="articles sheet" aria-labelledby="articles-title">
+    <div class="container-g">
+      <div class="articles-bar">
+        <h2 id="articles-title" class="t-h3">Latest articles</h2>
+        {showFilter && (
+          <div class="filter" role="group" aria-labelledby="filter-label" data-blog-filter>
+            <span id="filter-label" class="filter-label t-meta">Topic</span>
+            <ul class="filter-list" role="list">
+              <li><a class="filter-chip is-active" href="/blog/" data-filter="all">All topics</a></li>
+              {topics.map((t) => (
+                <li>
+                  <a class="filter-chip" href={`/blog/?category=${topicSlug(t)}`} data-filter={topicSlug(t)} data-label={t}>{t}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+      {showFilter && (
+        <p class="filter-status t-meta" role="status" aria-live="polite" data-filter-status>Showing all {posts.length} articles</p>
+      )}
+
+      <ul class="post-list" role="list" data-stagger data-post-list>
+        {featured && (
+          <li class="post-item is-featured" data-post-category={topicSlug(featured.category)}>
+            <article class="feature">
+              <div class="feature-media">
+                <Picture
+                  slot={featured.image}
+                  alt=""
+                  variant="duo"
+                  loading="eager"
+                  sizes="(min-width: 1240px) 700px, (min-width: 900px) 56vw, 100vw"
+                  class="feature-pic"
+                  imgClass="feature-img"
+                />
+              </div>
+              <div class="feature-body">
+                <h3 class="t-h2 feature-title"><a class="feature-link" href={`/blog/${featured.slug}/`}>{featured.title}</a></h3>
+                <p class="feature-tags">
+                  <span class="chip feature-tag">
+                    <span class="sr-only">Topic: </span>{featured.category}
+                  </span>
+                  {featured.format === 'infographic' && (
+                    <span class="chip feature-format"><span class="sr-only">Format: </span>Infographic</span>
+                  )}
+                </p>
+                <p class="feature-excerpt">{featured.excerpt}</p>
+                <p class="feature-meta t-meta">
+                  <span>{featuredRevised ? 'Updated' : 'Published'} <time datetime={featuredDate}>{formatDate(featuredDate)}</time></span>
+                  <span>{featured.readMinutes} min read</span>
+                </p>
+                <span class="link-arrow feature-cta" aria-hidden="true">
+                  Read the article
+                  <span class="btn-arrow"><Icon name="arrow" size={18} /></span>
+                </span>
+              </div>
+            </article>
+          </li>
+        )}
+        {rest.map((p) => (
+          <li class="post-item" data-post-category={topicSlug(p.category)}>
+            <BlogCard post={p} />
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <script is:inline>
+      (() => {
+        const group = document.querySelector('[data-blog-filter]');
+        const list = document.querySelector('[data-post-list]');
+        const status = document.querySelector('[data-filter-status]');
+        if (!group || !list || !status) return;
+        const chips = Array.from(group.querySelectorAll('[data-filter]'));
+        const items = Array.from(list.children);
+        const known = new Set(chips.map((c) => c.dataset.filter));
+
+        const apply = (topic, byUser) => {
+          if (!known.has(topic)) topic = 'all';
+          let shown = 0;
+          items.forEach((li) => {
+            const match = topic === 'all' || li.dataset.postCategory === topic;
+            li.hidden = !match;
+            if (match) shown += 1;
+          });
+          chips.forEach((c) => {
+            c.classList.remove('is-active');
+            c.setAttribute('aria-pressed', String(c.dataset.filter === topic));
+          });
+          const label = chips.find((c) => c.dataset.filter === topic)?.dataset.label;
+          status.textContent =
+            topic === 'all' ? `Showing all ${shown} articles` : `Showing ${shown} ${shown === 1 ? 'article' : 'articles'} in ${label}`;
+          if (!byUser) return;
+          const url = new URL(location.href);
+          if (topic === 'all') url.searchParams.delete('category');
+          else url.searchParams.set('category', topic);
+          history.replaceState(history.state, '', url);
+          list.classList.remove('is-filtered');
+          void list.offsetWidth;
+          list.classList.add('is-filtered');
+        };
+
+        chips.forEach((chip) => {
+          chip.setAttribute('role', 'button');
+          chip.addEventListener('click', (e) => {
+            e.preventDefault();
+            apply(chip.dataset.filter, true);
+          });
+          chip.addEventListener('keydown', (e) => {
+            if (e.key !== ' ') return;
+            e.preventDefault();
+            apply(chip.dataset.filter, true);
+          });
+        });
+        apply(new URLSearchParams(location.search).get('category') || 'all', false);
+      })();
+    </script>
+  </section>
+
+  <section id="newsletter" class="nl band-dawn" aria-labelledby="newsletter-title">
+    <div class="container-g">
+      <div class="nl-grid">
+        <div class="nl-copy">
+          <SplitHeading id="newsletter-title" as="h2" class="t-h2 nl-title" lines={['New articles,', 'once a month']} />
+          <p class="nl-lead" data-reveal style="--reveal-delay: 150ms">
+            One email a month with new guides on IT careers and training, plus practical security notes for small offices. Unsubscribe at any time.
+          </p>
+        </div>
+
+        <form class="nl-form" data-lead-form="newsletter" novalidate aria-labelledby="newsletter-title" data-reveal style="--reveal-delay: 250ms">
+          <label class="field-label" for="blog-nl-email">Email address</label>
+          <input
+            id="blog-nl-email"
+            class="field"
+            type="email"
+            name="email"
+            autocomplete="email"
+            placeholder="name@example.ca"
+            required
+            data-error="Enter your email address, for example name@example.ca."
+          />
+          {/* Consent comes before the button, so nobody subscribes without reading it (CASL). */}
+          <label class="nl-consent">
+            <input type="checkbox" name="consent" value="yes" required data-error="Tick the box to confirm you want the monthly email." />
+            <span>{nlConsent}</span>
+          </label>
+          <input type="hidden" name="consent_text" value={nlConsent} />
+          <button class="btn btn-primary nl-submit" type="submit">Subscribe</button>
+          <p class="nl-privacy t-meta">
+            Sent by {company.legalName}, {address}. Read our <a href="/privacy/">privacy policy</a>.
+          </p>
+          <input class="nl-hp" type="text" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <p class="form-status t-meta" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <a class="nl-checklist" href="/resources/security-checklist/">
+        <span class="nl-checklist-icon" aria-hidden="true"><Icon name="download" size={22} /></span>
+        <span class="nl-checklist-text">
+          <span class="nl-checklist-title">Running a small business? Get the {checklist.length}-point IT security checklist</span>
+          <span class="nl-checklist-sub t-meta">{checklist.length} checks covering {areaList}.</span>
+        </span>
+        <span class="btn-arrow" aria-hidden="true"><Icon name="arrow" size={20} /></span>
+      </a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* ---------- For business owners: the two free tools, ahead of the learner articles ---------- */
+  .owners {
+    padding-block: clamp(1.75rem, 1.25rem + 2vw, 2.75rem);
+  }
+  .owners-label {
+    margin-bottom: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 650;
+  }
+  .owners-list {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .owner-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: 100%;
+    min-height: 2.75rem;
+    padding: 1rem 1.25rem;
+    color: var(--text);
+    text-decoration: none;
+    transition: border-color 160ms var(--ease-out-quart);
+  }
+  .owner-card:hover {
+    border-color: var(--line-strong);
+  }
+  .owner-icon {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 999px;
+    background: var(--surface-2);
+    color: var(--accent-ink);
+  }
+  .owner-text {
+    display: grid;
+    gap: 0.15rem;
+    min-width: 0;
+  }
+  .owner-title {
+    font-weight: 650;
+    line-height: 1.35;
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+    transition: text-decoration-color 160ms var(--ease-out-quart);
+  }
+  .owner-card:hover .owner-title {
+    text-decoration-color: var(--accent-ink);
+  }
+  .owner-sub {
+    color: var(--text-muted);
+  }
+  .owner-card .btn-arrow {
+    display: inline-flex;
+    flex-shrink: 0;
+    margin-inline-start: auto;
+    transition: transform 220ms var(--ease-out-expo);
+  }
+  .owner-card:hover .btn-arrow {
+    transform: translateX(3px);
+  }
+
+  /* ---------- Articles ---------- */
+  .articles {
+    padding-block: clamp(1.5rem, 1rem + 2vw, 2.5rem) var(--section-y);
+  }
+  .articles-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .filter {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.9rem;
+  }
+  .filter-label {
+    color: var(--text-muted);
+    font-weight: 650;
+  }
+  .filter-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .filter-chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0.5rem 1.05rem;
+    border-radius: 999px;
+    box-shadow: inset 0 0 0 1px var(--line-strong);
+    color: var(--text);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition:
+      background-color 160ms var(--ease-out-quart),
+      color 160ms var(--ease-out-quart),
+      box-shadow 160ms var(--ease-out-quart);
+  }
+  .filter-chip:hover {
+    box-shadow: inset 0 0 0 1px var(--text);
+  }
+  .filter-chip.is-active,
+  .filter-chip[aria-pressed='true'] {
+    background: var(--text);
+    color: var(--bg);
+    box-shadow: inset 0 0 0 1px var(--text);
+  }
+  .filter-status {
+    margin-top: 1rem;
+    color: var(--text-muted);
+  }
+
+  .post-list {
+    display: grid;
+    gap: 3rem 1.75rem;
+    margin: clamp(1.5rem, 1rem + 1.5vw, 2.25rem) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .is-featured {
+    grid-column: 1 / -1;
+    padding-bottom: clamp(2.5rem, 1.5rem + 3vw, 3.5rem);
+    border-bottom: 1px solid var(--line);
+  }
+  /* A filter change replays a short rise, so the new result set reads as new. */
+  :global(.motion-ok) .post-list.is-filtered > .post-item:not([hidden]) {
+    animation: post-in 420ms var(--ease-out-quart) both;
+  }
+  @keyframes post-in {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 10px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* ---------- Featured (latest) article ---------- */
+  .feature {
+    position: relative;
+    display: grid;
+    gap: 1.5rem;
+  }
+  /* 16:9 on phones and tablets, so the title and excerpt rise into the first screen; 3:2 beside the text. */
+  .feature-media {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-card);
+    background: var(--surface-2);
+  }
+  .feature-media :global(.feature-pic) {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+  }
+  .feature-media :global(.feature-img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .feature-media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklch, var(--color-dawn-400) 70%, transparent) 0%,
+      color-mix(in oklch, var(--color-crimson-500) 45%, transparent) 100%
+    );
+    mix-blend-mode: soft-light;
+    opacity: 0;
+    transition: opacity 320ms var(--ease-out-quart);
+    pointer-events: none;
+  }
+  .feature:hover .feature-media::after,
+  .feature:focus-within .feature-media::after {
+    opacity: 1;
+  }
+  .feature-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+  }
+  .feature-tags {
+    order: -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  /* A filled chip: dashed outlines are reserved for the Sample marker. */
+  .feature-format {
+    border-color: transparent;
+    background: var(--surface-2);
+  }
+  /* Weight, tracking and leading come from .t-h2; the featured title is a step smaller. */
+  .feature-title {
+    max-width: 20ch;
+    font-size: clamp(1.75rem, 1.2rem + 2.1vw, 2.75rem);
+  }
+  .feature-link {
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.16em;
+    transition: text-decoration-color 160ms var(--ease-out-quart);
+  }
+  .feature-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: var(--radius-card);
+  }
+  .feature:hover .feature-link,
+  .feature-link:focus-visible {
+    text-decoration-color: var(--accent-ink);
+  }
+  .feature-link:focus-visible {
+    outline: none;
+  }
+  .feature-link:focus-visible::after {
+    outline: 2px solid var(--focus);
+    outline-offset: 6px;
+  }
+  .feature-excerpt {
+    max-width: 46ch;
+    color: var(--text-muted);
+    font-size: 1.125rem;
+    line-height: 1.55;
+  }
+  .feature-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.15rem 0.7rem;
+    color: var(--text-muted);
+  }
+  .feature-cta {
+    margin-top: 0.5rem;
+  }
+  .feature-cta .btn-arrow {
+    display: inline-flex;
+    transition: transform 220ms var(--ease-out-expo);
+  }
+  .feature:hover .feature-cta {
+    text-decoration-color: var(--accent-ink);
+  }
+  .feature:hover .feature-cta .btn-arrow {
+    transform: translateX(3px);
+  }
+
+  /* ---------- Newsletter ---------- */
+  .nl {
+    padding-block: var(--section-y);
+  }
+  .nl-grid {
+    display: grid;
+    gap: 2rem;
+  }
+  /* SplitHeading renders the h2, so it is reached through this section's scope with :global. */
+  .nl :global(.nl-title) {
+    max-width: 12ch;
+  }
+  .nl-lead {
+    max-width: 44ch;
+    margin-top: 1.25rem;
+    color: var(--text-muted);
+  }
+  .nl-form {
+    padding: clamp(1.25rem, 1rem + 1.5vw, 2rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    background: var(--surface);
+  }
+  .nl-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    min-height: 2.75rem;
+    margin-top: 1rem;
+    padding-block: 0.3rem;
+    font-size: 0.9375rem;
+    line-height: 1.45;
+    cursor: pointer;
+  }
+  .nl-consent input {
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-top: 0.08rem;
+    accent-color: var(--accent);
+    cursor: pointer;
+  }
+  .nl-submit {
+    margin-top: 1rem;
+  }
+  .nl-privacy {
+    margin-top: 0.85rem;
+    color: var(--text-muted);
+  }
+  /* Underlined, not colour alone, so the link stands out from the sentence around it (WCAG 1.4.1). */
+  .nl-privacy a {
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-color: var(--accent-ink);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+  .nl-hp {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  .form-status {
+    margin-top: 0.75rem;
+  }
+  .form-status:empty {
+    display: none;
+  }
+  .form-status[data-state='error'] {
+    color: var(--accent-ink);
+  }
+
+  .nl-checklist {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nl-checklist-icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--accent-ink);
+  }
+  .nl-checklist-text {
+    display: grid;
+    gap: 0.15rem;
+    min-width: 0;
+  }
+  .nl-checklist-title {
+    font-weight: 650;
+    line-height: 1.35;
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+    transition: text-decoration-color 160ms var(--ease-out-quart);
+  }
+  .nl-checklist-sub {
+    color: var(--text-muted);
+  }
+  .nl-checklist:hover .nl-checklist-title {
+    text-decoration-color: var(--accent-ink);
+  }
+  .nl-checklist .btn-arrow {
+    display: inline-flex;
+    flex-shrink: 0;
+    margin-inline-start: auto;
+    transition: transform 220ms var(--ease-out-expo);
+  }
+  .nl-checklist:hover .btn-arrow {
+    transform: translateX(3px);
+  }
+
+  @media (min-width: 640px) {
+    .owners-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .post-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 900px) {
+    .feature-media {
+      aspect-ratio: 3 / 2;
+    }
+    .feature {
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      align-items: center;
+      gap: clamp(2rem, 0.5rem + 4vw, 4.5rem);
+    }
+    .nl-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 30rem);
+      align-items: end;
+      gap: 4rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .post-list {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      row-gap: 3.5rem;
+    }
+  }
+</style>

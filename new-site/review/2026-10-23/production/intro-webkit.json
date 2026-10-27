@@ -1,0 +1,680 @@
+{
+  "engine": "webkit",
+  "base": "http://127.0.0.1:4404",
+  "testedAt": "2026-10-23T15:01:12.817Z",
+  "results": [
+    {
+      "name": "desktop",
+      "passed": true,
+      "width": 1440,
+      "elapsedMs": 3545,
+      "state": {
+        "state": "complete",
+        "active": false,
+        "art": false,
+        "canvas": false,
+        "scrollY": 0,
+        "title": {
+          "top": 205.09375,
+          "bottom": 334.6875,
+          "opacity": "1",
+          "text": "Proactive IT support. Practical IT training.\nProactive IT support.\nPractical IT training."
+        },
+        "cta": {
+          "top": 437.0625,
+          "bottom": 485.0625
+        },
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "overflow": false,
+        "copyTransform": "",
+        "draws": 277,
+        "completed": 1,
+        "errors": []
+      },
+      "evidence": {
+        "frames": 106,
+        "durationMs": 1906,
+        "medianIntervalMs": 17,
+        "p95IntervalMs": 18,
+        "maxIntervalMs": 114,
+        "framesOver34ms": 2,
+        "endJumpPx": 0.00042724609375,
+        "startupLongTasks": [],
+        "movingLongTasks": []
+      },
+      "geometryRequests": [
+        "http://127.0.0.1:4404/3d/gforce-glass-original-desktop.json",
+        "http://127.0.0.1:4404/3d/gforce-glass-original-desktop.bin",
+        "http://127.0.0.1:4404/3d/glass-light-v2.png"
+      ],
+      "errors": []
+    },
+    {
+      "name": "mobile",
+      "passed": true,
+      "width": 390,
+      "elapsedMs": 3040,
+      "state": {
+        "state": "complete",
+        "active": false,
+        "art": false,
+        "canvas": false,
+        "scrollY": 0,
+        "title": {
+          "top": 195,
+          "bottom": 261.53125,
+          "opacity": "1",
+          "text": "Proactive IT support. Practical IT training.\nProactive IT support.\nPractical IT training."
+        },
+        "cta": {
+          "top": 353.53125,
+          "bottom": 461.53125
+        },
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "overflow": false,
+        "copyTransform": "",
+        "draws": 302,
+        "completed": 1,
+        "errors": []
+      },
+      "evidence": {
+        "frames": 112,
+        "durationMs": 1900,
+        "medianIntervalMs": 17,
+        "p95IntervalMs": 18,
+        "maxIntervalMs": 85,
+        "framesOver34ms": 1,
+        "endJumpPx": 0.00177001953125,
+        "startupLongTasks": [],
+        "movingLongTasks": []
+      },
+      "geometryRequests": [
+        "http://127.0.0.1:4404/3d/gforce-glass-original-mobile.json",
+        "http://127.0.0.1:4404/3d/gforce-glass-original-mobile.bin",
+        "http://127.0.0.1:4404/3d/glass-light-v2.png"
+      ],
+      "errors": []
+    },
+    {
+      "name": "narrow",
+      "passed": true,
+      "width": 320,
+      "elapsedMs": 3020,
+      "state": {
+        "state": "complete",
+        "active": false,
+        "art": false,
+        "canvas": false,
+        "scrollY": 0,
+        "title": {
+          "top": 195,
+          "bottom": 257.1875,
+          "opacity": "1",
+          "text": "Proactive IT support. Practical IT training.\nProactive IT support.\nPractical IT training."
+        },
+        "cta": {
+          "top": 349.1875,
+          "bottom": 457.1875
+        },
+        "viewport": {
+          "width": 320,
+          "height": 844
+        },
+        "overflow": false,
+        "copyTransform": "",
+        "draws": 302,
+        "completed": 1,
+        "errors": []
+      },
+      "evidence": {
+        "frames": 113,
+        "durationMs": 1900,
+        "medianIntervalMs": 17,
+        "p95IntervalMs": 18,
+        "maxIntervalMs": 84,
+        "framesOver34ms": 1,
+        "endJumpPx": 0.00146484375,
+        "startupLongTasks": [],
+        "movingLongTasks": []
+      },
+      "geometryRequests": [
+        "http://127.0.0.1:4404/3d/gforce-glass-original-mobile.json",
+        "http://127.0.0.1:4404/3d/gforce-glass-original-mobile.bin",
+        "http://127.0.0.1:4404/3d/glass-light-v2.png"
+      ],
+      "errors": []
+    },
+    {
+      "name": "cancel-wheel",
+      "passed": true,
+      "width": 1440,
+      "elapsedMs": 1113,
+      "cancellationMs": 21,
+      "state": {
+        "state": "complete",
+        "active": false,
+        "art": false,
+        "canvas": false,
+        "scrollY": 33,
+        "title": {
+          "top": 172.09375,
+          "bottom": 301.6875,
+          "opacity": "1",
+          "text": "Proactive IT support. Practical IT training.\nProactive IT support.\nPractical IT training."
+        },
+        "cta": {
+          "top": 404.0625,
+          "bottom": 452.0625
+        },
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "overflow": false,
+        "copyTransform": "",
+        "draws": 4,
+        "completed": 1,
+        "errors": []
+      },
+      "evidence": {
+        "frames": 2,
+        "durationMs": 15,
+        "medianIntervalMs": 15,
+        "p95IntervalMs": 15,
+        "maxIntervalMs": 15,
+        "framesOver34ms": 0,
+        "endJumpPx": 972,
+        "startupLongTasks": [],
+        "movingLongTasks": []
+      },
+      "geometryRequests": [
+        "http://127.0.0.1:4404/3d/gforce-glass-original-desktop.json",
+        "http://127.0.0.1:4404/3d/gforce-glass-original-desktop.bin",
+        "http://127.0.0.1:4404/3d/glass-light-v2.png"
+      ],
+      "errors": []
+    },
+    {
+      "name": "cancel-touch",
+      "passed": true,
+      "width": 390,
+      "elapsedMs": 1025,
+      "cancellationMs": 19,
+      "state": {
+        "state": "complete",
+        "active": false,
+        "art": false,
+        "canvas": false,
+        "scrollY": 0,
+        "title": {
+          "top": 195,
+          "bottom": 261.53125,
+          "opacity": "1",
+          "text": "Proactive IT support. Practical IT training.\nProactive IT support.\nPractical IT training."
+        },
+        "cta": {
+          "top": 353.53125,
+          "bottom": 461.53125
+        },
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "overflow": false,
+        "copyTransform": "",
+        "draws": 4,
+        "completed": 1,
+        "errors": []
+      },
+      "evidence": {
+        "frames": 1,
+        "durationMs": 0,
+        "medianIntervalMs": 0,
+        "p95IntervalMs": 0,
+        "maxIntervalMs": 0,
+        "framesOver34ms": 0,
+        "endJumpPx": 911.515625,
+        "startupLongTasks": [],
+        "movingLongTasks": []
+      },
+      "geometryRequests": [
+        "http://127.0.0.1:4404/3d/gforce-glass-original-mobile.json",
+        "http://127.0.0.1:4404/3d/gforce-glass-original-mobile.bin",
+        "http://127.0.0.1:4404/3d/glass-light-v2.png"
+      ],
+      "errors": []
+    },
+    {
+      "name": "cancel-keyboard",
+      "passed": true,
+      "width": 1440,
+      "elapsedMs": 1074,
+      "cancellationMs": 13,
+      "state": {
+        "state": "complete",
+        "active": false,
+        "art": false,
+        "canvas": false,
+        "scrollY": 21,
+        "title": {
+          "top": 184.09375,
+          "bottom": 313.6875,
+          "opacity": "1",
+          "text": "Proactive IT support. Practical IT training.\nProactive IT support.\nPractical IT training."
+        },
+        "cta": {
+          "top": 416.0625,
+          "bottom": 464.0625
+        },
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "overflow": false,
+        "copyTransform": "",
+        "draws": 4,
+        "completed": 1,
+        "errors": []
+      },
+      "evidence": {
+        "frames": 1,
+        "durationMs": 0,
+        "medianIntervalMs": 0,
+        "p95IntervalMs": 0,
+        "maxIntervalMs": 0,
+        "framesOver34ms": 0,
+        "endJumpPx": 972,
+        "startupLongTasks": [],
+        "movingLongTasks": []
+      },
+      "geometryRequests": [
+        "http://127.0.0.1:4404/3d/gforce-glass-original-desktop.json",
+        "http://127.0.0.1:4404/3d/gforce-glass-original-desktop.bin",
+        "http://127.0.0.1:4404/3d/glass-light-v2.png"
+      ],
+      "errors": []
+    },
+    {
+      "name": "cancel-scroll",
+      "passed": true,
+      "width": 390,
+      "elapsedMs": 1028,
+      "cancellationMs": 24,
+      "state": {
+        "state": "complete",
+        "active": false,
+        "art": false,
+        "canvas": false,
+        "scrollY": 0,
+        "title": {
+          "top": 195,
+          "bottom": 261.53125,
+          "opacity": "1",
+          "text": "Proactive IT support. Practical IT training.\nProactive IT support.\nPractical IT training."
+        },
+        "cta": {
+          "top": 353.53125,
+          "bottom": 461.53125
+        },
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "overflow": false,
+        "copyTransform": "",
+        "draws": 4,
+        "completed": 1,
+        "errors": []
+      },
+      "evidence": {
+        "frames": 1,
+        "durationMs": 0,
+        "medianIntervalMs": 0,
+        "p95IntervalMs": 0,
+        "maxIntervalMs": 0,
+        "framesOver34ms": 0,
+        "endJumpPx": 911.515625,
+        "startupLongTasks": [],
+        "movingLongTasks": []
+      },
+      "geometryRequests": [
+        "http://127.0.0.1:4404/3d/gforce-glass-original-mobile.json",
+        "http://127.0.0.1:4404/3d/gforce-glass-original-mobile.bin",
+        "http://127.0.0.1:4404/3d/glass-light-v2.png"
+      ],
+      "errors": []
+    },
+    {
+      "name": "reduced",
+      "passed": true,
+      "width": 390,
+      "elapsedMs": 947,
+      "state": {
+        "state": "complete",
+        "active": false,
+        "art": false,
+        "canvas": true,
+        "scrollY": 0,
+        "title": {
+          "top": 195,
+          "bottom": 261.53125,
+          "opacity": "1",
+          "text": "Proactive IT support. Practical IT training.\nProactive IT support.\nPractical IT training."
+        },
+        "cta": {
+          "top": 353.53125,
+          "bottom": 461.53125
+        },
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "overflow": false,
+        "copyTransform": "",
+        "draws": 0,
+        "completed": 0,
+        "errors": []
+      },
+      "evidence": {
+        "frames": 0,
+        "durationMs": 0,
+        "medianIntervalMs": 0,
+        "p95IntervalMs": 0,
+        "maxIntervalMs": 0,
+        "framesOver34ms": 0,
+        "endJumpPx": null,
+        "startupLongTasks": [],
+        "movingLongTasks": []
+      },
+      "geometryRequests": [],
+      "errors": []
+    },
+    {
+      "name": "savedata",
+      "passed": true,
+      "width": 390,
+      "elapsedMs": 3042,
+      "state": {
+        "state": "complete",
+        "active": false,
+        "art": false,
+        "canvas": false,
+        "scrollY": 0,
+        "title": {
+          "top": 195,
+          "bottom": 261.53125,
+          "opacity": "1",
+          "text": "Proactive IT support. Practical IT training.\nProactive IT support.\nPractical IT training."
+        },
+        "cta": {
+          "top": 353.53125,
+          "bottom": 461.53125
+        },
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "overflow": false,
+        "copyTransform": "",
+        "draws": 0,
+        "completed": 1,
+        "errors": []
+      },
+      "evidence": {
+        "frames": 111,
+        "durationMs": 1901,
+        "medianIntervalMs": 17,
+        "p95IntervalMs": 18,
+        "maxIntervalMs": 92,
+        "framesOver34ms": 1,
+        "endJumpPx": 0.00006103515625,
+        "startupLongTasks": [],
+        "movingLongTasks": []
+      },
+      "geometryRequests": [],
+      "errors": []
+    },
+    {
+      "name": "no-webgl",
+      "passed": true,
+      "width": 1440,
+      "elapsedMs": 2935,
+      "state": {
+        "state": "complete",
+        "active": false,
+        "art": false,
+        "canvas": false,
+        "scrollY": 0,
+        "title": {
+          "top": 205.09375,
+          "bottom": 334.6875,
+          "opacity": "1",
+          "text": "Proactive IT support. Practical IT training.\nProactive IT support.\nPractical IT training."
+        },
+        "cta": {
+          "top": 437.0625,
+          "bottom": 485.0625
+        },
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "overflow": false,
+        "copyTransform": "",
+        "draws": 0,
+        "completed": 1,
+        "errors": []
+      },
+      "evidence": {
+        "frames": 108,
+        "durationMs": 1913,
+        "medianIntervalMs": 17,
+        "p95IntervalMs": 18,
+        "maxIntervalMs": 93,
+        "framesOver34ms": 2,
+        "endJumpPx": 0,
+        "startupLongTasks": [],
+        "movingLongTasks": []
+      },
+      "geometryRequests": [],
+      "errors": []
+    },
+    {
+      "name": "module-failure",
+      "passed": true,
+      "width": 390,
+      "elapsedMs": 6776,
+      "state": {
+        "state": "complete",
+        "active": false,
+        "art": false,
+        "canvas": true,
+        "scrollY": 0,
+        "title": {
+          "top": 195,
+          "bottom": 261.53125,
+          "opacity": "1",
+          "text": "Proactive IT support. Practical IT training.\nProactive IT support.\nPractical IT training."
+        },
+        "cta": {
+          "top": 353.53125,
+          "bottom": 461.53125
+        },
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "overflow": false,
+        "copyTransform": "",
+        "draws": 0,
+        "completed": 0,
+        "errors": []
+      },
+      "evidence": {
+        "frames": 0,
+        "durationMs": 0,
+        "medianIntervalMs": 0,
+        "p95IntervalMs": 0,
+        "maxIntervalMs": 0,
+        "framesOver34ms": 0,
+        "endJumpPx": null,
+        "startupLongTasks": [],
+        "movingLongTasks": []
+      },
+      "geometryRequests": [],
+      "errors": []
+    },
+    {
+      "name": "hash",
+      "passed": true,
+      "width": 390,
+      "elapsedMs": 965,
+      "state": {
+        "state": "complete",
+        "active": false,
+        "art": false,
+        "canvas": true,
+        "scrollY": 756,
+        "title": {
+          "top": -561,
+          "bottom": -494.46875,
+          "opacity": "1",
+          "text": "Proactive IT support. Practical IT training.\nProactive IT support.\nPractical IT training."
+        },
+        "cta": {
+          "top": -402.46875,
+          "bottom": -294.46875
+        },
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "overflow": false,
+        "copyTransform": "",
+        "draws": 0,
+        "completed": 0,
+        "errors": []
+      },
+      "evidence": {
+        "frames": 0,
+        "durationMs": 0,
+        "medianIntervalMs": 0,
+        "p95IntervalMs": 0,
+        "maxIntervalMs": 0,
+        "framesOver34ms": 0,
+        "endJumpPx": null,
+        "startupLongTasks": [],
+        "movingLongTasks": []
+      },
+      "geometryRequests": [],
+      "errors": []
+    },
+    {
+      "name": "reload",
+      "passed": true,
+      "width": 390,
+      "elapsedMs": 5086,
+      "state": {
+        "state": "complete",
+        "active": false,
+        "art": false,
+        "canvas": false,
+        "scrollY": 0,
+        "title": {
+          "top": 195,
+          "bottom": 261.53125,
+          "opacity": "1",
+          "text": "Proactive IT support. Practical IT training.\nProactive IT support.\nPractical IT training."
+        },
+        "cta": {
+          "top": 353.53125,
+          "bottom": 461.53125
+        },
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "overflow": false,
+        "copyTransform": "",
+        "draws": 314,
+        "completed": 1,
+        "errors": []
+      },
+      "evidence": {
+        "frames": 116,
+        "durationMs": 1908,
+        "medianIntervalMs": 17,
+        "p95IntervalMs": 18,
+        "maxIntervalMs": 18,
+        "framesOver34ms": 0,
+        "endJumpPx": 0.0003662109375,
+        "startupLongTasks": [],
+        "movingLongTasks": []
+      },
+      "geometryRequests": [
+        "http://127.0.0.1:4404/3d/gforce-glass-original-mobile.json",
+        "http://127.0.0.1:4404/3d/gforce-glass-original-mobile.bin",
+        "http://127.0.0.1:4404/3d/glass-light-v2.png",
+        "http://127.0.0.1:4404/3d/gforce-glass-original-mobile.json",
+        "http://127.0.0.1:4404/3d/gforce-glass-original-mobile.bin",
+        "http://127.0.0.1:4404/3d/glass-light-v2.png"
+      ],
+      "errors": []
+    },
+    {
+      "name": "history",
+      "passed": true,
+      "width": 1440,
+      "elapsedMs": 3565,
+      "state": {
+        "state": "complete",
+        "active": false,
+        "art": false,
+        "canvas": false,
+        "scrollY": 0,
+        "title": {
+          "top": 205.09375,
+          "bottom": 334.6875,
+          "opacity": "1",
+          "text": "Proactive IT support. Practical IT training.\nProactive IT support.\nPractical IT training."
+        },
+        "cta": {
+          "top": 437.0625,
+          "bottom": 485.0625
+        },
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "overflow": false,
+        "copyTransform": "",
+        "draws": 313,
+        "completed": 1,
+        "errors": []
+      },
+      "evidence": {
+        "frames": 116,
+        "durationMs": 1912,
+        "medianIntervalMs": 17,
+        "p95IntervalMs": 18,
+        "maxIntervalMs": 29,
+        "framesOver34ms": 0,
+        "endJumpPx": 0.00006103515625,
+        "startupLongTasks": [],
+        "movingLongTasks": []
+      },
+      "geometryRequests": [
+        "http://127.0.0.1:4404/3d/gforce-glass-original-desktop.json",
+        "http://127.0.0.1:4404/3d/gforce-glass-original-desktop.bin",
+        "http://127.0.0.1:4404/3d/glass-light-v2.png"
+      ],
+      "errors": []
+    }
+  ]
+}

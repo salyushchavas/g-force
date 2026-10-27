@@ -1,0 +1,196 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ChatHelper from '../components/islands/ChatHelper.astro';
+import { company } from '../data/site';
+import archivoFont from '@fontsource-variable/archivo/files/archivo-latin-wght-normal.woff2?url';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  imageAlt?: string;
+  nightHero?: boolean;
+  /** Air's sky system: one viewport-fixed sky behind the page; white panels opt in with class "sheet". */
+  sky?: boolean;
+  /** Home-only styling for the glass sculpture and the persistent original header logo. */
+  glassHero?: boolean;
+  footerNewsletter?: boolean;
+  headerCta?: { label: string; href: string };
+  noindex?: boolean;
+  type?: 'website' | 'article';
+}
+
+const {
+  title,
+  description,
+  image = '/og/og-default.jpg',
+  imageAlt = 'G-Force IT Services. Dependable IT support and practical IT training.',
+  nightHero = false,
+  sky = false,
+  glassHero = false,
+  footerNewsletter = true,
+  headerCta,
+  noindex = false,
+  type = 'website',
+} = Astro.props;
+// Visual skin, chosen at build time: 'air' (sky blue and dawn, the default) or 'white-red' (white surfaces,
+// crimson accents and bands). Both share every component; skin-white-red.css remaps the tokens.
+const skin = import.meta.env.PUBLIC_SKIN === 'white-red' ? 'white-red' : 'air';
+const canonical = new URL(Astro.url.pathname, Astro.site ?? company.url).href;
+const ogImage = new URL(image, Astro.site ?? company.url).href;
+const fullTitle = title.includes('G-Force') ? title : `${title} | G-Force IT Services`;
+
+const orgLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': `${company.url}/#org`,
+  name: 'G-Force IT Services',
+  legalName: company.legalName,
+  url: company.url,
+  logo: { '@type': 'ImageObject', url: `${company.url}/brand/logo-schema.png`, width: 1200, height: 240 },
+  email: company.email,
+  telephone: company.phoneHref.replace(/^tel:/, ''),
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: company.address.street,
+    addressLocality: company.address.city,
+    addressRegion: company.address.region,
+    postalCode: company.address.postal,
+    addressCountry: company.address.country,
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: company.geo.lat, longitude: company.geo.lng },
+  ...(company.hours.confirmed ? { openingHours: company.hours.schema } : {}),
+  areaServed: { '@type': 'Country', name: 'Canada' },
+  knowsAbout: ['Managed IT services', 'Cybersecurity', 'Cloud migration', 'Data backup', 'IT training'],
+};
+const websiteLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${company.url}/#website`,
+  url: `${company.url}/`,
+  name: 'G-Force IT Services',
+  alternateName: company.name,
+  inLanguage: 'en-CA',
+  publisher: { '@id': `${company.url}/#org` },
+};
+---
+<!doctype html>
+<html lang="en-CA" data-skin={skin}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    {!noindex && <link rel="canonical" href={canonical} />}
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta name="theme-color" content={skin === 'white-red' ? '#FFFFFF' : '#123E73'} /><!-- token-exempt: meta tags cannot read CSS variables (= page top / --color-sky-deep) -->
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content="G-Force IT Services" />
+    <meta property="og:locale" content="en_CA" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={imageAlt} />
+    {image === '/og/og-default.jpg' && <>
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:type" content="image/jpeg" />
+    </>}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+    <link rel="preload" href={archivoFont} as="font" type="font/woff2" crossorigin />
+    <link rel="icon" href="/brand/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/brand/favicon-192.png" sizes="192x192" type="image/png" />
+    <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <script is:inline>
+      (() => {
+        const d = document.documentElement;
+        d.classList.add('js');
+        const navigation = performance.getEntriesByType('navigation')[0];
+        if (navigation?.type === 'reload') {
+          // Reset before the browser restores the previous page position or
+          // follows a fragment, so the home introduction starts at its first frame.
+          history.scrollRestoration = 'manual';
+          if (location.hash) history.replaceState(history.state, '', location.pathname + location.search);
+          scrollTo({ top: 0, left: 0, behavior: 'instant' });
+          let resetting = true;
+          const resetTop = () => {
+            if (resetting && (scrollY || scrollX)) scrollTo({ top: 0, left: 0, behavior: 'instant' });
+          };
+          const inputEvents = ['wheel', 'touchstart', 'pointerdown', 'keydown'];
+          const stopReset = () => {
+            resetting = false;
+            removeEventListener('scroll', resetTop, true);
+            inputEvents.forEach((event) => removeEventListener(event, stopReset, true));
+          };
+          // Catch a late restoration before hero listeners see it. The guard
+          // ends after the first settled frames, or immediately on visitor input.
+          addEventListener('scroll', resetTop, { capture: true, passive: true });
+          inputEvents.forEach((event) => addEventListener(event, stopReset, { capture: true, passive: true }));
+          addEventListener('pageshow', () => {
+            resetTop();
+            requestAnimationFrame(() => requestAnimationFrame(stopReset));
+          }, { once: true });
+          // Keep restoration disabled for this visit: browsers can otherwise
+          // apply the old position after their first rendered frame.
+          addEventListener('pagehide', () => {
+            history.scrollRestoration = 'auto';
+          }, { once: true });
+        }
+        let t = null;
+        try { t = localStorage.getItem('gf-theme'); } catch (e) {}
+        // The white & crimson skin is light only (red and white, user request).
+        d.dataset.theme = d.dataset.skin !== 'white-red' && (t === 'dark' || (t !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches)) ? 'dark' : 'light';
+        if (matchMedia('(prefers-reduced-motion: no-preference)').matches && 'IntersectionObserver' in window) {
+          d.classList.add('motion-ok');
+        }
+      })();
+    </script>
+    <script type="application/ld+json" set:html={JSON.stringify(orgLd)} />
+    {Astro.url.pathname === '/' && <script type="application/ld+json" set:html={JSON.stringify(websiteLd)} />}
+    <slot name="head" />
+  </head>
+  <body class:list={[{ 'has-night-hero': nightHero && skin !== 'white-red', 'has-air-sky': sky, 'has-glass-hero': glassHero }]}>
+    {sky && <div class="air-sky" aria-hidden="true"></div>}
+    <a href="#main" class="skip-link">Skip to content</a>
+    <Header nightHero={nightHero} themeToggle={skin !== 'white-red'} cta={headerCta} />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <Footer newsletter={footerNewsletter} />
+    <ChatHelper />
+    <script>
+      import '../scripts/motion.ts';
+      import '../scripts/forms.ts';
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -4rem;
+    z-index: var(--z-toast);
+    padding: 0.75rem 1rem;
+    border-radius: 999px;
+    background: var(--color-crimson-500);
+    color: #fff;
+    font-weight: 650;
+    text-decoration: none;
+    transition: top 160ms var(--ease-out-quart);
+  }
+  .skip-link:focus {
+    top: 1rem;
+  }
+  main:focus {
+    outline: none;
+  }
+</style>

@@ -1,0 +1,110 @@
+{
+  "config": {
+    "name": "hash",
+    "width": 390,
+    "hash": "#paths"
+  },
+  "frames": [
+    {
+      "now": 148,
+      "state": "complete",
+      "y": 0,
+      "titleY": 195,
+      "progress": 0,
+      "scrollY": 0,
+      "art": false,
+      "draws": 0
+    },
+    {
+      "now": 191,
+      "state": "complete",
+      "y": -756,
+      "titleY": -561,
+      "progress": 0,
+      "scrollY": 756,
+      "art": false,
+      "draws": 0
+    },
+    {
+      "now": 217,
+      "state": "complete",
+      "y": -756,
+      "titleY": -561,
+      "progress": 0,
+      "scrollY": 756,
+      "art": false,
+      "draws": 0
+    },
+    {
+      "now": 222,
+      "state": "complete",
+      "y": -756,
+      "titleY": -561,
+      "progress": 0,
+      "scrollY": 756,
+      "art": false,
+      "draws": 0
+    },
+    {
+      "now": 233,
+      "state": "complete",
+      "y": -756,
+      "titleY": -561,
+      "progress": 0,
+      "scrollY": 756,
+      "art": false,
+      "draws": 0
+    },
+    {
+      "now": 250,
+      "state": "complete",
+      "y": -756,
+      "titleY": -561,
+      "progress": 0,
+      "scrollY": 756,
+      "art": false,
+      "draws": 0
+    },
+    {
+      "now": 267,
+      "state": "complete",
+      "y": -756,
+      "titleY": -561,
+      "progress": 0,
+      "scrollY": 756,
+      "art": false,
+      "draws": 0
+    },
+    {
+      "now": 283,
+      "state": "complete",
+      "y": -756,
+      "titleY": -561,
+      "progress": 0,
+      "scrollY": 756,
+      "art": false,
+      "draws": 0
+    },
+    {
+      "now": 300,
+      "state": "complete",
+      "y": -756,
+      "titleY": -561,
+      "progress": 0,
+      "scrollY": 756,
+      "art": false,
+      "draws": 0
+    },
+    {
+      "now": 317,
+      "state": "complete",
+      "y": -756,
+      "titleY": -561,
+      "progress": 0,
+      "scrollY": 756,
+      "art": false,
+      "draws": 0
+    }
+  ],
+  "longTasks": []
+}

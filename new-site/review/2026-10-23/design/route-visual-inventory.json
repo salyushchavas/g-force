@@ -1,0 +1,2782 @@
+[
+  {
+    "route": "/",
+    "width": 1440,
+    "title": "G-Force IT Services | Managed IT and IT Training in Toronto",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "Proactive IT support. Practical IT training.Proactive IT support.Practical IT training.",
+        "visible": true
+      },
+      {
+        "text": "Here for your business, or your career?Here for your business,or your career?",
+        "visible": true
+      },
+      {
+        "text": "Reliable IT support for your businessReliable IT support for your business",
+        "visible": true
+      },
+      {
+        "text": "Build your career in ITBuild your career in IT",
+        "visible": true
+      },
+      {
+        "text": "Proactive care. A more dependable workday.Proactive care.A more dependable workday.",
+        "visible": true
+      },
+      {
+        "text": "Five services, one accountable team.Five services,one accountable team.",
+        "visible": true
+      },
+      {
+        "text": "Managed IT",
+        "visible": true
+      },
+      {
+        "text": "Cybersecurity",
+        "visible": true
+      },
+      {
+        "text": "Cloud and backup",
+        "visible": true
+      },
+      {
+        "text": "IT training",
+        "visible": true
+      },
+      {
+        "text": "IT consulting",
+        "visible": true
+      },
+      {
+        "text": "Five ways into IT. Find yours.Five ways into IT.Find yours.",
+        "visible": true
+      },
+      {
+        "text": "Cloud Mastery",
+        "visible": true
+      },
+      {
+        "text": "Cybersecurity Essentials",
+        "visible": true
+      },
+      {
+        "text": "Ethical Hacking and Security Leadership",
+        "visible": true
+      },
+      {
+        "text": "Ways to learn",
+        "visible": true
+      },
+      {
+        "text": "Build practical skills. Prepare for your next exam.Build practical skills.Prepare for your next exam.",
+        "visible": true
+      },
+      {
+        "text": "Certification exams our courses prepare you for",
+        "visible": true
+      },
+      {
+        "text": "How exposed is your office?How exposedis your office?",
+        "visible": true
+      },
+      {
+        "text": "IT health check",
+        "visible": true
+      },
+      {
+        "text": "How the score works",
+        "visible": true
+      },
+      {
+        "text": "IT insights and career guidanceIT insights andcareer guidance",
+        "visible": true
+      },
+      {
+        "text": "The IT skills Canadian employers are hiring for",
+        "visible": true
+      },
+      {
+        "text": "How to choose the right IT training program for your goals",
+        "visible": true
+      },
+      {
+        "text": "Building a career in cybersecurity",
+        "visible": true
+      },
+      {
+        "text": "How AI and automation are changing IT careers",
+        "visible": true
+      },
+      {
+        "text": "One email a month",
+        "visible": true
+      },
+      {
+        "text": "IT Security Checklist for Small Businesses",
+        "visible": true
+      },
+      {
+        "text": "Fair questions, straight answersFair questions,straight answers",
+        "visible": true
+      },
+      {
+        "text": "Discuss your IT and training needsDiscuss yourIT and training needs",
+        "visible": true
+      },
+      {
+        "text": "Call, email or book a time",
+        "visible": true
+      },
+      {
+        "text": "Send a message",
+        "visible": true
+      },
+      {
+        "text": "Head office",
+        "visible": true
+      }
+    ],
+    "images": [
+      {
+        "src": "http://127.0.0.1:4404/3d/hero-poster-original-1600.avif",
+        "alt": "G-Force IT Services Inc. sculpted in clear glass",
+        "loaded": true,
+        "width": 0,
+        "height": 0
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/img-helpdesk-responsive-800.avif",
+        "alt": "A support technician helping a colleague at a laptop",
+        "loaded": true,
+        "width": 699.859375,
+        "height": 395.609375
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/img-learner-640.avif",
+        "alt": "A learner studying on a laptop at home in the evening",
+        "loaded": true,
+        "width": 501.34375,
+        "height": 376
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/sky-daylight-brief-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 1440,
+        "height": 1276.0625
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-managed-it-brief-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 687.765625,
+        "height": 416
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-managed-it-brief-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 590.484375,
+        "height": 369.046875
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-cybersecurity-brief-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 590.484375,
+        "height": 369.046875
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-cloud-backup-brief-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 590.484375,
+        "height": 369.046875
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-training-brief-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 590.484375,
+        "height": 369.046875
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-consulting-brief-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 590.484375,
+        "height": 369.046875
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/img-classroom-640.avif",
+        "alt": "Adult learners working on laptops around a shared table in a classroom",
+        "loaded": true,
+        "width": 486.34375,
+        "height": 364.75
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/blog-future-jobs-air-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 690.65625,
+        "height": 460.4375
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/img-classroom-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 144,
+        "height": 96
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-managed-it-air-loop-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 144,
+        "height": 96
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/blog-ai-automation-air-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 144,
+        "height": 96
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/img-toronto-day-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 480,
+        "height": 360
+      }
+    ],
+    "videos": [
+      {
+        "label": null,
+        "poster": "",
+        "src": "",
+        "sources": []
+      },
+      {
+        "label": null,
+        "poster": "",
+        "src": "",
+        "sources": []
+      },
+      {
+        "label": null,
+        "poster": "",
+        "src": "",
+        "sources": []
+      },
+      {
+        "label": null,
+        "poster": "",
+        "src": "",
+        "sources": []
+      },
+      {
+        "label": null,
+        "poster": "",
+        "src": "",
+        "sources": []
+      },
+      {
+        "label": null,
+        "poster": "",
+        "src": "",
+        "sources": []
+      },
+      {
+        "label": null,
+        "poster": "",
+        "src": "",
+        "sources": []
+      }
+    ],
+    "errors": []
+  },
+  {
+    "route": "/business/",
+    "width": 1440,
+    "title": "IT services for Toronto businesses | G-Force IT Services",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "Dependable IT. A stronger business.Dependable IT.A stronger business.",
+        "visible": true
+      },
+      {
+        "text": "Managed ITManaged IT",
+        "visible": true
+      },
+      {
+        "text": "CybersecurityCybersecurity",
+        "visible": true
+      },
+      {
+        "text": "Check your basics first",
+        "visible": true
+      },
+      {
+        "text": "Cloud and backupCloud and backup",
+        "visible": true
+      },
+      {
+        "text": "IT consultingIT consulting",
+        "visible": true
+      },
+      {
+        "text": "Typical projects",
+        "visible": true
+      },
+      {
+        "text": "How we workHow we work",
+        "visible": true
+      },
+      {
+        "text": "Assess",
+        "visible": true
+      },
+      {
+        "text": "Plan",
+        "visible": true
+      },
+      {
+        "text": "Implement",
+        "visible": true
+      },
+      {
+        "text": "Monitor",
+        "visible": true
+      },
+      {
+        "text": "Support",
+        "visible": true
+      },
+      {
+        "text": "How much does downtime cost your business?",
+        "visible": true
+      },
+      {
+        "text": "How it adds up",
+        "visible": true
+      },
+      {
+        "text": "Discuss your IT and training needsDiscuss yourIT and training needs",
+        "visible": true
+      },
+      {
+        "text": "Call, email or book a time",
+        "visible": true
+      },
+      {
+        "text": "Send a message",
+        "visible": true
+      },
+      {
+        "text": "Head office",
+        "visible": true
+      }
+    ],
+    "images": [
+      {
+        "src": "http://127.0.0.1:4404/3d/sky-2560.jpg",
+        "alt": "",
+        "loaded": true,
+        "width": 1440,
+        "height": 801.0625
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-managed-it-brief-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 1240,
+        "height": 531.421875
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-cybersecurity-brief-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 480.671875,
+        "height": 600.828125
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-cloud-backup-brief-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 629.234375,
+        "height": 419.484375
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-consulting-brief-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 419.5,
+        "height": 262.1875
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/img-toronto-day-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 480,
+        "height": 360
+      }
+    ],
+    "videos": [
+      {
+        "label": null,
+        "poster": "",
+        "src": "",
+        "sources": []
+      },
+      {
+        "label": null,
+        "poster": "",
+        "src": "",
+        "sources": []
+      },
+      {
+        "label": null,
+        "poster": "",
+        "src": "",
+        "sources": []
+      },
+      {
+        "label": null,
+        "poster": "",
+        "src": "",
+        "sources": []
+      }
+    ],
+    "errors": []
+  },
+  {
+    "route": "/training/",
+    "width": 1440,
+    "title": "IT Training in Toronto and Online | G-Force IT Services",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "Build the skills for your next career in IT.Build the skillsfor your nextcareer in IT.",
+        "visible": true
+      },
+      {
+        "text": "Start here",
+        "visible": true
+      },
+      {
+        "text": "Find the course that fits.Find the coursethat fits.",
+        "visible": true
+      },
+      {
+        "text": "Cloud Mastery",
+        "visible": true
+      },
+      {
+        "text": "Cybersecurity Essentials",
+        "visible": true
+      },
+      {
+        "text": "Ethical Hacking and Security Leadership",
+        "visible": true
+      },
+      {
+        "text": "AI and Machine Learning",
+        "visible": true
+      },
+      {
+        "text": "Data Analytics and Big Data",
+        "visible": true
+      },
+      {
+        "text": "DevOps and Software Development",
+        "visible": true
+      },
+      {
+        "text": "Fit the training around your week.Fit the trainingaround your week.",
+        "visible": true
+      },
+      {
+        "text": "Virtual classes",
+        "visible": true
+      },
+      {
+        "text": "In-person workshops",
+        "visible": true
+      },
+      {
+        "text": "Self-paced",
+        "visible": true
+      },
+      {
+        "text": "The exams our courses prepare you for.The exams ourcourses prepareyou for.",
+        "visible": true
+      },
+      {
+        "text": "Cloud",
+        "visible": true
+      },
+      {
+        "text": "Cybersecurity",
+        "visible": true
+      },
+      {
+        "text": "Before you enrolBefore youenrol",
+        "visible": true
+      },
+      {
+        "text": "Not sure where to start?Not sure whereto start?",
+        "visible": true
+      }
+    ],
+    "images": [
+      {
+        "src": "http://127.0.0.1:4404/media/img/img-learner-640.avif",
+        "alt": "A learner studying on a laptop at home",
+        "loaded": true,
+        "width": 576,
+        "height": 288.375
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/img-classroom-640.avif",
+        "alt": "Adult learners working on laptops around a shared table in a classroom",
+        "loaded": true,
+        "width": 312.078125,
+        "height": 390.09375
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-training-brief-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 222.90625,
+        "height": 297.203125
+      }
+    ],
+    "videos": [
+      {
+        "label": null,
+        "poster": "",
+        "src": "",
+        "sources": []
+      }
+    ],
+    "errors": []
+  },
+  {
+    "route": "/contact/",
+    "width": 1440,
+    "title": "Contact us and book a free IT assessment | G-Force IT Services",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "Let’s discuss your IT needs.Let’s discussyour IT needs.",
+        "visible": true
+      },
+      {
+        "text": "Ways to contact G-Force",
+        "visible": true
+      },
+      {
+        "text": "Call, email or book a time",
+        "visible": true
+      },
+      {
+        "text": "Send a message",
+        "visible": true
+      },
+      {
+        "text": "Head office",
+        "visible": true
+      },
+      {
+        "text": "What happens nextWhat happens next",
+        "visible": true
+      },
+      {
+        "text": "You send a message",
+        "visible": true
+      },
+      {
+        "text": "A person replies",
+        "visible": true
+      },
+      {
+        "text": "30 minutes on how you work",
+        "visible": true
+      },
+      {
+        "text": "A written report you keep",
+        "visible": true
+      },
+      {
+        "text": "Quick answersQuick answers",
+        "visible": true
+      }
+    ],
+    "images": [
+      {
+        "src": "http://127.0.0.1:4404/3d/sky-2560.jpg",
+        "alt": "",
+        "loaded": true,
+        "width": 1440,
+        "height": 633.0625
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/img-toronto-day-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 480,
+        "height": 360
+      }
+    ],
+    "videos": [],
+    "errors": []
+  },
+  {
+    "route": "/blog/",
+    "width": 1440,
+    "title": "IT careers and training blog | G-Force IT Services",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "Read this before you enrolRead this beforeyou enrol",
+        "visible": true
+      },
+      {
+        "text": "For business owners",
+        "visible": true
+      },
+      {
+        "text": "Latest articles",
+        "visible": true
+      },
+      {
+        "text": "The IT skills Canadian employers are hiring for",
+        "visible": true
+      },
+      {
+        "text": "How to choose the right IT training program for your goals",
+        "visible": true
+      },
+      {
+        "text": "Building a career in cybersecurity",
+        "visible": true
+      },
+      {
+        "text": "How AI and automation are changing IT careers",
+        "visible": true
+      },
+      {
+        "text": "New articles, once a monthNew articles,once a month",
+        "visible": true
+      }
+    ],
+    "images": [
+      {
+        "src": "http://127.0.0.1:4404/media/img/blog-future-jobs-air-responsive-800.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 674.640625,
+        "height": 449.75
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/img-classroom-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 394.65625,
+        "height": 263.09375
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-managed-it-air-loop-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 394.671875,
+        "height": 263.109375
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/blog-ai-automation-air-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 394.65625,
+        "height": 263.09375
+      }
+    ],
+    "videos": [],
+    "errors": []
+  },
+  {
+    "route": "/blog/it-skills-canadian-employers-hire-for/",
+    "width": 1440,
+    "title": "The IT skills Canadian employers are hiring for | G-Force IT Services",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "The IT skills Canadian employers are hiring for",
+        "visible": true
+      },
+      {
+        "text": "Cloud computing and cloud security",
+        "visible": true
+      },
+      {
+        "text": "Artificial intelligence and machine learning",
+        "visible": true
+      },
+      {
+        "text": "Cybersecurity",
+        "visible": true
+      },
+      {
+        "text": "Data analytics and big data",
+        "visible": true
+      },
+      {
+        "text": "Automation and robotic process automation",
+        "visible": true
+      },
+      {
+        "text": "DevOps and agile development",
+        "visible": true
+      },
+      {
+        "text": "Blockchain",
+        "visible": true
+      },
+      {
+        "text": "Communication and leadership",
+        "visible": true
+      },
+      {
+        "text": "Depth beats a little of everything",
+        "visible": true
+      },
+      {
+        "text": "Where to start",
+        "visible": true
+      },
+      {
+        "text": "Start your IT career with a plan",
+        "visible": true
+      },
+      {
+        "text": "Keep reading",
+        "visible": true
+      },
+      {
+        "text": "How to choose the right IT training program for your goals",
+        "visible": true
+      },
+      {
+        "text": "Building a career in cybersecurity",
+        "visible": true
+      },
+      {
+        "text": "How AI and automation are changing IT careers",
+        "visible": true
+      }
+    ],
+    "images": [
+      {
+        "src": "http://127.0.0.1:4404/media/img/blog-future-jobs-air-1280.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 1240,
+        "height": 531.421875
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/img-classroom-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 394.65625,
+        "height": 263.09375
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-managed-it-air-loop-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 394.671875,
+        "height": 263.109375
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/blog-ai-automation-air-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 394.65625,
+        "height": 263.09375
+      }
+    ],
+    "videos": [],
+    "errors": []
+  },
+  {
+    "route": "/blog/choosing-an-it-training-program/",
+    "width": 1440,
+    "title": "How to choose the right IT training program for your goals | G-Force IT Services",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "How to choose the right IT training program for your goals",
+        "visible": true
+      },
+      {
+        "text": "Start from the job you want",
+        "visible": true
+      },
+      {
+        "text": "Check the curriculum against real postings",
+        "visible": true
+      },
+      {
+        "text": "Pick a format you can keep up with",
+        "visible": true
+      },
+      {
+        "text": "Insist on hands-on work",
+        "visible": true
+      },
+      {
+        "text": "Ask what happens after the last class",
+        "visible": true
+      },
+      {
+        "text": "Questions to ask before you enrol",
+        "visible": true
+      },
+      {
+        "text": "Where to start",
+        "visible": true
+      },
+      {
+        "text": "Pick a program that fits your goal",
+        "visible": true
+      },
+      {
+        "text": "Keep reading",
+        "visible": true
+      },
+      {
+        "text": "The IT skills Canadian employers are hiring for",
+        "visible": true
+      },
+      {
+        "text": "Building a career in cybersecurity",
+        "visible": true
+      },
+      {
+        "text": "How AI and automation are changing IT careers",
+        "visible": true
+      }
+    ],
+    "images": [
+      {
+        "src": "http://127.0.0.1:4404/media/img/img-classroom-1280.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 1240,
+        "height": 531.421875
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/blog-future-jobs-air-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 394.65625,
+        "height": 263.09375
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-managed-it-air-loop-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 394.671875,
+        "height": 263.109375
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/blog-ai-automation-air-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 394.65625,
+        "height": 263.09375
+      }
+    ],
+    "videos": [],
+    "errors": []
+  },
+  {
+    "route": "/blog/building-a-career-in-cybersecurity/",
+    "width": 1440,
+    "title": "Building a career in cybersecurity | G-Force IT Services",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "Building a career in cybersecurity",
+        "visible": true
+      },
+      {
+        "text": "Five roles worth knowing",
+        "visible": true
+      },
+      {
+        "text": "Security analyst",
+        "visible": true
+      },
+      {
+        "text": "Penetration tester",
+        "visible": true
+      },
+      {
+        "text": "Security engineer",
+        "visible": true
+      },
+      {
+        "text": "Incident responder",
+        "visible": true
+      },
+      {
+        "text": "Security consultant",
+        "visible": true
+      },
+      {
+        "text": "A realistic route in",
+        "visible": true
+      },
+      {
+        "text": "Certifications at each stage",
+        "visible": true
+      },
+      {
+        "text": "Where to start",
+        "visible": true
+      },
+      {
+        "text": "Start in cybersecurity with a plan",
+        "visible": true
+      },
+      {
+        "text": "Keep reading",
+        "visible": true
+      },
+      {
+        "text": "The IT skills Canadian employers are hiring for",
+        "visible": true
+      },
+      {
+        "text": "How to choose the right IT training program for your goals",
+        "visible": true
+      },
+      {
+        "text": "How AI and automation are changing IT careers",
+        "visible": true
+      }
+    ],
+    "images": [
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-managed-it-air-loop-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 1240,
+        "height": 531.421875
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/blog-future-jobs-air-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 394.65625,
+        "height": 263.09375
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/img-classroom-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 394.671875,
+        "height": 263.109375
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/blog-ai-automation-air-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 394.65625,
+        "height": 263.09375
+      }
+    ],
+    "videos": [],
+    "errors": []
+  },
+  {
+    "route": "/blog/ai-and-automation-in-it-careers/",
+    "width": 1440,
+    "title": "How AI and automation are changing IT careers | G-Force IT Services",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "How AI and automation are changing IT careers",
+        "visible": true
+      },
+      {
+        "text": "New and growing roles",
+        "visible": true
+      },
+      {
+        "text": "AI in IT operations",
+        "visible": true
+      },
+      {
+        "text": "AI and cybersecurity",
+        "visible": true
+      },
+      {
+        "text": "AI for planning and decisions",
+        "visible": true
+      },
+      {
+        "text": "Skills to build now",
+        "visible": true
+      },
+      {
+        "text": "What this means for your career",
+        "visible": true
+      },
+      {
+        "text": "Where to start",
+        "visible": true
+      },
+      {
+        "text": "Start in AI and automation with a plan",
+        "visible": true
+      },
+      {
+        "text": "Keep reading",
+        "visible": true
+      },
+      {
+        "text": "The IT skills Canadian employers are hiring for",
+        "visible": true
+      },
+      {
+        "text": "How to choose the right IT training program for your goals",
+        "visible": true
+      },
+      {
+        "text": "Building a career in cybersecurity",
+        "visible": true
+      }
+    ],
+    "images": [
+      {
+        "src": "http://127.0.0.1:4404/media/img/blog-ai-automation-air-1280.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 1240,
+        "height": 531.421875
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/blog-future-jobs-air-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 394.65625,
+        "height": 263.09375
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/img-classroom-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 394.671875,
+        "height": 263.109375
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-managed-it-air-loop-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 394.65625,
+        "height": 263.09375
+      }
+    ],
+    "videos": [],
+    "errors": []
+  },
+  {
+    "route": "/it-health-check/",
+    "width": 1440,
+    "title": "IT health check | G-Force IT Services",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "Check your IT in five questions.Check your ITin five questions.",
+        "visible": true
+      },
+      {
+        "text": "IT health check",
+        "visible": true
+      },
+      {
+        "text": "How the score works",
+        "visible": true
+      },
+      {
+        "text": "Your answers stay with you",
+        "visible": true
+      },
+      {
+        "text": "Rather talk it through?",
+        "visible": true
+      },
+      {
+        "text": "What each question checks.What eachquestion checks.",
+        "visible": true
+      },
+      {
+        "text": "Backups",
+        "visible": true
+      },
+      {
+        "text": "Multi-factor authentication",
+        "visible": true
+      },
+      {
+        "text": "Updates and patching",
+        "visible": true
+      },
+      {
+        "text": "Device encryption",
+        "visible": true
+      },
+      {
+        "text": "Support",
+        "visible": true
+      },
+      {
+        "text": "Then work through the full checklist.Then work throughthe full checklist.",
+        "visible": true
+      },
+      {
+        "text": "What the checklist covers",
+        "visible": true
+      }
+    ],
+    "images": [
+      {
+        "src": "http://127.0.0.1:4404/3d/sky-2560.jpg",
+        "alt": "",
+        "loaded": true,
+        "width": 1440,
+        "height": 697.0625
+      }
+    ],
+    "videos": [],
+    "errors": []
+  },
+  {
+    "route": "/resources/security-checklist/",
+    "width": 1440,
+    "title": "IT Security Checklist for Small Businesses | G-Force IT Services",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "IT security checklist for small businessesIT securitychecklist forsmall businesses",
+        "visible": true
+      },
+      {
+        "text": "Twelve checks in six areas",
+        "visible": true
+      },
+      {
+        "text": "Email us for a copyEmail usfor a copy",
+        "visible": true
+      },
+      {
+        "text": "Rather have us check for you?Rather have uscheck for you?",
+        "visible": true
+      }
+    ],
+    "images": [
+      {
+        "src": "http://127.0.0.1:4404/3d/sky-2560.jpg",
+        "alt": "",
+        "loaded": true,
+        "width": 1440,
+        "height": 871.890625
+      }
+    ],
+    "videos": [],
+    "errors": []
+  },
+  {
+    "route": "/privacy/",
+    "width": 1440,
+    "title": "Privacy policy | G-Force IT Services",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "Privacy policyPrivacy policy",
+        "visible": true
+      },
+      {
+        "text": "The short version",
+        "visible": true
+      },
+      {
+        "text": "Who we are",
+        "visible": true
+      },
+      {
+        "text": "What we collect",
+        "visible": true
+      },
+      {
+        "text": "What we don’t collect",
+        "visible": true
+      },
+      {
+        "text": "How we use it",
+        "visible": true
+      },
+      {
+        "text": "Consent, and changing your mind",
+        "visible": true
+      },
+      {
+        "text": "Email and Canada’s anti-spam law",
+        "visible": true
+      },
+      {
+        "text": "Who else handles it",
+        "visible": true
+      },
+      {
+        "text": "Cookies and browser storage",
+        "visible": true
+      },
+      {
+        "text": "How long we keep it",
+        "visible": true
+      },
+      {
+        "text": "How we protect it",
+        "visible": true
+      },
+      {
+        "text": "Seeing, correcting or deleting it",
+        "visible": true
+      },
+      {
+        "text": "Questions and complaints",
+        "visible": true
+      },
+      {
+        "text": "Changes to this policy",
+        "visible": true
+      }
+    ],
+    "images": [],
+    "videos": [],
+    "errors": []
+  },
+  {
+    "route": "/terms/",
+    "width": 1440,
+    "title": "Terms of use | G-Force IT Services",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "Terms of useTerms of use",
+        "visible": true
+      },
+      {
+        "text": "The short version",
+        "visible": true
+      },
+      {
+        "text": "Using this site",
+        "visible": true
+      },
+      {
+        "text": "Information on this site",
+        "visible": true
+      },
+      {
+        "text": "Free tools",
+        "visible": true
+      },
+      {
+        "text": "Our content and logos",
+        "visible": true
+      },
+      {
+        "text": "Links to other websites",
+        "visible": true
+      },
+      {
+        "text": "Limits of liability",
+        "visible": true
+      },
+      {
+        "text": "Privacy",
+        "visible": true
+      },
+      {
+        "text": "Governing law",
+        "visible": true
+      },
+      {
+        "text": "Changes to these terms",
+        "visible": true
+      },
+      {
+        "text": "Contact",
+        "visible": true
+      }
+    ],
+    "images": [],
+    "videos": [],
+    "errors": []
+  },
+  {
+    "route": "/accessibility/",
+    "width": 1440,
+    "title": "Accessibility statement | G-Force IT Services",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "Accessibility statementAccessibility statement",
+        "visible": true
+      },
+      {
+        "text": "Our commitment",
+        "visible": true
+      },
+      {
+        "text": "Where we stand",
+        "visible": true
+      },
+      {
+        "text": "What we have built in",
+        "visible": true
+      },
+      {
+        "text": "Known limitations",
+        "visible": true
+      },
+      {
+        "text": "Tell us about a barrier",
+        "visible": true
+      },
+      {
+        "text": "How the site is built",
+        "visible": true
+      },
+      {
+        "text": "About this statement",
+        "visible": true
+      }
+    ],
+    "images": [],
+    "videos": [],
+    "errors": []
+  },
+  {
+    "route": "/404",
+    "width": 1440,
+    "title": "404: Not Found (trailingSlash is set to \"always\")",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "404:  Not Found (trailingSlash is set to \"always\")",
+        "visible": true
+      }
+    ],
+    "images": [],
+    "videos": [],
+    "errors": []
+  },
+  {
+    "route": "/",
+    "width": 390,
+    "title": "G-Force IT Services | Managed IT and IT Training in Toronto",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "Proactive IT support. Practical IT training.Proactive IT support.Practical IT training.",
+        "visible": true
+      },
+      {
+        "text": "Here for your business, or your career?Here for your business,or your career?",
+        "visible": true
+      },
+      {
+        "text": "Reliable IT support for your businessReliable IT support for your business",
+        "visible": true
+      },
+      {
+        "text": "Build your career in ITBuild your career in IT",
+        "visible": true
+      },
+      {
+        "text": "Proactive care. A more dependable workday.Proactive care.A more dependable workday.",
+        "visible": true
+      },
+      {
+        "text": "Five services, one accountable team.Five services,one accountable team.",
+        "visible": true
+      },
+      {
+        "text": "Managed IT",
+        "visible": true
+      },
+      {
+        "text": "Cybersecurity",
+        "visible": true
+      },
+      {
+        "text": "Cloud and backup",
+        "visible": true
+      },
+      {
+        "text": "IT training",
+        "visible": true
+      },
+      {
+        "text": "IT consulting",
+        "visible": true
+      },
+      {
+        "text": "Five ways into IT. Find yours.Five ways into IT.Find yours.",
+        "visible": true
+      },
+      {
+        "text": "Cloud Mastery",
+        "visible": true
+      },
+      {
+        "text": "Cybersecurity Essentials",
+        "visible": true
+      },
+      {
+        "text": "Ethical Hacking and Security Leadership",
+        "visible": true
+      },
+      {
+        "text": "Ways to learn",
+        "visible": true
+      },
+      {
+        "text": "Build practical skills. Prepare for your next exam.Build practical skills.Prepare for your next exam.",
+        "visible": true
+      },
+      {
+        "text": "Certification exams our courses prepare you for",
+        "visible": true
+      },
+      {
+        "text": "How exposed is your office?How exposedis your office?",
+        "visible": true
+      },
+      {
+        "text": "IT health check",
+        "visible": true
+      },
+      {
+        "text": "How the score works",
+        "visible": true
+      },
+      {
+        "text": "IT insights and career guidanceIT insights andcareer guidance",
+        "visible": true
+      },
+      {
+        "text": "The IT skills Canadian employers are hiring for",
+        "visible": true
+      },
+      {
+        "text": "How to choose the right IT training program for your goals",
+        "visible": true
+      },
+      {
+        "text": "Building a career in cybersecurity",
+        "visible": true
+      },
+      {
+        "text": "How AI and automation are changing IT careers",
+        "visible": true
+      },
+      {
+        "text": "One email a month",
+        "visible": true
+      },
+      {
+        "text": "IT Security Checklist for Small Businesses",
+        "visible": true
+      },
+      {
+        "text": "Fair questions, straight answersFair questions,straight answers",
+        "visible": true
+      },
+      {
+        "text": "Discuss your IT and training needsDiscuss yourIT and training needs",
+        "visible": true
+      },
+      {
+        "text": "Call, email or book a time",
+        "visible": true
+      },
+      {
+        "text": "Send a message",
+        "visible": true
+      },
+      {
+        "text": "Head office",
+        "visible": true
+      }
+    ],
+    "images": [
+      {
+        "src": "http://127.0.0.1:4404/3d/hero-poster-original-mobile.avif",
+        "alt": "G-Force IT Services Inc. sculpted in clear glass",
+        "loaded": true,
+        "width": 0,
+        "height": 0
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/img-helpdesk-640.avif",
+        "alt": "A support technician helping a colleague at a laptop",
+        "loaded": true,
+        "width": 348,
+        "height": 217.5
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/img-learner-640.avif",
+        "alt": "A learner studying on a laptop at home in the evening",
+        "loaded": true,
+        "width": 350,
+        "height": 233.328125
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/sky-daylight-brief-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 390,
+        "height": 1108.0625
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-managed-it-brief-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 348,
+        "height": 256
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-managed-it-brief-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 350,
+        "height": 196.875
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-cybersecurity-brief-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 350,
+        "height": 196.875
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-cloud-backup-brief-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 350,
+        "height": 196.875
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-training-brief-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 350,
+        "height": 196.875
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-consulting-brief-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 350,
+        "height": 196.875
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/img-classroom-640.avif",
+        "alt": "Adult learners working on laptops around a shared table in a classroom",
+        "loaded": true,
+        "width": 350,
+        "height": 262.5
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/blog-future-jobs-air-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 332.90625,
+        "height": 187.25
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/img-classroom-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 120,
+        "height": 80
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-managed-it-air-loop-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 120,
+        "height": 80
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/blog-ai-automation-air-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 120,
+        "height": 80
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/img-toronto-day-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 350,
+        "height": 262.5
+      }
+    ],
+    "videos": [
+      {
+        "label": null,
+        "poster": "",
+        "src": "",
+        "sources": []
+      },
+      {
+        "label": null,
+        "poster": "",
+        "src": "",
+        "sources": []
+      },
+      {
+        "label": null,
+        "poster": "",
+        "src": "",
+        "sources": []
+      },
+      {
+        "label": null,
+        "poster": "",
+        "src": "",
+        "sources": []
+      },
+      {
+        "label": null,
+        "poster": "",
+        "src": "",
+        "sources": []
+      },
+      {
+        "label": null,
+        "poster": "",
+        "src": "",
+        "sources": []
+      },
+      {
+        "label": null,
+        "poster": "",
+        "src": "",
+        "sources": []
+      }
+    ],
+    "errors": []
+  },
+  {
+    "route": "/business/",
+    "width": 390,
+    "title": "IT services for Toronto businesses | G-Force IT Services",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "Dependable IT. A stronger business.Dependable IT.A stronger business.",
+        "visible": true
+      },
+      {
+        "text": "Managed ITManaged IT",
+        "visible": true
+      },
+      {
+        "text": "CybersecurityCybersecurity",
+        "visible": true
+      },
+      {
+        "text": "Check your basics first",
+        "visible": true
+      },
+      {
+        "text": "Cloud and backupCloud and backup",
+        "visible": true
+      },
+      {
+        "text": "IT consultingIT consulting",
+        "visible": true
+      },
+      {
+        "text": "Typical projects",
+        "visible": true
+      },
+      {
+        "text": "How we workHow we work",
+        "visible": true
+      },
+      {
+        "text": "Assess",
+        "visible": true
+      },
+      {
+        "text": "Plan",
+        "visible": true
+      },
+      {
+        "text": "Implement",
+        "visible": true
+      },
+      {
+        "text": "Monitor",
+        "visible": true
+      },
+      {
+        "text": "Support",
+        "visible": true
+      },
+      {
+        "text": "How much does downtime cost your business?",
+        "visible": true
+      },
+      {
+        "text": "How it adds up",
+        "visible": true
+      },
+      {
+        "text": "Discuss your IT and training needsDiscuss yourIT and training needs",
+        "visible": true
+      },
+      {
+        "text": "Call, email or book a time",
+        "visible": true
+      },
+      {
+        "text": "Send a message",
+        "visible": true
+      },
+      {
+        "text": "Head office",
+        "visible": true
+      }
+    ],
+    "images": [
+      {
+        "src": "http://127.0.0.1:4404/3d/sky-1280.jpg",
+        "alt": "",
+        "loaded": true,
+        "width": 390,
+        "height": 837.875
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-managed-it-brief-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 332.90625,
+        "height": 249.671875
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-cybersecurity-brief-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 332.90625,
+        "height": 249.671875
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-cloud-backup-brief-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 350,
+        "height": 233.328125
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-consulting-brief-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 332.90625,
+        "height": 208.0625
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/img-toronto-day-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 350,
+        "height": 262.5
+      }
+    ],
+    "videos": [
+      {
+        "label": null,
+        "poster": "",
+        "src": "",
+        "sources": []
+      },
+      {
+        "label": null,
+        "poster": "",
+        "src": "",
+        "sources": []
+      },
+      {
+        "label": null,
+        "poster": "",
+        "src": "",
+        "sources": []
+      },
+      {
+        "label": null,
+        "poster": "",
+        "src": "",
+        "sources": []
+      }
+    ],
+    "errors": []
+  },
+  {
+    "route": "/training/",
+    "width": 390,
+    "title": "IT Training in Toronto and Online | G-Force IT Services",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "Build the skills for your next career in IT.Build the skillsfor your nextcareer in IT.",
+        "visible": true
+      },
+      {
+        "text": "Start here",
+        "visible": false
+      },
+      {
+        "text": "Find the course that fits.Find the coursethat fits.",
+        "visible": true
+      },
+      {
+        "text": "Cloud Mastery",
+        "visible": true
+      },
+      {
+        "text": "Cybersecurity Essentials",
+        "visible": true
+      },
+      {
+        "text": "Ethical Hacking and Security Leadership",
+        "visible": true
+      },
+      {
+        "text": "AI and Machine Learning",
+        "visible": true
+      },
+      {
+        "text": "Data Analytics and Big Data",
+        "visible": true
+      },
+      {
+        "text": "DevOps and Software Development",
+        "visible": true
+      },
+      {
+        "text": "Fit the training around your week.Fit the trainingaround your week.",
+        "visible": true
+      },
+      {
+        "text": "Virtual classes",
+        "visible": true
+      },
+      {
+        "text": "In-person workshops",
+        "visible": true
+      },
+      {
+        "text": "Self-paced",
+        "visible": true
+      },
+      {
+        "text": "The exams our courses prepare you for.The exams ourcourses prepareyou for.",
+        "visible": true
+      },
+      {
+        "text": "Cloud",
+        "visible": true
+      },
+      {
+        "text": "Cybersecurity",
+        "visible": true
+      },
+      {
+        "text": "Before you enrolBefore youenrol",
+        "visible": true
+      },
+      {
+        "text": "Not sure where to start?Not sure whereto start?",
+        "visible": true
+      }
+    ],
+    "images": [
+      {
+        "src": "http://127.0.0.1:4404/media/img/img-learner-1600.jpg",
+        "alt": "A learner studying on a laptop at home",
+        "loaded": false,
+        "width": 0,
+        "height": 0
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/img-classroom-640.avif",
+        "alt": "Adult learners working on laptops around a shared table in a classroom",
+        "loaded": true,
+        "width": 198.5625,
+        "height": 248.203125
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-training-brief-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 141.84375,
+        "height": 189.125
+      }
+    ],
+    "videos": [
+      {
+        "label": null,
+        "poster": "",
+        "src": "",
+        "sources": []
+      }
+    ],
+    "errors": []
+  },
+  {
+    "route": "/contact/",
+    "width": 390,
+    "title": "Contact us and book a free IT assessment | G-Force IT Services",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "Let’s discuss your IT needs.Let’s discussyour IT needs.",
+        "visible": true
+      },
+      {
+        "text": "Ways to contact G-Force",
+        "visible": true
+      },
+      {
+        "text": "Call, email or book a time",
+        "visible": true
+      },
+      {
+        "text": "Send a message",
+        "visible": true
+      },
+      {
+        "text": "Head office",
+        "visible": true
+      },
+      {
+        "text": "What happens nextWhat happens next",
+        "visible": true
+      },
+      {
+        "text": "You send a message",
+        "visible": true
+      },
+      {
+        "text": "A person replies",
+        "visible": true
+      },
+      {
+        "text": "30 minutes on how you work",
+        "visible": true
+      },
+      {
+        "text": "A written report you keep",
+        "visible": true
+      },
+      {
+        "text": "Quick answersQuick answers",
+        "visible": true
+      }
+    ],
+    "images": [
+      {
+        "src": "http://127.0.0.1:4404/3d/sky-1280.jpg",
+        "alt": "",
+        "loaded": true,
+        "width": 390,
+        "height": 450.1875
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/img-toronto-day-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 350,
+        "height": 262.5
+      }
+    ],
+    "videos": [],
+    "errors": []
+  },
+  {
+    "route": "/blog/",
+    "width": 390,
+    "title": "IT careers and training blog | G-Force IT Services",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "Read this before you enrolRead this beforeyou enrol",
+        "visible": true
+      },
+      {
+        "text": "For business owners",
+        "visible": true
+      },
+      {
+        "text": "Latest articles",
+        "visible": true
+      },
+      {
+        "text": "The IT skills Canadian employers are hiring for",
+        "visible": true
+      },
+      {
+        "text": "How to choose the right IT training program for your goals",
+        "visible": true
+      },
+      {
+        "text": "Building a career in cybersecurity",
+        "visible": true
+      },
+      {
+        "text": "How AI and automation are changing IT careers",
+        "visible": true
+      },
+      {
+        "text": "New articles, once a monthNew articles,once a month",
+        "visible": true
+      }
+    ],
+    "images": [
+      {
+        "src": "http://127.0.0.1:4404/media/img/blog-future-jobs-air-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 332.90625,
+        "height": 187.25
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/img-classroom-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 332.90625,
+        "height": 221.9375
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-managed-it-air-loop-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 332.90625,
+        "height": 221.9375
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/blog-ai-automation-air-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 332.90625,
+        "height": 221.9375
+      }
+    ],
+    "videos": [],
+    "errors": []
+  },
+  {
+    "route": "/blog/it-skills-canadian-employers-hire-for/",
+    "width": 390,
+    "title": "The IT skills Canadian employers are hiring for | G-Force IT Services",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "The IT skills Canadian employers are hiring for",
+        "visible": true
+      },
+      {
+        "text": "Cloud computing and cloud security",
+        "visible": true
+      },
+      {
+        "text": "Artificial intelligence and machine learning",
+        "visible": true
+      },
+      {
+        "text": "Cybersecurity",
+        "visible": true
+      },
+      {
+        "text": "Data analytics and big data",
+        "visible": true
+      },
+      {
+        "text": "Automation and robotic process automation",
+        "visible": true
+      },
+      {
+        "text": "DevOps and agile development",
+        "visible": true
+      },
+      {
+        "text": "Blockchain",
+        "visible": true
+      },
+      {
+        "text": "Communication and leadership",
+        "visible": true
+      },
+      {
+        "text": "Depth beats a little of everything",
+        "visible": true
+      },
+      {
+        "text": "Where to start",
+        "visible": true
+      },
+      {
+        "text": "Start your IT career with a plan",
+        "visible": true
+      },
+      {
+        "text": "Keep reading",
+        "visible": true
+      },
+      {
+        "text": "How to choose the right IT training program for your goals",
+        "visible": true
+      },
+      {
+        "text": "Building a career in cybersecurity",
+        "visible": true
+      },
+      {
+        "text": "How AI and automation are changing IT careers",
+        "visible": true
+      }
+    ],
+    "images": [
+      {
+        "src": "http://127.0.0.1:4404/media/img/blog-future-jobs-air-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 350,
+        "height": 196.875
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/img-classroom-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 350,
+        "height": 233.328125
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-managed-it-air-loop-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 350,
+        "height": 233.328125
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/blog-ai-automation-air-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 350,
+        "height": 233.328125
+      }
+    ],
+    "videos": [],
+    "errors": []
+  },
+  {
+    "route": "/blog/choosing-an-it-training-program/",
+    "width": 390,
+    "title": "How to choose the right IT training program for your goals | G-Force IT Services",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "How to choose the right IT training program for your goals",
+        "visible": true
+      },
+      {
+        "text": "Start from the job you want",
+        "visible": true
+      },
+      {
+        "text": "Check the curriculum against real postings",
+        "visible": true
+      },
+      {
+        "text": "Pick a format you can keep up with",
+        "visible": true
+      },
+      {
+        "text": "Insist on hands-on work",
+        "visible": true
+      },
+      {
+        "text": "Ask what happens after the last class",
+        "visible": true
+      },
+      {
+        "text": "Questions to ask before you enrol",
+        "visible": true
+      },
+      {
+        "text": "Where to start",
+        "visible": true
+      },
+      {
+        "text": "Pick a program that fits your goal",
+        "visible": true
+      },
+      {
+        "text": "Keep reading",
+        "visible": true
+      },
+      {
+        "text": "The IT skills Canadian employers are hiring for",
+        "visible": true
+      },
+      {
+        "text": "Building a career in cybersecurity",
+        "visible": true
+      },
+      {
+        "text": "How AI and automation are changing IT careers",
+        "visible": true
+      }
+    ],
+    "images": [
+      {
+        "src": "http://127.0.0.1:4404/media/img/img-classroom-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 350,
+        "height": 196.875
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/blog-future-jobs-air-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 350,
+        "height": 233.328125
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-managed-it-air-loop-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 350,
+        "height": 233.328125
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/blog-ai-automation-air-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 350,
+        "height": 233.328125
+      }
+    ],
+    "videos": [],
+    "errors": []
+  },
+  {
+    "route": "/blog/building-a-career-in-cybersecurity/",
+    "width": 390,
+    "title": "Building a career in cybersecurity | G-Force IT Services",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "Building a career in cybersecurity",
+        "visible": true
+      },
+      {
+        "text": "Five roles worth knowing",
+        "visible": true
+      },
+      {
+        "text": "Security analyst",
+        "visible": true
+      },
+      {
+        "text": "Penetration tester",
+        "visible": true
+      },
+      {
+        "text": "Security engineer",
+        "visible": true
+      },
+      {
+        "text": "Incident responder",
+        "visible": true
+      },
+      {
+        "text": "Security consultant",
+        "visible": true
+      },
+      {
+        "text": "A realistic route in",
+        "visible": true
+      },
+      {
+        "text": "Certifications at each stage",
+        "visible": true
+      },
+      {
+        "text": "Where to start",
+        "visible": true
+      },
+      {
+        "text": "Start in cybersecurity with a plan",
+        "visible": true
+      },
+      {
+        "text": "Keep reading",
+        "visible": true
+      },
+      {
+        "text": "The IT skills Canadian employers are hiring for",
+        "visible": true
+      },
+      {
+        "text": "How to choose the right IT training program for your goals",
+        "visible": true
+      },
+      {
+        "text": "How AI and automation are changing IT careers",
+        "visible": true
+      }
+    ],
+    "images": [
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-managed-it-air-loop-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 350,
+        "height": 196.875
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/blog-future-jobs-air-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 350,
+        "height": 233.328125
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/img-classroom-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 350,
+        "height": 233.328125
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/blog-ai-automation-air-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 350,
+        "height": 233.328125
+      }
+    ],
+    "videos": [],
+    "errors": []
+  },
+  {
+    "route": "/blog/ai-and-automation-in-it-careers/",
+    "width": 390,
+    "title": "How AI and automation are changing IT careers | G-Force IT Services",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "How AI and automation are changing IT careers",
+        "visible": true
+      },
+      {
+        "text": "New and growing roles",
+        "visible": true
+      },
+      {
+        "text": "AI in IT operations",
+        "visible": true
+      },
+      {
+        "text": "AI and cybersecurity",
+        "visible": true
+      },
+      {
+        "text": "AI for planning and decisions",
+        "visible": true
+      },
+      {
+        "text": "Skills to build now",
+        "visible": true
+      },
+      {
+        "text": "What this means for your career",
+        "visible": true
+      },
+      {
+        "text": "Where to start",
+        "visible": true
+      },
+      {
+        "text": "Start in AI and automation with a plan",
+        "visible": true
+      },
+      {
+        "text": "Keep reading",
+        "visible": true
+      },
+      {
+        "text": "The IT skills Canadian employers are hiring for",
+        "visible": true
+      },
+      {
+        "text": "How to choose the right IT training program for your goals",
+        "visible": true
+      },
+      {
+        "text": "Building a career in cybersecurity",
+        "visible": true
+      }
+    ],
+    "images": [
+      {
+        "src": "http://127.0.0.1:4404/media/img/blog-ai-automation-air-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 350,
+        "height": 196.875
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/blog-future-jobs-air-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 350,
+        "height": 233.328125
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/img-classroom-640.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 350,
+        "height": 233.328125
+      },
+      {
+        "src": "http://127.0.0.1:4404/media/img/svc-managed-it-air-loop-poster.avif",
+        "alt": "",
+        "loaded": true,
+        "width": 350,
+        "height": 233.328125
+      }
+    ],
+    "videos": [],
+    "errors": []
+  },
+  {
+    "route": "/it-health-check/",
+    "width": 390,
+    "title": "IT health check | G-Force IT Services",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "Check your IT in five questions.Check your ITin five questions.",
+        "visible": true
+      },
+      {
+        "text": "IT health check",
+        "visible": true
+      },
+      {
+        "text": "How the score works",
+        "visible": true
+      },
+      {
+        "text": "Your answers stay with you",
+        "visible": true
+      },
+      {
+        "text": "Rather talk it through?",
+        "visible": true
+      },
+      {
+        "text": "What each question checks.What eachquestion checks.",
+        "visible": true
+      },
+      {
+        "text": "Backups",
+        "visible": true
+      },
+      {
+        "text": "Multi-factor authentication",
+        "visible": true
+      },
+      {
+        "text": "Updates and patching",
+        "visible": true
+      },
+      {
+        "text": "Device encryption",
+        "visible": true
+      },
+      {
+        "text": "Support",
+        "visible": true
+      },
+      {
+        "text": "Then work through the full checklist.Then work throughthe full checklist.",
+        "visible": true
+      },
+      {
+        "text": "What the checklist covers",
+        "visible": true
+      }
+    ],
+    "images": [
+      {
+        "src": "http://127.0.0.1:4404/3d/sky-1280.jpg",
+        "alt": "",
+        "loaded": true,
+        "width": 390,
+        "height": 439.1875
+      }
+    ],
+    "videos": [],
+    "errors": []
+  },
+  {
+    "route": "/resources/security-checklist/",
+    "width": 390,
+    "title": "IT Security Checklist for Small Businesses | G-Force IT Services",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "IT security checklist for small businessesIT securitychecklist forsmall businesses",
+        "visible": true
+      },
+      {
+        "text": "Twelve checks in six areas",
+        "visible": true
+      },
+      {
+        "text": "Email us for a copyEmail usfor a copy",
+        "visible": true
+      },
+      {
+        "text": "Rather have us check for you?Rather have uscheck for you?",
+        "visible": true
+      }
+    ],
+    "images": [
+      {
+        "src": "http://127.0.0.1:4404/3d/sky-1280.jpg",
+        "alt": "",
+        "loaded": true,
+        "width": 390,
+        "height": 697.875
+      }
+    ],
+    "videos": [],
+    "errors": []
+  },
+  {
+    "route": "/privacy/",
+    "width": 390,
+    "title": "Privacy policy | G-Force IT Services",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "Privacy policyPrivacy policy",
+        "visible": true
+      },
+      {
+        "text": "The short version",
+        "visible": true
+      },
+      {
+        "text": "Who we are",
+        "visible": true
+      },
+      {
+        "text": "What we collect",
+        "visible": true
+      },
+      {
+        "text": "What we don’t collect",
+        "visible": true
+      },
+      {
+        "text": "How we use it",
+        "visible": true
+      },
+      {
+        "text": "Consent, and changing your mind",
+        "visible": true
+      },
+      {
+        "text": "Email and Canada’s anti-spam law",
+        "visible": true
+      },
+      {
+        "text": "Who else handles it",
+        "visible": true
+      },
+      {
+        "text": "Cookies and browser storage",
+        "visible": true
+      },
+      {
+        "text": "How long we keep it",
+        "visible": true
+      },
+      {
+        "text": "How we protect it",
+        "visible": true
+      },
+      {
+        "text": "Seeing, correcting or deleting it",
+        "visible": true
+      },
+      {
+        "text": "Questions and complaints",
+        "visible": true
+      },
+      {
+        "text": "Changes to this policy",
+        "visible": true
+      }
+    ],
+    "images": [],
+    "videos": [],
+    "errors": []
+  },
+  {
+    "route": "/terms/",
+    "width": 390,
+    "title": "Terms of use | G-Force IT Services",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "Terms of useTerms of use",
+        "visible": true
+      },
+      {
+        "text": "The short version",
+        "visible": true
+      },
+      {
+        "text": "Using this site",
+        "visible": true
+      },
+      {
+        "text": "Information on this site",
+        "visible": true
+      },
+      {
+        "text": "Free tools",
+        "visible": true
+      },
+      {
+        "text": "Our content and logos",
+        "visible": true
+      },
+      {
+        "text": "Links to other websites",
+        "visible": true
+      },
+      {
+        "text": "Limits of liability",
+        "visible": true
+      },
+      {
+        "text": "Privacy",
+        "visible": true
+      },
+      {
+        "text": "Governing law",
+        "visible": true
+      },
+      {
+        "text": "Changes to these terms",
+        "visible": true
+      },
+      {
+        "text": "Contact",
+        "visible": true
+      }
+    ],
+    "images": [],
+    "videos": [],
+    "errors": []
+  },
+  {
+    "route": "/accessibility/",
+    "width": 390,
+    "title": "Accessibility statement | G-Force IT Services",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "Accessibility statementAccessibility statement",
+        "visible": true
+      },
+      {
+        "text": "Our commitment",
+        "visible": true
+      },
+      {
+        "text": "Where we stand",
+        "visible": true
+      },
+      {
+        "text": "What we have built in",
+        "visible": true
+      },
+      {
+        "text": "Known limitations",
+        "visible": true
+      },
+      {
+        "text": "Tell us about a barrier",
+        "visible": true
+      },
+      {
+        "text": "How the site is built",
+        "visible": true
+      },
+      {
+        "text": "About this statement",
+        "visible": true
+      }
+    ],
+    "images": [],
+    "videos": [],
+    "errors": []
+  },
+  {
+    "route": "/404",
+    "width": 390,
+    "title": "404: Not Found (trailingSlash is set to \"always\")",
+    "overflow": false,
+    "headings": [
+      {
+        "text": "404:  Not Found (trailingSlash is set to \"always\")",
+        "visible": true
+      }
+    ],
+    "images": [],
+    "videos": [],
+    "errors": []
+  }
+]

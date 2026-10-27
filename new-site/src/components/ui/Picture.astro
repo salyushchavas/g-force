@@ -1,0 +1,76 @@
+---
+// Responsive <picture> for a media-manifest slot (AVIF, WebP, JPG). Falls back to a quiet gradient if the slot is missing.
+import { media, imageSets, largest } from '../../lib/media';
+
+interface Props {
+  slot: string;
+  alt: string;
+  sizes?: string;
+  class?: string;
+  imgClass?: string;
+  loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  variant?: 'default' | 'duo';
+  mobileCrop?: boolean;
+  reveal?: boolean;
+}
+
+const {
+  slot,
+  alt,
+  sizes = '(min-width: 1024px) 50vw, 100vw',
+  class: className = '',
+  imgClass = '',
+  loading = 'lazy',
+  fetchpriority = 'auto',
+  variant = 'default',
+  mobileCrop = false,
+  reveal = false,
+  ...rest
+} = Astro.props;
+
+const entry = media(slot);
+const sets = imageSets(entry, variant);
+const mobile = mobileCrop ? imageSets(entry, 'mobile') : undefined;
+const src = sets ? largest(sets.jpg ?? sets.webp ?? sets.avif) : undefined;
+const width = entry?.width ?? 1600;
+const height = entry?.height ?? 900;
+---
+{src ? (
+  <picture class={className} data-reveal={reveal ? 'media' : undefined} {...rest}>
+    {mobile?.avif && <source media="(max-width: 640px)" type="image/avif" srcset={mobile.avif} sizes="100vw" />}
+    {mobile?.webp && <source media="(max-width: 640px)" type="image/webp" srcset={mobile.webp} sizes="100vw" />}
+    {sets?.avif && <source type="image/avif" srcset={sets.avif} sizes={sizes} />}
+    {sets?.webp && <source type="image/webp" srcset={sets.webp} sizes={sizes} />}
+    <img
+      src={src}
+      srcset={sets?.jpg}
+      sizes={sizes}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={loading}
+      decoding={loading === 'eager' ? 'sync' : 'async'}
+      fetchpriority={fetchpriority}
+      class={imgClass}
+      style={entry?.objectPosition ? `object-position: ${entry.objectPosition}` : undefined}
+    />
+  </picture>
+) : (
+  <div
+    class={`media-fallback ${className}`}
+    role={alt ? 'img' : undefined}
+    aria-label={alt || undefined}
+    data-reveal={reveal ? 'media' : undefined}
+    {...rest}
+  ></div>
+)}
+
+<style>
+  .media-fallback {
+    background:
+      radial-gradient(120% 90% at 20% 10%, color-mix(in oklch, var(--color-dusk-500) 55%, transparent), transparent 60%),
+      linear-gradient(160deg, var(--color-ink-850), var(--color-ink-950));
+    min-height: 12rem;
+  }
+</style>

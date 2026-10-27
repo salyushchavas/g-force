@@ -1,0 +1,56 @@
+[
+  {
+    "src": "http://127.0.0.1:4321/media/img/security-key-laptop-640.avif",
+    "loaded": true,
+    "height": 198,
+    "objectPosition": "60% 65%",
+    "hasVideo": false,
+    "errors": [],
+    "viewportWidth": 320,
+    "imageWidth": 264
+  },
+  {
+    "article": {
+      "src": "http://127.0.0.1:4321/media/img/security-key-laptop-640.avif",
+      "alt": "",
+      "loaded": true
+    },
+    "viewportWidth": 320
+  },
+  {
+    "src": "http://127.0.0.1:4321/media/img/security-key-laptop-640.avif",
+    "loaded": true,
+    "height": 249.671875,
+    "objectPosition": "60% 65%",
+    "hasVideo": false,
+    "errors": [],
+    "viewportWidth": 390,
+    "imageWidth": 332.90625
+  },
+  {
+    "article": {
+      "src": "http://127.0.0.1:4321/media/img/security-key-laptop-640.avif",
+      "alt": "",
+      "loaded": true
+    },
+    "viewportWidth": 390
+  },
+  {
+    "src": "http://127.0.0.1:4321/media/img/security-key-laptop-800.avif",
+    "loaded": true,
+    "height": 600.828125,
+    "objectPosition": "60% 65%",
+    "hasVideo": false,
+    "errors": [],
+    "viewportWidth": 1440,
+    "imageWidth": 480.671875
+  },
+  {
+    "article": {
+      "src": "http://127.0.0.1:4321/media/img/security-key-laptop-1280.avif",
+      "alt": "",
+      "loaded": true
+    },
+    "viewportWidth": 1440
+  }
+]

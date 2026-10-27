@@ -1,0 +1,46 @@
+---
+// Headline revealed line by line through a mask; *word* marks the single italic accent (DESIGN.md: the Air move).
+// Renders plain, fully visible text when motion is off.
+interface Props {
+  lines: string[];
+  as?: 'h1' | 'h2' | 'h3';
+  class?: string;
+  delay?: number;
+  id?: string;
+  /** Above the fold: animate from first paint in CSS instead of on scroll. */
+  load?: boolean;
+}
+
+const { lines, as: Tag = 'h2', class: className = '', delay = 0, id, load = false, ...rest } = Astro.props;
+
+// Trailing punctuation joins the script word ("*career*?" becomes "*career?*"), so no gap opens before it.
+const segment = (line: string) =>
+  line
+    .replace(/\*([^*]+)\*([.,!?;:])/g, '*$1$2*')
+    .split(/(\*[^*]+\*)/)
+    .filter(Boolean)
+    .map((part) => (part.startsWith('*') && part.endsWith('*') ? { text: part.slice(1, -1), accent: true } : { text: part, accent: false }));
+
+const label = lines.join(' ').replace(/\*/g, '');
+---
+<Tag class={className} id={id} data-reveal-mask={load ? 'load' : true} style={`--reveal-delay:${delay}ms`} {...rest}>
+  <span class="sr-only">{label}</span>
+  {lines.map((line, i) => (
+    <span class="rm-line" style={`--line-i:${i}`} aria-hidden="true">
+      {segment(line).map((seg, j) => (
+        <Fragment>
+          {/* spaces live between the inline-blocks, so a wrap never leaves an indent */}
+          {j > 0 && /^\s/.test(seg.text) ? ' ' : ''}
+          {seg.accent ? <span class="accent rm-inner">{seg.text}</span> : <span class="rm-inner">{seg.text.trim()}</span>}
+          {/\s$/.test(seg.text) && !seg.accent ? ' ' : ''}
+        </Fragment>
+      ))}
+    </span>
+  ))}
+</Tag>
+
+<style>
+  .rm-line {
+    display: block;
+  }
+</style>

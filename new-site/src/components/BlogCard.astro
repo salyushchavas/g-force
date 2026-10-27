@@ -1,0 +1,188 @@
+---
+// One article teaser: duotone image, topic tag (plus an "Infographic" chip for figure-led posts), title, excerpt,
+// date and read time. The title is the only link. A pseudo-element stretches it over the whole card, so the card is
+// one click target while assistive tech hears one clear link name. Hover and focus warm the image tone and underline
+// the title; the image itself never moves (DESIGN.md). The meta line sits at the card's foot, so a row of cards
+// lines up; compact cards use the short date so date and read time share one line.
+import Picture from './ui/Picture.astro';
+import { formatDate, formatDateShort, type PostMeta } from '../data/posts';
+
+interface Props {
+  post: PostMeta;
+  variant?: 'default' | 'compact';
+  headingLevel?: 'h3' | 'h4';
+  loading?: 'lazy' | 'eager';
+  class?: string;
+}
+
+const { post, variant = 'default', headingLevel = 'h3', loading = 'lazy', class: className = '' } = Astro.props;
+const Heading = headingLevel;
+const revised = Boolean(post.updated) && post.updated !== post.published;
+const date = revised ? post.updated : post.published;
+const sizes = variant === 'compact' ? '(min-width: 640px) 144px, 120px' : '(min-width: 1240px) 400px, (min-width: 640px) 50vw, 100vw';
+---
+<article class:list={['bc', `bc-${variant}`, className]}>
+  <div class="bc-media">
+    <Picture slot={post.image} alt="" variant="duo" sizes={sizes} loading={loading} class="bc-pic" imgClass="bc-img" />
+  </div>
+  <div class="bc-body">
+    <Heading class="t-h4 bc-title"><a class="bc-link" href={`/blog/${post.slug}/`}>{post.title}</a></Heading>
+    <p class="bc-tags">
+      <span class="chip bc-tag"><span class="sr-only">Topic: </span>{post.category}</span>
+      {post.format === 'infographic' && <span class="chip bc-format"><span class="sr-only">Format: </span>Infographic</span>}
+    </p>
+    {variant === 'default' && <p class="bc-excerpt">{post.excerpt}</p>}
+    <p class="bc-meta t-meta">
+      {variant === 'compact' ? (
+        <span><span class="sr-only">{revised ? 'Updated' : 'Published'} </span><time datetime={date}>{formatDateShort(date)}</time></span>
+      ) : (
+        <span>{revised ? 'Updated' : 'Published'} <time datetime={date}>{formatDate(date)}</time></span>
+      )}
+      <span>{post.readMinutes} min read</span>
+    </p>
+  </div>
+</article>
+
+<style>
+  .bc {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+    height: 100%;
+  }
+  .bc-media {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    aspect-ratio: 3 / 2;
+    border-radius: var(--radius-card);
+    background: var(--surface-2);
+  }
+  .bc-media :global(.bc-pic) {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+  }
+  .bc-media :global(.bc-img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* Tone change on hover: a warm dawn wash fades in over the duotone. Opacity only; the image stays put. */
+  .bc-media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklch, var(--color-dawn-400) 70%, transparent) 0%,
+      color-mix(in oklch, var(--color-crimson-500) 45%, transparent) 100%
+    );
+    mix-blend-mode: soft-light;
+    opacity: 0;
+    transition: opacity 320ms var(--ease-out-quart);
+    pointer-events: none;
+  }
+  .bc:hover .bc-media::after,
+  .bc:focus-within .bc-media::after {
+    opacity: 1;
+  }
+
+  .bc-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+  /* Read after the title by screen readers, shown above it. */
+  .bc-tags {
+    order: -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  /* A filled chip: dashed outlines are reserved for the Sample marker. */
+  .bc-format {
+    border-color: transparent;
+    background: var(--surface-2);
+  }
+  /* Weight, tracking and leading come from .t-h4; only the size steps up for the grid. */
+  .bc-title {
+    font-size: clamp(1.1875rem, 1.06rem + 0.45vw, 1.375rem);
+  }
+  .bc-link {
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 0.2em;
+    transition: text-decoration-color 160ms var(--ease-out-quart);
+  }
+  .bc-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: var(--radius-card);
+  }
+  .bc:hover .bc-link,
+  .bc-link:focus-visible {
+    text-decoration-color: var(--accent-ink);
+  }
+  .bc-link:focus-visible {
+    outline: none;
+  }
+  .bc-link:focus-visible::after {
+    outline: 2px solid var(--focus);
+    outline-offset: 4px;
+  }
+  .bc-excerpt {
+    max-width: 60ch;
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+  .bc-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.15rem 0.7rem;
+    margin-top: auto;
+    color: var(--text-muted);
+  }
+
+  /* Compact: thumbnail beside the text, same 3:2 image ratio, no excerpt. */
+  .bc-compact {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .bc-compact .bc-media {
+    flex: 0 0 7.5rem;
+  }
+  .bc-compact .bc-body {
+    gap: 0.45rem;
+    min-width: 0;
+  }
+  .bc-compact .bc-title {
+    font-size: 1.0625rem;
+  }
+  .bc-compact .bc-tag,
+  .bc-compact .bc-format {
+    padding: 0.2rem 0.6rem;
+    font-size: 0.75rem;
+  }
+  @media (min-width: 640px) {
+    .bc-compact {
+      gap: 1.25rem;
+    }
+    .bc-compact .bc-media {
+      flex-basis: 9rem;
+    }
+  }
+</style>

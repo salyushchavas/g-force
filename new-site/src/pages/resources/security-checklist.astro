@@ -1,0 +1,1072 @@
+---
+// The PDF's lead magnet as a real page: a 12-point checklist you can download as a one-page PDF, tick online and
+// print with your ticks, or ask for by email. Built around the Canadian Centre for Cyber Security's baseline
+// controls (no invented statistics). Cloud-sky hero with a paper "sheet" of the six areas; on phones a sticky
+// progress bar follows the ticks.
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/ui/PageHero.astro';
+import SplitHeading from '../../components/ui/SplitHeading.astro';
+import Icon from '../../components/ui/Icon.astro';
+import { checklist, company, hero } from '../../data/site';
+
+// The one-page PDF is generated from this page's print layout (public/downloads/). The download button only
+// appears once the file is there, so the page never links to a missing file; until then the hero prints.
+const PDF_HREF = '/downloads/gforce-it-security-checklist.pdf';
+const hasPdf = existsSync(join(process.cwd(), 'public', PDF_HREF));
+// Without a form endpoint the request goes out from the visitor's own email app (src/lib/leads.ts), so the
+// section says exactly that and promises no automatic delivery.
+const hasEndpoint = Boolean(company.formEndpoint);
+const newsletterConsent = 'Also send me G\u2011Force’s monthly IT security notes. I can unsubscribe at any time.';
+const printIcon =
+  '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 9V4.5h10V9"/><rect x="3.5" y="9" width="17" height="8" rx="1.5"/><path d="M7 14h10v6H7z"/></svg>';
+
+const source = {
+  publisher: 'Canadian Centre for Cyber Security',
+  title: 'Baseline cyber security controls for small and medium organizations',
+  url: 'https://www.cyber.gc.ca/en/guidance/baseline-cyber-security-controls-small-and-medium-organizations',
+};
+
+// The baseline control each check supports, numbered as the Centre numbers them (BC.1 to BC.13).
+// Matched on each item's wording in site.ts; an item without a match simply shows no reference.
+const controls: Array<[RegExp, string, string]> = [
+  [/backup|restore/i, 'BC.7', 'Backup and encrypt data'],
+  [/multi-factor|password/i, 'BC.5', 'Use strong user authentication'],
+  [/separate admin|admin work/i, 'BC.12', 'Implement access control and authorization'],
+  [/updated automatically|patch/i, 'BC.2', 'Automatically patch operating systems and applications'],
+  [/encryption|remote wipe/i, 'BC.8', 'Secure mobility'],
+  [/endpoint protection|security software/i, 'BC.3', 'Enable security software'],
+  [/firewall|wi[-\u2011]fi/i, 'BC.9', 'Establish basic perimeter defences'],
+  [/phishing|awareness/i, 'BC.6', 'Provide employee awareness training'],
+  [/incident plan|incident response/i, 'BC.1', 'Develop an incident response plan'],
+  [/access reviewed|former-staff|vendor/i, 'BC.12', 'Implement access control and authorization'],
+];
+
+const slug = (s: string) =>
+  s
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+
+type Check = { item: string; id: string; key: string; control?: { code: string; name: string } };
+const groups: Array<{ area: string; slug: string; items: Check[] }> = [];
+for (const c of checklist) {
+  let g = groups.find((x) => x.area === c.area);
+  if (!g) {
+    g = { area: c.area, slug: slug(c.area), items: [] };
+    groups.push(g);
+  }
+  const n = g.items.length + 1;
+  const match = controls.find(([re]) => re.test(c.item));
+  g.items.push({
+    item: c.item,
+    id: `check-${g.slug}-${n}`,
+    key: `${g.slug}-${n}`,
+    control: match ? { code: match[1], name: match[2] } : undefined,
+  });
+}
+
+const words = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen'];
+const count = (n: number) => words[n] ?? String(n);
+const capital = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+const total = checklist.length;
+// Non-breaking spaces keep the province and postal code together on one line.
+const address = `${company.address.street}, ${company.address.city}, ${company.address.region}\u00A0${company.address.postal.replace(' ', '\u00A0')}`;
+const site = company.url.replace(/^https?:\/\//, '');
+---
+<Base
+  title="IT Security Checklist for Small Businesses"
+  description={`A free ${total}-point IT security checklist for small businesses, based on the Canadian Centre for Cyber Security baseline controls. ${hasPdf ? 'Download the one-page PDF, or tick it online and print it.' : 'Tick it online or print it.'}`}
+  sky
+>
+  <PageHero
+    tone="night"
+    crumb={{ label: 'Resources', href: '/blog/', current: 'Security checklist' }}
+    lines={['IT security', 'checklist for', '*small businesses*']}
+    intro={`${capital(count(total))} checks in ${count(groups.length)} areas, built around the ${source.publisher}'s baseline controls for small and medium organizations. ${hasPdf ? 'Download the one-page PDF, or tick what is already in place here and print it with your ticks.' : 'Tick what is already in place, then print it with your ticks.'}`}
+  >
+    <div class="cl-hero-actions" data-reveal="load" style="--reveal-delay: 560ms">
+      {hasPdf ? (
+        <a class="btn btn-primary" href={PDF_HREF} download>
+          <Icon name="download" size={18} />
+          Download the PDF (1 page)
+        </a>
+      ) : (
+        <button type="button" class="btn btn-primary" data-print>
+          <Fragment set:html={printIcon} />
+          Print the checklist
+        </button>
+      )}
+      <a class="btn btn-secondary" href="#email-copy">{hasEndpoint ? 'Email me the checklist' : 'Email us for a copy'}</a>
+    </div>
+
+    {/* Wide screens: the checklist as a sheet of paper on the sky, its six areas at a glance. Static on purpose.
+        Positioned in the hero until PageHero offers an aside slot. */}
+    <aside class="cl-paper band-light" aria-labelledby="cl-paper-title">
+      <p id="cl-paper-title" class="cl-paper-title">IT security checklist</p>
+      <ul class="cl-paper-list" role="list">
+        {groups.map((g) => (
+          <li>
+            <span class="cl-paper-box" aria-hidden="true"></span>
+            <span class="cl-paper-area">{g.area}</span>
+            <span class="cl-paper-count t-num">{g.items.length} {g.items.length === 1 ? 'check' : 'checks'}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="cl-paper-foot t-meta">
+        {total} checks · 1 page · <abbr title={source.publisher}>CCCS</abbr> baseline
+      </p>
+    </aside>
+  </PageHero>
+
+  <section id="checklist" class="cl section-y-dense sheet" aria-labelledby="checklist-title" data-checklist>
+    <div class="container-g">
+      <div class="print-only print-head">
+        <span class="logo-mark print-mark" aria-hidden="true"></span>
+        <div>
+          <p class="print-brand">G-Force IT Services</p>
+          <p class="print-title">IT security checklist for small businesses</p>
+        </div>
+        <p class="print-done t-num"><span data-done>0</span> of {total} done</p>
+      </div>
+      <p class="print-only print-fields">
+        <span>Business</span><span>Checked by</span><span>Date</span>
+      </p>
+
+      <div class="cl-head">
+        <h2 id="checklist-title" class="t-h3">{capital(count(total))} checks in {count(groups.length)} areas</h2>
+        <p class="cl-lede">Tick each one that is already true for your business. A gap is a good place to start.</p>
+      </div>
+
+      <div class="cl-grid">
+        <div class="cl-main">
+          <div class="cl-sheet" data-reveal>
+            {groups.map((g) => (
+              <fieldset class="cl-group" data-group data-area={g.area}>
+                <legend class="cl-legend">
+                  <span class="cl-legend-row">
+                    <span class="cl-area">
+                      {g.area}
+                      <span class="cl-area-done" aria-hidden="true"><Icon name="check" size={18} /></span>
+                    </span>
+                    <span class="cl-group-count t-num" aria-hidden="true"><span data-group-done>0</span>/{g.items.length}</span>
+                  </span>
+                </legend>
+                <ul class="cl-items" role="list">
+                  {g.items.map((it) => (
+                    <li class="cl-row">
+                      <label class="cl-item" for={it.id}>
+                        <input
+                          class="cl-input"
+                          type="checkbox"
+                          id={it.id}
+                          name="done"
+                          value={it.key}
+                          data-check
+                          aria-describedby={it.control ? `${it.id}-ref` : undefined}
+                        />
+                        <span class="cl-box" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m5 12.5 4.2 4.2L19 7" />
+                          </svg>
+                        </span>
+                        <span class="cl-copy">
+                          <span class="cl-text">{it.item}</span>
+                          {it.control && (
+                            <span class="cl-ref t-meta" id={`${it.id}-ref`} aria-hidden="true">
+                              <span class="sr-only">Baseline control </span>{it.control.code}<span aria-hidden="true"> · </span>{it.control.name}
+                            </span>
+                          )}
+                        </span>
+                      </label>
+                    </li>
+                  ))}
+                </ul>
+              </fieldset>
+            ))}
+          </div>
+
+          <p class="cl-source t-meta">
+            Built around the {source.publisher}'s <a href={source.url} rel="external">{source.title}</a>. BC numbers refer to the controls in that guidance.
+            <span class="print-only print-url">{source.url}</span>
+          </p>
+        </div>
+
+        <aside class="cl-panel" aria-label="Checklist progress">
+          <p class="cl-count" aria-live="polite" aria-atomic="true">
+            <span class="cl-count-num t-num" data-done>0</span>{' '}<span class="cl-count-of">of {total} done</span>
+          </p>
+          <div class="cl-bar" aria-hidden="true"><span class="cl-bar-fill"></span></div>
+          <p class="cl-state t-meta" data-state>Tick each check that is already in place.</p>
+          <div class="cl-actions">
+            <button type="button" class="btn btn-primary cl-print" data-print>
+              <Fragment set:html={printIcon} />
+              Print<span class="cl-print-long"> with my ticks</span>
+            </button>
+            <button type="button" class="cl-reset" data-reset hidden>Clear all ticks</button>
+          </div>
+          <p class="cl-note t-meta">
+            <Icon name="lock" size={16} />
+            <span>Your ticks stay in this browser. Nothing is sent to us.</span>
+          </p>
+        </aside>
+      </div>
+
+      <p class="print-only print-foot">
+        {company.legalName} · {address} · {company.phoneDisplay} · {company.email} · {site}
+        <span class="print-cta">Book a free IT assessment at {site}/contact or call {company.phoneDisplay}.</span>
+      </p>
+    </div>
+  </section>
+
+  <section id="email-copy" class="cl-email section-y-dense" aria-labelledby="email-title">
+    <div class="container-g email-grid">
+      <div class="email-intro">
+        <SplitHeading id="email-title" as="h2" lines={hasEndpoint ? ['Get a copy', 'by email'] : ['Email us', 'for a copy']} class="t-h2" />
+        <p class="email-lede" data-reveal style="--reveal-delay: 200ms">
+          {hasEndpoint
+            ? 'We will send the checklist to your inbox, ready to forward to whoever looks after your IT.'
+            : `Your email app opens with a short request to us, ready to send.${hasPdf ? ' For a copy right now, download the PDF above.' : ''}`}
+        </p>
+      </div>
+
+      <form class="email-form" data-lead-form="checklist" novalidate aria-labelledby="email-title" data-reveal>
+        <div class="field-pair">
+          <div>
+            <label for="cl-name" class="field-label">First name <span class="opt">(optional)</span></label>
+            <input id="cl-name" name="name" type="text" class="field" autocomplete="given-name" />
+          </div>
+          <div>
+            <label for="cl-email" class="field-label">Email address</label>
+            <input
+              id="cl-email"
+              name="email"
+              type="email"
+              class="field"
+              autocomplete="email"
+              placeholder="you@company.ca"
+              required
+              data-error="Enter your email address, like name@company.ca."
+            />
+          </div>
+        </div>
+        <label class="consent" for="cl-newsletter">
+          <input id="cl-newsletter" type="checkbox" name="newsletter" value="yes" />
+          <span>{newsletterConsent} (Optional)</span>
+        </label>
+        <input type="hidden" name="consent_text" value={newsletterConsent} />
+        <p class="email-privacy t-meta">
+          {hasEndpoint
+            ? 'We use your email to send the checklist, and the monthly notes only if you tick the box.'
+            : 'We use your email address only to answer this request, and for the monthly notes if you tick the box.'}
+          Sent by {company.legalName}, {address}. Read our <a href="/privacy/">privacy policy</a>.
+        </p>
+        <input type="text" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp" />
+        <div class="email-submit">
+          <button type="submit" class="btn btn-primary">
+            {hasEndpoint ? 'Email me the checklist' : 'Open my email app'}
+            <span class="btn-arrow"><Icon name="arrow" size={18} /></span>
+          </button>
+        </div>
+        <p class="form-status t-meta" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <section id="assessment" class="cl-cta-wrap section-y-dense" aria-labelledby="assess-title">
+    <div class="container-g">
+      <div class="cl-cta band-night">
+        <div class="cl-cta-copy">
+          <SplitHeading id="assess-title" as="h2" lines={['Rather have us', '*check* for you?']} class="t-h2" />
+          <p data-reveal style="--reveal-delay: 200ms">
+            The free IT assessment is a 30-minute conversation, a review of your devices, accounts and backups, and a written
+            report with the top risks and what fixing them would cost. You keep the report whether or not you hire us.
+          </p>
+        </div>
+        <div class="cl-cta-actions" data-reveal style="--reveal-delay: 320ms">
+          <a class="btn btn-primary" href={hero.primary.href}>
+            {hero.primary.label}
+            <span class="btn-arrow"><Icon name="arrow" size={18} /></span>
+          </a>
+          <a class="btn btn-secondary" href={company.phoneHref}>
+            <Icon name="phone" size={18} />
+            Call {company.phoneDisplay}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  // Live "x of 12 done", per-area progress and print. Ticks persist in this browser only (localStorage).
+  const root = document.querySelector<HTMLElement>('[data-checklist]');
+  if (root) {
+    const KEY = 'gf-security-checklist-v1';
+    const boxes = Array.from(root.querySelectorAll<HTMLInputElement>('input[data-check]'));
+    const groups = Array.from(root.querySelectorAll<HTMLElement>('[data-group]'));
+    const doneEls = Array.from(document.querySelectorAll<HTMLElement>('[data-done]'));
+    const stateEl = root.querySelector<HTMLElement>('[data-state]');
+    const resetBtn = root.querySelector<HTMLButtonElement>('[data-reset]');
+    const total = boxes.length;
+
+    const listOf = (names: string[]) =>
+      names.length < 2 ? names.join('') : `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}`;
+
+    const render = () => {
+      const done = boxes.filter((b) => b.checked).length;
+      doneEls.forEach((el) => (el.textContent = String(done)));
+      root.style.setProperty('--done', (done / Math.max(1, total)).toFixed(4));
+      root.classList.toggle('is-done', done === total);
+      if (resetBtn) resetBtn.hidden = done === 0;
+      const open: string[] = [];
+      groups.forEach((g) => {
+        const inputs = Array.from(g.querySelectorAll<HTMLInputElement>('input[data-check]'));
+        const n = inputs.filter((i) => i.checked).length;
+        const out = g.querySelector<HTMLElement>('[data-group-done]');
+        if (out) out.textContent = String(n);
+        g.classList.toggle('is-complete', n === inputs.length);
+        if (n < inputs.length && g.dataset.area) open.push(g.dataset.area);
+      });
+      if (stateEl) {
+        stateEl.textContent =
+          done === 0
+            ? 'Tick each check that is already in place.'
+            : done === total
+              ? `All ${total} in place. Run through the list again next quarter.`
+              : `Still open: ${listOf(open)}.`;
+      }
+    };
+
+    const save = () => {
+      try {
+        localStorage.setItem(KEY, JSON.stringify(boxes.filter((b) => b.checked).map((b) => b.value)));
+      } catch {}
+    };
+
+    try {
+      const saved: unknown = JSON.parse(localStorage.getItem(KEY) ?? '[]');
+      if (Array.isArray(saved)) boxes.forEach((b) => (b.checked = saved.includes(b.value)));
+    } catch {}
+    render();
+
+    root.addEventListener('change', (e) => {
+      if ((e.target as HTMLElement).matches('input[data-check]')) {
+        render();
+        save();
+      }
+    });
+    resetBtn?.addEventListener('click', () => {
+      boxes.forEach((b) => (b.checked = false));
+      render();
+      save();
+      boxes[0]?.focus();
+    });
+    addEventListener('pageshow', render);
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('[data-print]').forEach((b) => b.addEventListener('click', () => window.print()));
+</script>
+
+<style>
+  .print-only {
+    display: none;
+  }
+
+  .cl-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  /* ---------- The paper sheet in the hero (wide screens) ---------- */
+  .cl-paper {
+    display: none;
+  }
+  @media (min-width: 1024px) {
+    :global(.page-hero:has(.cl-paper)) {
+      --paper-w: 20rem;
+      --paper-gap: clamp(2.5rem, 4vw, 4rem);
+    }
+    :global(.page-hero.page-hero-night:has(.cl-paper) .page-hero-title) {
+      max-width: min(16ch, calc(100% - var(--paper-w) - var(--paper-gap)));
+    }
+    :global(.page-hero.page-hero-night:has(.cl-paper) .page-hero-intro),
+    .cl-hero-actions {
+      max-width: min(52ch, calc(100% - var(--paper-w) - var(--paper-gap)));
+    }
+    .cl-paper {
+      position: absolute;
+      top: calc(var(--header-h) + clamp(3.5rem, 2rem + 6vw, 7rem) + 1rem);
+      right: max(var(--gutter), calc((100% - 1240px) / 2));
+      display: block;
+      width: var(--paper-w);
+      padding: 1.25rem 1.5rem 1rem;
+      border-radius: 10px;
+      transform: rotate(-2deg);
+    }
+    .cl-paper-title {
+      margin-bottom: 0.6rem;
+      font-size: 1.1875rem;
+      font-weight: 620;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+    .cl-paper-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .cl-paper-list li {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 0.75rem;
+      padding-block: 0.55rem;
+      border-top: 1px solid var(--line);
+    }
+    .cl-paper-box {
+      width: 0.95rem;
+      height: 0.95rem;
+      border-radius: var(--radius-input);
+      box-shadow: inset 0 0 0 1.5px var(--line-strong);
+    }
+    .cl-paper-area {
+      font-weight: 600;
+    }
+    .cl-paper-count {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+    .cl-paper-foot {
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--line);
+      color: var(--text-muted);
+    }
+    .cl-paper-foot abbr {
+      text-decoration: none;
+    }
+  }
+
+  /* ---------- Checklist ---------- */
+  .cl-grid {
+    display: grid;
+    gap: 2.5rem;
+  }
+  .cl-head {
+    display: grid;
+    gap: 0.5rem;
+    margin-bottom: 1.75rem;
+  }
+  .cl-lede {
+    max-width: 56ch;
+    color: var(--text-muted);
+  }
+  .cl-sheet {
+    padding-inline: clamp(1.1rem, 0.6rem + 2vw, 2.25rem);
+    padding-block: 0.25rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    background: var(--surface);
+  }
+  .cl-group {
+    min-width: 0;
+    margin: 0;
+    padding: 1.4rem 0 0.4rem;
+    border: 0;
+  }
+  .cl-group + .cl-group {
+    border-top: 1px solid var(--line);
+  }
+  .cl-legend {
+    float: left;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 0.35rem;
+  }
+  .cl-legend + * {
+    clear: both;
+  }
+  .cl-legend-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .cl-area {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 1.1875rem;
+    font-weight: 620;
+    letter-spacing: -0.01em;
+  }
+  .cl-area-done {
+    display: inline-grid;
+    color: var(--accent-ink);
+    opacity: 0;
+    transform: scale(0.6);
+    transition:
+      opacity 180ms var(--ease-out-quart),
+      transform 300ms var(--ease-out-expo);
+  }
+  .cl-group.is-complete .cl-area-done {
+    opacity: 1;
+    transform: none;
+  }
+  .cl-group-count {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .cl-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .cl-row + .cl-row {
+    border-top: 1px solid var(--line);
+  }
+  .cl-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.5rem minmax(0, 1fr);
+    gap: 1rem;
+    align-items: start;
+    min-height: 2.75rem;
+    padding-block: 0.95rem;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* The native checkbox stays in place (and in the accessibility tree); the drawn box sits beneath it. */
+  .cl-input {
+    position: absolute;
+    top: 0.95rem;
+    left: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .cl-box {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: 0.05rem;
+    border-radius: var(--radius-input);
+    box-shadow: inset 0 0 0 1.5px var(--line-strong);
+    color: var(--btn-text);
+    transition: box-shadow 160ms var(--ease-out-quart);
+  }
+  .cl-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 180ms var(--ease-out-quart);
+  }
+  /* The tick draws in on check (300ms) and leaves on the exit curve at about 60% of that. */
+  .cl-box svg {
+    position: relative;
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 180ms var(--ease-exit);
+  }
+  .cl-item:hover .cl-box {
+    box-shadow: inset 0 0 0 1.5px var(--text);
+  }
+  .cl-input:checked + .cl-box {
+    box-shadow: none;
+  }
+  .cl-input:checked + .cl-box::before {
+    opacity: 1;
+  }
+  .cl-input:checked + .cl-box svg {
+    clip-path: inset(0 0 0 0);
+    transition: clip-path 300ms var(--ease-out-expo) 60ms;
+  }
+  .cl-input:focus-visible + .cl-box {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+  }
+  .cl-copy {
+    display: grid;
+    gap: 0.3rem;
+  }
+  .cl-text {
+    line-height: 1.5;
+    text-wrap: pretty;
+  }
+  .cl-ref {
+    color: var(--text-muted);
+    font-size: 0.8125rem;
+  }
+  .cl-source {
+    margin-top: 1.25rem;
+    max-width: 68ch;
+    color: var(--text-muted);
+  }
+  .cl-source a,
+  .email-privacy a {
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+  .cl-source a:hover,
+  .email-privacy a:hover {
+    text-decoration-color: var(--accent);
+  }
+
+  /* ---------- Progress panel ---------- */
+  .cl-panel {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+    padding: 1.5rem;
+    border-radius: var(--radius-card);
+    background: var(--surface-2);
+  }
+  .cl-count {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+  }
+  .cl-count-num {
+    font-size: clamp(3rem, 2.4rem + 2vw, 4.25rem);
+    font-weight: 560;
+    letter-spacing: -0.035em;
+    line-height: 0.9;
+    transition: color 200ms var(--ease-out-quart);
+  }
+  .cl.is-done .cl-count-num {
+    color: var(--accent-ink);
+  }
+  .cl-count-of {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+  .cl-bar {
+    position: relative;
+    height: 4px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: var(--line);
+  }
+  .cl-bar-fill {
+    position: absolute;
+    inset: 0;
+    background: var(--accent-ink);
+    transform-origin: 0 50%;
+    transform: scaleX(var(--done, 0));
+    transition: transform 500ms var(--ease-out-expo);
+  }
+  .cl-state {
+    min-height: 2.8em;
+    color: var(--text-muted);
+  }
+  .cl-actions {
+    display: grid;
+    gap: 0.25rem;
+    justify-items: start;
+  }
+  .cl-reset {
+    min-height: 2.75rem;
+    padding: 0 0.15rem;
+    border: 0;
+    background: none;
+    color: var(--text);
+    font: inherit;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-underline-offset: 0.3em;
+    cursor: pointer;
+    transition: text-decoration-color 160ms var(--ease-out-quart);
+  }
+  .cl-reset:hover {
+    text-decoration-color: var(--accent);
+  }
+  .cl-print :global(svg) {
+    flex: none;
+  }
+  .cl-note {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+    color: var(--text-muted);
+  }
+  .cl-note :global(svg) {
+    flex: none;
+    margin-top: 0.05rem;
+  }
+
+  /* ---------- Email a copy ---------- */
+  .cl-email {
+    border-top: 1px solid var(--line);
+  }
+  .email-grid {
+    display: grid;
+    gap: 2rem;
+  }
+  .email-lede {
+    margin-top: 1rem;
+    max-width: 40ch;
+    color: var(--text-muted);
+  }
+  .email-form {
+    display: grid;
+    gap: 1.1rem;
+    max-width: 38rem;
+  }
+  .field-pair {
+    display: grid;
+    gap: 1.1rem;
+  }
+  .opt {
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+  .consent {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    min-height: 2.75rem;
+    padding-block: 0.25rem;
+    font-size: 0.9375rem;
+    line-height: 1.45;
+    cursor: pointer;
+  }
+  .consent input {
+    flex: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin: 0.1rem 0 0;
+    accent-color: var(--accent);
+    cursor: pointer;
+  }
+  .email-privacy {
+    color: var(--text-muted);
+  }
+  .hp {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+  .form-status:empty {
+    display: none;
+  }
+  .form-status[data-state='error'] {
+    color: var(--accent-ink);
+  }
+
+  /* ---------- Assessment ---------- */
+  .cl-cta {
+    display: grid;
+    gap: 2rem;
+    padding: clamp(2rem, 1.25rem + 3vw, 3.5rem);
+    border-radius: var(--radius-card);
+  }
+  .cl-cta-copy p {
+    margin-top: 1.25rem;
+    max-width: 56ch;
+    color: var(--text-muted);
+  }
+  .cl-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  @media (forced-colors: active) {
+    .cl-box {
+      border: 1.5px solid CanvasText;
+    }
+    .cl-input:checked + .cl-box::before {
+      background: Highlight;
+    }
+    .cl-box svg {
+      color: HighlightText;
+    }
+  }
+
+  /* Phones and tablets: the heading first, then a slim progress bar that stays in view while you tick. */
+  @media (max-width: 1023px) {
+    .cl-grid {
+      gap: 1rem;
+    }
+    .cl-panel {
+      order: -1;
+      position: sticky;
+      top: calc(var(--header-h) + 0.5rem);
+      z-index: var(--z-raised);
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      padding: 0.75rem 1rem;
+    }
+    .cl-state,
+    .cl-note,
+    .cl-reset {
+      display: none;
+    }
+    .cl-count {
+      gap: 0.4rem;
+    }
+    .cl-count-num {
+      font-size: 1.75rem;
+      line-height: 1;
+    }
+    .cl-count-of {
+      font-size: 0.875rem;
+    }
+    .cl-actions {
+      display: block;
+    }
+    .cl-actions .btn {
+      min-height: 2.75rem;
+      padding: 0.55rem 1rem;
+      font-size: 0.9375rem;
+    }
+    .cl-print-long {
+      display: none;
+    }
+  }
+  @media (min-width: 640px) {
+    .field-pair {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+    }
+  }
+  @media (min-width: 1024px) {
+    .cl-grid {
+      grid-template-columns: minmax(0, 1fr) 20rem;
+      gap: 3.5rem;
+      align-items: start;
+    }
+    .cl-panel {
+      position: sticky;
+      top: calc(var(--header-h) + 1.5rem);
+    }
+    .email-grid {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: 4rem;
+      align-items: start;
+    }
+    .cl-cta {
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      column-gap: 4rem;
+    }
+  }
+</style>
+
+<style is:global>
+  /* Print or save as PDF: one clean page with the brand, the twelve checks and a contact line. */
+  @media print {
+    @page {
+      margin: 12mm 14mm;
+    }
+    html,
+    html[data-theme] {
+      color-scheme: light;
+      --ink: var(--color-air-ink, black);
+      --bg: white;
+      --surface: white;
+      --surface-2: white;
+      --text: var(--ink);
+      --text-muted: var(--color-mist-600);
+      --line: var(--color-mist-200);
+      --line-strong: var(--color-mist-500);
+      --accent: var(--ink);
+      --accent-ink: var(--ink);
+      --logo-word: var(--ink);
+      background: white;
+    }
+    body {
+      background: white !important;
+      color: var(--ink);
+      font-size: 9.5pt;
+      line-height: 1.4;
+    }
+    .site-header,
+    .site-footer,
+    .skip-link,
+    astro-island,
+    .air-sky,
+    .page-hero,
+    #email-copy,
+    #assessment,
+    .cl-panel,
+    .cl-head,
+    .cl-group-count,
+    .cl-area-done {
+      display: none !important;
+    }
+    main {
+      padding: 0 !important;
+    }
+    [data-reveal],
+    [data-stagger] > *,
+    [data-reveal-mask] .rm-inner {
+      opacity: 1 !important;
+      transform: none !important;
+      clip-path: none !important;
+      filter: none !important;
+    }
+    #checklist {
+      padding: 0 !important;
+    }
+    #checklist .container-g {
+      width: 100%;
+    }
+    #checklist .print-only {
+      display: block;
+    }
+    #checklist .print-head {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 3.5mm;
+      padding-bottom: 3mm;
+      border-bottom: 0.4mm solid var(--ink);
+    }
+    /* The masked brand mark prints in ink even when "background graphics" is off. */
+    .print-mark {
+      display: block;
+      width: 13mm;
+      height: 10mm;
+      background-color: var(--ink);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .print-brand {
+      font-size: 9pt;
+      font-weight: 650;
+      letter-spacing: 0.02em;
+    }
+    .print-title {
+      font-size: 17pt;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+    .print-done {
+      font-size: 10pt;
+      font-weight: 650;
+    }
+    #checklist .print-fields {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 0.7fr;
+      gap: 6mm;
+      margin: 4mm 0 1mm;
+      font-size: 8.5pt;
+      color: var(--color-mist-600);
+    }
+    .print-fields span {
+      padding-bottom: 5mm;
+      border-bottom: 0.25mm solid var(--color-mist-500);
+    }
+    .cl-grid {
+      display: block !important;
+    }
+    .cl-sheet {
+      padding: 0 !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      columns: 2;
+      column-gap: 8mm;
+    }
+    .cl-group {
+      break-inside: avoid;
+      padding: 3mm 0 0 !important;
+      border: 0 !important;
+    }
+    .cl-legend {
+      margin-bottom: 0.5mm !important;
+    }
+    .cl-area {
+      font-size: 11pt !important;
+    }
+    .cl-row + .cl-row {
+      border-top: 0.2mm solid var(--color-mist-200) !important;
+    }
+    .cl-item {
+      grid-template-columns: 4mm minmax(0, 1fr) !important;
+      gap: 2.5mm !important;
+      min-height: 0 !important;
+      padding-block: 1.6mm !important;
+      break-inside: avoid;
+    }
+    .cl-box {
+      width: 4mm !important;
+      height: 4mm !important;
+      margin-top: 0.3mm !important;
+      border: 0.3mm solid var(--ink);
+      border-radius: 0.8mm !important;
+      box-shadow: none !important;
+      color: var(--ink) !important;
+    }
+    .cl-box::before {
+      display: none !important;
+    }
+    .cl-box svg {
+      width: 3.4mm;
+      height: 3.4mm;
+      visibility: hidden;
+      clip-path: none !important;
+    }
+    .cl-input:checked + .cl-box svg {
+      visibility: visible;
+    }
+    .cl-text {
+      font-size: 9.75pt;
+      line-height: 1.35 !important;
+    }
+    .cl-ref {
+      font-size: 7.5pt !important;
+    }
+    .cl-copy {
+      gap: 0.4mm !important;
+    }
+    .cl-source {
+      margin-top: 3mm !important;
+      max-width: none !important;
+      font-size: 7.5pt !important;
+    }
+    .cl-source a {
+      text-decoration: none;
+    }
+    .print-url {
+      display: inline !important;
+    }
+    .print-url::before {
+      content: ' (';
+    }
+    .print-url::after {
+      content: ')';
+    }
+    #checklist .print-foot {
+      margin-top: 4mm;
+      padding-top: 2.5mm;
+      border-top: 0.25mm solid var(--color-mist-300);
+      font-size: 7.5pt;
+      color: var(--color-mist-600);
+    }
+    .print-cta {
+      display: block;
+      margin-top: 1mm;
+      color: var(--ink);
+      font-weight: 600;
+    }
+  }
+</style>

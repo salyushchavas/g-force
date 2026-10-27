@@ -1,0 +1,190 @@
+{
+  "config": {
+    "name": "cancel-keyboard",
+    "width": 1440,
+    "cancel": "keydown"
+  },
+  "frames": [
+    {
+      "now": 149,
+      "state": "preparing",
+      "y": 1452,
+      "titleY": 1657.09375,
+      "progress": 0,
+      "scrollY": 0,
+      "art": false,
+      "draws": 0
+    },
+    {
+      "now": 213,
+      "state": "preparing",
+      "y": 972,
+      "titleY": 1177.09375,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 259,
+      "state": "preparing",
+      "y": 972,
+      "titleY": 1177.09375,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 270,
+      "state": "preparing",
+      "y": 972,
+      "titleY": 1177.09375,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 289,
+      "state": "preparing",
+      "y": 972,
+      "titleY": 1177.09375,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 292,
+      "state": "preparing",
+      "y": 972,
+      "titleY": 1177.09375,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 304,
+      "state": "preparing",
+      "y": 972,
+      "titleY": 1177.09375,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 332,
+      "state": "running",
+      "y": 972,
+      "titleY": 1177.09375,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 4
+    },
+    {
+      "now": 339,
+      "state": "complete",
+      "y": 0,
+      "titleY": 205.09375,
+      "progress": 0,
+      "scrollY": 0,
+      "art": false,
+      "draws": 4
+    },
+    {
+      "now": 348,
+      "state": "complete",
+      "y": 0,
+      "titleY": 205.09375,
+      "progress": 0,
+      "scrollY": 0,
+      "art": false,
+      "draws": 4
+    },
+    {
+      "now": 351,
+      "state": "complete",
+      "y": 0,
+      "titleY": 205.09375,
+      "progress": 0,
+      "scrollY": 0,
+      "art": false,
+      "draws": 4
+    },
+    {
+      "now": 367,
+      "state": "complete",
+      "y": -2,
+      "titleY": 203.09375,
+      "progress": 0,
+      "scrollY": 2,
+      "art": false,
+      "draws": 4
+    },
+    {
+      "now": 393,
+      "state": "complete",
+      "y": -5,
+      "titleY": 200.09375,
+      "progress": 0,
+      "scrollY": 5,
+      "art": false,
+      "draws": 4
+    },
+    {
+      "now": 403,
+      "state": "complete",
+      "y": -9,
+      "titleY": 196.09375,
+      "progress": 0,
+      "scrollY": 9,
+      "art": false,
+      "draws": 4
+    },
+    {
+      "now": 408,
+      "state": "complete",
+      "y": -9,
+      "titleY": 196.09375,
+      "progress": 0,
+      "scrollY": 9,
+      "art": false,
+      "draws": 4
+    },
+    {
+      "now": 416,
+      "state": "complete",
+      "y": -13,
+      "titleY": 192.09375,
+      "progress": 0,
+      "scrollY": 13,
+      "art": false,
+      "draws": 4
+    },
+    {
+      "now": 434,
+      "state": "complete",
+      "y": -17,
+      "titleY": 188.09375,
+      "progress": 0,
+      "scrollY": 17,
+      "art": false,
+      "draws": 4
+    },
+    {
+      "now": 451,
+      "state": "complete",
+      "y": -21,
+      "titleY": 184.09375,
+      "progress": 0,
+      "scrollY": 21,
+      "art": false,
+      "draws": 4
+    }
+  ],
+  "longTasks": []
+}

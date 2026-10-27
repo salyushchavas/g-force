@@ -1,0 +1,1042 @@
+[
+  {
+    "mobile": true,
+    "errors": [],
+    "samples": [
+      {
+        "at": "idle",
+        "y": 0,
+        "playing": 0,
+        "attached": 0,
+        "clips": [
+          {
+            "slot": "/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 3097.625,
+              "height": 1128.96875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-managed-it-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 3638.6875,
+              "height": 256
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-managed-it-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 4646.21728515625,
+              "height": 196.875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-cybersecurity-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 5084.18603515625,
+              "height": 196.875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 5522.15478515625,
+              "height": 196.875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-training-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 5960.12353515625,
+              "height": 196.875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-consulting-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 6398.09228515625,
+              "height": 196.875
+            },
+            "quality": {}
+          }
+        ],
+        "requests": []
+      },
+      {
+        "at": "#services",
+        "y": 5021,
+        "playing": 2,
+        "attached": 6,
+        "clips": [
+          {
+            "slot": "/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 4,
+            "rect": {
+              "top": -1923.375,
+              "height": 1128.96875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-managed-it-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": -1430.3125,
+              "height": 256
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-managed-it-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 4,
+            "rect": {
+              "top": -374.78125,
+              "height": 196.875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-cybersecurity-air-loop-960.mp4",
+            "paused": false,
+            "time": 0.511,
+            "ready": 4,
+            "rect": {
+              "top": 47.1875,
+              "height": 196.875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "paused": false,
+            "time": 0.4355,
+            "ready": 4,
+            "rect": {
+              "top": 485.15625,
+              "height": 196.875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-training-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 4,
+            "rect": {
+              "top": 923.125,
+              "height": 196.875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-consulting-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 4,
+            "rect": {
+              "top": 1377.09375,
+              "height": 196.875
+            },
+            "quality": {}
+          }
+        ],
+        "requests": [
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-consulting-air-loop-960.mp4",
+            "bytes": 634861,
+            "duration": 1048.3999999985099
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "bytes": 532735,
+            "duration": 612.6999999992549
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cybersecurity-air-loop-960.mp4",
+            "bytes": 330875,
+            "duration": 737
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-training-960.mp4",
+            "bytes": 680705,
+            "duration": 646.6999999992549
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "bytes": 300,
+            "duration": 742.3000000007451
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-air-loop-960.mp4",
+            "bytes": 375547,
+            "duration": 83.10000000149012
+          }
+        ]
+      },
+      {
+        "at": ".svc-row:nth-child(2)",
+        "y": 4827,
+        "playing": 2,
+        "attached": 6,
+        "clips": [
+          {
+            "slot": "/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 4,
+            "rect": {
+              "top": -1729.375,
+              "height": 1128.96875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-managed-it-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": -1236.3125,
+              "height": 256
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-managed-it-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 4,
+            "rect": {
+              "top": -196.78125,
+              "height": 196.875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-cybersecurity-air-loop-960.mp4",
+            "paused": false,
+            "time": 1.7621,
+            "ready": 4,
+            "rect": {
+              "top": 241.1875,
+              "height": 196.875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "paused": false,
+            "time": 1.6857,
+            "ready": 4,
+            "rect": {
+              "top": 679.15625,
+              "height": 196.875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-training-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 4,
+            "rect": {
+              "top": 1117.125,
+              "height": 196.875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-consulting-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 4,
+            "rect": {
+              "top": 1571.09375,
+              "height": 196.875
+            },
+            "quality": {}
+          }
+        ],
+        "requests": [
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-consulting-air-loop-960.mp4",
+            "bytes": 634861,
+            "duration": 1048.3999999985099
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "bytes": 532735,
+            "duration": 612.6999999992549
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cybersecurity-air-loop-960.mp4",
+            "bytes": 330875,
+            "duration": 737
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-training-960.mp4",
+            "bytes": 680705,
+            "duration": 646.6999999992549
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "bytes": 300,
+            "duration": 742.3000000007451
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-air-loop-960.mp4",
+            "bytes": 375547,
+            "duration": 83.10000000149012
+          }
+        ]
+      },
+      {
+        "at": ".svc-row:nth-child(3)",
+        "y": 4947,
+        "playing": 2,
+        "attached": 6,
+        "clips": [
+          {
+            "slot": "/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 4,
+            "rect": {
+              "top": -1849.375,
+              "height": 1128.96875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-managed-it-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": -1356.3125,
+              "height": 256
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-managed-it-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 4,
+            "rect": {
+              "top": -316.78125,
+              "height": 196.875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-cybersecurity-air-loop-960.mp4",
+            "paused": false,
+            "time": 2.9929,
+            "ready": 4,
+            "rect": {
+              "top": 121.1875,
+              "height": 196.875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "paused": false,
+            "time": 2.9165,
+            "ready": 4,
+            "rect": {
+              "top": 559.15625,
+              "height": 196.875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-training-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 4,
+            "rect": {
+              "top": 997.125,
+              "height": 196.875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-consulting-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 4,
+            "rect": {
+              "top": 1451.09375,
+              "height": 196.875
+            },
+            "quality": {}
+          }
+        ],
+        "requests": [
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-consulting-air-loop-960.mp4",
+            "bytes": 634861,
+            "duration": 1048.3999999985099
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "bytes": 532735,
+            "duration": 612.6999999992549
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cybersecurity-air-loop-960.mp4",
+            "bytes": 330875,
+            "duration": 737
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-training-960.mp4",
+            "bytes": 680705,
+            "duration": 646.6999999992549
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "bytes": 300,
+            "duration": 742.3000000007451
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-air-loop-960.mp4",
+            "bytes": 375547,
+            "duration": 83.10000000149012
+          }
+        ]
+      },
+      {
+        "at": "[data-dawn-stage]",
+        "y": 3196,
+        "playing": 2,
+        "attached": 7,
+        "clips": [
+          {
+            "slot": "/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "paused": false,
+            "time": 1.1714,
+            "ready": 4,
+            "rect": {
+              "top": -98.375,
+              "height": 1128.96875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-managed-it-air-loop-960.mp4",
+            "paused": false,
+            "time": 1.1617,
+            "ready": 4,
+            "rect": {
+              "top": 394.6875,
+              "height": 256
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-managed-it-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 4,
+            "rect": {
+              "top": 1434.21875,
+              "height": 196.875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-cybersecurity-air-loop-960.mp4",
+            "paused": true,
+            "time": 3.0587,
+            "ready": 4,
+            "rect": {
+              "top": 1872.1875,
+              "height": 196.875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "paused": true,
+            "time": 2.9824,
+            "ready": 4,
+            "rect": {
+              "top": 2310.15625,
+              "height": 196.875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-training-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 4,
+            "rect": {
+              "top": 2748.125,
+              "height": 196.875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-consulting-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 4,
+            "rect": {
+              "top": 3202.09375,
+              "height": 196.875
+            },
+            "quality": {}
+          }
+        ],
+        "requests": [
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-consulting-air-loop-960.mp4",
+            "bytes": 634861,
+            "duration": 1048.3999999985099
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "bytes": 532735,
+            "duration": 612.6999999992549
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cybersecurity-air-loop-960.mp4",
+            "bytes": 330875,
+            "duration": 737
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-training-960.mp4",
+            "bytes": 680705,
+            "duration": 646.6999999992549
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "bytes": 300,
+            "duration": 742.3000000007451
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-air-loop-960.mp4",
+            "bytes": 375547,
+            "duration": 83.10000000149012
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "mobile": false,
+    "errors": [],
+    "samples": [
+      {
+        "at": "idle",
+        "y": 0,
+        "playing": 0,
+        "attached": 0,
+        "clips": [
+          {
+            "slot": "/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 2693.140625,
+              "height": 1296.96875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-managed-it-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 3493.109375,
+              "height": 416
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-managed-it-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 4314.578125,
+              "height": 369.046875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-cybersecurity-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 4314.578125,
+              "height": 369.046875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 4314.578125,
+              "height": 369.046875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-training-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 4314.578125,
+              "height": 369.046875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-consulting-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 4314.578125,
+              "height": 369.046875
+            },
+            "quality": {}
+          }
+        ],
+        "requests": []
+      },
+      {
+        "at": "#services",
+        "y": 4138,
+        "playing": 0,
+        "attached": 2,
+        "clips": [
+          {
+            "slot": "/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 4,
+            "rect": {
+              "top": -1444.859375,
+              "height": 1296.96875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-managed-it-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 4,
+            "rect": {
+              "top": -692.890625,
+              "height": 416
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-managed-it-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 176.578125,
+              "height": 369.046875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-cybersecurity-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 176.578125,
+              "height": 369.046875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 176.578125,
+              "height": 369.046875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-training-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 176.578125,
+              "height": 369.046875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-consulting-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 176.578125,
+              "height": 369.046875
+            },
+            "quality": {}
+          }
+        ],
+        "requests": [
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-air-loop-960.webm",
+            "bytes": 296801,
+            "duration": 180
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-air-loop-960.webm",
+            "bytes": 345129,
+            "duration": 108.5
+          }
+        ]
+      },
+      {
+        "at": ".svc-row:nth-child(2)",
+        "y": 4138,
+        "playing": 0,
+        "attached": 2,
+        "clips": [
+          {
+            "slot": "/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 4,
+            "rect": {
+              "top": -1444.859375,
+              "height": 1296.96875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-managed-it-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 4,
+            "rect": {
+              "top": -692.890625,
+              "height": 416
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-managed-it-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 176.578125,
+              "height": 369.046875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-cybersecurity-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 176.578125,
+              "height": 369.046875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 176.578125,
+              "height": 369.046875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-training-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 176.578125,
+              "height": 369.046875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-consulting-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 176.578125,
+              "height": 369.046875
+            },
+            "quality": {}
+          }
+        ],
+        "requests": [
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-air-loop-960.webm",
+            "bytes": 296801,
+            "duration": 180
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-air-loop-960.webm",
+            "bytes": 345129,
+            "duration": 108.5
+          }
+        ]
+      },
+      {
+        "at": ".svc-row:nth-child(3)",
+        "y": 4138,
+        "playing": 0,
+        "attached": 2,
+        "clips": [
+          {
+            "slot": "/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 4,
+            "rect": {
+              "top": -1444.859375,
+              "height": 1296.96875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-managed-it-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 4,
+            "rect": {
+              "top": -692.890625,
+              "height": 416
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-managed-it-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 176.578125,
+              "height": 369.046875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-cybersecurity-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 176.578125,
+              "height": 369.046875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 176.578125,
+              "height": 369.046875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-training-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 176.578125,
+              "height": 369.046875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-consulting-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 176.578125,
+              "height": 369.046875
+            },
+            "quality": {}
+          }
+        ],
+        "requests": [
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-air-loop-960.webm",
+            "bytes": 296801,
+            "duration": 180
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-air-loop-960.webm",
+            "bytes": 345129,
+            "duration": 108.5
+          }
+        ]
+      },
+      {
+        "at": "[data-dawn-stage]",
+        "y": 2848,
+        "playing": 2,
+        "attached": 2,
+        "clips": [
+          {
+            "slot": "/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "paused": false,
+            "time": 1.1823,
+            "ready": 4,
+            "rect": {
+              "top": -154.859375,
+              "height": 1296.96875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-managed-it-air-loop-960.mp4",
+            "paused": false,
+            "time": 1.1825,
+            "ready": 4,
+            "rect": {
+              "top": 605.5933837890625,
+              "height": 416
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-managed-it-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 1466.578125,
+              "height": 369.046875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-cybersecurity-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 1466.578125,
+              "height": 369.046875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-cloud-backup-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 1466.578125,
+              "height": 369.046875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-training-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 1466.578125,
+              "height": 369.046875
+            },
+            "quality": {}
+          },
+          {
+            "slot": "/media/video/svc-consulting-air-loop-960.mp4",
+            "paused": true,
+            "time": 0,
+            "ready": 0,
+            "rect": {
+              "top": 1466.578125,
+              "height": 369.046875
+            },
+            "quality": {}
+          }
+        ],
+        "requests": [
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-managed-it-air-loop-960.webm",
+            "bytes": 296801,
+            "duration": 180
+          },
+          {
+            "name": "https://gforce-kappa.vercel.app/media/video/svc-cloud-backup-air-loop-960.webm",
+            "bytes": 345129,
+            "duration": 108.5
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,1646 @@
+[
+  {
+    "config": {
+      "name": "mobile",
+      "mobile": true
+    },
+    "errors": [],
+    "initial": {
+      "playing": 1,
+      "attached": 1,
+      "films": [
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": true,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-640.mp4",
+          "paused": false,
+          "time": 0.11688299999904446,
+          "duration": 4,
+          "ready": 4,
+          "completed": false,
+          "shown": true,
+          "ambient": false,
+          "width": 640,
+          "frames": 10,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        }
+      ],
+      "requests": [
+        {
+          "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-640.mp4",
+          "bytes": 302,
+          "duration": 2
+        },
+        {
+          "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-640.mp4",
+          "bytes": 92751,
+          "duration": 1
+        }
+      ]
+    },
+    "advancement": 0.6608922920010958,
+    "pausedAt": 0.8076823333308398,
+    "resumedAt": 0.8076823333308398,
+    "completed": {
+      "time": 4,
+      "duration": 4,
+      "paused": true,
+      "shown": true
+    },
+    "samples": [
+      {
+        "at": "row-3",
+        "playing": 1,
+        "attached": 2,
+        "films": [
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": true,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-640.mp4",
+            "paused": true,
+            "time": 4,
+            "duration": 4,
+            "ready": 4,
+            "completed": true,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 96,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-cloud-backup-brief-640.mp4",
+            "paused": false,
+            "time": 0.10822754099974156,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 10,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          }
+        ],
+        "requests": [
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-640.mp4",
+            "bytes": 302,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-640.mp4",
+            "bytes": 92751,
+            "duration": 1
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cloud-backup-brief-640.mp4",
+            "bytes": 302,
+            "duration": 3
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cloud-backup-brief-640.mp4",
+            "bytes": 78908,
+            "duration": 2
+          }
+        ]
+      },
+      {
+        "at": "row-4",
+        "playing": 1,
+        "attached": 3,
+        "films": [
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": true,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-640.mp4",
+            "paused": true,
+            "time": 4,
+            "duration": 4,
+            "ready": 4,
+            "completed": true,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 46,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-cloud-backup-brief-640.mp4",
+            "paused": true,
+            "time": 0.2935508749983795,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 15,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-training-brief-640.mp4",
+            "paused": false,
+            "time": 0.11912950066745184,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 10,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          }
+        ],
+        "requests": [
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-640.mp4",
+            "bytes": 302,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-640.mp4",
+            "bytes": 92751,
+            "duration": 1
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cloud-backup-brief-640.mp4",
+            "bytes": 302,
+            "duration": 3
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cloud-backup-brief-640.mp4",
+            "bytes": 78908,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-training-brief-640.mp4",
+            "bytes": 302,
+            "duration": 3
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-training-brief-640.mp4",
+            "bytes": 106254,
+            "duration": 3
+          }
+        ]
+      },
+      {
+        "at": "row-5",
+        "playing": 1,
+        "attached": 4,
+        "films": [
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": true,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-640.mp4",
+            "paused": true,
+            "time": 4,
+            "duration": 4,
+            "ready": 4,
+            "completed": true,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 46,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-cloud-backup-brief-640.mp4",
+            "paused": true,
+            "time": 0.2935508749983795,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 15,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-training-brief-640.mp4",
+            "paused": true,
+            "time": 0.26093758333278794,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 16,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-consulting-brief-640.mp4",
+            "paused": false,
+            "time": 0.11816262466354635,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 10,
+            "dropped": 0
+          }
+        ],
+        "requests": [
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-640.mp4",
+            "bytes": 302,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-640.mp4",
+            "bytes": 92751,
+            "duration": 1
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cloud-backup-brief-640.mp4",
+            "bytes": 302,
+            "duration": 3
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cloud-backup-brief-640.mp4",
+            "bytes": 78908,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-training-brief-640.mp4",
+            "bytes": 302,
+            "duration": 3
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-training-brief-640.mp4",
+            "bytes": 106254,
+            "duration": 3
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-consulting-brief-640.mp4",
+            "bytes": 302,
+            "duration": 4
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-consulting-brief-640.mp4",
+            "bytes": 126753,
+            "duration": 2
+          }
+        ]
+      },
+      {
+        "at": "dawn",
+        "playing": 1,
+        "attached": 5,
+        "films": [
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": true,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-640.mp4",
+            "paused": false,
+            "time": 0.10894087499953178,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 10,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-640.mp4",
+            "paused": true,
+            "time": 4,
+            "duration": 4,
+            "ready": 4,
+            "completed": true,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 46,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-cloud-backup-brief-640.mp4",
+            "paused": true,
+            "time": 0.2935508749983795,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 15,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-training-brief-640.mp4",
+            "paused": true,
+            "time": 0.26093758333278794,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 16,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-consulting-brief-640.mp4",
+            "paused": true,
+            "time": 0.15757954133196142,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 640,
+            "frames": 10,
+            "dropped": 0
+          }
+        ],
+        "requests": [
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-640.mp4",
+            "bytes": 302,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-640.mp4",
+            "bytes": 92751,
+            "duration": 1
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cloud-backup-brief-640.mp4",
+            "bytes": 302,
+            "duration": 3
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cloud-backup-brief-640.mp4",
+            "bytes": 78908,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-training-brief-640.mp4",
+            "bytes": 302,
+            "duration": 3
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-training-brief-640.mp4",
+            "bytes": 106254,
+            "duration": 3
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-consulting-brief-640.mp4",
+            "bytes": 302,
+            "duration": 4
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-consulting-brief-640.mp4",
+            "bytes": 126753,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-640.mp4",
+            "bytes": 302,
+            "duration": 3
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-640.mp4",
+            "bytes": 92751,
+            "duration": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "config": {
+      "name": "desktop",
+      "mobile": false
+    },
+    "errors": [],
+    "initial": {
+      "playing": 2,
+      "attached": 2,
+      "films": [
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": true,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-960.mp4",
+          "paused": false,
+          "time": 0.12066108366676523,
+          "duration": 4,
+          "ready": 4,
+          "completed": false,
+          "shown": true,
+          "ambient": false,
+          "width": 960,
+          "frames": 10,
+          "dropped": 0
+        },
+        {
+          "src": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-960.mp4",
+          "paused": false,
+          "time": 0.11976166599853875,
+          "duration": 4,
+          "ready": 4,
+          "completed": false,
+          "shown": true,
+          "ambient": false,
+          "width": 960,
+          "frames": 10,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        }
+      ],
+      "requests": [
+        {
+          "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-960.mp4",
+          "bytes": 302,
+          "duration": 3
+        },
+        {
+          "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-960.mp4",
+          "bytes": 302,
+          "duration": 3
+        },
+        {
+          "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-960.mp4",
+          "bytes": 179581,
+          "duration": 2
+        },
+        {
+          "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-960.mp4",
+          "bytes": 179581,
+          "duration": 2
+        }
+      ]
+    },
+    "advancement": 0.6626351673363263,
+    "pausedAt": 0.8129312496684487,
+    "resumedAt": 0.8129312496684487,
+    "completed": {
+      "time": 4,
+      "duration": 4,
+      "paused": true,
+      "shown": true
+    },
+    "samples": [
+      {
+        "at": "row-3",
+        "playing": 1,
+        "attached": 3,
+        "films": [
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": true,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-960.mp4",
+            "paused": true,
+            "time": 0,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 10,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-960.mp4",
+            "paused": true,
+            "time": 4,
+            "duration": 4,
+            "ready": 4,
+            "completed": true,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 96,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-cloud-backup-brief-960.mp4",
+            "paused": false,
+            "time": 0.10475583300111037,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 10,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          }
+        ],
+        "requests": [
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-960.mp4",
+            "bytes": 302,
+            "duration": 3
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-960.mp4",
+            "bytes": 302,
+            "duration": 3
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-960.mp4",
+            "bytes": 179581,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-960.mp4",
+            "bytes": 179581,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cloud-backup-brief-960.mp4",
+            "bytes": 302,
+            "duration": 3
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cloud-backup-brief-960.mp4",
+            "bytes": 145502,
+            "duration": 2
+          }
+        ]
+      },
+      {
+        "at": "row-4",
+        "playing": 1,
+        "attached": 4,
+        "films": [
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": true,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-960.mp4",
+            "paused": true,
+            "time": 0,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 1,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-960.mp4",
+            "paused": true,
+            "time": 4,
+            "duration": 4,
+            "ready": 4,
+            "completed": true,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 46,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-cloud-backup-brief-960.mp4",
+            "paused": true,
+            "time": 0.14171358299980208,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 10,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-training-brief-960.mp4",
+            "paused": false,
+            "time": 0.11223295900036764,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 10,
+            "dropped": 0
+          },
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": false,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          }
+        ],
+        "requests": [
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-960.mp4",
+            "bytes": 302,
+            "duration": 3
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-960.mp4",
+            "bytes": 302,
+            "duration": 3
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-960.mp4",
+            "bytes": 179581,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-960.mp4",
+            "bytes": 179581,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cloud-backup-brief-960.mp4",
+            "bytes": 302,
+            "duration": 3
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cloud-backup-brief-960.mp4",
+            "bytes": 145502,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-training-brief-960.mp4",
+            "bytes": 302,
+            "duration": 3
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-training-brief-960.mp4",
+            "bytes": 216986,
+            "duration": 2
+          }
+        ]
+      },
+      {
+        "at": "row-5",
+        "playing": 1,
+        "attached": 5,
+        "films": [
+          {
+            "src": "",
+            "paused": true,
+            "time": 0,
+            "duration": null,
+            "ready": 0,
+            "completed": false,
+            "shown": false,
+            "ambient": true,
+            "width": 0,
+            "frames": 0,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-960.mp4",
+            "paused": true,
+            "time": 0,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 1,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-960.mp4",
+            "paused": true,
+            "time": 4,
+            "duration": 4,
+            "ready": 4,
+            "completed": true,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 46,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-cloud-backup-brief-960.mp4",
+            "paused": true,
+            "time": 0.14171358299980208,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 10,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-training-brief-960.mp4",
+            "paused": true,
+            "time": 0.14952325066825442,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 10,
+            "dropped": 0
+          },
+          {
+            "src": "http://127.0.0.1:4404/media/video/svc-consulting-brief-960.mp4",
+            "paused": false,
+            "time": 0.11780929199754527,
+            "duration": 4,
+            "ready": 4,
+            "completed": false,
+            "shown": true,
+            "ambient": false,
+            "width": 960,
+            "frames": 10,
+            "dropped": 0
+          }
+        ],
+        "requests": [
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-960.mp4",
+            "bytes": 302,
+            "duration": 3
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-960.mp4",
+            "bytes": 302,
+            "duration": 3
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-960.mp4",
+            "bytes": 179581,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-960.mp4",
+            "bytes": 179581,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cloud-backup-brief-960.mp4",
+            "bytes": 302,
+            "duration": 3
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-cloud-backup-brief-960.mp4",
+            "bytes": 145502,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-training-brief-960.mp4",
+            "bytes": 302,
+            "duration": 3
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-training-brief-960.mp4",
+            "bytes": 216986,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-consulting-brief-960.mp4",
+            "bytes": 302,
+            "duration": 3
+          },
+          {
+            "name": "http://127.0.0.1:4404/media/video/svc-consulting-brief-960.mp4",
+            "bytes": 242229,
+            "duration": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "config": {
+      "name": "reduced",
+      "mobile": true,
+      "reduced": true
+    },
+    "errors": [],
+    "initial": {
+      "playing": 0,
+      "attached": 0,
+      "films": [
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": true,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        }
+      ],
+      "requests": []
+    },
+    "advancement": 0.662593416331825,
+    "pausedAt": 0.7790219160029229,
+    "resumedAt": 0.7837315410047742,
+    "completed": {
+      "time": 4,
+      "duration": 4,
+      "paused": true,
+      "shown": true
+    },
+    "samples": []
+  },
+  {
+    "config": {
+      "name": "savedata",
+      "mobile": true,
+      "saveData": true
+    },
+    "errors": [],
+    "initial": {
+      "playing": 0,
+      "attached": 0,
+      "films": [
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": true,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        }
+      ],
+      "requests": []
+    },
+    "advancement": 0.6585882913313708,
+    "pausedAt": 0.8046445410018775,
+    "resumedAt": 0.8085952076672099,
+    "completed": {
+      "time": 4,
+      "duration": 4,
+      "paused": true,
+      "shown": true
+    },
+    "samples": []
+  },
+  {
+    "config": {
+      "name": "blocked",
+      "mobile": true,
+      "blocked": true
+    },
+    "errors": [],
+    "initial": {
+      "playing": 0,
+      "attached": 1,
+      "films": [
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": true,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-640.mp4",
+          "paused": true,
+          "time": 0,
+          "duration": 4,
+          "ready": 4,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 640,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        }
+      ],
+      "requests": [
+        {
+          "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-640.mp4",
+          "bytes": 302,
+          "duration": 1
+        },
+        {
+          "name": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-640.mp4",
+          "bytes": 92751,
+          "duration": 1
+        }
+      ]
+    },
+    "advancement": 0.6601731250043277,
+    "pausedAt": 0.785223541668993,
+    "resumedAt": 0.7871386250012713,
+    "completed": {
+      "time": 4,
+      "duration": 4,
+      "paused": true,
+      "shown": true
+    },
+    "samples": []
+  },
+  {
+    "config": {
+      "name": "error",
+      "mobile": true,
+      "error": true
+    },
+    "errors": [],
+    "initial": {
+      "playing": 0,
+      "attached": 1,
+      "films": [
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": true,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-640.mp4",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "error": "",
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        }
+      ],
+      "requests": []
+    },
+    "advancement": 0.6619785003316674,
+    "pausedAt": 0.7891952086689785,
+    "resumedAt": 0.790638292001539,
+    "completed": {
+      "time": 4,
+      "duration": 4,
+      "paused": true,
+      "shown": true
+    },
+    "samples": []
+  },
+  {
+    "config": {
+      "name": "stalled",
+      "mobile": true,
+      "stalled": true
+    },
+    "errors": [],
+    "initial": {
+      "playing": 1,
+      "attached": 1,
+      "films": [
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": true,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "http://127.0.0.1:4404/media/video/svc-managed-it-brief-640.mp4",
+          "paused": false,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        },
+        {
+          "src": "",
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "ready": 0,
+          "completed": false,
+          "shown": false,
+          "ambient": false,
+          "width": 0,
+          "frames": 0,
+          "dropped": 0
+        }
+      ],
+      "requests": []
+    },
+    "advancement": 0.6616780416658407,
+    "pausedAt": 0.8024262919980396,
+    "resumedAt": 0.8024262919980396,
+    "completed": {
+      "time": 4,
+      "duration": 4,
+      "paused": true,
+      "shown": true
+    },
+    "timeoutRecovery": {
+      "elapsedMs": 9550,
+      "mediaAttempts": 1,
+      "state": {
+        "paused": true,
+        "shown": false,
+        "source": null,
+        "ready": 0
+      }
+    },
+    "samples": []
+  }
+]

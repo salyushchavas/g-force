@@ -1,0 +1,96 @@
+{
+  "checkedAt": "2026-10-23T15:16:09.297Z",
+  "origin": "https://gforce-kappa.vercel.app",
+  "media": [
+    {
+      "slot": "svc-managed-it",
+      "variant": "mp4",
+      "path": "/media/video/svc-managed-it-brief-960.mp4",
+      "status": 200,
+      "type": "video/mp4",
+      "bytes": 179281,
+      "range": "bytes"
+    },
+    {
+      "slot": "svc-managed-it",
+      "variant": "mp4Mobile",
+      "path": "/media/video/svc-managed-it-brief-640.mp4",
+      "status": 200,
+      "type": "video/mp4",
+      "bytes": 92451,
+      "range": "bytes"
+    },
+    {
+      "slot": "svc-cloud-backup",
+      "variant": "mp4",
+      "path": "/media/video/svc-cloud-backup-brief-960.mp4",
+      "status": 200,
+      "type": "video/mp4",
+      "bytes": 145202,
+      "range": "bytes"
+    },
+    {
+      "slot": "svc-cloud-backup",
+      "variant": "mp4Mobile",
+      "path": "/media/video/svc-cloud-backup-brief-640.mp4",
+      "status": 200,
+      "type": "video/mp4",
+      "bytes": 78608,
+      "range": "bytes"
+    },
+    {
+      "slot": "svc-training",
+      "variant": "mp4",
+      "path": "/media/video/svc-training-brief-960.mp4",
+      "status": 200,
+      "type": "video/mp4",
+      "bytes": 216686,
+      "range": "bytes"
+    },
+    {
+      "slot": "svc-training",
+      "variant": "mp4Mobile",
+      "path": "/media/video/svc-training-brief-640.mp4",
+      "status": 200,
+      "type": "video/mp4",
+      "bytes": 105954,
+      "range": "bytes"
+    },
+    {
+      "slot": "svc-consulting",
+      "variant": "mp4",
+      "path": "/media/video/svc-consulting-brief-960.mp4",
+      "status": 200,
+      "type": "video/mp4",
+      "bytes": 241929,
+      "range": "bytes"
+    },
+    {
+      "slot": "svc-consulting",
+      "variant": "mp4Mobile",
+      "path": "/media/video/svc-consulting-brief-640.mp4",
+      "status": 200,
+      "type": "video/mp4",
+      "bytes": 126453,
+      "range": "bytes"
+    },
+    {
+      "slot": "sky-daylight",
+      "variant": "mp4",
+      "path": "/media/video/sky-daylight-brief-960.mp4",
+      "status": 200,
+      "type": "video/mp4",
+      "bytes": 214738,
+      "range": "bytes"
+    },
+    {
+      "slot": "sky-daylight",
+      "variant": "mp4Mobile",
+      "path": "/media/video/sky-daylight-brief-640.mp4",
+      "status": 200,
+      "type": "video/mp4",
+      "bytes": 106221,
+      "range": "bytes"
+    }
+  ]
+}

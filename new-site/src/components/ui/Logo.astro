@@ -1,0 +1,15 @@
+---
+// The supplied company artwork is preserved, including its original lettering and white colour.
+interface Props { size?: 'md' | 'lg'; tagline?: boolean; href?: string | null; class?: string; }
+const { size = 'md', href = '/', class: className = '', ...rest } = Astro.props;
+const Tag = href ? 'a' : 'span';
+---
+<Tag href={href ?? undefined} class:list={['logo', `logo-${size}`, className]} aria-label={href ? 'G-Force IT Services Inc., home' : 'G-Force IT Services Inc.'} {...rest}>
+  <img src="/brand/gforce-original.png" alt="G-Force IT Services Inc." width="1423" height="204" decoding="async" />
+</Tag>
+<style>
+  .logo { display: inline-flex; align-items: center; flex: 0 0 auto; width: 268px; min-height: 48px; padding: 7px 10px; border-radius: 4px; background: linear-gradient(15deg, var(--color-crimson-500), var(--color-crimson-700)); text-decoration: none; }
+  .logo img { display: block; width: 100%; height: auto; }
+  .logo-lg { width: min(100%, 360px); padding: 0; background: none; }
+  @media (max-width: 479px) { .logo-md { width: clamp(140px, calc(100vw - 168px), 206px); min-height: 40px; padding: 7px 8px; } .logo-lg { width: min(100%, 300px); } }
+</style>

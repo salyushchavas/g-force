@@ -1,0 +1,35 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "if [ -d new-site ]; then cd new-site; fi; npm ci",
+  "buildCommand": "if [ -d new-site ]; then cd new-site && PUBLIC_SKIN=white-red npm run build && rm -rf ../dist && cp -R dist ../dist; else PUBLIC_SKIN=white-red npm run build; fi",
+  "outputDirectory": "dist",
+  "trailingSlash": true,
+  "redirects": [
+    { "source": "/services.html", "destination": "/business/", "permanent": true },
+    { "source": "/contact.html", "destination": "/contact/", "permanent": true },
+    { "source": "/blog1_details.html", "destination": "/blog/it-skills-canadian-employers-hire-for/", "permanent": true },
+    { "source": "/blog2_details.html", "destination": "/blog/choosing-an-it-training-program/", "permanent": true },
+    { "source": "/blog3_details.html", "destination": "/blog/building-a-career-in-cybersecurity/", "permanent": true },
+    { "source": "/blog4_details.html", "destination": "/blog/ai-and-automation-in-it-careers/", "permanent": true },
+    { "source": "/blog5_details.html", "destination": "/blog/choosing-an-it-training-program/", "permanent": true },
+    { "source": "/topics-listing.html", "destination": "/blog/", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": ".*\\.vercel\\.app" }],
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, follow" }]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Content-Security-Policy", "value": "frame-ancestors 'self'" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=()" }
+      ]
+    }
+  ]
+}

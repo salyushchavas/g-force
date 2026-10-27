@@ -1,0 +1,652 @@
+---
+// Website privacy information reflects the actual form and browser-storage paths.
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/ui/PageHero.astro';
+import { company } from '../data/site';
+import { formatDate } from '../data/posts';
+
+const updated = '2026-10-23';
+const hasFormEndpoint = Boolean(company.formEndpoint);
+const toc = [
+  { id: 'short-version', title: 'The short version' },
+  { id: 'who-we-are', title: 'Who we are' },
+  { id: 'what-we-collect', title: 'What we collect' },
+  { id: 'how-we-use-it', title: 'How we use it' },
+  { id: 'consent', title: 'Consent, and changing your mind' },
+  { id: 'email', title: 'Email and Canada’s anti-spam law' },
+  { id: 'providers', title: 'Who else handles it' },
+  { id: 'cookies', title: 'Cookies and browser storage' },
+  { id: 'retention', title: 'How long we keep it' },
+  { id: 'safeguards', title: 'How we protect it' },
+  { id: 'your-rights', title: 'Seeing, correcting or deleting it' },
+  { id: 'questions', title: 'Questions and complaints' },
+  { id: 'changes', title: 'Changes to this policy' },
+];
+const title = (id: string) => toc.find((t) => t.id === id)?.title ?? id;
+const mailing = `${company.address.street}, ${company.address.city}, ${company.address.region} ${company.address.postal}`;
+
+// What arrives, from where, and why. Rendered as a table that restacks on phones (ARIA roles keep it a table).
+const collected = [
+  {
+    where: 'Contact form',
+    what: 'Your name and email address, plus anything else you choose to add: phone, company, topic and message. Also the page you sent it from and when.',
+    why: 'To reply, and to prepare for the call, assessment or quote you asked about.',
+  },
+  {
+    where: 'Ask G-Force chat',
+    what: 'Nothing from the topic buttons; they run in your browser. If you leave a message: your name, email address and message.',
+    why: 'To reply to your message.',
+  },
+  {
+    where: 'IT health check',
+    what: 'Nothing while you answer; the score is worked out in your browser. If you ask for the report by email: your answers, your score and your email address.',
+    why: 'To send the report you asked for.',
+  },
+  {
+    where: 'Security checklist',
+    what: 'Your email address and, if you give them, your first name and whether you also want the monthly notes.',
+    why: 'To send it.',
+  },
+  {
+    where: 'Newsletter',
+    what: 'Your email address, the source page and the newsletter consent wording you agree to.',
+    why: 'To process your newsletter request and record your consent.',
+  },
+  {
+    where: 'Calls and emails',
+    what: 'Whatever you tell us.',
+    why: 'To help with what you asked about.',
+  },
+  {
+    where: 'Visiting any page',
+    what: 'Your IP address, browser type, the pages you request and when, recorded in our web server’s logs.',
+    why: 'To keep the site running and secure, and to look into problems.',
+  },
+];
+---
+<Base
+  title="Privacy policy"
+  description="What G-Force IT collects through this website, why, who else handles it, how long it is kept, and how to see, correct or delete your information."
+>
+  <div class="legal">
+    <PageHero
+      tone="light"
+      lines={['Privacy policy']}
+      intro="What this website collects, why, who else handles it, and how to see, correct or delete your information."
+    >
+      <div class="legal-meta">
+        <p class="legal-updated t-meta">Last updated <time datetime={updated}>{formatDate(updated)}</time></p>
+      </div>
+    </PageHero>
+
+    <div class="legal-body">
+      <div class="container-g legal-grid">
+        <nav class="legal-toc legal-toc-wide" aria-label="On this page">
+          <p class="legal-toc-title t-meta">On this page</p>
+          <ul role="list">{toc.map((t) => <li><a href={`#${t.id}`}>{t.title}</a></li>)}</ul>
+        </nav>
+        <nav class="legal-toc legal-toc-narrow" aria-label="On this page">
+          <details>
+            <summary>On this page</summary>
+            <ul role="list">{toc.map((t) => <li><a href={`#${t.id}`}>{t.title}</a></li>)}</ul>
+          </details>
+        </nav>
+
+        <article class="legal-prose">
+          <section id="short-version" aria-labelledby="short-version-h">
+            <h2 id="short-version-h">{title('short-version')}</h2>
+            <ul>
+              <li>We only receive what you choose to send us through a form, the chat, a call or an email, plus the basic logs every web server keeps.</li>
+              <li>We use it to reply to you and to provide what you asked for. We don’t sell it, rent it or use it for advertising.</li>
+              <li>Newsletter consent is separate and never ticked for you. You can withdraw it by emailing us.</li>
+              <li>This site sets no cookies and runs no analytics or advertising trackers.</li>
+              <li>You can ask to see, correct or delete your information at any time by writing to <a href={`mailto:${company.email}`}>{company.email}</a>.</li>
+            </ul>
+          </section>
+
+          <section id="who-we-are" aria-labelledby="who-we-are-h">
+            <h2 id="who-we-are-h">{title('who-we-are')}</h2>
+            <p>
+              This website is run by {company.legalName} (“G-Force”, “we”), which provides managed IT services and IT training.
+              Our head office is at {mailing}.
+            </p>
+            <p>
+              We handle personal information under Canada’s <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA)
+              and send commercial email under Canada’s anti-spam legislation (CASL). This policy covers the website at gforceit.ca.
+              Work we do for clients and learners is also covered by the written agreement we sign with each of them.
+            </p>
+          </section>
+
+          <section id="what-we-collect" aria-labelledby="what-we-collect-h">
+            <h2 id="what-we-collect-h">{title('what-we-collect')}</h2>
+            <p>We only receive information that you send us, or that your browser sends when it loads a page.</p>
+            <table class="legal-table" role="table" aria-labelledby="what-we-collect-h">
+              <thead role="rowgroup">
+                <tr role="row">
+                  <th scope="col" role="columnheader">Where</th>
+                  <th scope="col" role="columnheader">What we receive</th>
+                  <th scope="col" role="columnheader">Why</th>
+                </tr>
+              </thead>
+              <tbody role="rowgroup">
+                {collected.map((r) => (
+                  <tr role="row">
+                    <th scope="row" role="rowheader">{r.where}</th>
+                    <td role="cell" data-label="What we receive">{r.what}</td>
+                    <td role="cell" data-label="Why">{r.why}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <h3>What we don’t collect</h3>
+            <ul>
+              <li>No analytics, advertising or social media tracking of any kind.</li>
+              <li>No payment details. This site doesn’t take payments.</li>
+              <li>We never ask for passwords. Please don’t send passwords, health information or other sensitive details through a form; call us instead.</li>
+            </ul>
+          </section>
+
+          <section id="how-we-use-it" aria-labelledby="how-we-use-it-h">
+            <h2 id="how-we-use-it-h">{title('how-we-use-it')}</h2>
+            <ul>
+              <li>To reply to you and give you what you asked for: an assessment, a quote, course details or a report.</li>
+              <li>To provide services or training if you become a client or learner, under a separate written agreement.</li>
+              <li>To send the monthly newsletter, only if you asked for it.</li>
+              <li>To keep this website secure and working.</li>
+              <li>To meet our legal obligations, such as keeping business and tax records.</li>
+            </ul>
+            <p>
+              We don’t sell or rent personal information, and we don’t use it to build advertising profiles.
+              If we ever want to use it for a purpose that isn’t listed here, we will ask you first.
+            </p>
+          </section>
+
+          <section id="consent" aria-labelledby="consent-h">
+            <h2 id="consent-h">{title('consent')}</h2>
+            <p>
+              When you send us a form or a message, you agree to us using your details to reply. You can withdraw that consent at any time
+              and we will stop contacting you, although we may have to keep some records for legal reasons (see{' '}
+              <a href="#retention">how long we keep it</a>).
+            </p>
+            <p>
+              For the newsletter we ask for separate, express consent, using a checkbox that is never ticked for you.
+              The consent wording and source page are included with your request.
+            </p>
+          </section>
+
+          <section id="email" aria-labelledby="email-h">
+            <h2 id="email-h">{title('email')}</h2>
+            <ul>
+              <li>Replying to your enquiry isn’t marketing. We will email you about what you asked for.</li>
+              <li>Marketing email, such as the newsletter, only goes to people who have asked for it.</li>
+              <li>You can withdraw newsletter consent at any time by emailing us with “Unsubscribe” in the subject line.</li>
+              <li>
+                We act on an unsubscribe request within 10 business days, as CASL requires. You can also unsubscribe by writing to{' '}
+                <a href={`mailto:${company.email}`}>{company.email}</a>.
+              </li>
+            </ul>
+          </section>
+
+          <section id="providers" aria-labelledby="providers-h">
+            <h2 id="providers-h">{title('providers')}</h2>
+            <p>
+              Website hosting and email services process the information needed to deliver pages and messages.
+              Contact us if you would like details about the providers involved in handling a particular enquiry.
+            </p>
+            <ul>
+              {hasFormEndpoint && <li><strong>Form handling.</strong> The connected form service receives the details you submit and forwards the enquiry for a reply.</li>}
+              <li><strong>Email.</strong> Email providers handle messages sent to and from our inbox.</li>
+              <li><strong>Website hosting.</strong> The hosting service delivers these pages and may process technical request data and server logs.</li>
+              {company.bookingUrl && <li><strong>Booking calendar.</strong> When you follow the booking link, that provider’s own privacy policy applies.</li>}
+              <li>
+                <strong>OpenStreetMap.</strong> Only if you click “Show map”. Your browser then loads the map from the OpenStreetMap
+                Foundation, which receives your IP address as any website you visit would.
+              </li>
+              <li>
+                <strong>Your own email app.</strong> When a form opens your email app, you review and send the message there.
+                Your email provider then handles it under its own policy. Opening a prepared email does not send it automatically.
+              </li>
+            </ul>
+            <p>
+              Provider processing and storage locations can vary. Email <a href={`mailto:${company.email}?subject=Privacy`}>{company.email}</a>
+              if you need information about where a message or record is handled before sharing sensitive information.
+            </p>
+          </section>
+
+          <section id="cookies" aria-labelledby="cookies-h">
+            <h2 id="cookies-h">{title('cookies')}</h2>
+            <p>This site doesn’t set cookies, and it doesn’t use analytics or advertising tools.</p>
+            <p>
+              If you switch between the light and dark themes, your choice is saved in your browser’s local storage under the name{' '}
+              <code>gf-theme</code>, so the site remembers it next time. It stays on your device and is never sent to us.
+              Clearing your browser’s data for this site removes it.
+            </p>
+            <p>
+              The security checklist saves your ticks in your browser under <code>gf-security-checklist-v1</code> so they are there
+              next time; they never leave your device, and “Clear all ticks” removes them.
+            </p>
+            <p>
+              Third-party services can set their own cookies, but only if you use them: the map after you click “Show map”,
+              and a booking calendar if you choose to book online.
+            </p>
+          </section>
+
+          <section id="retention" aria-labelledby="retention-h">
+            <h2 id="retention-h">{title('retention')}</h2>
+            <p>
+              Retention depends on the type of information, the purpose of the enquiry, any service agreement and applicable record-keeping requirements.
+              Contact <a href={`mailto:${company.email}?subject=Privacy`}>{company.email}</a> to ask what information is held about you,
+              how long it will be kept, or to request deletion.
+            </p>
+            <p>
+              Theme preferences and saved checklist ticks remain in your own browser until you clear them. Email and hosting providers
+              may retain their own operational records under their policies; we can help you identify the provider relevant to your enquiry.
+            </p>
+          </section>
+
+          <section id="safeguards" aria-labelledby="safeguards-h">
+            <h2 id="safeguards-h">{title('safeguards')}</h2>
+            <p>
+              The website does not ask for account passwords or payment details. Please do not include passwords, health information
+              or other sensitive records in a contact form or chat message. Contact us first to discuss an appropriate way to share them.
+            </p>
+            <p>
+              For questions about access to your information, storage or the safeguards relevant to a particular service,
+              email <a href={`mailto:${company.email}?subject=Privacy`}>{company.email}</a>.
+            </p>
+            <p>
+              If a breach of our safeguards creates a real risk of significant harm to you, we will tell you and report it to the
+              Office of the Privacy Commissioner of Canada, as PIPEDA requires. We keep a record of every breach, whatever its size.
+            </p>
+          </section>
+
+          <section id="your-rights" aria-labelledby="your-rights-h">
+            <h2 id="your-rights-h">{title('your-rights')}</h2>
+            <p>You can ask us:</p>
+            <ul>
+              <li>what personal information we hold about you, what we use it for and who we have shared it with;</li>
+              <li>to correct anything that is wrong or out of date;</li>
+              <li>to delete it, unless the law requires us to keep it;</li>
+              <li>to stop emailing you.</li>
+            </ul>
+            <p>
+              Write to <a href={`mailto:${company.email}`}>{company.email}</a>. We may ask you to confirm who you are before we share
+              anything. We reply within 30 days, as PIPEDA requires, and there is no charge.
+            </p>
+          </section>
+
+          <section id="questions" aria-labelledby="questions-h">
+            <h2 id="questions-h">{title('questions')}</h2>
+            <p>
+              For questions about this policy or how your personal information is handled,
+              write to <a href={`mailto:${company.email}?subject=Privacy`}>{company.email}</a> with “Privacy” in the
+              subject line, call <a href={company.phoneHref}>{company.phoneDisplay}</a>, or write to:
+            </p>
+            <address class="legal-address">
+              Privacy Officer, {company.legalName}<br />
+              {company.address.street}<br />
+              {company.address.city}, {company.address.region} {company.address.postal}
+            </address>
+            <p>
+              If you aren’t satisfied with our answer, you can complain to the{' '}
+              <a href="https://www.priv.gc.ca/en/report-a-concern/">Office of the Privacy Commissioner of Canada</a>,
+              or call them toll-free at 1-800-282-1376.
+            </p>
+          </section>
+
+          <section id="changes" aria-labelledby="changes-h">
+            <h2 id="changes-h">{title('changes')}</h2>
+            <p>
+              We will update this page when our practices change and change the date at the top. If a change affects how we use
+              information we already hold, we will tell the people affected before it takes effect.
+            </p>
+          </section>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    // Contents: marks the section being read (aria-current) in both lists. A thin reading line a quarter of the way
+    // down the screen; a gap between sections keeps the last mark.
+    (() => {
+      const links = Array.from(document.querySelectorAll('.legal-toc a[href^="#"]'));
+      const sections = [...new Set(links.map((a) => a.hash.slice(1)))]
+        .map((id) => document.getElementById(id))
+        .filter(Boolean);
+      if (!sections.length || !('IntersectionObserver' in window)) return;
+      const crossing = new Set();
+      const mark = () => {
+        const current = sections.find((s) => crossing.has(s.id));
+        if (!current) return;
+        links.forEach((a) => {
+          if (a.hash.slice(1) === current.id) a.setAttribute('aria-current', 'location');
+          else a.removeAttribute('aria-current');
+        });
+      };
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => (e.isIntersecting ? crossing.add(e.target.id) : crossing.delete(e.target.id)));
+          mark();
+        },
+        { rootMargin: '-25% 0px -74% 0px' },
+      );
+      sections.forEach((s) => io.observe(s));
+    })();
+  </script>
+</Base>
+
+<style>
+  /* Legal pages (privacy, terms, accessibility) share this layout. Light by default; in the dark theme the
+     PageHero's light band follows the theme too, so the long read never flips to a bright page. */
+  :global([data-theme='dark']) .legal :global(.band-light) {
+    color-scheme: inherit;
+    --bg: inherit;
+    --surface: inherit;
+    --surface-2: inherit;
+    --text: inherit;
+    --text-muted: inherit;
+    --line: inherit;
+    --line-strong: inherit;
+    --accent: inherit;
+    --accent-hover: inherit;
+    --accent-press: inherit;
+    --btn-text: inherit;
+    --accent-ink: inherit;
+    --accent-tint: inherit;
+    --focus: inherit;
+    --logo-word: inherit;
+  }
+  /* A legal page reads at article size, not marketing display size. */
+  .legal :global(.page-hero-title) {
+    font-size: clamp(2.25rem, 1.3rem + 3.6vw, 4.25rem);
+  }
+  .legal :global(.page-hero) {
+    padding-bottom: clamp(2rem, 1.5rem + 2vw, 3rem);
+  }
+  .legal-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.5rem;
+    margin-top: 2rem;
+  }
+  .legal-draft {
+    padding: 0.55rem 1rem;
+    border: 1px dashed var(--line-strong);
+    border-radius: var(--radius-card);
+    background: var(--surface);
+    color: var(--text);
+    font-size: 0.9375rem;
+    line-height: 1.4;
+  }
+  .legal-updated {
+    color: var(--text-muted);
+  }
+  .legal-body {
+    padding-block: clamp(2rem, 1.5rem + 3vw, 4rem) var(--section-y);
+  }
+  .legal-grid {
+    display: grid;
+    gap: 2rem;
+  }
+
+  /* On this page: a sticky list beside the text on wide screens, a collapsed list on phones. */
+  .legal-toc ul {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .legal-toc a {
+    display: flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0.35rem 0 0.35rem 1rem;
+    border-left: 1px solid var(--line);
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.35;
+    text-decoration: none;
+    transition:
+      color 160ms var(--ease-out-quart),
+      border-color 160ms var(--ease-out-quart);
+  }
+  .legal-toc a:hover {
+    border-left-color: var(--text);
+    color: var(--text);
+  }
+  .legal-toc a[aria-current] {
+    border-left-color: var(--accent-ink);
+    color: var(--text);
+    font-weight: 600;
+  }
+  .legal-toc-title {
+    margin-bottom: 0.75rem;
+    color: var(--text);
+    font-weight: 650;
+  }
+  .legal-toc-wide {
+    display: none;
+  }
+  .legal-toc-narrow details {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    background: var(--surface);
+  }
+  .legal-toc-narrow summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 3rem;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-card);
+    font-weight: 650;
+    cursor: pointer;
+    list-style: none;
+  }
+  .legal-toc-narrow summary::-webkit-details-marker {
+    display: none;
+  }
+  .legal-toc-narrow summary::after {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-right: 0.25rem;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: translateY(-25%) rotate(45deg);
+    transition: transform 220ms var(--ease-out-expo);
+  }
+  .legal-toc-narrow details[open] summary::after {
+    transform: translateY(25%) rotate(225deg);
+  }
+  .legal-toc-narrow ul {
+    padding: 0 1rem 0.75rem;
+  }
+
+  /* Prose */
+  .legal-prose {
+    max-width: 40rem;
+    min-width: 0;
+  }
+  .legal-prose section {
+    scroll-margin-top: calc(var(--header-h) + 1.5rem);
+  }
+  .legal-prose section + section {
+    margin-top: clamp(2.25rem, 1.75rem + 2vw, 3.25rem);
+    padding-top: clamp(2.25rem, 1.75rem + 2vw, 3.25rem);
+    border-top: 1px solid var(--line);
+  }
+  .legal-prose h2 {
+    margin-bottom: 1rem;
+    font-size: clamp(1.375rem, 1.15rem + 0.9vw, 1.75rem);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+  }
+  .legal-prose h3 {
+    margin: 2rem 0 0.75rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .legal-prose p + p,
+  .legal-prose p + ul,
+  .legal-prose ul + p,
+  .legal-prose p + address,
+  .legal-prose address + p,
+  .legal-prose p + .legal-table {
+    margin-top: 1rem;
+  }
+  .legal-prose ul {
+    display: grid;
+    gap: 0.6rem;
+    margin: 0;
+    padding-left: 1.2rem;
+    list-style: disc;
+  }
+  .legal-prose li {
+    padding-left: 0.25rem;
+  }
+  .legal-prose li::marker {
+    color: var(--accent-ink);
+  }
+  .legal-prose a {
+    color: var(--text);
+    font-weight: 550;
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.22em;
+    transition: color 160ms var(--ease-out-quart);
+  }
+  .legal-prose a:hover {
+    color: var(--accent-ink);
+  }
+  .legal-prose strong {
+    font-weight: 700;
+  }
+  .legal-prose code {
+    padding: 0.05rem 0.35rem;
+    border-radius: 4px;
+    background: var(--surface-2);
+    font-size: 0.9em;
+  }
+  .legal-prose .sample-badge {
+    margin-left: 0.15rem;
+    vertical-align: 0.1em;
+  }
+  .legal-list {
+    margin: 0;
+  }
+  .legal-list > div {
+    display: grid;
+    gap: 0.25rem;
+    padding-block: 1rem;
+    border-top: 1px solid var(--line);
+  }
+  .legal-list > div:first-child {
+    padding-top: 0.25rem;
+    border-top: 0;
+  }
+  .legal-list dt {
+    font-weight: 700;
+  }
+  .legal-list dd {
+    margin: 0;
+  }
+  .legal-address {
+    padding-left: 1rem;
+    border-left: 1px solid var(--line-strong);
+    font-style: normal;
+    line-height: 1.6;
+  }
+
+  /* Data table: three columns on wide screens; on phones each row becomes a labelled block. */
+  .legal-table {
+    width: 100%;
+    margin-top: 1.25rem;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+  .legal-table th,
+  .legal-table td {
+    padding: 0.95rem 1.25rem 0.95rem 0;
+    border-top: 1px solid var(--line);
+    text-align: left;
+    vertical-align: top;
+  }
+  .legal-table thead th {
+    padding-block: 0 0.65rem;
+    border-top: 0;
+    color: var(--text-muted);
+    font-size: 0.8125rem;
+    font-weight: 650;
+  }
+  .legal-table tbody th {
+    width: 24%;
+    font-weight: 700;
+  }
+  .legal-table td:last-child,
+  .legal-table th:last-child {
+    padding-right: 0;
+  }
+
+  @media (max-width: 719px) {
+    .legal-table thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+    .legal-table tr {
+      display: block;
+      padding-block: 1rem;
+      border-top: 1px solid var(--line);
+    }
+    .legal-table tbody th,
+    .legal-table td {
+      display: block;
+      width: auto;
+      padding: 0;
+      border: 0;
+    }
+    .legal-table td::before {
+      content: attr(data-label);
+      content: attr(data-label) / '';
+      display: block;
+      margin-top: 0.6rem;
+      color: var(--text-muted);
+      font-size: 0.8125rem;
+      font-weight: 650;
+    }
+  }
+  @media (min-width: 720px) {
+    .legal-list > div {
+      grid-template-columns: 11rem minmax(0, 1fr);
+      gap: 1.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .legal-grid {
+      grid-template-columns: 14.5rem minmax(0, 1fr);
+      gap: clamp(3rem, 6vw, 6rem);
+      align-items: start;
+    }
+    /* Sticky beside the text, and scrollable on its own when a short laptop screen cannot show all 13 entries. */
+    .legal-toc-wide {
+      display: block;
+      position: sticky;
+      top: calc(var(--header-h) + 2rem);
+      max-height: calc(100svh - var(--header-h) - 4rem);
+      overflow-y: auto;
+    }
+    .legal-toc-narrow {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,150 @@
+{
+  "config": {
+    "name": "cancel-keyboard",
+    "width": 1440,
+    "cancel": "keydown"
+  },
+  "frames": [
+    {
+      "now": 77.7,
+      "state": "preparing",
+      "y": 972,
+      "titleY": 1177.09375,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 111,
+      "state": "preparing",
+      "y": 972,
+      "titleY": 1177.09375,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 127.7,
+      "state": "preparing",
+      "y": 972,
+      "titleY": 1177.09375,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 144.4,
+      "state": "preparing",
+      "y": 972,
+      "titleY": 1177.09375,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 161.1,
+      "state": "preparing",
+      "y": 972,
+      "titleY": 1177.09375,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 177.8,
+      "state": "preparing",
+      "y": 972,
+      "titleY": 1177.09375,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 194.4,
+      "state": "preparing",
+      "y": 972,
+      "titleY": 1177.09375,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 0
+    },
+    {
+      "now": 211.1,
+      "state": "running",
+      "y": 972,
+      "titleY": 1177.09375,
+      "progress": 0,
+      "scrollY": 0,
+      "art": true,
+      "draws": 4
+    },
+    {
+      "now": 227.7,
+      "state": "complete",
+      "y": 0,
+      "titleY": 205.09375,
+      "progress": 0,
+      "scrollY": 0,
+      "art": false,
+      "draws": 4
+    },
+    {
+      "now": 244.4,
+      "state": "complete",
+      "y": -3,
+      "titleY": 202.09375,
+      "progress": 0,
+      "scrollY": 3,
+      "art": false,
+      "draws": 4
+    },
+    {
+      "now": 261.1,
+      "state": "complete",
+      "y": -8,
+      "titleY": 197.09375,
+      "progress": 0,
+      "scrollY": 8,
+      "art": false,
+      "draws": 4
+    },
+    {
+      "now": 277.7,
+      "state": "complete",
+      "y": -14,
+      "titleY": 191.09375,
+      "progress": 0,
+      "scrollY": 14,
+      "art": false,
+      "draws": 4
+    },
+    {
+      "now": 294.4,
+      "state": "complete",
+      "y": -22,
+      "titleY": 183.09375,
+      "progress": 0,
+      "scrollY": 22,
+      "art": false,
+      "draws": 4
+    },
+    {
+      "now": 311.1,
+      "state": "complete",
+      "y": -29,
+      "titleY": 176.09375,
+      "progress": 0,
+      "scrollY": 29,
+      "art": false,
+      "draws": 4
+    }
+  ],
+  "longTasks": []
+}

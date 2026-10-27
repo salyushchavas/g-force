@@ -1,0 +1,72 @@
+[
+  {
+    "name": "desktop",
+    "liveGlass": true,
+    "pause": true,
+    "clock": [
+      "01:58",
+      "05:21",
+      "06:30"
+    ],
+    "performance": {
+      "frames": 265,
+      "p50": 16.69999999999891,
+      "p95": 16.700000000000728,
+      "max": 116.59999999999854,
+      "over33ms": 1
+    },
+    "longTasks": [
+      {
+        "start": 26.799999999813735,
+        "duration": 53
+      },
+      {
+        "start": 277,
+        "duration": 164
+      }
+    ],
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "liveGlass": true,
+    "pause": true,
+    "clock": [
+      "01:58",
+      "05:21",
+      "06:30"
+    ],
+    "performance": {
+      "frames": 269,
+      "p50": 16.699999999999818,
+      "p95": 16.700000000000728,
+      "max": 16.80000000000109,
+      "over33ms": 0
+    },
+    "longTasks": [
+      {
+        "start": 746.7000000001863,
+        "duration": 70
+      }
+    ],
+    "errors": []
+  },
+  {
+    "fallback": "reduced-motion",
+    "poster": true,
+    "liveGlass": false,
+    "videoRequests": 0
+  },
+  {
+    "fallback": "save-data",
+    "poster": true,
+    "liveGlass": false,
+    "videoRequests": 0
+  },
+  {
+    "fallback": "no-webgl",
+    "poster": true,
+    "liveGlass": false,
+    "videoRequests": 0
+  }
+]

@@ -1,0 +1,146 @@
+---
+// The IT health check for owners and office managers: score, fixes, and the result sent on request. Product UI as
+// Air shows it, a white panel on the sheet, beside an open account of how the score works. The downtime calculator
+// lives on /business, linked from here, so home hosts one self-check, not two.
+import SplitHeading from '../ui/SplitHeading.astro';
+import Icon from '../ui/Icon.astro';
+import HealthCheck from '../islands/HealthCheck';
+import { quiz } from '../../data/site';
+
+// How the score works, read from the quiz data so the explanation can never drift from the scoring.
+const max = quiz.questions.reduce((sum, q) => sum + Math.max(...q.options.map((o) => o.score)), 0);
+const points = [...new Set(quiz.questions.flatMap((q) => q.options.map((o) => o.score)))].sort((a, b) => a - b);
+const pointsText = points.length > 1 ? `${points.slice(0, -1).join(', ')} or ${points[points.length - 1]}` : String(points[0]);
+const words = ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+const answerCount = words[quiz.questions.length] ?? String(quiz.questions.length);
+const bands = [...quiz.bands]
+  .sort((a, b) => b.min - a.min)
+  .map((b, i, all) => ({ label: b.label, from: b.min, to: i === 0 ? max : all[i - 1].min - 1 }));
+---
+<section id="tools" class="tools section-y sheet" aria-labelledby="tools-title">
+  <div class="container-g tools-grid">
+    <div class="tools-head">
+      <SplitHeading id="tools-title" as="h2" class="t-h2" lines={['How exposed', 'is your office?']} />
+    </div>
+    <p class="t-lead tools-lead" data-reveal style="--reveal-delay: 150ms">
+      Score your setup in five questions based on the Canadian Centre for Cyber Security’s baseline controls. It runs in
+      your browser and takes about two minutes.
+    </p>
+
+    {/* Hydrates a viewport ahead, so the panel is live before it scrolls into view. */}
+    <div class="tools-check" data-reveal="media" style="--reveal-delay: 100ms">
+      <HealthCheck
+        client:visible={{ rootMargin: '100%' }}
+        tone="surface"
+        headingLevel={3}
+        headingId="health-check-title"
+        intro="Nothing is saved, and nothing is sent unless you ask."
+      />
+    </div>
+
+    <div class="tools-scale" data-reveal style="--reveal-delay: 250ms">
+      <h3 class="t-h4">How the score works</h3>
+      <p>Each of the {answerCount} answers earns {pointsText} points, for a score out of {max}.</p>
+      <dl class="tools-bands">
+        {bands.map((b) => (
+          <div>
+            <dt>{b.label}</dt>
+            <dd class="t-num">{b.from} to {b.to}</dd>
+          </div>
+        ))}
+      </dl>
+      <ul class="tools-more" role="list">
+        <li>
+          <a class="link-arrow" href="/it-health-check/#what-it-checks">
+            What each question checks
+            <span class="btn-arrow"><Icon name="arrow" size={16} /></span>
+          </a>
+        </li>
+        <li>
+          <a class="link-arrow" href="/business/#downtime-calculator">
+            Work out what an outage costs your team
+            <span class="btn-arrow"><Icon name="arrow" size={16} /></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .tools-grid {
+    display: grid;
+    grid-template-areas: 'head' 'lead' 'check' 'scale';
+  }
+  .tools-head {
+    grid-area: head;
+  }
+  .tools-lead {
+    grid-area: lead;
+    margin-top: 1.25rem;
+    max-width: 44ch;
+    color: var(--text-muted);
+  }
+  .tools-check {
+    grid-area: check;
+    min-width: 0;
+    margin-top: clamp(2rem, 1.5rem + 2vw, 3rem);
+  }
+  .tools-scale {
+    grid-area: scale;
+    margin-top: 2.25rem;
+  }
+  .tools-scale > p:first-of-type {
+    margin-top: 0.5rem;
+    max-width: 40ch;
+    color: var(--text-muted);
+  }
+  .tools-bands {
+    margin: 1.25rem 0 0;
+    border-top: 1px solid var(--line-strong);
+  }
+  .tools-bands div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 0.75rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .tools-bands dt {
+    font-weight: 650;
+  }
+  .tools-bands dd {
+    margin: 0;
+    color: var(--text-muted);
+  }
+  .tools-more {
+    display: grid;
+    justify-items: start;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .tools-more .link-arrow {
+    min-height: 2.75rem;
+    font-size: 0.9375rem;
+  }
+
+  @media (min-width: 1024px) {
+    .tools-grid {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      grid-template-areas:
+        'head  lead'
+        'check scale';
+      column-gap: clamp(3rem, 0.5rem + 4.5vw, 5.5rem);
+    }
+    .tools-lead {
+      align-self: end;
+      margin-top: 0;
+    }
+    .tools-check,
+    .tools-scale {
+      align-self: start;
+      margin-top: clamp(2.5rem, 1.5rem + 2vw, 3.5rem);
+    }
+  }
+</style>

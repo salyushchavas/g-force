@@ -1,0 +1,510 @@
+{
+  "base": "https://gforce-kappa.vercel.app",
+  "results": [
+    {
+      "width": 320,
+      "theme": "light",
+      "reducedMotion": false,
+      "pass": true,
+      "immediateLabels": [
+        {
+          "text": "Receive and prioritise your request",
+          "opacity": 1,
+          "visible": true,
+          "height": 42
+        },
+        {
+          "text": "Review your systems and recent changes",
+          "opacity": 1,
+          "visible": true,
+          "height": 42
+        },
+        {
+          "text": "Troubleshoot and agree on the next action",
+          "opacity": 1,
+          "visible": true,
+          "height": 42
+        },
+        {
+          "text": "Confirm the outcome and document the work",
+          "opacity": 1,
+          "visible": true,
+          "height": 42
+        }
+      ],
+      "rapidTabs": true,
+      "keyboardHomeEnd": true,
+      "offscreenReturn": true,
+      "mediaLayout": {
+        "panelWidth": 280,
+        "mediaWidth": 278,
+        "captionFits": true,
+        "controlClear": true
+      },
+      "pageErrors": []
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "reducedMotion": true,
+      "pass": true,
+      "immediateLabels": [
+        {
+          "text": "Receive and prioritise your request",
+          "opacity": 1,
+          "visible": true,
+          "height": 42
+        },
+        {
+          "text": "Review your systems and recent changes",
+          "opacity": 1,
+          "visible": true,
+          "height": 42
+        },
+        {
+          "text": "Troubleshoot and agree on the next action",
+          "opacity": 1,
+          "visible": true,
+          "height": 42
+        },
+        {
+          "text": "Confirm the outcome and document the work",
+          "opacity": 1,
+          "visible": true,
+          "height": 42
+        }
+      ],
+      "rapidTabs": true,
+      "keyboardHomeEnd": true,
+      "offscreenReturn": true,
+      "mediaLayout": {
+        "panelWidth": 280,
+        "mediaWidth": 278,
+        "captionFits": true,
+        "controlClear": true
+      },
+      "pageErrors": []
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "reducedMotion": false,
+      "pass": true,
+      "immediateLabels": [
+        {
+          "text": "Receive and prioritise your request",
+          "opacity": 1,
+          "visible": true,
+          "height": 42
+        },
+        {
+          "text": "Review your systems and recent changes",
+          "opacity": 1,
+          "visible": true,
+          "height": 42
+        },
+        {
+          "text": "Troubleshoot and agree on the next action",
+          "opacity": 1,
+          "visible": true,
+          "height": 42
+        },
+        {
+          "text": "Confirm the outcome and document the work",
+          "opacity": 1,
+          "visible": true,
+          "height": 42
+        }
+      ],
+      "rapidTabs": true,
+      "keyboardHomeEnd": true,
+      "offscreenReturn": true,
+      "mediaLayout": {
+        "panelWidth": 280,
+        "mediaWidth": 278,
+        "captionFits": true,
+        "controlClear": true
+      },
+      "pageErrors": []
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "reducedMotion": true,
+      "pass": true,
+      "immediateLabels": [
+        {
+          "text": "Receive and prioritise your request",
+          "opacity": 1,
+          "visible": true,
+          "height": 42
+        },
+        {
+          "text": "Review your systems and recent changes",
+          "opacity": 1,
+          "visible": true,
+          "height": 42
+        },
+        {
+          "text": "Troubleshoot and agree on the next action",
+          "opacity": 1,
+          "visible": true,
+          "height": 42
+        },
+        {
+          "text": "Confirm the outcome and document the work",
+          "opacity": 1,
+          "visible": true,
+          "height": 42
+        }
+      ],
+      "rapidTabs": true,
+      "keyboardHomeEnd": true,
+      "offscreenReturn": true,
+      "mediaLayout": {
+        "panelWidth": 280,
+        "mediaWidth": 278,
+        "captionFits": true,
+        "controlClear": true
+      },
+      "pageErrors": []
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "reducedMotion": false,
+      "pass": true,
+      "immediateLabels": [
+        {
+          "text": "Receive and prioritise your request",
+          "opacity": 1,
+          "visible": true,
+          "height": 21
+        },
+        {
+          "text": "Review your systems and recent changes",
+          "opacity": 1,
+          "visible": true,
+          "height": 21
+        },
+        {
+          "text": "Troubleshoot and agree on the next action",
+          "opacity": 1,
+          "visible": true,
+          "height": 21
+        },
+        {
+          "text": "Confirm the outcome and document the work",
+          "opacity": 1,
+          "visible": true,
+          "height": 42
+        }
+      ],
+      "rapidTabs": true,
+      "keyboardHomeEnd": true,
+      "offscreenReturn": true,
+      "mediaLayout": {
+        "panelWidth": 350,
+        "mediaWidth": 348,
+        "captionFits": true,
+        "controlClear": true
+      },
+      "pageErrors": []
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "reducedMotion": true,
+      "pass": true,
+      "immediateLabels": [
+        {
+          "text": "Receive and prioritise your request",
+          "opacity": 1,
+          "visible": true,
+          "height": 21
+        },
+        {
+          "text": "Review your systems and recent changes",
+          "opacity": 1,
+          "visible": true,
+          "height": 21
+        },
+        {
+          "text": "Troubleshoot and agree on the next action",
+          "opacity": 1,
+          "visible": true,
+          "height": 21
+        },
+        {
+          "text": "Confirm the outcome and document the work",
+          "opacity": 1,
+          "visible": true,
+          "height": 42
+        }
+      ],
+      "rapidTabs": true,
+      "keyboardHomeEnd": true,
+      "offscreenReturn": true,
+      "mediaLayout": {
+        "panelWidth": 350,
+        "mediaWidth": 348,
+        "captionFits": true,
+        "controlClear": true
+      },
+      "pageErrors": []
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "reducedMotion": false,
+      "pass": true,
+      "immediateLabels": [
+        {
+          "text": "Receive and prioritise your request",
+          "opacity": 1,
+          "visible": true,
+          "height": 21
+        },
+        {
+          "text": "Review your systems and recent changes",
+          "opacity": 1,
+          "visible": true,
+          "height": 21
+        },
+        {
+          "text": "Troubleshoot and agree on the next action",
+          "opacity": 1,
+          "visible": true,
+          "height": 21
+        },
+        {
+          "text": "Confirm the outcome and document the work",
+          "opacity": 1,
+          "visible": true,
+          "height": 42
+        }
+      ],
+      "rapidTabs": true,
+      "keyboardHomeEnd": true,
+      "offscreenReturn": true,
+      "mediaLayout": {
+        "panelWidth": 350,
+        "mediaWidth": 348,
+        "captionFits": true,
+        "controlClear": true
+      },
+      "pageErrors": []
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "reducedMotion": true,
+      "pass": true,
+      "immediateLabels": [
+        {
+          "text": "Receive and prioritise your request",
+          "opacity": 1,
+          "visible": true,
+          "height": 21
+        },
+        {
+          "text": "Review your systems and recent changes",
+          "opacity": 1,
+          "visible": true,
+          "height": 21
+        },
+        {
+          "text": "Troubleshoot and agree on the next action",
+          "opacity": 1,
+          "visible": true,
+          "height": 21
+        },
+        {
+          "text": "Confirm the outcome and document the work",
+          "opacity": 1,
+          "visible": true,
+          "height": 42
+        }
+      ],
+      "rapidTabs": true,
+      "keyboardHomeEnd": true,
+      "offscreenReturn": true,
+      "mediaLayout": {
+        "panelWidth": 350,
+        "mediaWidth": 348,
+        "captionFits": true,
+        "controlClear": true
+      },
+      "pageErrors": []
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "reducedMotion": false,
+      "pass": true,
+      "immediateLabels": [
+        {
+          "text": "Receive and prioritise your request",
+          "opacity": 1,
+          "visible": true,
+          "height": 21
+        },
+        {
+          "text": "Review your systems and recent changes",
+          "opacity": 1,
+          "visible": true,
+          "height": 21
+        },
+        {
+          "text": "Troubleshoot and agree on the next action",
+          "opacity": 1,
+          "visible": true,
+          "height": 21
+        },
+        {
+          "text": "Confirm the outcome and document the work",
+          "opacity": 1,
+          "visible": true,
+          "height": 21
+        }
+      ],
+      "rapidTabs": true,
+      "keyboardHomeEnd": true,
+      "offscreenReturn": true,
+      "mediaLayout": {
+        "panelWidth": 1240,
+        "mediaWidth": 687.765625,
+        "captionFits": true,
+        "controlClear": true
+      },
+      "pageErrors": []
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "reducedMotion": true,
+      "pass": true,
+      "immediateLabels": [
+        {
+          "text": "Receive and prioritise your request",
+          "opacity": 1,
+          "visible": true,
+          "height": 21
+        },
+        {
+          "text": "Review your systems and recent changes",
+          "opacity": 1,
+          "visible": true,
+          "height": 21
+        },
+        {
+          "text": "Troubleshoot and agree on the next action",
+          "opacity": 1,
+          "visible": true,
+          "height": 21
+        },
+        {
+          "text": "Confirm the outcome and document the work",
+          "opacity": 1,
+          "visible": true,
+          "height": 21
+        }
+      ],
+      "rapidTabs": true,
+      "keyboardHomeEnd": true,
+      "offscreenReturn": true,
+      "mediaLayout": {
+        "panelWidth": 1240,
+        "mediaWidth": 687.765625,
+        "captionFits": true,
+        "controlClear": true
+      },
+      "pageErrors": []
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "reducedMotion": false,
+      "pass": true,
+      "immediateLabels": [
+        {
+          "text": "Receive and prioritise your request",
+          "opacity": 1,
+          "visible": true,
+          "height": 21
+        },
+        {
+          "text": "Review your systems and recent changes",
+          "opacity": 1,
+          "visible": true,
+          "height": 21
+        },
+        {
+          "text": "Troubleshoot and agree on the next action",
+          "opacity": 1,
+          "visible": true,
+          "height": 21
+        },
+        {
+          "text": "Confirm the outcome and document the work",
+          "opacity": 1,
+          "visible": true,
+          "height": 21
+        }
+      ],
+      "rapidTabs": true,
+      "keyboardHomeEnd": true,
+      "offscreenReturn": true,
+      "mediaLayout": {
+        "panelWidth": 1240,
+        "mediaWidth": 687.765625,
+        "captionFits": true,
+        "controlClear": true
+      },
+      "pageErrors": []
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "reducedMotion": true,
+      "pass": true,
+      "immediateLabels": [
+        {
+          "text": "Receive and prioritise your request",
+          "opacity": 1,
+          "visible": true,
+          "height": 21
+        },
+        {
+          "text": "Review your systems and recent changes",
+          "opacity": 1,
+          "visible": true,
+          "height": 21
+        },
+        {
+          "text": "Troubleshoot and agree on the next action",
+          "opacity": 1,
+          "visible": true,
+          "height": 21
+        },
+        {
+          "text": "Confirm the outcome and document the work",
+          "opacity": 1,
+          "visible": true,
+          "height": 21
+        }
+      ],
+      "rapidTabs": true,
+      "keyboardHomeEnd": true,
+      "offscreenReturn": true,
+      "mediaLayout": {
+        "panelWidth": 1240,
+        "mediaWidth": 687.765625,
+        "captionFits": true,
+        "controlClear": true
+      },
+      "pageErrors": []
+    }
+  ],
+  "passed": true
+}

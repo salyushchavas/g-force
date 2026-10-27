@@ -1,0 +1,109 @@
+[
+  {
+    "dark": false,
+    "before": {
+      "x": 28.546875,
+      "y": 1032.6875,
+      "width": 95.1875,
+      "height": 44
+    },
+    "after": {
+      "x": 28.546875,
+      "y": 159.6875,
+      "width": 95.1875,
+      "height": 44
+    },
+    "violations": []
+  },
+  {
+    "dark": true,
+    "before": {
+      "x": 28.546875,
+      "y": 1032.6875,
+      "width": 95.1875,
+      "height": 44
+    },
+    "after": {
+      "x": 28.546875,
+      "y": 159.6875,
+      "width": 95.1875,
+      "height": 44
+    },
+    "violations": []
+  },
+  {
+    "width": 320,
+    "route": "/",
+    "overflow": false
+  },
+  {
+    "width": 320,
+    "route": "/business/",
+    "overflow": false
+  },
+  {
+    "width": 320,
+    "route": "/training/",
+    "overflow": false
+  },
+  {
+    "width": 320,
+    "route": "/contact/",
+    "overflow": false
+  },
+  {
+    "width": 320,
+    "route": "/it-health-check/",
+    "overflow": false
+  },
+  {
+    "width": 320,
+    "route": "/blog/",
+    "overflow": false
+  },
+  {
+    "width": 320,
+    "route": "/resources/security-checklist/",
+    "overflow": false
+  },
+  {
+    "width": 320,
+    "route": "/privacy/",
+    "overflow": false
+  },
+  {
+    "width": 320,
+    "route": "/terms/",
+    "overflow": false
+  },
+  {
+    "width": 320,
+    "route": "/accessibility/",
+    "overflow": false
+  },
+  {
+    "width": 320,
+    "route": "/blog/choosing-an-it-training-program/",
+    "overflow": false
+  },
+  {
+    "width": 320,
+    "route": "/blog/it-skills-canadian-employers-hire-for/",
+    "overflow": false
+  },
+  {
+    "width": 320,
+    "route": "/blog/ai-and-automation-in-it-careers/",
+    "overflow": false
+  },
+  {
+    "width": 320,
+    "route": "/blog/building-a-career-in-cybersecurity/",
+    "overflow": false
+  },
+  {
+    "width": 320,
+    "route": "/404.html",
+    "overflow": false
+  }
+]

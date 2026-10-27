@@ -1,0 +1,212 @@
+---
+// A brief opening lifts the sculpture and reveals the main message on a fresh visit.
+import SplitHeading from '../ui/SplitHeading.astro';
+import Icon from '../ui/Icon.astro';
+import LogoMarquee from './LogoMarquee.astro';
+import { hero } from '../../data/site';
+// The white & crimson skin has no 3D opening (user request): the hero renders in its settled state, the same one
+// reduced-motion and Back/Forward visits get, and no glass, poster or WebGL is loaded. It is the original site's
+// crimson hero instead (skin-white-red.css), so it is a night band, with Toronto at night as a crimson duotone. The
+// skyline crops (hero-city*, hero-city-wide*) are cut from the full-resolution Unsplash original of img-toronto-night
+// (Frank Huang, Unsplash License) with a greyscale tone curve baked in: the sky is black, the lit city is light.
+const glass = import.meta.env.PUBLIC_SKIN !== 'white-red';
+---
+<section class:list={['hero', glass ? 'band-dawn' : 'band-night', { 'intro-complete': !glass }]} data-dawn-hero={glass ? '' : undefined} data-night-hero={glass ? undefined : ''} data-hero-intro data-intro-state={glass ? undefined : 'complete'} aria-labelledby="hero-title">
+  {glass && <script is:inline>
+    (() => {
+      const hero = document.currentScript.closest('section');
+      const navigation = performance.getEntriesByType('navigation')[0];
+      if (document.documentElement.classList.contains('motion-ok') && !location.hash && navigation?.type !== 'back_forward') {
+        hero.setAttribute('data-intro-active', '');
+        hero.dataset.introState = 'preparing';
+        // A failed module must never leave the introduction blocking the page.
+        const watchdog = setTimeout(() => {
+          hero.dispatchEvent(new CustomEvent('hero:intro-timeout'));
+          hero.removeAttribute('data-intro-active');
+          hero.classList.add('intro-complete');
+          hero.dataset.introState = 'complete';
+          document.querySelector('.hero-art.is-portal')?.remove();
+          hero.querySelector('.hero-inner')?.style.removeProperty('transform');
+        }, 6000);
+        hero.addEventListener('hero:intro-complete', () => clearTimeout(watchdog), { once: true });
+      } else {
+        hero.classList.add('intro-complete');
+        hero.dataset.introState = 'complete';
+      }
+    })();
+  </script>}
+  <div class="hero-clouds" aria-hidden="true"></div>
+  {glass && <div class="hero-art">
+    <picture class="hero-poster">
+      <source media="(max-width: 700px)" type="image/avif" srcset="/3d/hero-poster-original-mobile.avif" />
+      <source media="(max-width: 700px)" type="image/webp" srcset="/3d/hero-poster-original-mobile.webp" />
+      <source type="image/avif" srcset="/3d/hero-poster-original-1280.avif 1280w, /3d/hero-poster-original-1600.avif 1600w, /3d/hero-poster-original-2560.avif 2560w" sizes="94vw" />
+      <img src="/3d/hero-poster-original-1600.webp" srcset="/3d/hero-poster-original-1280.webp 1280w, /3d/hero-poster-original-1600.webp 1600w, /3d/hero-poster-original-2560.webp 2560w" sizes="94vw" alt="G-Force IT Services Inc. sculpted in clear glass" width="1600" height="364" fetchpriority="high" decoding="async" />
+    </picture>
+    <canvas class="hero-glass" data-glass-name aria-hidden="true"></canvas>
+  </div>}
+  {glass && <div class="hero-spacer" aria-hidden="true"></div>}
+  {glass && <button class="hero-scroll" type="button" data-skip-intro><span>Skip introduction</span><Icon name="arrow" size={18} /></button>}
+
+  <div class="container-g hero-inner">
+    <div class="hero-copy">
+      <p class="hero-location">Toronto, Canada</p>
+      <SplitHeading id="hero-title" as="h1" lines={hero.lines} class="hero-title" />
+      <p class="hero-sub">{hero.sub}</p>
+      <p class="hero-sub-short">{hero.subShort}</p>
+    </div>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href={hero.primary.href}>{hero.primary.label}<span class="btn-arrow"><Icon name="arrow" size={18} /></span></a>
+      <a class="btn btn-secondary" href={hero.secondary.href}>{hero.secondary.label}</a>
+    </div>
+    <nav class="hero-specialties" aria-label="Explore our expertise">
+      <a href="/business/#managed-it">Managed IT</a>
+      <a href="/business/#cybersecurity">Cybersecurity</a>
+      <a href="/business/#cloud-backup">Cloud &amp; backup</a>
+    </nav>
+    {!glass && (
+      <picture class="hero-city">
+        <source media="(min-width: 1024px)" type="image/avif" srcset="/media/img/hero-city-800.avif 800w, /media/img/hero-city-1400.avif 1400w, /media/img/hero-city-2000.avif 2000w" sizes="50vw" />
+        <source media="(min-width: 1024px)" type="image/webp" srcset="/media/img/hero-city-800.webp 800w, /media/img/hero-city-1400.webp 1400w, /media/img/hero-city-2000.webp 2000w" sizes="50vw" />
+        <source media="(min-width: 1024px)" srcset="/media/img/hero-city-800.jpg 800w, /media/img/hero-city-1400.jpg 1400w, /media/img/hero-city-2000.jpg 2000w" sizes="50vw" />
+        <source type="image/avif" srcset="/media/img/hero-city-wide-800.avif 800w, /media/img/hero-city-wide-1200.avif 1200w" sizes="100vw" />
+        <source type="image/webp" srcset="/media/img/hero-city-wide-800.webp 800w, /media/img/hero-city-wide-1200.webp 1200w" sizes="100vw" />
+        <img class="hero-city-img" src="/media/img/hero-city-wide-1200.jpg" srcset="/media/img/hero-city-wide-800.jpg 800w, /media/img/hero-city-wide-1200.jpg 1200w" sizes="100vw" alt="" width="1200" height="500" loading="eager" fetchpriority="high" decoding="async" />
+      </picture>
+    )}
+    <LogoMarquee compact />
+  </div>
+</section>
+
+<script>
+  import { initHeroIntro } from '../../scripts/hero-intro';
+  initHeroIntro();
+</script>
+
+<style>
+  .hero {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    clip-path: inset(0);
+    padding-top: var(--header-h);
+    min-height: 100svh;
+  }
+  :global(html[data-theme]) .hero {
+    color-scheme: light;
+    --text: var(--color-air-ink);
+    --text-muted: var(--color-air-copy);
+    --accent: var(--color-crimson-500);
+    --accent-hover: var(--color-crimson-600);
+    --accent-press: var(--color-crimson-700);
+    --btn-text: #fff;
+    --accent-ink: var(--color-crimson-700);
+    --line: color-mix(in oklch, var(--color-air-ink) 16%, transparent);
+    --line-strong: color-mix(in oklch, var(--color-air-ink) 35%, transparent);
+    --focus: var(--color-crimson-700);
+    color: var(--text);
+  }
+  :global(body.has-air-sky) .hero {
+    background-color: var(--color-dawn-200);
+    background-image: var(--dawn-gradient);
+  }
+  .hero-clouds {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: image-set(url('/media/img/hero-cloud-contrast.avif') type('image/avif'), url('/media/img/hero-cloud-contrast.webp') type('image/webp')), var(--dawn-gradient);
+    background-size: cover;
+    background-position: center top;
+    background-blend-mode: screen;
+    opacity: .7;
+    mask-image: linear-gradient(180deg, black, black 38%, transparent 95%);
+  }
+  .hero-art {
+    position: relative;
+    height: clamp(18rem, 36vw, 30rem);
+    width: 100%;
+    pointer-events: none;
+  }
+  .hero-poster {
+    position: absolute;
+    width: min(94vw, 1440px);
+    aspect-ratio: 4.4 / 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: center;
+    transition: opacity 180ms linear;
+  }
+  .hero-poster img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .hero-poster:global(.is-live) { opacity: 0; }
+  .hero-glass { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 180ms linear; }
+  .hero-glass:global(.is-ready) { opacity: 1; }
+  .hero-spacer, .hero-scroll { display: none; }
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    gap: 1.75rem;
+    text-align: center;
+    padding-block: 1rem clamp(5rem, 8vw, 8rem);
+  }
+  .hero.intro-complete { padding-top: 0; }
+  .hero.intro-complete .hero-art { display: none; }
+  .hero.intro-complete .hero-inner { padding-top: clamp(8rem, 18svh, 12rem); }
+  .hero-location { font-size: .875rem; font-weight: 550; color: var(--text-muted); margin-bottom: 1.25rem; }
+  .hero-specialties { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem 1.5rem; margin-top: .5rem; font-size: .875rem; }
+  .hero-specialties a { color: var(--text-muted); text-decoration-thickness: 1px; text-underline-offset: .25em; }
+  .hero-copy { display: grid; justify-items: center; }
+  .hero-copy :global(.hero-title) {
+    max-width: 28ch;
+    font-size: clamp(2.1rem, 1rem + 3.1vw, 3.75rem);
+    font-weight: 560;
+    line-height: 1.08;
+    letter-spacing: -.03em;
+    scroll-margin-top: 12rem;
+  }
+  .hero-sub { max-width: 62ch; margin-top: 1.25rem; font-size: 1.0625rem; line-height: 1.6; color: var(--text-muted); }
+  .hero-sub-short { display: none; max-width: 42ch; margin-top: 1rem; font-size: 1rem; line-height: 1.5; color: var(--text-muted); }
+  .hero-ctas { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: .75rem; }
+  .hero[data-intro-active] { padding-top: 0; background-image: none !important; }
+  .hero[data-intro-active]::before { content: ''; position: fixed; inset: 0; height: 100svh; background-image: var(--dawn-gradient); z-index: -2; }
+  .hero[data-intro-active] .hero-inner { padding-top: clamp(8rem, 18svh, 12rem); }
+  .hero-art:global(.is-portal) { z-index: calc(var(--z-sticky) + 1); }
+  .hero-art:global(.is-portal) { position: fixed; inset: 0; height: 100svh; }
+  .hero[data-intro-active] .hero-clouds { position: fixed; height: 100svh; }
+  .hero-art:global(.is-portal) .hero-poster { width: 91.4894vw; will-change: transform; }
+  .hero[data-intro-active] .hero-inner { will-change: transform; }
+  .hero[data-intro-active] .hero-spacer { display: block; height: 108svh; }
+  .hero[data-intro-active] .hero-scroll {
+    display: flex;
+    position: absolute;
+    top: calc(100svh - 4.5rem);
+    left: var(--gutter);
+    z-index: 1;
+    min-height: 2.75rem;
+    align-items: center;
+    gap: .75rem;
+    color: var(--text);
+    font-size: .8125rem;
+    text-decoration: none;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+  .hero-scroll :global(svg) { transform: rotate(90deg); }
+  @media (max-width: 700px) {
+    /* Let the next section follow the content, even on tall phone screens. */
+    .hero { min-height: 0; }
+    .hero-inner { padding-bottom: 3rem; }
+    .hero-art { height: 19rem; }
+    .hero-copy :global(.hero-title) { font-size: clamp(1.8rem, 1rem + 3.8vw, 2.5rem); }
+    .hero-sub { display: none; }
+    .hero-sub-short { display: block; }
+    .hero-ctas { max-width: 25rem; }
+    .hero-art:global(.is-portal) .hero-poster { width: 100vw; }
+  }
+</style>

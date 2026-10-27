@@ -1,0 +1,219 @@
+---
+// Home: the learner path, on the dawn band (DESIGN.md: learners = dawn; one accent across both paths). On sky pages
+// the band is transparent onto the fixed sky (global.css).
+// The compact course finder answers "which course is mine?" with one question; the full catalogue lives on /training.
+// The ways to learn are frosted glass cards on the dawn, as Air sets its panels on the sky.
+// Motion: a low sun rises over the band's dawn gradient as it scrolls in, so the learner path reads as the start
+// of a day. Under reduced motion it rests in place (data-rest-p="1"); in dark mode it is a faint warm haze.
+import CourseFinder from '../islands/CourseFinder';
+import SplitHeading from '../ui/SplitHeading.astro';
+import Picture from '../ui/Picture.astro';
+import Icon from '../ui/Icon.astro';
+import { learningFormats } from '../../data/site';
+
+const formatIcon = (name: string) =>
+  /virtual/i.test(name) ? 'monitor' : /person/i.test(name) ? 'pin' : /self/i.test(name) ? 'clock' : 'cap';
+---
+<section
+  id="training"
+  class="band-dawn training"
+  data-scroll-progress="enter"
+  data-rest-p="1"
+  aria-labelledby="training-title"
+>
+  <div class="training-sun" aria-hidden="true"></div>
+
+  <div class="container-g section-y training-grid">
+    <SplitHeading id="training-title" as="h2" class="t-h2 training-title" lines={['Five ways into IT.', 'Find *yours.*']} />
+    <p class="t-lead training-lead" data-reveal style="--reveal-delay: 200ms">
+      Instructor-led courses for people starting out or switching careers, with hands-on labs and preparation for recognized
+      certification exams.
+    </p>
+
+    <div class="training-finder" data-reveal style="--reveal-delay: 250ms">
+      <CourseFinder compact client:visible={{ rootMargin: '300px' }} />
+    </div>
+
+    <div class="training-side">
+      <div class="training-media">
+        <Picture
+          slot="img-classroom"
+          alt="Adult learners working on laptops around a shared table in a classroom"
+          sizes="(min-width: 1024px) 36vw, (min-width: 640px) 45vw, 100vw"
+          class="training-pic"
+          imgClass="training-img"
+          reveal
+        />
+      </div>
+      <div class="training-formats">
+        <h3 class="t-h4">Ways to learn</h3>
+        <dl data-stagger>
+          {learningFormats.map((f) => (
+            <div class="training-format glass">
+              <dt>
+                <span class="training-format-icon"><Icon name={formatIcon(f.name)} size={22} /></span>
+                {f.name}
+              </dt>
+              <dd>{f.body}</dd>
+            </div>
+          ))}
+        </dl>
+        <a class="btn btn-primary training-cta" href="/training/">
+          Explore training
+          <span class="btn-arrow"><Icon name="arrow" size={18} /></span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <noscript><style is:inline>#training .cf-filters { display: none; }</style></noscript>
+</section>
+
+<style>
+  .training {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+  }
+  /* The band paints the sky (.band-dawn). The sun rises as the band enters (--p 0 → 1). */
+  .training-sun {
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    right: -18%;
+    bottom: -38%;
+    width: min(72rem, 120vw);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(
+      closest-side,
+      color-mix(in oklch, var(--color-dawn-400) 72%, transparent) 0%,
+      color-mix(in oklch, var(--color-dawn-400) 28%, transparent) 55%,
+      transparent 100%
+    );
+    transform: translate3d(0, calc((1 - var(--p, 1)) * 22%), 0);
+    opacity: calc(0.45 + var(--p, 1) * 0.55);
+    will-change: transform;
+  }
+  :global([data-theme='dark']) .training-sun {
+    opacity: calc(0.06 + var(--p, 1) * 0.12);
+  }
+
+  .training-grid {
+    display: grid;
+    gap: clamp(1.25rem, 1rem + 1.5vw, 2rem);
+  }
+  .training :global(.training-title) {
+    max-width: 13ch;
+  }
+  .training-lead {
+    max-width: 44ch;
+    color: var(--text-muted);
+  }
+  .training-finder {
+    min-width: 0;
+    margin-top: clamp(0.75rem, 0.5rem + 1vw, 1.5rem);
+  }
+  .training-side {
+    display: grid;
+    gap: clamp(1.75rem, 1.25rem + 1.5vw, 2.5rem);
+    align-content: start;
+    margin-top: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  }
+  .training-media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+  }
+  .training-media :global(.training-pic),
+  .training-media :global(.training-img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .training-formats {
+    display: grid;
+    gap: 1.1rem;
+    align-content: start;
+    justify-items: start;
+  }
+  .training-formats dl {
+    display: grid;
+    gap: 0.75rem;
+    width: 100%;
+    margin: 0;
+  }
+  /* Frosted cards: .glass reads the band-dawn glass tokens (white 55%, a white 70% edge). */
+  .training-format {
+    display: grid;
+    gap: 0.3rem;
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+  /* The dark band is deep sky, so the frost thins to a faint veil there and white type keeps its contrast. */
+  :global([data-theme='dark']) .training-format {
+    --glass: color-mix(in oklch, white 8%, transparent);
+    --glass-line: color-mix(in oklch, white 16%, transparent);
+  }
+  .training-format dt {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-weight: 620;
+    letter-spacing: -0.005em;
+  }
+  .training-format-icon {
+    display: inline-grid;
+    color: var(--text-muted);
+  }
+  .training-format dd {
+    margin: 0;
+    padding-left: calc(22px + 0.65rem);
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--text-muted);
+  }
+  .training-cta {
+    margin-top: 0.5rem;
+  }
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .training-side {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: start;
+    }
+  }
+  @media (min-width: 1024px) {
+    .training-grid {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      grid-template-areas:
+        'title lead'
+        'finder side';
+      column-gap: clamp(3rem, 0.5rem + 4.5vw, 6rem);
+      row-gap: clamp(2.5rem, 1.5rem + 2vw, 3.5rem);
+      align-items: end;
+    }
+    .training :global(.training-title) {
+      grid-area: title;
+    }
+    .training-lead {
+      grid-area: lead;
+      padding-bottom: 0.35rem;
+    }
+    .training-finder {
+      grid-area: finder;
+      align-self: start;
+      margin-top: 0;
+    }
+    .training-side {
+      grid-area: side;
+      align-self: start;
+      position: sticky;
+      top: calc(var(--header-h) + 2rem);
+      margin-top: 0;
+    }
+  }
+</style>
