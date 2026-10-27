@@ -92,5 +92,8 @@ root, and root `vercel.json` builds `new-site/` into `new-site/dist`.
   (#f6f1f2) sections; the home page alternates with extra crimson bands (user: "more red", home page only;
   inner pages keep banner + white/rose sections; never two crimson masses touching), white pills with crimson text on red, and light theme only (no theme switch; the user
   confirmed dark mode is not required for this version, overriding the PDF's dark-mode item here). Keep its changes
-  scoped to the skin so the default Air build is unchanged. When the user asks to change a page or section, change
+  scoped to the skin so the default Air build is unchanged. Reds must be the logo's exact reds (user, 28 October
+  2026, "very particular about exact red"): #cb1f45 to #89001e (midpoint #af1234) and tints of #cb1f45 toward white.
+  On crimson, panels are a deeper shade (`--crimson-panel`, sRGB mixes of #89001e), never a white wash or a
+  backdrop saturate(); the skyline photo is baked onto that same path. When the user asks to change a page or section, change
   only that page or section (user, 28 October 2026: "just change only the home page not entire site").

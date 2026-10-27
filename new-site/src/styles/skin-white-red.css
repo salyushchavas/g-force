@@ -53,6 +53,9 @@
   --control-border: #8a888d;
   /* The original site's header, hero overlay and section gradient. */
   --sky-gradient: linear-gradient(15deg, #cb1f45 0%, #89001e 100%);
+  /* Panels on crimson are a deeper shade of the logo's own red, never a white wash (which turns the red pink).
+     Mixed in sRGB so every result stays on the logo's #cb1f45 to #89001e line. */
+  --crimson-panel: color-mix(in srgb, #89001e 38%, transparent);
   --dawn-gradient: linear-gradient(#ffffff, #ffffff);
   --dusk-gradient: radial-gradient(100% 70% at 50% 100%, color-mix(in oklch, #cb1f45 16%, transparent), transparent 80%),
     linear-gradient(180deg, #121214 0%, #17171a 55%, #1c1c20 100%);
@@ -67,8 +70,13 @@
   --accent-ink: #fff0f4;
   --line: color-mix(in oklch, white 24%, transparent);
   --line-strong: color-mix(in oklch, white 50%, transparent);
-  --glass: color-mix(in oklch, white 10%, transparent);
+  --surface: var(--crimson-panel);
+  --glass: var(--crimson-panel);
   --glass-line: color-mix(in oklch, white 26%, transparent);
+}
+/* The footer's email field: the same deeper crimson, not the Air skin's white frost. */
+:root[data-skin='white-red'] .site-footer .newsletter .field {
+  background: var(--crimson-panel);
 }
 
 /* Light bands that used the dawn ground: the original's rose-white section ground. */
@@ -119,6 +127,7 @@
   min-height: 0;
   padding-top: calc(var(--header-h) + clamp(2.25rem, 1.5rem + 2.5vw, 3.75rem));
   padding-bottom: clamp(2.25rem, 1.5rem + 2.5vw, 3.75rem);
+  --surface: var(--crimson-panel);
   background-color: var(--color-crimson-500);
   background-image: var(--sky-gradient);
 }
@@ -368,7 +377,7 @@
   padding: 0.3rem 0.85rem;
   border: 1px solid color-mix(in oklch, white 32%, transparent);
   border-radius: 999px;
-  background: color-mix(in oklch, white 6%, transparent);
+  background: color-mix(in srgb, var(--color-crimson-700) 22%, transparent);
   color: #ffffff;
   font-size: 0.875rem;
   font-weight: 550;
@@ -397,8 +406,10 @@
     flex: none;
   }
 }
-/* The skyline (hero-city crops in Hero.astro: the greyscale tone curve is baked in, so the sky is black and screens to
-   pure crimson, and the lit tower and city add light). Each crop has the waterline at 92% of its height, so it stands
+/* The skyline (hero-city crops in Hero.astro): the photo's tones are baked onto the logo's own path, #89001e to
+   #cb1f45 to white, and lightened onto the gradient. Every point on that path is either brighter or darker than the
+   gradient in all three channels, so the result is always a logo red (or, for the lights, a tint of #cb1f45 toward
+   white); a screen blend of a grey photo washed the red out. Each crop has the waterline at 92% of its height, so it stands
    on the client strip; the desktop crop has the CN Tower at 55% across. Phones: a wide band under the actions. */
 :root[data-skin='white-red'] .hero .hero-city {
   position: relative;
@@ -408,7 +419,7 @@
   align-self: stretch;
   min-height: clamp(9rem, 42vw, 12rem);
   margin-inline: calc(50% - 50vw);
-  mix-blend-mode: screen;
+  mix-blend-mode: normal;
   pointer-events: none;
   -webkit-mask-image: linear-gradient(180deg, transparent, black 35%, black 94%, transparent);
   mask-image: linear-gradient(180deg, transparent, black 35%, black 94%, transparent);
@@ -504,10 +515,10 @@
     opacity: 0;
   }
 }
-/* The city lights come up: the photo's own brightness rises to its black point. */
+/* The city comes up out of the gradient (a fade keeps every in-between colour on the logo path). */
 @keyframes hero-city-on {
   from {
-    filter: brightness(0.35);
+    opacity: 0;
   }
 }
 
@@ -520,8 +531,8 @@
 :root[data-skin='white-red'] :is(#morning, #training, #tools) {
   color-scheme: dark;
   --bg: var(--color-crimson-500);
-  --surface: color-mix(in oklch, white 10%, transparent);
-  --surface-2: color-mix(in oklch, white 16%, transparent);
+  --surface: var(--crimson-panel);
+  --surface-2: color-mix(in srgb, var(--color-crimson-700) 55%, transparent);
   --text: #ffffff;
   --text-muted: #fdeef2;
   --line: color-mix(in oklch, white 24%, transparent);
@@ -531,10 +542,10 @@
   --accent-press: var(--color-sky-100);
   --btn-text: var(--color-crimson-600);
   --accent-ink: #fff0f4;
-  --accent-tint: color-mix(in oklch, white 14%, transparent);
+  --accent-tint: color-mix(in srgb, var(--color-crimson-700) 30%, transparent);
   --focus: #ffffff;
   --control-border: color-mix(in oklch, white 60%, transparent);
-  --glass: color-mix(in oklch, white 10%, transparent);
+  --glass: var(--crimson-panel);
   --glass-line: color-mix(in oklch, white 28%, transparent);
   margin-top: 0;
   border-top: 0;
@@ -676,3 +687,10 @@
   background: linear-gradient(180deg, transparent, color-mix(in oklch, var(--color-air-ink) 14%, transparent));
 }
 
+
+/* Glass panels sit on flat white or flat logo crimson here, so the frost has nothing to blur, and its saturate()
+   pushed the crimson behind it brighter than the logo (#cb1f45 rendered as #df1d47). */
+:root[data-skin='white-red'] .glass {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
