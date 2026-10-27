@@ -46,10 +46,11 @@ configured canonical site remains `https://www.gforceit.ca`.
 Optional public environment variables, set before building:
 
 - `PUBLIC_FORM_ENDPOINT`: a delivery service accepting the form's JSON request.
+- `PUBLIC_FORM_ACCESS_KEY`: only for services that want a key in the request body (Web3Forms).
 - `PUBLIC_BOOKING_URL`: G-Force's scheduling page.
 
-Without these values, enquiries and booking requests open a clearly labelled
-email draft. They do not report a successful server submission. These values
+Without these values, enquiries offer Gmail, Outlook, the visitor's email app or
+a copy of the message, and booking opens a clearly labelled email draft. They do not report a successful server submission. These values
 are included in the browser build; do not put private credentials in them.
 For local development, copy `new-site/.env.example` to `new-site/.env`.
 

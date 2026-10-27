@@ -491,6 +491,18 @@ body.has-air-sky section.band-dawn {
   .btn-secondary:hover {
     box-shadow: inset 0 0 0 1px var(--text);
   }
+  /* Gmail / Outlook / email app / copy, shown under a form's status when the visitor sends it themselves. */
+  .send-choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+  .send-choices .btn {
+    min-height: 2.75rem;
+    padding: 0.6rem 1.1rem;
+    font-size: 0.9375rem;
+  }
   .btn .btn-arrow {
     transition: transform 220ms var(--ease-out-expo);
   }

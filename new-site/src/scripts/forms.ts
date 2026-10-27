@@ -1,5 +1,5 @@
 // Progressive enhancement for plain HTML forms marked [data-lead-form="<type>"].
-import { submitLead } from '../lib/leads';
+import { renderSendChoices, submitLead } from '../lib/leads';
 
 document.querySelectorAll<HTMLFormElement>('form[data-lead-form]').forEach((form) => {
   const status = form.querySelector<HTMLElement>('.form-status');
@@ -28,6 +28,7 @@ document.querySelectorAll<HTMLFormElement>('form[data-lead-form]').forEach((form
     if (status) {
       status.textContent = result.message;
       status.dataset.state = result.ok ? 'ok' : 'error';
+      renderSendChoices(status, result.compose);
     }
     if (button) {
       button.disabled = false;

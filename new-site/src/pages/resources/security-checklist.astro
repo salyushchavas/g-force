@@ -227,7 +227,7 @@ const site = company.url.replace(/^https?:\/\//, '');
         <p class="email-lede" data-reveal style="--reveal-delay: 200ms">
           {hasEndpoint
             ? 'We will send the checklist to your inbox, ready to forward to whoever looks after your IT.'
-            : `Your email app opens with a short request to us, ready to send.${hasPdf ? ' For a copy right now, download the PDF above.' : ''}`}
+            : `Send us a short request from Gmail, Outlook or your email app.${hasPdf ? ' For a copy right now, download the PDF above.' : ''}`}
         </p>
       </div>
 
@@ -265,7 +265,7 @@ const site = company.url.replace(/^https?:\/\//, '');
         <input type="text" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp" />
         <div class="email-submit">
           <button type="submit" class="btn btn-primary">
-            {hasEndpoint ? 'Email me the checklist' : 'Open my email app'}
+            {hasEndpoint ? 'Email me the checklist' : 'Request the checklist'}
             <span class="btn-arrow"><Icon name="arrow" size={18} /></span>
           </button>
         </div>

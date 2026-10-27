@@ -1,13 +1,14 @@
 // IT health check: the PDF's "5-question quiz that gives a score and captures leads".
 // One question per step with real radios (arrow keys move, Enter continues), a score ring that fills as the
 // points add up, the fixes that matter for these answers, and an optional form that sends the result to G-Force.
-// With PUBLIC_FORM_ENDPOINT set, the result is posted and emailed back; without it, the visitor's own email app
-// opens with the result addressed to G-Force, so the copy never promises an email that nothing sends.
+// With PUBLIC_FORM_ENDPOINT set, the result is posted and emailed back; without it, the visitor sends the result
+// to G-Force from Gmail, Outlook or their email app, so the copy never promises an email that nothing sends.
 // Answers live in component state only. Nothing is stored, and nothing is sent until the visitor asks.
 import { useEffect, useId, useRef, useState } from 'react';
 import type { CSSProperties, FormEvent, KeyboardEvent, Ref } from 'react';
 import { quiz } from '../../data/site';
 import { submitLead } from '../../lib/leads';
+import type { Compose } from '../../lib/leads';
 
 type Question = (typeof quiz.questions)[number];
 type Option = Question['options'][number];
@@ -403,6 +404,7 @@ function ReportForm({
   const [errors, setErrors] = useState<{ name?: string; email?: string }>({});
   const [status, setStatus] = useState<{ text: string; state: 'ok' | 'error' | '' }>({ text: '', state: '' });
   const [sending, setSending] = useState(false);
+  const [compose, setCompose] = useState<Compose | undefined>();
   const id = (k: string) => `${uid}report-${k}`;
 
   const clear = (field: 'name' | 'email') => {
@@ -446,9 +448,11 @@ function ReportForm({
 
     setSending(true);
     setStatus({ text: '', state: '' });
+    setCompose(undefined);
     const res = await submitLead('quiz', data);
     setSending(false);
     setStatus({ text: res.message, state: res.ok ? 'ok' : 'error' });
+    setCompose(res.compose);
     if (res.ok && res.via === 'endpoint') form.reset();
   };
 
@@ -463,9 +467,9 @@ function ReportForm({
       }
     : {
         title: 'Send my result to G-Force',
-        sub: `Your email app opens with your score and answers, addressed to ${INBOX}. A specialist replies within one business day.`,
-        submit: 'Open my email app',
-        busy: 'Opening…',
+        sub: `Send your score and answers to ${INBOX} from Gmail, Outlook or your email app. A specialist replies within one business day.`,
+        submit: 'Send my result',
+        busy: 'Preparing…',
         privacy: 'We use these details to reply to you and follow up on your result.',
       };
 
@@ -557,6 +561,13 @@ function ReportForm({
         {status.state === 'error' && <Alert />}
         {status.text}
       </p>
+      {compose && (
+        <div className="send-choices">
+          <a className="btn btn-secondary" href={compose.gmail} target="_blank" rel="noopener">Gmail</a>
+          <a className="btn btn-secondary" href={compose.outlook} target="_blank" rel="noopener">Outlook</a>
+          <a className="btn btn-secondary" href={compose.app}>Email app</a>
+        </div>
+      )}
     </form>
   );
 }

@@ -12,6 +12,7 @@ import SplitHeading from '../ui/SplitHeading.astro';
 import Icon from '../ui/Icon.astro';
 import Picture from '../ui/Picture.astro';
 import { company, courses, services } from '../../data/site';
+import { composeLinks } from '../../lib/leads';
 
 interface Props {
   lines?: string[];
@@ -78,10 +79,11 @@ const fallbackAction = company.formEndpoint
 
 // Booking: the client's calendar link when it is configured, otherwise a pre-filled email.
 const bookingBody = "Hi G-Force,\n\nI'd like to book a call about:\n\nTimes that suit me (Toronto time):\n\nName:\nPhone:\n";
+const bookingMail = composeLinks('Book a call', bookingBody, company.email);
 const booking = company.bookingUrl
   ? { href: String(company.bookingUrl), external: true }
   : {
-      href: `mailto:${company.email}?subject=${encodeURIComponent('Book a call')}&body=${encodeURIComponent(bookingBody)}`,
+      href: bookingMail.app,
       external: false,
     };
 
@@ -143,7 +145,13 @@ const newsletterConsent = 'Also send me G-Force’s monthly IT security notes. I
               Book a call
               {booking.external && <Icon name="arrow-up-right" size={16} />}
             </a>
-            {!booking.external && <p class="direct-note t-meta">Opens your email app with a request ready to send.</p>}
+            {!booking.external && (
+              <p class="direct-note t-meta">
+                Opens your email app with a request ready to send. Use webmail?{' '}
+                <a href={bookingMail.gmail} target="_blank" rel="noopener">Gmail</a> or{' '}
+                <a href={bookingMail.outlook} target="_blank" rel="noopener">Outlook</a>.
+              </p>
+            )}
           </dd>
         </div>
       </dl>

@@ -107,6 +107,19 @@ import { TOPICS, GREETING } from '../../data/chat';
         const p = document.createElement('p');
         p.textContent = result.message;
         reply.append(p);
+        if (result.compose) {
+          const links = document.createElement('div');
+          links.className = 'gf-msg-links';
+          const choices: [string, string][] = [['Send with Gmail', result.compose.gmail], ['Send with Outlook', result.compose.outlook], ['Open my email app', result.compose.app]];
+          choices.forEach(([text, href]) => {
+            const a = document.createElement('a');
+            a.href = href;
+            a.textContent = text;
+            if (href.startsWith('https:')) { a.target = '_blank'; a.rel = 'noopener'; }
+            links.append(a);
+          });
+          reply.append(links);
+        }
         log.append(reply);
         status.textContent = '';
         if (result.ok) { form.reset(); setMessageMode(false); }
