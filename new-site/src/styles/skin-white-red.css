@@ -421,24 +421,6 @@
   object-fit: cover;
   object-position: 50% 92%;
 }
-:root[data-skin='white-red'] .hero .marquee-compact .marquee-head {
-  width: min(100% - 2 * var(--gutter), 1240px);
-  margin-inline: auto;
-  text-align: left;
-}
-/* The client logos, below the hero: their own colours, lettering only (LogoMarquee letters), on white. */
-:root[data-skin='white-red'] .hero > .marquee-compact {
-  color-scheme: light;
-  --text: var(--color-air-ink);
-  --text-muted: var(--color-air-copy);
-  --line: var(--color-mist-200);
-  --focus: var(--color-crimson-700);
-  position: relative;
-  margin: 0;
-  padding: clamp(2.25rem, 1.5rem + 2vw, 3.25rem) 0;
-  background: #ffffff;
-  color: var(--text);
-}
 @media (min-width: 1024px) {
   :root[data-skin='white-red'] body .hero.band-night .hero-inner {
     grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
@@ -665,16 +647,6 @@
 :root[data-skin='white-red'] .process + .calc .dc {
   padding-top: 0;
   border-top: 0;
-}
-
-/* Reduced motion or no JavaScript: the hero's static client list wraps inside the content column, rows from the left. */
-:root[data-skin='white-red']:not(.motion-ok) .hero .marquee-compact .marquee-viewport {
-  width: min(100% - 2 * var(--gutter), 1240px);
-  margin-inline: auto;
-  padding-inline: 0;
-}
-:root[data-skin='white-red']:not(.motion-ok) .hero .marquee-compact .marquee-list {
-  justify-content: flex-start;
 }
 
 /* ---------- 404: the links follow the banner closely ---------- */

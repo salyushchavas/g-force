@@ -16,6 +16,9 @@ import TrainingTeaser from '../components/sections/TrainingTeaser.astro';
 import Resources from '../components/sections/Resources.astro';
 import Faq from '../components/sections/Faq.astro';
 import ContactSection from '../components/sections/ContactSection.astro';
+import LogoMarquee from '../components/sections/LogoMarquee.astro';
+// White & crimson skin: the client logos close the page, after the contact section (user request).
+const clientsLast = import.meta.env.PUBLIC_SKIN === 'white-red';
 ---
 <Base
   title="G-Force IT Services | Managed IT and IT Training in Toronto"
@@ -35,4 +38,5 @@ import ContactSection from '../components/sections/ContactSection.astro';
   <Resources />
   <Faq />
   <ContactSection />
+  {clientsLast && <LogoMarquee id="home-clients" letters />}
 </Base>

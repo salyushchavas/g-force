@@ -76,8 +76,7 @@ const glass = import.meta.env.PUBLIC_SKIN !== 'white-red';
     )}
     {glass && <LogoMarquee compact />}
   </div>
-  {/* White & crimson skin: the hero fills the first screen and the client logos (lettering only) follow below it. */}
-  {!glass && <LogoMarquee compact letters />}
+  {/* White & crimson skin: the hero fills the first screen; the client logos close the page (index.astro). */}
 </section>
 
 <script>
