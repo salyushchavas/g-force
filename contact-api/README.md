@@ -19,8 +19,9 @@ connected, so the site never says the visitor has been subscribed.
 
 ## Deploy on Railway
 
-1. New service → Deploy from GitHub repo → this repository. In the service settings set **Root Directory** to
-   `contact-api` (Railway then uses `railway.json`: `npm start`, health check `/health`).
+1. New service → Deploy from GitHub repo → this repository. The repository-root `railway.json` builds and starts this
+   folder (install here, `node src/server.js`, health check `/health`), so no Root Directory setting is needed; it
+   also works if Root Directory is set to `contact-api`.
 2. Variables: copy `.env.example` and fill in `SMTP_PASSWORD` (a Google App Password). Keep `SMTP_HOST=smtp.gmail.com`
    and `SMTP_PORT=465` for Google Workspace.
 3. Settings → Networking → Generate Domain. The endpoint is `https://<that-domain>/api/contact`.
