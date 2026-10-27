@@ -1,12 +1,17 @@
 // One submit path for every form (contact, newsletter, quiz report, checklist).
+// Contact enquiries (the contact form and the chat helper) go to G-Force's own email API when PUBLIC_CONTACT_API_URL
+// is set (contact-api/, hosted on Railway): it sends them through the company mailbox in the background, so the
+// visitor stays on the page and sees success only after the server has handed the email to SMTP. That URL is public;
+// the SMTP credentials live only on the server.
 // With PUBLIC_FORM_ENDPOINT set (Formspree, Web3Forms, a CRM webhook...), leads are POSTed as JSON and arrive in
 // the inbox without the visitor doing anything else. PUBLIC_FORM_ACCESS_KEY is sent as `access_key` for services
 // that want one in the body (Web3Forms); both values are public in the browser build, never private credentials.
 // Without an endpoint (or when it fails), nothing is sent from here: the visitor is offered Gmail, Outlook, their
 // email app or a copy of the message. A bare mailto: redirect silently does nothing for people who use webmail.
 export type Compose = { gmail: string; outlook: string; app: string; text: string };
-export type LeadResult = { ok: boolean; via: 'endpoint' | 'email' | 'spam'; message: string; compose?: Compose };
+export type LeadResult = { ok: boolean; via: 'api' | 'endpoint' | 'email' | 'spam'; message: string; compose?: Compose };
 
+const CONTACT_API: string = import.meta.env.PUBLIC_CONTACT_API_URL ?? '';
 const ENDPOINT: string = import.meta.env.PUBLIC_FORM_ENDPOINT ?? '';
 const ACCESS_KEY: string = import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? '';
 export const INBOX = 'info@gforceit.ca';
@@ -33,6 +38,7 @@ export function composeLinks(subject: string, body: string, to = INBOX): Compose
 
 export async function submitLead(type: string, data: Record<string, string>): Promise<LeadResult> {
   if (data.company_website) return { ok: true, via: 'spam', message: 'Thanks, we have your details.' };
+  if (type === 'contact' && CONTACT_API) return sendToContactApi(data);
   const payload: Record<string, string> = { form: type, page: location.pathname, submitted_at: new Date().toISOString(), ...data };
   delete payload.company_website;
 
@@ -68,6 +74,45 @@ export async function submitLead(type: string, data: Record<string, string>): Pr
     message: `Nearly done. Nothing has been sent yet: choose how to send this to ${INBOX}.`,
     compose,
   };
+}
+
+const API_FAILURE = "We couldn't send your message just now. Please try again in a moment, or call +1 (825) 606-9777.";
+
+async function sendToContactApi(data: Record<string, string>): Promise<LeadResult> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 25_000);
+  try {
+    const res = await fetch(CONTACT_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        company: data.company,
+        interest: data.interest,
+        message: data.message,
+        newsletter: data.newsletter === 'yes',
+        consent_text: data.consent_text,
+        page: location.pathname,
+        source: data.source ?? 'contact form',
+      }),
+      signal: controller.signal,
+    });
+    const body = (await res.json().catch(() => ({}))) as { ok?: boolean; message?: string; newsletter?: string };
+    if (res.ok && body.ok) {
+      // The newsletter request travels with the email; nobody is subscribed automatically, so none is claimed.
+      const note = body.newsletter === 'forwarded' ? ' Your newsletter request was sent with your message.' : '';
+      return { ok: true, via: 'api', message: `Thanks, your message has been sent. ${successText('contact').replace(/^Thanks\. /, '')}${note}` };
+    }
+    // Field problems and rate limits carry their own plain message; anything else stays generic.
+    const own = [400, 413, 429].includes(res.status) && typeof body.message === 'string' ? body.message : '';
+    return { ok: false, via: 'api', message: own || API_FAILURE };
+  } catch {
+    return { ok: false, via: 'api', message: API_FAILURE };
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 // The send-it-yourself choices, for plain DOM forms and the chat. React forms render the same links themselves.

@@ -35,7 +35,7 @@ document.querySelectorAll<HTMLFormElement>('form[data-lead-form]').forEach((form
       button.removeAttribute('aria-busy');
       button.innerHTML = original;
     }
-    if (result.ok && result.via === 'endpoint') form.reset();
+    if (result.ok && (result.via === 'endpoint' || result.via === 'api')) form.reset();
   });
 });
 
