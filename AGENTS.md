@@ -33,7 +33,9 @@ and `new-site/REQUIREMENTS.md` before substantial changes.
   Sample/Example proof or Replay controls.
 - Preserve Archivo, professional English, usable narrow-screen layouts and
   content that remains readable if motion scripts fail. Avoid decorative dots.
-- Forms use the configured endpoint or explicitly open an email draft. Booking
+- Contact enquiries (contact form, chat helper) are sent automatically by `contact-api/` (Railway, Nodemailer,
+  smtp.gmail.com:465) via `PUBLIC_CONTACT_API_URL`; never open the visitor's email app for them. SMTP secrets live
+  only in Railway variables. Other forms use the configured endpoint or the explicit send choices. Booking
   uses the supplied URL or a mailto fallback; never imply unverified delivery.
 - The user confirmed `www.gforceit.ca` as the production address. Keep Vercel
   as a preview, with production canonicals and preview-only noindex headers.
