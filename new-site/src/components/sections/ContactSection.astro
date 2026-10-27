@@ -71,11 +71,12 @@ const directions = `https://www.google.com/maps/dir/?api=1&destination=${encodeU
   `${street}, ${company.address.city}, ${company.address.region} ${company.address.postal}`,
 )}`;
 
-// Without JavaScript the form still posts somewhere sensible: the form endpoint when one is set, otherwise the
-// visitor's email app. Never the default GET, which would put names and messages into URLs and server logs.
+// Without JavaScript the form posts to the form endpoint when one is set. Without one it goes nowhere (method
+// "dialog") and a note gives the email and phone: a mailto: action is flagged by browsers as an insecure form on
+// an HTTPS page. Never the default GET, which would put names and messages into URLs and server logs.
 const fallbackAction = company.formEndpoint
-  ? { action: String(company.formEndpoint), enctype: undefined }
-  : { action: `mailto:${company.email}?subject=${encodeURIComponent('Website enquiry')}`, enctype: 'text/plain' };
+  ? { method: 'post', action: String(company.formEndpoint) }
+  : { method: 'dialog', action: undefined };
 
 // Booking: the client's calendar link when it is configured, otherwise a pre-filled email.
 const bookingBody = "Hi G-Force,\n\nI'd like to book a call about:\n\nTimes that suit me (Toronto time):\n\nName:\nPhone:\n";
@@ -163,9 +164,8 @@ const newsletterConsent = 'Also send me G-Force’s monthly IT security notes. I
       <form
         id="contact-form"
         class="contact-form"
-        method="post"
+        method={fallbackAction.method}
         action={fallbackAction.action}
-        enctype={fallbackAction.enctype}
         data-lead-form="contact"
         data-contact-form
         data-courses={courseNames}
@@ -265,6 +265,13 @@ const newsletterConsent = 'Also send me G-Force’s monthly IT security notes. I
         <div class="form-actions">
           <button type="submit" class="btn btn-primary">Send message</button>
         </div>
+        {!company.formEndpoint && (
+          <noscript>
+            <p class="t-meta">
+              Sending from this form needs JavaScript. Email <a href={`mailto:${company.email}`}>{company.email}</a> or call {company.phoneDisplay}.
+            </p>
+          </noscript>
+        )}
         <p class="form-status t-meta" role="status" aria-live="polite"></p>
       </form>
     </div>

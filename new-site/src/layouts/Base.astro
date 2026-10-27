@@ -38,6 +38,9 @@ const {
 // Visual skin, chosen at build time: 'air' (sky blue and dawn, the default) or 'white-red' (white surfaces,
 // crimson accents and bands). Both share every component; skin-white-red.css remaps the tokens.
 const skin = import.meta.env.PUBLIC_SKIN === 'white-red' ? 'white-red' : 'air';
+// Search Console and Bing Webmaster ownership codes, set in Vercel when the owner registers the site.
+const googleVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION ?? '';
+const bingVerification = import.meta.env.PUBLIC_BING_SITE_VERIFICATION ?? '';
 const canonical = new URL(Astro.url.pathname, Astro.site ?? company.url).href;
 const ogImage = new URL(image, Astro.site ?? company.url).href;
 // Long page titles take the short brand so search results don't cut them off (about 60 characters show).
@@ -85,7 +88,9 @@ const websiteLd = {
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     {!noindex && <link rel="canonical" href={canonical} />}
-    {noindex && <meta name="robots" content="noindex" />}
+    {noindex ? <meta name="robots" content="noindex" /> : <meta name="robots" content="index, follow, max-image-preview:large" />}
+    {googleVerification && <meta name="google-site-verification" content={googleVerification} />}
+    {bingVerification && <meta name="msvalidate.01" content={bingVerification} />}
     <meta name="theme-color" content={skin === 'white-red' ? '#FFFFFF' : '#123E73'} /><!-- token-exempt: meta tags cannot read CSS variables (= page top / --color-sky-deep) -->
     <meta property="og:type" content={type} />
     <meta property="og:site_name" content="G-Force IT Services" />
@@ -110,6 +115,8 @@ const websiteLd = {
     <link rel="icon" href="/brand/favicon-192.png" sizes="192x192" type="image/png" />
     <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
+    <meta name="apple-mobile-web-app-title" content="G-Force IT" />
+    {skin === 'white-red' && <meta name="color-scheme" content="light" />}
     <link rel="sitemap" href="/sitemap-index.xml" />
     <script is:inline>
       (() => {

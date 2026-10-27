@@ -13,7 +13,9 @@
     { "source": "/blog3_details.html", "destination": "/blog/building-a-career-in-cybersecurity/", "permanent": true },
     { "source": "/blog4_details.html", "destination": "/blog/ai-and-automation-in-it-careers/", "permanent": true },
     { "source": "/blog5_details.html", "destination": "/blog/choosing-an-it-training-program/", "permanent": true },
-    { "source": "/topics-listing.html", "destination": "/blog/", "permanent": true }
+    { "source": "/topics-listing.html", "destination": "/blog/", "permanent": true },
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/:path(.*)/index.html", "destination": "/:path/", "permanent": true }
   ],
   "headers": [
     {

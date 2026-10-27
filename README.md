@@ -38,7 +38,9 @@ Use a supported Node.js release in the Vercel project settings. No server
 adapter is required for this static build. Vercel serves only `new-site/dist`,
 so the preserved root `index.html` is not the deployed homepage.
 
-The configuration also carries the legacy-page redirects and security headers
+The Vercel project that serves www.gforceit.ca uses **Root Directory `new-site`**, so it reads
+[`new-site/vercel.json`](new-site/vercel.json); a project rooted at `./` reads the root `vercel.json`.
+Keep the redirects and headers in both files identical. The configuration also carries the legacy-page redirects and security headers
 that the Apache `.htaccess` file supplies on the previous host. Vercel does not
 read Apache rules. Preview deployments work at their generated URLs; the
 configured canonical site remains `https://www.gforceit.ca`.
@@ -48,6 +50,8 @@ Optional public environment variables, set before building:
 - `PUBLIC_FORM_ENDPOINT`: a delivery service accepting the form's JSON request.
 - `PUBLIC_FORM_ACCESS_KEY`: only for services that want a key in the request body (Web3Forms).
 - `PUBLIC_BOOKING_URL`: G-Force's scheduling page.
+- `PUBLIC_GOOGLE_SITE_VERIFICATION` / `PUBLIC_BING_SITE_VERIFICATION`: the codes from Google Search
+  Console and Bing Webmaster Tools (HTML tag method), so the owner can claim the site there.
 
 Without these values, enquiries offer Gmail, Outlook, the visitor's email app or
 a copy of the message, and booking opens a clearly labelled email draft. They do not report a successful server submission. These values
