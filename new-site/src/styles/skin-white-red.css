@@ -317,8 +317,10 @@
    hero's gradient. */
 :root[data-skin='white-red'] body .hero.band-night .hero-inner {
   --hero-top: calc(var(--header-h) + clamp(3rem, 1.5rem + 5svh, 5.5rem));
-  --strip-gap: clamp(2.5rem, 1.5rem + 3vw, 4rem);
   z-index: auto;
+  /* The crimson hero fills the first screen; the client logos follow below it (user request). */
+  min-height: 100svh;
+  grid-template-rows: auto auto auto 1fr;
   justify-items: start;
   row-gap: 1.25rem;
   padding-top: var(--hero-top);
@@ -403,9 +405,9 @@
   display: block;
   overflow: hidden;
   justify-self: stretch;
-  height: clamp(9rem, 42vw, 12rem);
+  align-self: stretch;
+  min-height: clamp(9rem, 42vw, 12rem);
   margin-inline: calc(50% - 50vw);
-  margin-bottom: calc(-1 * var(--strip-gap) - 1.25rem);
   mix-blend-mode: screen;
   pointer-events: none;
   -webkit-mask-image: linear-gradient(180deg, transparent, black 35%, black 94%, transparent);
@@ -424,19 +426,16 @@
   margin-inline: auto;
   text-align: left;
 }
-:root[data-skin='white-red'] .hero .marquee-compact {
+/* The client logos, below the hero: their own colours, lettering only (LogoMarquee letters), on white. */
+:root[data-skin='white-red'] .hero > .marquee-compact {
   color-scheme: light;
   --text: var(--color-air-ink);
   --text-muted: var(--color-air-copy);
   --line: var(--color-mist-200);
   --focus: var(--color-crimson-700);
   position: relative;
-  margin-top: var(--strip-gap);
-  justify-self: stretch;
-  width: auto;
-  margin-inline: calc(50% - 50vw);
-  padding: 1.75rem 0 2rem;
-  border-bottom: 1px solid var(--line);
+  margin: 0;
+  padding: clamp(2.25rem, 1.5rem + 2vw, 3.25rem) 0;
   background: #ffffff;
   color: var(--text);
 }
@@ -448,9 +447,8 @@
       'title city'
       'sub city'
       'ctas city'
-      'links city'
-      'clients clients';
-    grid-template-rows: auto auto auto auto 1fr auto;
+      'links city';
+    grid-template-rows: auto auto auto auto 1fr;
     column-gap: 3rem;
     align-items: start;
   }
@@ -479,7 +477,8 @@
     grid-area: city;
     align-self: stretch;
     height: auto;
-    margin: calc(-1 * var(--hero-top)) calc(-1 * max(var(--gutter), (100vw - 1240px) / 2)) calc(-1 * var(--strip-gap) - 1.25rem) calc(-1 * clamp(2rem, 6vw, 8rem));
+    min-height: 0;
+    margin: calc(-1 * var(--hero-top)) calc(-1 * max(var(--gutter), (100vw - 1240px) / 2)) 0 calc(-1 * clamp(2rem, 6vw, 8rem));
     -webkit-mask-image: linear-gradient(90deg, transparent, black 45%, black 94%, transparent), linear-gradient(180deg, transparent 4%, black 22%, black 94%, transparent);
     -webkit-mask-composite: source-in;
     mask-image: linear-gradient(90deg, transparent, black 45%, black 94%, transparent), linear-gradient(180deg, transparent 4%, black 22%, black 94%, transparent);
@@ -487,9 +486,6 @@
   }
   :root[data-skin='white-red'] .hero .hero-city-img {
     object-position: 55% 92%;
-  }
-  :root[data-skin='white-red'] .hero .marquee-compact {
-    grid-area: clients;
   }
 }
 @media (prefers-reduced-motion: no-preference) {

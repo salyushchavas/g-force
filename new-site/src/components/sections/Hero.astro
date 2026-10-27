@@ -74,8 +74,10 @@ const glass = import.meta.env.PUBLIC_SKIN !== 'white-red';
         <img class="hero-city-img" src="/media/img/hero-city-wide-1200.jpg" srcset="/media/img/hero-city-wide-800.jpg 800w, /media/img/hero-city-wide-1200.jpg 1200w" sizes="100vw" alt="" width="1200" height="500" loading="eager" fetchpriority="high" decoding="async" />
       </picture>
     )}
-    <LogoMarquee compact />
+    {glass && <LogoMarquee compact />}
   </div>
+  {/* White & crimson skin: the hero fills the first screen and the client logos (lettering only) follow below it. */}
+  {!glass && <LogoMarquee compact letters />}
 </section>
 
 <script>

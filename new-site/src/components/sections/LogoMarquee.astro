@@ -5,11 +5,12 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { clientLogos } from '../../data/site';
-interface Props { id?: string; compact?: boolean; }
-const { id = 'client-logos', compact = false } = Astro.props;
+interface Props { id?: string; compact?: boolean; /** Lettering only: boxed marks (AIG, IBM, HP...) without their box. */ letters?: boolean; }
+const { id = 'client-logos', compact = false, letters = false } = Astro.props;
 const titleId = `${id}-title`;
 const logos = clientLogos.flatMap((logo) => {
-  const src = `/logos/clients/colour/${logo.file.replace(/\.(gif|jpg)$/i, '.png')}`;
+  // letters/: the same colour logos with any solid box removed, the lettering in the box's colour (user request).
+  const src = `/logos/clients/${letters ? 'letters' : 'colour'}/${logo.file.replace(/\.(gif|jpg)$/i, '.png')}`;
   const path = join(process.cwd(), 'public', src);
   if (!existsSync(path)) return [];
   const png = readFileSync(path);
