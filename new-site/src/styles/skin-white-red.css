@@ -2,7 +2,7 @@
   White & crimson skin (build with PUBLIC_SKIN=white-red; Base.astro sets html[data-skin="white-red"]).
 
   Design: red and white only, after the original gforceit.ca (user request and reference):
-  - The original's crimson gradient, linear-gradient(15deg, #cb1f45, #89001e), for the header bar, the inner-page
+  - One flat dark cherry red (--brand-red, #700018), for the header bar, the inner-page
     title banners (PageHero renders them as .page-hero-red), the home audience band and the footer.
   - White sections alternating with the original's rose-white section ground (#f6f1f2), divided by hairlines.
   - White pills with crimson text on red (the original's Contact button); crimson pills on white.
@@ -14,16 +14,23 @@
 */
 
 :root[data-skin='white-red'] {
-  /* Deep crimson where the Air skin uses deep sky (band-night, header frost, mobile menu). */
-  --color-sky-deep: #89001e;
-  --color-sky-mid: #af1234;
-  --color-dusk-500: #cb1f45;
+  /* Every red is one dark cherry red (user, 28 October 2026: "#89001e ... but more darker red like cherry red").
+     Change it here only. The crimson steps all take it; the light steps are exact tints of it toward white. */
+  --brand-red: #700018;
+  --color-crimson-700: var(--brand-red);
+  --color-crimson-600: var(--brand-red);
+  --color-crimson-500: var(--brand-red);
+  --color-crimson-300: color-mix(in srgb, var(--brand-red) 35%, white);
+  --color-crimson-100: color-mix(in srgb, var(--brand-red) 10%, white);
+  --color-sky-deep: var(--brand-red);
+  --color-sky-mid: var(--brand-red);
+  --color-dusk-500: var(--brand-red);
   --color-dusk-300: #f0c3cd;
   --color-sky-light: #e8e5e6;
   --color-sky-pale: #f1eeef;
   /* White pill on crimson: hover and press tints. */
-  --color-sky-50: #fdf0f3;
-  --color-sky-100: #f8dde4;
+  --color-sky-50: color-mix(in srgb, var(--brand-red) 6%, white);
+  --color-sky-100: color-mix(in srgb, var(--brand-red) 12%, white);
   --color-twilight: #6a6970;
 
   /* Charcoal greys (Air uses navy here); this skin is light only, so they appear only as ink tints. */
@@ -52,12 +59,11 @@
 
   --control-border: #8a888d;
   /* The original site's header, hero overlay and section gradient. */
-  --sky-gradient: linear-gradient(15deg, #cb1f45 0%, #89001e 100%);
-  /* Panels on crimson are a deeper shade of the logo's own red, never a white wash (which turns the red pink).
-     Mixed in sRGB so every result stays on the logo's #cb1f45 to #89001e line. */
-  --crimson-panel: color-mix(in srgb, #89001e 38%, transparent);
+  --sky-gradient: linear-gradient(var(--brand-red), var(--brand-red));
+  /* Panels on red show the logo red itself, outlined by their white hairlines: no darker shade, no white wash. */
+  --crimson-panel: transparent;
   --dawn-gradient: linear-gradient(#ffffff, #ffffff);
-  --dusk-gradient: radial-gradient(100% 70% at 50% 100%, color-mix(in oklch, #cb1f45 16%, transparent), transparent 80%),
+  --dusk-gradient: radial-gradient(100% 70% at 50% 100%, color-mix(in oklch, var(--brand-red) 16%, transparent), transparent 80%),
     linear-gradient(180deg, #121214 0%, #17171a 55%, #1c1c20 100%);
 }
 
@@ -65,7 +71,7 @@
 
 /* Crimson bands: white type, white pills with ink text, light rose for links and the muted line. */
 :root[data-skin='white-red'] .band-night {
-  /* Light enough for 4.5:1 on the bright #cb1f45 end of the gradient. */
+  /* Muted type on the red: well over 4.5:1 on the dark cherry. */
   --text-muted: #fdeef2;
   --accent-ink: #fff0f4;
   --line: color-mix(in oklch, white 24%, transparent);
@@ -377,7 +383,7 @@
   padding: 0.3rem 0.85rem;
   border: 1px solid color-mix(in oklch, white 32%, transparent);
   border-radius: 999px;
-  background: color-mix(in srgb, var(--color-crimson-700) 22%, transparent);
+  background: transparent;
   color: #ffffff;
   font-size: 0.875rem;
   font-weight: 550;
@@ -406,10 +412,9 @@
     flex: none;
   }
 }
-/* The skyline (hero-city crops in Hero.astro): the photo's tones are baked onto the logo's own path, #89001e to
-   #cb1f45 to white, and lightened onto the gradient. Every point on that path is either brighter or darker than the
-   gradient in all three channels, so the result is always a logo red (or, for the lights, a tint of #cb1f45 toward
-   white); a screen blend of a grey photo washed the red out. Each crop has the waterline at 92% of its height, so it stands
+/* The skyline (hero-city crops in Hero.astro): the photo's tones are baked onto the brand red only (#700018, keep in
+   step with --brand-red) for the buildings and dark sky, rising through tints of it to white for the glow and lights. The crop is opaque and
+   masked at its edges, so it melts into the flat logo-red hero. Each crop has the waterline at 92% of its height, so it stands
    on the client strip; the desktop crop has the CN Tower at 55% across. Phones: a wide band under the actions. */
 :root[data-skin='white-red'] .hero .hero-city {
   position: relative;
@@ -532,7 +537,7 @@
   color-scheme: dark;
   --bg: var(--color-crimson-500);
   --surface: var(--crimson-panel);
-  --surface-2: color-mix(in srgb, var(--color-crimson-700) 55%, transparent);
+  --surface-2: transparent;
   --text: #ffffff;
   --text-muted: #fdeef2;
   --line: color-mix(in oklch, white 24%, transparent);
@@ -542,7 +547,7 @@
   --accent-press: var(--color-sky-100);
   --btn-text: var(--color-crimson-600);
   --accent-ink: #fff0f4;
-  --accent-tint: color-mix(in srgb, var(--color-crimson-700) 30%, transparent);
+  --accent-tint: color-mix(in srgb, white 12%, transparent);
   --focus: #ffffff;
   --control-border: color-mix(in oklch, white 60%, transparent);
   --glass: var(--crimson-panel);
@@ -689,8 +694,17 @@
 
 
 /* Glass panels sit on flat white or flat logo crimson here, so the frost has nothing to blur, and its saturate()
-   pushed the crimson behind it brighter than the logo (#cb1f45 rendered as #df1d47). */
+   over-brightened the red behind it. */
 :root[data-skin='white-red'] .glass {
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
+}
+
+/* Primary buttons: hover and press lighten toward white (tints of the logo red, or of the white pill), since the
+   darker crimson steps are gone. */
+:root[data-skin='white-red'] .btn-primary:hover {
+  background: color-mix(in srgb, var(--accent-hover) 90%, white);
+}
+:root[data-skin='white-red'] .btn-primary:active {
+  background: color-mix(in srgb, var(--accent-press) 84%, white);
 }
