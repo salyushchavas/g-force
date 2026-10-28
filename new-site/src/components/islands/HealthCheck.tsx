@@ -8,7 +8,6 @@ import { useEffect, useId, useRef, useState } from 'react';
 import type { CSSProperties, FormEvent, KeyboardEvent, Ref } from 'react';
 import { quiz } from '../../data/site';
 import { submitLead } from '../../lib/leads';
-import type { Compose } from '../../lib/leads';
 
 type Question = (typeof quiz.questions)[number];
 type Option = Question['options'][number];
@@ -45,8 +44,6 @@ const ASSESSMENT_HREF = '/contact/?interest=assessment#contact-form';
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const RING_R = 52;
 const RING_C = 2 * Math.PI * RING_R;
-const HAS_ENDPOINT = Boolean(import.meta.env.PUBLIC_FORM_ENDPOINT);
-const INBOX = 'info@gforceit.ca';
 const CONSENT_LABEL = 'Also email me G-Force’s monthly IT security notes. I can unsubscribe at any time.';
 
 const motionOK = () => typeof document !== 'undefined' && document.documentElement.classList.contains('motion-ok');
@@ -404,7 +401,6 @@ function ReportForm({
   const [errors, setErrors] = useState<{ name?: string; email?: string }>({});
   const [status, setStatus] = useState<{ text: string; state: 'ok' | 'error' | '' }>({ text: '', state: '' });
   const [sending, setSending] = useState(false);
-  const [compose, setCompose] = useState<Compose | undefined>();
   const id = (k: string) => `${uid}report-${k}`;
 
   const clear = (field: 'name' | 'email') => {
@@ -448,30 +444,20 @@ function ReportForm({
 
     setSending(true);
     setStatus({ text: '', state: '' });
-    setCompose(undefined);
     const res = await submitLead('quiz', data);
     setSending(false);
     setStatus({ text: res.message, state: res.ok ? 'ok' : 'error' });
-    setCompose(res.compose);
-    if (res.ok && res.via === 'endpoint') form.reset();
+    if (res.ok) form.reset();
   };
 
-  // Without a form endpoint nothing on our side can send an email, so the copy says what really happens.
-  const copy = HAS_ENDPOINT
-    ? {
-        title: 'Email me this report',
-        sub: 'We’ll email you this result, and a specialist will follow up within one business day.',
-        submit: 'Email me the report',
-        busy: 'Sending…',
-        privacy: 'We use these details to send the report and follow up on it.',
-      }
-    : {
-        title: 'Send my result to G-Force',
-        sub: `Send your score and answers to ${INBOX} from Gmail, Outlook or your email app. A specialist replies within one business day.`,
-        submit: 'Send my result',
-        busy: 'Preparing…',
-        privacy: 'We use these details to reply to you and follow up on your result.',
-      };
+  // The result goes to G-Force's inbox; nothing is emailed back automatically, so Print/save stays available.
+  const copy = {
+    title: 'Send my result to G-Force',
+    sub: 'Your score and answers go straight to G-Force. A specialist replies within one business day.',
+    submit: 'Send my result',
+    busy: 'Sending…',
+    privacy: 'We use these details to reply to you and follow up on your result.',
+  };
 
   return (
     <form className="hc-lead" onSubmit={onSubmit} noValidate aria-labelledby={id('title')}>
@@ -551,23 +537,14 @@ function ReportForm({
         <button type="submit" className="btn btn-primary" aria-disabled={sending || undefined}>
           {sending ? copy.busy : copy.submit}
         </button>
-        {!HAS_ENDPOINT && (
-          <button type="button" className="btn btn-secondary" onClick={(e) => printResult(e.currentTarget.closest<HTMLElement>('.hc'))}>
-            Print or save this result
-          </button>
-        )}
+        <button type="button" className="btn btn-secondary" onClick={(e) => printResult(e.currentTarget.closest<HTMLElement>('.hc'))}>
+          Print or save this result
+        </button>
       </div>
       <p className="hc-status t-meta" role="status" aria-live="polite" data-state={status.state || undefined}>
         {status.state === 'error' && <Alert />}
         {status.text}
       </p>
-      {compose && (
-        <div className="send-choices">
-          <a className="btn btn-secondary" href={compose.gmail} target="_blank" rel="noopener">Gmail</a>
-          <a className="btn btn-secondary" href={compose.outlook} target="_blank" rel="noopener">Outlook</a>
-          <a className="btn btn-secondary" href={compose.app}>Email app</a>
-        </div>
-      )}
     </form>
   );
 }

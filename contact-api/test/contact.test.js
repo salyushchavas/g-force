@@ -187,3 +187,35 @@ test('api: missing configuration answers 503 without details', async () => {
     assert.doesNotMatch(JSON.stringify(await res.json()), /SMTP_PASSWORD/);
   });
 });
+
+test('newsletter: needs consent, is forwarded (never auto-subscribed), and has no name requirement', async () => {
+  await withServer({}, async ({ post, sent }) => {
+    const bad = await post({ type: 'newsletter', email: 'reader@example.com' });
+    assert.equal(bad.status, 400);
+    assert.ok((await bad.json()).fields.newsletter);
+    const res = await post({ type: 'newsletter', email: 'reader@example.com', newsletter: true, consent_text: 'Yes, email me the notes.', page: '/blog/' });
+    assert.equal(res.status, 200);
+    assert.equal(sent.length, 1);
+    assert.match(sent[0].subject, /^Newsletter sign-up: reader@example.com$/);
+    assert.match(sent[0].text, /NOT been subscribed automatically/);
+    assert.equal(sent[0].replyTo, 'reader@example.com');
+  });
+});
+
+test('checklist and quiz: validated, laid out, escaped; unknown types refused', async () => {
+  await withServer({ env: { RATE_LIMIT_MAX: '20' } }, async ({ post, sent }) => {
+    assert.equal((await post({ type: 'checklist', email: 'nope' })).status, 400);
+    assert.equal((await post({ type: 'checklist', email: 'owner@example.com', name: 'Sam' })).status, 200);
+    assert.match(sent[0].subject, /Security checklist request from Sam/);
+    assert.equal((await post({ type: 'quiz', email: 'owner@example.com' })).status, 400);
+    const quiz = { type: 'quiz', name: 'Ana <b>', email: 'ana@example.com', score: '9 out of 20', result: 'Needs attention', fixes: 'Backups: test a restore | MFA: turn it on', answer_backups: 'Never tested (0 of 4)', 'answer_bad key': 'ignored' };
+    assert.equal((await post(quiz)).status, 200);
+    const mail = sent[1];
+    assert.match(mail.subject, /IT health check result: Needs attention from Ana/);
+    assert.match(mail.text, /- MFA: turn it on/);
+    assert.match(mail.text, /backups: Never tested/);
+    assert.doesNotMatch(mail.text, /ignored/);
+    assert.ok(mail.html.includes('Ana &lt;b&gt;'));
+    assert.equal((await post({ type: 'spam', email: 'x@example.com' })).status, 400);
+  });
+});

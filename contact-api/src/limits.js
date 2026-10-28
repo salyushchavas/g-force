@@ -26,7 +26,7 @@ export function createRateLimiter({ max, windowMs, globalMax, globalWindowMs }, 
 export function createDuplicateGuard(windowMs, now = Date.now) {
   const seen = new Map();
   const fingerprint = (data) =>
-    createHash('sha256').update([data.email, data.name, data.interest, data.message].join('\u0000')).digest('hex');
+    createHash('sha256').update([data.type, data.email, data.name, data.interest, data.message, data.quiz?.score].join('\u0000')).digest('hex');
   return {
     isDuplicate(data) {
       const t = now();

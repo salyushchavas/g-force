@@ -11,7 +11,11 @@ export const INTERESTS = {
 };
 const SOURCES = new Set(['contact form', 'chat helper']);
 
-const LIMITS = { name: 100, email: 254, phone: 40, company: 120, message: 5000, consent: 300, page: 200 };
+const LIMITS = { name: 100, email: 254, phone: 40, company: 120, message: 5000, consent: 300, page: 200, score: 40, result: 80, fixes: 3000, answer: 200, answers: 20 };
+
+// The website's forms. Contact enquiries come from the contact form and the chat helper; the rest are the newsletter
+// sign-ups, the security checklist request and the IT health check result.
+export const TYPES = new Set(['contact', 'newsletter', 'checklist', 'quiz']);
 
 // Control characters other than tab/newline are dropped everywhere; single-line fields also lose newlines, so no
 // value can start a new mail header.
@@ -69,6 +73,7 @@ export function validateContact(input) {
   if (Object.keys(errors).length) return { errors };
   return {
     data: {
+      type: 'contact',
       name,
       email,
       phone,
@@ -79,6 +84,62 @@ export function validateContact(input) {
       consentText,
       page: page.startsWith('/') && page.length <= LIMITS.page ? page : '',
       source: SOURCES.has(source) ? source : 'contact form',
+    },
+  };
+}
+
+/** Validates any website form: { type } picks the form; contact is the default. Returns { data } or { errors }. */
+export function validateLead(input) {
+  const body = input && typeof input === 'object' && !Array.isArray(input) ? input : {};
+  const type = singleLine(body.type) || 'contact';
+  if (!TYPES.has(type)) return { errors: { type: 'Unknown form.' } };
+  if (type === 'contact') return validateContact(body);
+  const errors = {};
+
+  const name = singleLine(body.name);
+  if (type === 'quiz' && !name) errors.name = 'Please add your name.';
+  else if (name.length > LIMITS.name) errors.name = `Please keep your name under ${LIMITS.name} characters.`;
+
+  const rawEmail = typeof body.email === 'string' ? body.email.trim() : '';
+  if (!rawEmail) errors.email = 'Please add your email address.';
+  else if (/[\r\n]/.test(rawEmail) || !isEmail(rawEmail)) errors.email = 'Please check your email address. It should look like name@company.ca.';
+
+  const company = singleLine(body.company);
+  if (company.length > LIMITS.company) errors.company = `Please keep the company name under ${LIMITS.company} characters.`;
+
+  // A newsletter sign-up is only valid with the consent box ticked.
+  const newsletter = truthy(body.newsletter);
+  if (type === 'newsletter' && !newsletter) errors.newsletter = 'Please tick the box to confirm you want the monthly email.';
+  const consentText = newsletter ? singleLine(body.consent_text).slice(0, LIMITS.consent) : '';
+
+  let quiz;
+  if (type === 'quiz') {
+    const answers = [];
+    for (const [key, value] of Object.entries(body)) {
+      if (!/^answer_[A-Za-z0-9_-]{1,40}$/.test(key) || answers.length >= LIMITS.answers) continue;
+      const v = singleLine(value).slice(0, LIMITS.answer);
+      if (v) answers.push([key.slice(7).replace(/[_-]+/g, ' '), v]);
+    }
+    quiz = {
+      score: singleLine(body.score).slice(0, LIMITS.score),
+      result: singleLine(body.result).slice(0, LIMITS.result),
+      fixes: singleLine(body.fixes).slice(0, LIMITS.fixes).split(' | ').map((f) => f.trim()).filter(Boolean),
+      answers,
+    };
+  }
+
+  if (Object.keys(errors).length) return { errors };
+  const page = singleLine(body.page);
+  return {
+    data: {
+      type,
+      name,
+      email: rawEmail.toLowerCase(),
+      company,
+      newsletter,
+      consentText,
+      page: page.startsWith('/') && page.length <= LIMITS.page ? page : '',
+      ...(quiz ? { quiz } : {}),
     },
   };
 }

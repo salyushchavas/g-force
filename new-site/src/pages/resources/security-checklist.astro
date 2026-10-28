@@ -17,7 +17,7 @@ const PDF_HREF = '/downloads/gforce-it-security-checklist.pdf';
 const hasPdf = existsSync(join(process.cwd(), 'public', PDF_HREF));
 // Without a form endpoint the request goes out from the visitor's own email app (src/lib/leads.ts), so the
 // section says exactly that and promises no automatic delivery.
-const hasEndpoint = Boolean(company.formEndpoint);
+const hasEndpoint = Boolean(import.meta.env.PUBLIC_CONTACT_API_URL || company.formEndpoint);
 const newsletterConsent = 'Also send me G\u2011Force’s monthly IT security notes. I can unsubscribe at any time.';
 const printIcon =
   '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 9V4.5h10V9"/><rect x="3.5" y="9" width="17" height="8" rx="1.5"/><path d="M7 14h10v6H7z"/></svg>';

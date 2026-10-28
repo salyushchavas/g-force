@@ -1,11 +1,13 @@
 # G-Force contact API
 
-Sends the website's contact enquiries (the contact form and the chat helper) to the company inbox through SMTP, in
-the background. The visitor stays on the page; the site shows success only after the SMTP server has accepted the
+Sends every website form to the company inbox through SMTP, in the background: contact enquiries (the contact form
+and the chat helper), newsletter sign-ups, security checklist requests and IT health check results. The visitor stays on the page; the site shows success only after the SMTP server has accepted the
 email, and a retry-able error otherwise.
 
-- `POST /api/contact` (JSON): `name`, `email` (required), `phone`, `company`, `interest`, `message`, `newsletter`,
-  `consent_text`, `page`, `source`. Responses: 200 sent, 400 invalid (with a plain message), 403 origin not allowed,
+- `POST /api/contact` (JSON). `type` picks the form: `contact` (default: `name`, `email` required, `phone`, `company`,
+  `interest`, `message`), `newsletter` (`email`, `newsletter: true` required), `checklist` (`email` required, `name`) or
+  `quiz` (`name`, `email` required, `company`, `score`, `result`, `fixes`, `answer_*`). All take `newsletter`,
+  `consent_text` and `page`. Responses: 200 sent, 400 invalid (with a plain message), 403 origin not allowed,
   413 too large, 415 not JSON, 429 rate limited (`Retry-After`), 502 sending failed, 503 not configured.
 - `GET /health`: 200 when the service is up.
 

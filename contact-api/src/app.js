@@ -1,6 +1,6 @@
 // HTTP handling for the contact API, independent of Nodemailer so it can be tested with a fake sender.
-import { validateContact } from './validate.js';
-import { buildEnquiryEmail } from './email.js';
+import { validateLead } from './validate.js';
+import { buildLeadEmail } from './email.js';
 import { createDuplicateGuard, createRateLimiter } from './limits.js';
 
 const GENERIC_FAILURE = "We couldn't send your message just now. Please try again in a moment, or call +1 (825) 606-9777.";
@@ -45,7 +45,7 @@ export function createHandler({ config, send, log = (entry) => console.log(JSON.
 
     const url = new URL(req.url ?? '/', 'http://localhost');
     if (url.pathname === '/health' && req.method === 'GET') return json(res, 200, { ok: true });
-    if (url.pathname !== '/api/contact') return json(res, 404, { ok: false, error: 'not_found' });
+    if (url.pathname !== '/api/contact' && url.pathname !== '/api/lead') return json(res, 404, { ok: false, error: 'not_found' });
 
     // CORS: only the website's own origins may call this from a browser.
     const origin = String(req.headers.origin ?? '').replace(/\/+$/, '');
@@ -98,7 +98,7 @@ export function createHandler({ config, send, log = (entry) => console.log(JSON.
       return json(res, 200, { ok: true });
     }
 
-    const { data, errors } = validateContact(body);
+    const { data, errors } = validateLead(body);
     if (errors) {
       const first = Object.values(errors)[0];
       return json(res, 400, { ok: false, error: 'invalid', message: first, fields: errors });
@@ -110,9 +110,9 @@ export function createHandler({ config, send, log = (entry) => console.log(JSON.
     }
 
     try {
-      const info = await send(buildEnquiryEmail(data, config, new Date(now())));
+      const info = await send(buildLeadEmail(data, config, new Date(now())));
       duplicates.remember(data);
-      log({ event: 'sent', messageId: info?.messageId ?? null, newsletter: data.newsletter });
+      log({ event: 'sent', type: data.type, messageId: info?.messageId ?? null, newsletter: data.newsletter });
       // The newsletter request travels in the email; nobody is subscribed automatically.
       return json(res, 200, { ok: true, newsletter: data.newsletter ? 'forwarded' : 'none' });
     } catch (err) {
