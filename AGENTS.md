@@ -93,10 +93,10 @@ root, and root `vercel.json` builds `new-site/` into `new-site/dist`.
   (#f6f1f2) sections; the home page alternates with extra crimson bands (user: "more red", home page only;
   inner pages keep banner + white/rose sections; never two crimson masses touching), white pills with crimson text on red, and light theme only (no theme switch; the user
   confirmed dark mode is not required for this version, overriding the PDF's dark-mode item here). Keep its changes
-  scoped to the skin so the default Air build is unchanged. Every red is one flat red, `--brand-red` #ff1e00 (user, 17 November 2026: "FF1E00 change colour to this
-  red"; earlier #700018); change it only there. No gradients and no other reds: hover/press and light
+  scoped to the skin so the default Air build is unchanged. Every red is one flat dark cherry red, `--brand-red` #700018 (user, 28 October 2026: "#89001e I need but more
+  darker red like cherry red ... more dark"); change it only there. No gradients and no other reds: hover/press and light
   accents are tints of it toward white, panels on red are transparent with white hairlines, never a white wash or a
-  backdrop saturate(). The skyline photo is baked onto the brand red to white with `node scripts/prepare-hero-city.mjs <original> <hex>`
-  (keep in step with --brand-red). The logo
+  backdrop saturate(). The skyline photo is baked onto #700018 to white with `node scripts/prepare-hero-city.mjs <original> <hex>`
+  (keep in step with --brand-red; the user tried #ff1e00 on 17 November 2026 and went back to #700018). The logo
   artwork and favicon keep their original colours. When the user asks to change a page or section, change
   only that page or section (user, 28 October 2026: "just change only the home page not entire site").

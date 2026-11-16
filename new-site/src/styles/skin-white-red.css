@@ -2,7 +2,7 @@
   White & crimson skin (build with PUBLIC_SKIN=white-red; Base.astro sets html[data-skin="white-red"]).
 
   Design: red and white only, after the original gforceit.ca (user request and reference):
-  - One flat bright red (--brand-red, #ff1e00), for the header bar, the inner-page
+  - One flat dark cherry red (--brand-red, #700018), for the header bar, the inner-page
     title banners (PageHero renders them as .page-hero-red), the home audience band and the footer.
   - White sections alternating with the original's rose-white section ground (#f6f1f2), divided by hairlines.
   - White pills with crimson text on red (the original's Contact button); crimson pills on white.
@@ -14,9 +14,9 @@
 */
 
 :root[data-skin='white-red'] {
-  /* Every red is one red (user, 17 November 2026: "FF1E00 change colour to this red"; earlier #700018).
+  /* Every red is one dark cherry red (user, 28 October 2026: "#89001e ... but more darker red like cherry red").
      Change it here only. The crimson steps all take it; the light steps are exact tints of it toward white. */
-  --brand-red: #ff1e00;
+  --brand-red: #700018;
   --color-crimson-700: var(--brand-red);
   --color-crimson-600: var(--brand-red);
   --color-crimson-500: var(--brand-red);
@@ -71,8 +71,8 @@
 
 /* Crimson bands: white type, white pills with ink text, light rose for links and the muted line. */
 :root[data-skin='white-red'] .band-night {
-  /* Muted type on the red is plain white: the bright red leaves no room for a lighter tint. */
-  --text-muted: #ffffff;
+  /* Muted type on the red: well over 4.5:1 on the dark cherry. */
+  --text-muted: #fdeef2;
   --accent-ink: #fff0f4;
   --line: color-mix(in oklch, white 24%, transparent);
   --line-strong: color-mix(in oklch, white 50%, transparent);
@@ -207,7 +207,7 @@
 :root[data-skin='white-red'] .paths .path-business {
   color-scheme: dark;
   --text: #ffffff;
-  --text-muted: #ffffff;
+  --text-muted: #fdeef2;
   --line: color-mix(in oklch, white 24%, transparent);
   --line-strong: color-mix(in oklch, white 50%, transparent);
   --accent: #ffffff;
@@ -255,7 +255,7 @@
 :root:root[data-skin='white-red'] body .site-header.site-header[data-site-header] {
   color-scheme: dark;
   --text: #ffffff;
-  --text-muted: #ffffff;
+  --text-muted: #fdeef2;
   --line: color-mix(in oklch, white 18%, transparent);
   --line-strong: color-mix(in oklch, white 40%, transparent);
   --logo-word: #ffffff;
@@ -314,7 +314,7 @@
 :root[data-skin='white-red'] body .hero.band-night {
   color-scheme: dark;
   --text: #ffffff;
-  --text-muted: #ffffff;
+  --text-muted: #fdeef2;
   --accent: #ffffff;
   --accent-hover: var(--color-sky-50);
   --accent-press: var(--color-sky-100);
@@ -412,7 +412,7 @@
     flex: none;
   }
 }
-/* The skyline (hero-city crops in Hero.astro): the photo's tones are baked onto the brand red only (#ff1e00, keep in
+/* The skyline (hero-city crops in Hero.astro): the photo's tones are baked onto the brand red only (#700018, keep in
    step with --brand-red) for the buildings and dark sky, rising through tints of it to white for the glow and lights. The crop is opaque and
    masked at its edges, so it melts into the flat logo-red hero. Each crop has the waterline at 92% of its height, so it stands
    on the client strip; the desktop crop has the CN Tower at 55% across. Phones: a wide band under the actions. */
@@ -539,7 +539,7 @@
   --surface: var(--crimson-panel);
   --surface-2: transparent;
   --text: #ffffff;
-  --text-muted: #ffffff;
+  --text-muted: #fdeef2;
   --line: color-mix(in oklch, white 24%, transparent);
   --line-strong: color-mix(in oklch, white 50%, transparent);
   --accent: #ffffff;
@@ -570,7 +570,7 @@
   --marker: 3.5rem;
   color-scheme: dark;
   --text: #ffffff;
-  --text-muted: #ffffff;
+  --text-muted: #fdeef2;
   --line: color-mix(in oklch, white 40%, transparent);
   --line-strong: color-mix(in oklch, white 70%, transparent);
   --accent: #ffffff;
